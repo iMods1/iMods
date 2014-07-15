@@ -13,14 +13,14 @@ let IMOPACKAGESIGNATURE_LENGTH = 10
 typealias IMOPackageSignature = String
 
 extension IMOPackageSignature {
-    var isValid: Bool {
+    var imo_IsValid: Bool {
         get {
-            var isValid = self.length == IMOPACKAGESIGNATURE_LENGTH
+            var isValid = self.imo_Length == IMOPACKAGESIGNATURE_LENGTH
             return isValid
         }
     }
 
-    var length: Int {
+    var imo_Length: Int {
         get {
             return countElements(self)
         }
