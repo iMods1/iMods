@@ -78,6 +78,8 @@
 		4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		4DA336591974DF1600F7EFB5 /* Quick */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Quick; sourceTree = "<group>"; };
+		4DA336681974DF2700F7EFB5 /* Nimble */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Nimble; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,8 @@
 		284CBBC91946F35A006539A3 /* iModsTests */ = {
 			isa = PBXGroup;
 			children = (
+				4DA336681974DF2700F7EFB5 /* Nimble */,
+				4DA336591974DF1600F7EFB5 /* Quick */,
 				284CBBCC1946F35A006539A3 /* iModsTests.swift */,
 				284CBBCA1946F35A006539A3 /* Supporting Files */,
 				4D8928E71974955000AD8A28 /* IMOItemModelTests.swift */,
