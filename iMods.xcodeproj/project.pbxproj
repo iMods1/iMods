@@ -13,6 +13,28 @@
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBCC1946F35A006539A3 /* iModsTests.swift */; };
+		4D89289F19747FBD00AD8A28 /* IMOFeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* IMOFeaturedViewController.swift */; };
+		4D8928A21974801900AD8A28 /* IMOCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* IMOCategoriesViewController.swift */; };
+		4D8928A41974809200AD8A28 /* IMOSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* IMOSearchViewController.swift */; };
+		4D8928A61974812A00AD8A28 /* IMOPackagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A51974812A00AD8A28 /* IMOPackagesViewController.swift */; };
+		4D8928A81974813300AD8A28 /* IMOUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* IMOUpdatesViewController.swift */; };
+		4D8928D719748CF000AD8A28 /* IMOFeaturedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D619748CF000AD8A28 /* IMOFeaturedNavigationController.swift */; };
+		4D8928D919748DE300AD8A28 /* IMOFeaturedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D819748DE300AD8A28 /* IMOFeaturedAppsTableViewController.swift */; };
+		4D8928DC19748EC200AD8A28 /* IMOItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928DB19748EC200AD8A28 /* IMOItemModel.swift */; };
+		4D8928E31974903800AD8A28 /* IMOPackageSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928E21974903800AD8A28 /* IMOPackageSignature.swift */; };
+		4D8928E61974941000AD8A28 /* IMOPackageSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928E21974903800AD8A28 /* IMOPackageSignature.swift */; };
+		4D8928E81974955000AD8A28 /* IMOItemModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928E71974955000AD8A28 /* IMOItemModelTests.swift */; };
+		4D8928E91974955600AD8A28 /* IMOItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928DB19748EC200AD8A28 /* IMOItemModel.swift */; };
+		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
+		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
+		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
+		4D8928F719749D7800AD8A28 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928ED19749D7800AD8A28 /* OpenSans-ExtraBoldItalic.ttf */; };
+		4D8928F819749D7800AD8A28 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EE19749D7800AD8A28 /* OpenSans-Italic.ttf */; };
+		4D8928F919749D7800AD8A28 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EF19749D7800AD8A28 /* OpenSans-Light.ttf */; };
+		4D8928FA19749D7800AD8A28 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F019749D7800AD8A28 /* OpenSans-LightItalic.ttf */; };
+		4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */; };
+		4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */; };
+		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,10 +54,30 @@
 		284CBBB91946F35A006539A3 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		284CBBBB1946F35A006539A3 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		284CBBBE1946F35A006539A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		284CBBC01946F35A006539A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		284CBBC01946F35A006539A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBCC1946F35A006539A3 /* iModsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModsTests.swift; sourceTree = "<group>"; };
+		4D89289E19747FBD00AD8A28 /* IMOFeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOFeaturedViewController.swift; sourceTree = "<group>"; };
+		4D8928A11974801900AD8A28 /* IMOCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOCategoriesViewController.swift; sourceTree = "<group>"; };
+		4D8928A31974809200AD8A28 /* IMOSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOSearchViewController.swift; sourceTree = "<group>"; };
+		4D8928A51974812A00AD8A28 /* IMOPackagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOPackagesViewController.swift; sourceTree = "<group>"; };
+		4D8928A71974813300AD8A28 /* IMOUpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOUpdatesViewController.swift; sourceTree = "<group>"; };
+		4D8928D619748CF000AD8A28 /* IMOFeaturedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOFeaturedNavigationController.swift; sourceTree = "<group>"; };
+		4D8928D819748DE300AD8A28 /* IMOFeaturedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOFeaturedAppsTableViewController.swift; sourceTree = "<group>"; };
+		4D8928DB19748EC200AD8A28 /* IMOItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemModel.swift; sourceTree = "<group>"; };
+		4D8928E21974903800AD8A28 /* IMOPackageSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOPackageSignature.swift; sourceTree = "<group>"; };
+		4D8928E71974955000AD8A28 /* IMOItemModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemModelTests.swift; sourceTree = "<group>"; };
+		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		4D8928ED19749D7800AD8A28 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		4D8928EE19749D7800AD8A28 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		4D8928EF19749D7800AD8A28 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		4D8928F019749D7800AD8A28 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +119,8 @@
 		284CBBB41946F35A006539A3 /* iMods */ = {
 			isa = PBXGroup;
 			children = (
-				284CBBB71946F35A006539A3 /* AppDelegate.swift */,
-				284CBBB91946F35A006539A3 /* FirstViewController.swift */,
-				284CBBBB1946F35A006539A3 /* SecondViewController.swift */,
-				284CBBBD1946F35A006539A3 /* Main.storyboard */,
-				284CBBC01946F35A006539A3 /* Images.xcassets */,
+				4D8928FF19749E0500AD8A28 /* Resources */,
+				4D8928FE19749DF400AD8A28 /* Classes */,
 				284CBBB51946F35A006539A3 /* Supporting Files */,
 			);
 			path = iMods;
@@ -100,6 +139,7 @@
 			children = (
 				284CBBCC1946F35A006539A3 /* iModsTests.swift */,
 				284CBBCA1946F35A006539A3 /* Supporting Files */,
+				4D8928E71974955000AD8A28 /* IMOItemModelTests.swift */,
 			);
 			path = iModsTests;
 			sourceTree = "<group>";
@@ -110,6 +150,97 @@
 				284CBBCB1946F35A006539A3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4D8928A019747FF100AD8A28 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				284CBBBB1946F35A006539A3 /* SecondViewController.swift */,
+				284CBBB91946F35A006539A3 /* FirstViewController.swift */,
+				4D89289E19747FBD00AD8A28 /* IMOFeaturedViewController.swift */,
+				4D8928A11974801900AD8A28 /* IMOCategoriesViewController.swift */,
+				4D8928A31974809200AD8A28 /* IMOSearchViewController.swift */,
+				4D8928A51974812A00AD8A28 /* IMOPackagesViewController.swift */,
+				4D8928A71974813300AD8A28 /* IMOUpdatesViewController.swift */,
+				4D8928D619748CF000AD8A28 /* IMOFeaturedNavigationController.swift */,
+				4D8928D819748DE300AD8A28 /* IMOFeaturedAppsTableViewController.swift */,
+			);
+			name = Controllers;
+			path = Classes/Controllers;
+			sourceTree = "<group>";
+		};
+		4D8928BF19748AC400AD8A28 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */,
+				4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */,
+				4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */,
+				4D8928ED19749D7800AD8A28 /* OpenSans-ExtraBoldItalic.ttf */,
+				4D8928EE19749D7800AD8A28 /* OpenSans-Italic.ttf */,
+				4D8928EF19749D7800AD8A28 /* OpenSans-Light.ttf */,
+				4D8928F019749D7800AD8A28 /* OpenSans-LightItalic.ttf */,
+				4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */,
+				4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */,
+				4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */,
+			);
+			name = Fonts;
+			path = Resources/Fonts;
+			sourceTree = "<group>";
+		};
+		4D8928DA19748E4800AD8A28 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4D8928DB19748EC200AD8A28 /* IMOItemModel.swift */,
+				4D8928E21974903800AD8A28 /* IMOPackageSignature.swift */,
+			);
+			name = Models;
+			path = Classes/Models;
+			sourceTree = "<group>";
+		};
+		4D8928FE19749DF400AD8A28 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4D89290119749EFD00AD8A28 /* AppDelegate */,
+				4D89290019749EF700AD8A28 /* Helpers */,
+				4D8928A019747FF100AD8A28 /* Controllers */,
+				4D8928DA19748E4800AD8A28 /* Models */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		4D8928FF19749E0500AD8A28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4D89290219749F1000AD8A28 /* Storyboards */,
+				4D8928BF19748AC400AD8A28 /* Fonts */,
+				284CBBC01946F35A006539A3 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4D89290019749EF700AD8A28 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			path = Classes/Helpers;
+			sourceTree = "<group>";
+		};
+		4D89290119749EFD00AD8A28 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				284CBBB71946F35A006539A3 /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			path = Classes/AppDelegate;
+			sourceTree = "<group>";
+		};
+		4D89290219749F1000AD8A28 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				284CBBBD1946F35A006539A3 /* Main.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +324,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */,
+				4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */,
 				284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */,
+				4D8928F719749D7800AD8A28 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				4D8928F919749D7800AD8A28 /* OpenSans-Light.ttf in Resources */,
 				284CBBC11946F35A006539A3 /* Images.xcassets in Resources */,
+				4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */,
+				4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */,
+				4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */,
+				4D8928F819749D7800AD8A28 /* OpenSans-Italic.ttf in Resources */,
+				4D8928FA19749D7800AD8A28 /* OpenSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +353,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D8928A41974809200AD8A28 /* IMOSearchViewController.swift in Sources */,
+				4D8928A61974812A00AD8A28 /* IMOPackagesViewController.swift in Sources */,
+				4D8928DC19748EC200AD8A28 /* IMOItemModel.swift in Sources */,
+				4D8928D719748CF000AD8A28 /* IMOFeaturedNavigationController.swift in Sources */,
+				4D8928D919748DE300AD8A28 /* IMOFeaturedAppsTableViewController.swift in Sources */,
 				284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */,
+				4D8928A81974813300AD8A28 /* IMOUpdatesViewController.swift in Sources */,
+				4D8928E31974903800AD8A28 /* IMOPackageSignature.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
+				4D8928A21974801900AD8A28 /* IMOCategoriesViewController.swift in Sources */,
+				4D89289F19747FBD00AD8A28 /* IMOFeaturedViewController.swift in Sources */,
 				284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +373,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */,
+				4D8928E81974955000AD8A28 /* IMOItemModelTests.swift in Sources */,
+				4D8928E91974955600AD8A28 /* IMOItemModel.swift in Sources */,
+				4D8928E61974941000AD8A28 /* IMOPackageSignature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +563,7 @@
 				284CBBD21946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		284CBBD31946F35A006539A3 /* Build configuration list for PBXNativeTarget "iModsTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +572,7 @@
 				284CBBD51946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
