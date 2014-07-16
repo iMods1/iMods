@@ -1,5 +1,5 @@
 //
-//  IMOCategoriesViewController.swift
+//  IMOSearchViewController.swift
 //  iMods
 //
 //  Created by Brendon Roberto on 7/14/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IMOCategoriesViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

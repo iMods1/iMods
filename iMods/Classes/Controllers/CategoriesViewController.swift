@@ -1,6 +1,5 @@
-
 //
-//  IMOUpdatesViewController.swift
+//  IMOCategoriesViewController.swift
 //  iMods
 //
 //  Created by Brendon Roberto on 7/14/14.
@@ -9,7 +8,7 @@
 
 import UIKit
 
-class IMOUpdatesViewController: UIViewController {
+class CategoriesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

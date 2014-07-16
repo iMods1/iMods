@@ -1,5 +1,6 @@
+
 //
-//  IMOFeaturedViewController.swift
+//  IMOUpdatesViewController.swift
 //  iMods
 //
 //  Created by Brendon Roberto on 7/14/14.
@@ -8,7 +9,7 @@
 
 import UIKit
 
-class IMOFeaturedViewController: UIViewController {
+class UpdatesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  IMOSearchViewController.swift
+//  IMOPackagesViewController.swift
 //  iMods
 //
 //  Created by Brendon Roberto on 7/14/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IMOSearchViewController: UIViewController {
+class PackagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

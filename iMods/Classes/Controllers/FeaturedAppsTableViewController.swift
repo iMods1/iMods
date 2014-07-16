@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IMOFeaturedAppsTableViewController: UITableViewController {
+class FeaturedAppsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

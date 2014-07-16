@@ -8,13 +8,13 @@
 
 import Foundation
 
-class IMOItemModel {
+class Item {
     var categoryId: Int
     var authorId: Int
     var packageName: String
     var displayName: String
     var packageVersion: String
-    var packageSignature: IMOPackageSignature?
+    var packageSignature: PackageSignature?
     var packagePath: NSURL
     var packageAssetsPath: NSURL
     var packageDependencies: String[]?
@@ -25,7 +25,7 @@ class IMOItemModel {
     var lastUpdateDate: NSDate
 
     init(categoryId: Int, authorId: Int, packageName: String, displayName: String,
-        packageVersion: String, packageSignature: IMOPackageSignature?,
+        packageVersion: String, packageSignature: PackageSignature?,
         packagePath: NSURL, packageAssetsPath: NSURL,
         packageDependencies: String[]?, price: Float, summary: String,
         description: String, addDate: NSDate, lastUpdateDate: NSDate) {

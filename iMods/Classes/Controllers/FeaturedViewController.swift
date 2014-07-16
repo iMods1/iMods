@@ -1,5 +1,5 @@
 //
-//  IMOPackagesViewController.swift
+//  IMOFeaturedViewController.swift
 //  iMods
 //
 //  Created by Brendon Roberto on 7/14/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IMOPackagesViewController: UIViewController {
+class FeaturedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
