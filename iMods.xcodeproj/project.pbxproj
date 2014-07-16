@@ -34,7 +34,6 @@
 		4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */; };
 		4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */; };
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
-		D9D6351603D24A0C83870722 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +77,12 @@
 		4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
+		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
+		4DDFAC5F19762C860094FB8D /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
+		4DDFAC6019762C860094FB8D /* libPods-TSMessages.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TSMessages.a"; path = "Pods/build/Debug-iphoneos/libPods-TSMessages.a"; sourceTree = "<group>"; };
+		4DDFAC6619762E650094FB8D /* iMods-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iMods-Bridging-Header.h"; sourceTree = "<group>"; };
 		9015AF55E8614A20A367229A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9D6351603D24A0C83870722 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +107,11 @@
 		237E9CEAFDC54C2EA68D6159 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */,
+				4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */,
+				4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */,
+				4DDFAC5F19762C860094FB8D /* libPods-ReactiveCocoa.a */,
+				4DDFAC6019762C860094FB8D /* libPods-TSMessages.a */,
 				0B3C95FDF7B146ABBF782234 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -142,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				284CBBB61946F35A006539A3 /* Info.plist */,
+				4DDFAC6619762E650094FB8D /* iMods-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -534,8 +544,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iMods/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -549,8 +564,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iMods/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
 			};
 			name = Release;
 		};

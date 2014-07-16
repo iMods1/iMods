@@ -9,25 +9,25 @@
 import Foundation
 
 class Item {
-    var categoryId: Int
-    var authorId: Int
-    var packageName: String
-    var displayName: String
-    var packageVersion: String
+    var categoryId: Int?
+    var authorId: Int?
+    var packageName: String?
+    var displayName: String?
+    var packageVersion: String?
     var packageSignature: PackageSignature?
-    var packagePath: NSURL
-    var packageAssetsPath: NSURL
-    var packageDependencies: String[]?
-    var price: Float
-    var summary: String
-    var description: String
-    var addDate: NSDate
-    var lastUpdateDate: NSDate
+    var packagePath: NSURL?
+    var packageAssetsPath: NSURL?
+    var packageDependencies: [String]?
+    var price: Float?
+    var summary: String?
+    var description: String?
+    var addDate: NSDate?
+    var lastUpdateDate: NSDate?
 
     init(categoryId: Int, authorId: Int, packageName: String, displayName: String,
         packageVersion: String, packageSignature: PackageSignature?,
         packagePath: NSURL, packageAssetsPath: NSURL,
-        packageDependencies: String[]?, price: Float, summary: String,
+        packageDependencies: [String]?, price: Float, summary: String,
         description: String, addDate: NSDate, lastUpdateDate: NSDate) {
             self.categoryId = categoryId
             self.authorId = authorId
