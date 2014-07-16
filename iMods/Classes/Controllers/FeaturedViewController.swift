@@ -10,6 +10,9 @@ import UIKit
 
 class FeaturedViewController: UIViewController {
 
+    @IBOutlet var themesTweaksTabBar: UITabBar
+    @IBOutlet var itemTableView: UITableView
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

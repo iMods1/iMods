@@ -8,4 +8,8 @@
 
 class PackageSignature {
     var signature: String
+    
+    init(signature: String) {
+        self.signature = signature
+    }
 }
