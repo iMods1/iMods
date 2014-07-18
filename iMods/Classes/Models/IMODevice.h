@@ -1,14 +1,13 @@
 //
-//  Device.m
+//  Device.h
 //  iMods
 //
-//  Created by Ryan Feng on 7/17/14.
+//  Created by Ryan Feng on 7/18/14.
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#include <Mantle/MTLModel.h>
-#include <Mantle/MTLJSONAdapter.h>
+#import <Mantle/MTLModel.h>
+#import <Mantle/MTLJSONAdapter.h>
 
 @interface IMODevice : MTLModel <MTLJSONSerializing>
 
@@ -22,20 +21,5 @@
 @property (nonatomic, copy, readonly) NSString * model;
 
 /* Non-JSON data fields */
-
-@end
-
-@implementation IMODevice
-
-+ (NSDictionary*) JSONKeyPathsByPropertyKey {
-    return @{
-             @"dev_id": @"dev_id",
-             @"uid": @"uid",
-             @"device_name": @"device_name",
-             @"udid": @"UDID",
-             @"imei": @"IMEI",
-             @"model": @"model",
-             };
-}
 
 @end

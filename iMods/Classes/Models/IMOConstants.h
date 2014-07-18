@@ -9,7 +9,7 @@
 typedef enum {
     SiteAdmin = 0,
     Admin = 1,
-    User = 100
+    NormalUser = 100
 } UserRole;
 
 typedef enum {

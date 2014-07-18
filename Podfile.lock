@@ -20,10 +20,13 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CTOpenSSLWrapper (1.2.1):
+    - OpenSSL-Universal (= 1.0.1.h)
   - HexColors (2.2.1)
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
+  - OpenSSL-Universal (1.0.1.h)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI
   - ReactiveCocoa/Core (2.3.1):
@@ -36,14 +39,17 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - CTOpenSSLWrapper
   - Mantle
   - ReactiveCocoa
   - TSMessages
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  CTOpenSSLWrapper: 51c8d1e9f238da4a54edf7182ea6122e50450f5a
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
+  OpenSSL-Universal: c109d62ff4632cfa306e98d2159365266b3f44c3
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 

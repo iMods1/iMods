@@ -1,14 +1,14 @@
 //
-//  Category.m
+//  Category.h
 //  iMods
 //
-//  Created by Ryan Feng on 7/17/14.
+//  Created by Ryan Feng on 7/18/14.
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#include <Mantle/MTLModel.h>
-#include <Mantle/MTLJSONAdapter.h>
+#import <Mantle/MTLModel.h>
+#import <Mantle/MTLJSONAdapter.h>
 
 @interface IMOCategory: MTLModel <MTLJSONSerializing>
 
@@ -21,17 +21,5 @@
 
 /* Non-JSON data fields */
 
-@end
-
-@implementation IMOCategory
-
-+ (NSDictionary*) JSONKeyPathsByPropertyKey {
-    return @{
-             @"cid": @"cid",
-             @"parent": @"parent_id",
-             @"name": @"name",
-             @"description": @"description",
-             };
-}
-
+- (id) init:(NSNumber*)cid parent:(NSNumber*)parent_id name:(NSString*)name desc:(NSString*) description;
 @end

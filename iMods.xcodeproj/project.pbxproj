@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2830E8901978A5BE008E42ED /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* User.m */; };
-		2830E8911978A5BE008E42ED /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* User.m */; };
-		2830E8991978BBAC008E42ED /* BillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* BillingInfo.m */; };
-		2830E89A1978BBAC008E42ED /* BillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* BillingInfo.m */; };
-		2830E89D1978BE75008E42ED /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E89C1978BE75008E42ED /* Category.m */; };
-		2830E89E1978BE75008E42ED /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E89C1978BE75008E42ED /* Category.m */; };
-		2830E8A11978C46E008E42ED /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* Device.m */; };
-		2830E8A21978C46E008E42ED /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* Device.m */; };
-		2830E8A51978C808008E42ED /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* Item.m */; };
-		2830E8A61978C808008E42ED /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* Item.m */; };
+		2830E8901978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
+		2830E8911978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
+		2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* IMOBillingInfo.m */; };
+		2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* IMOBillingInfo.m */; };
+		2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E89C1978BE75008E42ED /* IMOCategory.m */; };
+		2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E89C1978BE75008E42ED /* IMOCategory.m */; };
+		2830E8A11978C46E008E42ED /* IMODevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* IMODevice.m */; };
+		2830E8A21978C46E008E42ED /* IMODevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* IMODevice.m */; };
+		2830E8A51978C808008E42ED /* IMOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* IMOItem.m */; };
+		2830E8A61978C808008E42ED /* IMOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* IMOItem.m */; };
 		284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB71946F35A006539A3 /* AppDelegate.swift */; };
 		284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB91946F35A006539A3 /* FirstViewController.swift */; };
 		284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBBB1946F35A006539A3 /* SecondViewController.swift */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBCC1946F35A006539A3 /* iModsTests.swift */; };
-		285708951978CF5C00C7F37B /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* Order.m */; };
-		285708961978CF5C00C7F37B /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* Order.m */; };
+		285708951978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
+		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		2CCFAD374414470F867AE39B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
@@ -43,6 +43,7 @@
 		4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */; };
 		4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */; };
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
+		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,17 +54,23 @@
 			remoteGlobalIDString = 284CBBB11946F35A006539A3;
 			remoteInfo = iMods;
 		};
+		2857089E1978F44800C7F37B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0B3C95FDF7B146ABBF782234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2830E88E1978A5BE008E42ED /* iModsTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iModsTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		2830E88F1978A5BE008E42ED /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		2830E8931978AFA5008E42ED /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		2830E8981978BBAC008E42ED /* BillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillingInfo.m; sourceTree = "<group>"; };
-		2830E89C1978BE75008E42ED /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
-		2830E8A01978C46E008E42ED /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
-		2830E8A41978C808008E42ED /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		2830E88F1978A5BE008E42ED /* IMOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUser.m; sourceTree = "<group>"; };
+		2830E8931978AFA5008E42ED /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOConstants.h; sourceTree = "<group>"; };
+		2830E8981978BBAC008E42ED /* IMOBillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBillingInfo.m; sourceTree = "<group>"; };
+		2830E89C1978BE75008E42ED /* IMOCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategory.m; sourceTree = "<group>"; };
+		2830E8A01978C46E008E42ED /* IMODevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMODevice.m; sourceTree = "<group>"; };
+		2830E8A41978C808008E42ED /* IMOItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItem.m; sourceTree = "<group>"; };
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBB71946F35A006539A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +81,13 @@
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBCC1946F35A006539A3 /* iModsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModsTests.swift; sourceTree = "<group>"; };
-		285708941978CF5C00C7F37B /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		285708941978CF5C00C7F37B /* IMOOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOOrder.m; sourceTree = "<group>"; };
+		285708971978E5F800C7F37B /* IMOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUser.h; sourceTree = "<group>"; };
+		285708981978E63F00C7F37B /* IMOCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCategory.h; sourceTree = "<group>"; };
+		285708991978E69E00C7F37B /* IMOBillingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOBillingInfo.h; sourceTree = "<group>"; };
+		2857089A1978E6E500C7F37B /* IMODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMODevice.h; sourceTree = "<group>"; };
+		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
+		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
 		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,14 +241,19 @@
 		4D8928DA19748E4800AD8A28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2830E88F1978A5BE008E42ED /* User.m */,
-				2830E88E1978A5BE008E42ED /* iModsTests-Bridging-Header.h */,
-				2830E8931978AFA5008E42ED /* Constants.h */,
-				2830E8981978BBAC008E42ED /* BillingInfo.m */,
-				2830E89C1978BE75008E42ED /* Category.m */,
-				2830E8A01978C46E008E42ED /* Device.m */,
-				2830E8A41978C808008E42ED /* Item.m */,
-				285708941978CF5C00C7F37B /* Order.m */,
+				285708971978E5F800C7F37B /* IMOUser.h */,
+				2830E88F1978A5BE008E42ED /* IMOUser.m */,
+				2830E8931978AFA5008E42ED /* IMOConstants.h */,
+				285708991978E69E00C7F37B /* IMOBillingInfo.h */,
+				2830E8981978BBAC008E42ED /* IMOBillingInfo.m */,
+				285708981978E63F00C7F37B /* IMOCategory.h */,
+				2830E89C1978BE75008E42ED /* IMOCategory.m */,
+				2857089A1978E6E500C7F37B /* IMODevice.h */,
+				2830E8A01978C46E008E42ED /* IMODevice.m */,
+				2857089B1978E70B00C7F37B /* IMOItem.h */,
+				2830E8A41978C808008E42ED /* IMOItem.m */,
+				2857089C1978E73B00C7F37B /* IMOOrder.h */,
+				285708941978CF5C00C7F37B /* IMOOrder.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -312,14 +331,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 284CBBD31946F35A006539A3 /* Build configuration list for PBXNativeTarget "iModsTests" */;
 			buildPhases = (
+				19378665E6BA497DB0CB05A3 /* Check Pods Manifest.lock */,
 				284CBBC21946F35A006539A3 /* Sources */,
 				284CBBC31946F35A006539A3 /* Frameworks */,
 				284CBBC41946F35A006539A3 /* Resources */,
+				E47592018C144B82A1821253 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				284CBBC81946F35A006539A3 /* PBXTargetDependency */,
+				2857089F1978F44800C7F37B /* PBXTargetDependency */,
 			);
 			name = iModsTests;
 			productName = iModsTests;
@@ -408,6 +430,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		19378665E6BA497DB0CB05A3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E47592018C144B82A1821253 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E572A205119B4446BCA8A9D3 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,21 +482,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2830E8A51978C808008E42ED /* Item.m in Sources */,
-				2830E8901978A5BE008E42ED /* User.m in Sources */,
-				2830E8991978BBAC008E42ED /* BillingInfo.m in Sources */,
+				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
+				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
+				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				4D8928A61974812A00AD8A28 /* PackagesViewController.swift in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
-				2830E8A11978C46E008E42ED /* Device.m in Sources */,
+				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedAppsTableViewController.swift in Sources */,
 				284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
-				2830E89D1978BE75008E42ED /* Category.m in Sources */,
-				285708951978CF5C00C7F37B /* Order.m in Sources */,
+				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
+				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,13 +505,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2830E8A61978C808008E42ED /* Item.m in Sources */,
-				2830E8911978A5BE008E42ED /* User.m in Sources */,
-				2830E89A1978BBAC008E42ED /* BillingInfo.m in Sources */,
+				2830E8A61978C808008E42ED /* IMOItem.m in Sources */,
+				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
+				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */,
-				285708961978CF5C00C7F37B /* Order.m in Sources */,
-				2830E8A21978C46E008E42ED /* Device.m in Sources */,
-				2830E89E1978BE75008E42ED /* Category.m in Sources */,
+				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
+				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
+				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +522,11 @@
 			isa = PBXTargetDependency;
 			target = 284CBBB11946F35A006539A3 /* iMods */;
 			targetProxy = 284CBBC71946F35A006539A3 /* PBXContainerItemProxy */;
+		};
+		2857089F1978F44800C7F37B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2857089E1978F44800C7F37B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -606,6 +663,7 @@
 		};
 		284CBBD41946F35A006539A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9015AF55E8614A20A367229A /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
 				CLANG_ENABLE_MODULES = YES;
@@ -621,7 +679,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iMods/Classes/Models/iModsTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -629,6 +687,7 @@
 		};
 		284CBBD51946F35A006539A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9015AF55E8614A20A367229A /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
 				CLANG_ENABLE_MODULES = YES;
@@ -640,7 +699,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iMods/Classes/Models/iModsTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;

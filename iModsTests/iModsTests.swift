@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import iMods
 
 class iModsTests: XCTestCase {
     
@@ -22,6 +23,11 @@ class iModsTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
+        XCTAssert(true, "Pass")
+    }
+    
+    func testUser() {
+        var user = IMOUser(1, email:"ryan@ryan.com", role:NormalUser, fullname:"ryan", age:10, author:"imods.ryan")
         XCTAssert(true, "Pass")
     }
     
