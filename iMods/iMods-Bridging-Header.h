@@ -7,3 +7,10 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import "Classes/Models/IMOUser.h"
+#import "Classes/Models/IMOCategory.h"
+#import "Classes/Models/IMODevice.h"
+#import "Classes/Models/IMOBillingInfo.h"
+#import "Classes/Models/IMOItem.h"
+#import "Classes/Models/IMOOrder.h"
+#import "Classes/Models/IMOConstants.h"
