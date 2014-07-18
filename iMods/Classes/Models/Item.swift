@@ -17,7 +17,7 @@ class Item {
     var packageSignature: PackageSignature?
     var packagePath: NSURL?
     var packageAssetsPath: NSURL?
-    var packageDependencies: [String]?
+    var packageDependencies: String?
     var price: Float?
     var summary: String?
     var description: String?
@@ -27,7 +27,7 @@ class Item {
     init(categoryId: Int, authorId: Int, packageName: String, displayName: String,
         packageVersion: String, packageSignature: PackageSignature?,
         packagePath: NSURL, packageAssetsPath: NSURL,
-        packageDependencies: [String]?, price: Float, summary: String,
+        packageDependencies: String?, price: Float, summary: String,
         description: String, addDate: NSDate, lastUpdateDate: NSDate) {
             self.categoryId = categoryId
             self.authorId = authorId

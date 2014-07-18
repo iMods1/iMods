@@ -4,4 +4,5 @@ pod 'Mantle'
 pod 'TSMessages'
 pod 'ReactiveCocoa'
 pod 'AFNetworking'
+pod 'CTOpenSSLWrapper'
 

@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2830E8901978A5BE008E42ED /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* User.m */; };
+		2830E8911978A5BE008E42ED /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* User.m */; };
+		2830E8991978BBAC008E42ED /* BillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* BillingInfo.m */; };
+		2830E89A1978BBAC008E42ED /* BillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* BillingInfo.m */; };
+		2830E89D1978BE75008E42ED /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E89C1978BE75008E42ED /* Category.m */; };
+		2830E89E1978BE75008E42ED /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E89C1978BE75008E42ED /* Category.m */; };
+		2830E8A11978C46E008E42ED /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* Device.m */; };
+		2830E8A21978C46E008E42ED /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* Device.m */; };
+		2830E8A51978C808008E42ED /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* Item.m */; };
+		2830E8A61978C808008E42ED /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* Item.m */; };
 		284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB71946F35A006539A3 /* AppDelegate.swift */; };
 		284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB91946F35A006539A3 /* FirstViewController.swift */; };
 		284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBBB1946F35A006539A3 /* SecondViewController.swift */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBCC1946F35A006539A3 /* iModsTests.swift */; };
+		285708951978CF5C00C7F37B /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* Order.m */; };
+		285708961978CF5C00C7F37B /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* Order.m */; };
+		2CCFAD374414470F867AE39B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
 		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
@@ -20,10 +33,6 @@
 		4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* UpdatesViewController.swift */; };
 		4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */; };
 		4D8928D919748DE300AD8A28 /* FeaturedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D819748DE300AD8A28 /* FeaturedAppsTableViewController.swift */; };
-		4D8928DC19748EC200AD8A28 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928DB19748EC200AD8A28 /* Item.swift */; };
-		4D8928E31974903800AD8A28 /* PackageSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928E21974903800AD8A28 /* PackageSignature.swift */; };
-		4D8928E61974941000AD8A28 /* PackageSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928E21974903800AD8A28 /* PackageSignature.swift */; };
-		4D8928E91974955600AD8A28 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928DB19748EC200AD8A28 /* Item.swift */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -48,6 +57,13 @@
 
 /* Begin PBXFileReference section */
 		0B3C95FDF7B146ABBF782234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2830E88E1978A5BE008E42ED /* iModsTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iModsTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		2830E88F1978A5BE008E42ED /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		2830E8931978AFA5008E42ED /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2830E8981978BBAC008E42ED /* BillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillingInfo.m; sourceTree = "<group>"; };
+		2830E89C1978BE75008E42ED /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		2830E8A01978C46E008E42ED /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		2830E8A41978C808008E42ED /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBB71946F35A006539A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +74,7 @@
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBCC1946F35A006539A3 /* iModsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModsTests.swift; sourceTree = "<group>"; };
+		285708941978CF5C00C7F37B /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -65,8 +82,6 @@
 		4D8928A71974813300AD8A28 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedNavigationController.swift; sourceTree = "<group>"; };
 		4D8928D819748DE300AD8A28 /* FeaturedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedAppsTableViewController.swift; sourceTree = "<group>"; };
-		4D8928DB19748EC200AD8A28 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		4D8928E21974903800AD8A28 /* PackageSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageSignature.swift; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -91,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CCFAD374414470F867AE39B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,8 +227,14 @@
 		4D8928DA19748E4800AD8A28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D8928DB19748EC200AD8A28 /* Item.swift */,
-				4D8928E21974903800AD8A28 /* PackageSignature.swift */,
+				2830E88F1978A5BE008E42ED /* User.m */,
+				2830E88E1978A5BE008E42ED /* iModsTests-Bridging-Header.h */,
+				2830E8931978AFA5008E42ED /* Constants.h */,
+				2830E8981978BBAC008E42ED /* BillingInfo.m */,
+				2830E89C1978BE75008E42ED /* Category.m */,
+				2830E8A01978C46E008E42ED /* Device.m */,
+				2830E8A41978C808008E42ED /* Item.m */,
+				285708941978CF5C00C7F37B /* Order.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -408,17 +430,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2830E8A51978C808008E42ED /* Item.m in Sources */,
+				2830E8901978A5BE008E42ED /* User.m in Sources */,
+				2830E8991978BBAC008E42ED /* BillingInfo.m in Sources */,
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				4D8928A61974812A00AD8A28 /* PackagesViewController.swift in Sources */,
-				4D8928DC19748EC200AD8A28 /* Item.swift in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
+				2830E8A11978C46E008E42ED /* Device.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedAppsTableViewController.swift in Sources */,
 				284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
-				4D8928E31974903800AD8A28 /* PackageSignature.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
+				2830E89D1978BE75008E42ED /* Category.m in Sources */,
+				285708951978CF5C00C7F37B /* Order.m in Sources */,
 				284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,9 +453,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2830E8A61978C808008E42ED /* Item.m in Sources */,
+				2830E8911978A5BE008E42ED /* User.m in Sources */,
+				2830E89A1978BBAC008E42ED /* BillingInfo.m in Sources */,
 				284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */,
-				4D8928E91974955600AD8A28 /* Item.swift in Sources */,
-				4D8928E61974941000AD8A28 /* PackageSignature.swift in Sources */,
+				285708961978CF5C00C7F37B /* Order.m in Sources */,
+				2830E8A21978C46E008E42ED /* Device.m in Sources */,
+				2830E89E1978BE75008E42ED /* Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +608,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -590,6 +621,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iMods/Classes/Models/iModsTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -598,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -606,6 +640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iMods/Classes/Models/iModsTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
