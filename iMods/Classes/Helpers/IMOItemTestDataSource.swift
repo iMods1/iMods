@@ -5,11 +5,11 @@
 //  Created by Brendon Roberto on 7/21/14.
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
-/*
+
 import UIKit
 
 class IMOItemTestDataSource: NSObject, UITableViewDataSource {
-    var items: [IMOItem]
+    var items: IMOItem[]
     
     init() {
         items = []
@@ -76,4 +76,3 @@ class IMOItemTestDataSource: NSObject, UITableViewDataSource {
         }
     }
 }
-*/
