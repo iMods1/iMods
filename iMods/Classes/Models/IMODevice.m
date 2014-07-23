@@ -16,8 +16,8 @@
              @"dev_id": @"dev_id",
              @"uid": @"uid",
              @"device_name": @"device_name",
-             @"udid": @"UDID",
-             @"imei": @"IMEI",
+             @"UDID": @"udid",
+             @"IMEI": @"imei",
              @"model": @"model",
              };
 }
