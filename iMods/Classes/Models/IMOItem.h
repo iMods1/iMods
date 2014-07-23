@@ -24,7 +24,7 @@
 @property (nonatomic, copy, readonly) NSString * display_name;
 @property (nonatomic, assign, readonly) float price;
 @property (nonatomic, copy, readonly) NSString * summary;
-@property (nonatomic, copy, readonly) NSString * description;
+@property (nonatomic, copy, readonly) NSString * desc;
 @property (nonatomic, copy, readonly) NSDate * add_date;
 @property (nonatomic, copy, readonly) NSDate * last_update_date;
 

@@ -17,9 +17,9 @@
 @property (nonatomic, copy, readonly) NSNumber * cid;
 @property (nonatomic, copy, readonly) NSNumber * parent_id;
 @property (nonatomic, copy, readonly) NSString * name;
-@property (nonatomic, copy, readonly) NSString * description;
+@property (nonatomic, copy, readonly) NSString * desc;
 
 /* Non-JSON data fields */
 
-- (id) init:(NSNumber*)cid parent:(NSNumber*)parent_id name:(NSString*)name desc:(NSString*) description;
+- (id) init:(NSNumber*)cid parent:(NSNumber*)parent_id name:(NSString*)name desc:(NSString*) desc;
 @end
