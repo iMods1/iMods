@@ -21,7 +21,7 @@
              @"state": @"state",
              @"country": @"country",
              @"currency": @"currency",
-             @"type_": @"paymentType",
+             @"paymentType": @"type_",
              };
 }
 

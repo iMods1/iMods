@@ -14,7 +14,7 @@
 + (NSDictionary*) JSONKeyPathsByPropertyKey {
     return @{
              @"cid": @"cid",
-             @"parent": @"parent_id",
+             @"parent_id": @"parent",
              @"name": @"name",
              @"description": @"description",
              };

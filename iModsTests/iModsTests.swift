@@ -27,7 +27,7 @@ class iModsTests: XCTestCase {
     }
     
     func testUser() {
-        var user = IMOUser(1, email:"ryan@ryan.com", role:NormalUser, fullname:"ryan", age:10, author:"imods.ryan")
+        //var user = IMOUser(1, email:"ryan@ryan.com", role:NormalUser, fullname:"ryan", age:10, author:"imods.ryan")
         XCTAssert(true, "Pass")
     }
     
