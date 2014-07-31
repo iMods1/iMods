@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller - iMods-->
+        <!--iMods-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController title="iMods" modalTransitionStyle="flipHorizontal" id="49e-Tb-3d3" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="1224" y="1156.1166666666668"/>
         </scene>
-        <!--Featured View Controller - Featured-->
+        <!--Featured-->
         <scene sceneID="aWc-4F-evb">
             <objects>
                 <viewController title="Featured" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalTransitionStyle="flipHorizontal" modalPresentationStyle="currentContext" id="FXf-RH-8ZG" customClass="FeaturedViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="3795.5" y="23.5"/>
         </scene>
-        <!--Categories View Controller - Categories-->
+        <!--Categories-->
         <scene sceneID="sUc-VQ-gnn">
             <objects>
                 <viewController id="MFN-GL-wb6" customClass="CategoriesViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
@@ -142,7 +142,7 @@
             </objects>
             <point key="canvasLocation" x="2126.6666666666665" y="809.39999999999998"/>
         </scene>
-        <!--Packages View Controller - Packages-->
+        <!--Packages-->
         <scene sceneID="t1m-za-9Tl">
             <objects>
                 <viewController title="Packages" id="bKu-NJ-gTh" customClass="PackagesViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
@@ -158,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="2588" y="809.39999999999998"/>
         </scene>
-        <!--Updates View Controller - Updates-->
+        <!--Updates-->
         <scene sceneID="hqk-aX-lh4">
             <objects>
                 <viewController id="xHk-mj-RlK" customClass="UpdatesViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
             </objects>
             <point key="canvasLocation" x="2588" y="1512.3"/>
         </scene>
-        <!--Featured Navigation Controller - Featured-->
+        <!--Featured-->
         <scene sceneID="RCo-dt-eAr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sxD-oe-RHH" customClass="FeaturedNavigationController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
@@ -204,6 +204,9 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
 </document>

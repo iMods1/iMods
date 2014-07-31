@@ -9,7 +9,7 @@
 import UIKit
 
 class IMOItemTestDataSource: NSObject, UITableViewDataSource {
-    var items: IMOItem[]
+    var items: [IMOItem]
     
     init() {
         items = []
@@ -20,11 +20,11 @@ class IMOItemTestDataSource: NSObject, UITableViewDataSource {
             "pkg_name": "tstpkg1",
             "pkg_version": "0.0.1",
             "pkg_assets_path": "http://i.imgur.com/SrwZy.jpg",
-            "pkg_depencencies": "",
+            "pkg_dependencies": "",
             "display_name": "Test Package 1",
             "price": 0.99,
             "summary": "This is a test package.",
-            "description": "This is a description of a test package with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
+            "desc": "This is a description of a test package with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
             "add_date": NSDate(timeIntervalSinceNow: 0.0),
             "last_update_date": NSDate(timeIntervalSinceNow: -1.0)] as NSDictionary
         
@@ -35,18 +35,18 @@ class IMOItemTestDataSource: NSObject, UITableViewDataSource {
             "pkg_name": "tstpkg2",
             "pkg_version": "0.0.1",
             "pkg_assets_path": "http://i.imgur.com/SrwZy.jpg",
-            "pkg_depencencies": "",
+            "pkg_dependencies": "",
             "display_name": "Test Package 2",
             "price": 0.99,
             "summary": "This is another test package.",
-            "description": "This is a description of a test package with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
+            "desc": "This is a description of a test package with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
             "add_date": NSDate(timeIntervalSinceNow: -10.0),
             "last_update_date": NSDate(timeIntervalSinceNow: -1.0)] as NSDictionary
         
         var error: NSError?
         
-        let item1 = MTLJSONAdapter.modelOfClass(IMOItem.self, fromJSONDictionary: testDict1, error: &error) as IMOItem
-        let item2 = MTLJSONAdapter.modelOfClass(IMOItem.self, fromJSONDictionary: testDict2, error: &error) as IMOItem
+        let item1 = IMOItem.modelWithDictionary(testDict1, error: &error) as IMOItem
+        let item2 = IMOItem.modelWithDictionary(testDict2, error: &error) as IMOItem
         
         if let e = error {
             println("Something went wrong initializing models")
@@ -67,7 +67,7 @@ class IMOItemTestDataSource: NSObject, UITableViewDataSource {
             let item = items[indexPath.row]
             var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
             
-            cell.detailTextLabel!.text = item.description
+            cell.detailTextLabel!.text = item.desc
             cell.textLabel!.text = item.display_name
             
             return cell

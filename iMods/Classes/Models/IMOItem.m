@@ -26,7 +26,7 @@
              @"display_name": @"display_name",
              @"price": @"price",
              @"summary": @"summary",
-             @"description": @"description",
+             @"desc": @"description",
              @"add_date": @"add_date",
              @"last_update_date": @"last_update_date"
              };

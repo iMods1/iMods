@@ -28,7 +28,7 @@
             @"display_name": @"Test Package",
             @"price": @0.99,
             @"summary": @"This is a test package for testing purposes.",
-            @"description": @"This is a description of Test Package. It includes Lorem Ipsum filler text to make it longer. Lorem ipsum dolor amet sit.",
+            @"desc": @"This is a description of Test Package. It includes Lorem Ipsum filler text to make it longer. Lorem ipsum dolor amet sit.",
             @"add_date": [NSDate date],
             @"last_update_date": [NSDate date]
         };
