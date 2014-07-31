@@ -24,7 +24,8 @@
 /* Non-JSON fields */
 - (id) init:(NSNumber*)uid email:(NSString*)email role:(UserRole)role fullname:(NSString*)fullname age:(NSNumber*)age author:(NSString*)author_id;
 
-- (void) updateBillingInfo:(NSUInteger)index billing:(IMOBillingInfo*)billing;
+- (void) updateBillingInfoAtIndex:(NSUInteger)index billing:(IMOBillingInfo*)billing;
+- (void) setBillingInfo:(NSArray*)billingInfoArray;
 - (IMOBillingInfo*) billingInfoAtIndex:(NSUInteger)index;
 - (NSArray*) listBillingInfo;
 @end

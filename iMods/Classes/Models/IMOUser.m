@@ -48,8 +48,12 @@ NSMutableArray *billing_infos;
     return [billing_infos objectAtIndex:index];
 }
 
-- (void) updateBillingInfo:(NSUInteger)index billing:(IMOBillingInfo *)billing {
+- (void) updateBillingInfoAtIndex:(NSUInteger)index billing:(IMOBillingInfo *)billing {
     [billing_infos replaceObjectAtIndex:index withObject:billing];
+}
+
+- (void) setBillingInfo:(NSArray *)billingInfoArray {
+    [billing_infos setArray:billingInfoArray];
 }
 
 - (void) addBillingInfo:(IMOBillingInfo*)billing {
