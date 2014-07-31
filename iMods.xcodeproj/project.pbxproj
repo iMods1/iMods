@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
+		2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
 		2830E8901978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8911978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* IMOBillingInfo.m */; };
@@ -23,8 +25,16 @@
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBCC1946F35A006539A3 /* iModsTests.swift */; };
+		284F988E19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
+		284F988F19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		285708951978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
+		289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
+		289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
+		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		28CF066819895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
+		28CF066919895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
 		2CCFAD374414470F867AE39B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 		4D55008F197EED29003B2F89 /* IMOItemTestDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */; };
 		4D74155A197E13E9002750D7 /* IMOItemTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */; };
@@ -65,10 +75,19 @@
 			remoteGlobalIDString = 284CBBB11946F35A006539A3;
 			remoteInfo = iMods;
 		};
+		28D9461F19804B1A00DF7ADC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0B3C95FDF7B146ABBF782234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2805497C19895B7C0049D619 /* IMONetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkManager.h; path = Classes/NetworkManager/IMONetworkManager.h; sourceTree = "<group>"; };
+		2805497D19895B7C0049D619 /* IMONetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkManager.m; path = Classes/NetworkManager/IMONetworkManager.m; sourceTree = "<group>"; };
 		2830E88F1978A5BE008E42ED /* IMOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUser.m; sourceTree = "<group>"; };
 		2830E8931978AFA5008E42ED /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOConstants.h; sourceTree = "<group>"; };
 		2830E8981978BBAC008E42ED /* IMOBillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBillingInfo.m; sourceTree = "<group>"; };
@@ -85,6 +104,8 @@
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBCC1946F35A006539A3 /* iModsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModsTests.swift; sourceTree = "<group>"; };
+		284F988919898A9F0008DD90 /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOConstants.h; path = Classes/Constants/IMOConstants.h; sourceTree = "<group>"; };
+		284F988D19898AB00008DD90 /* IMOConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOConstants.m; path = Classes/Constants/IMOConstants.m; sourceTree = "<group>"; };
 		285708941978CF5C00C7F37B /* IMOOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOOrder.m; sourceTree = "<group>"; };
 		285708971978E5F800C7F37B /* IMOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUser.h; sourceTree = "<group>"; };
 		285708981978E63F00C7F37B /* IMOCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCategory.h; sourceTree = "<group>"; };
@@ -92,6 +113,12 @@
 		2857089A1978E6E500C7F37B /* IMODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMODevice.h; sourceTree = "<group>"; };
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
+		289F003C198985410032B0C8 /* IMOPackageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOPackageManager.h; path = Classes/PackageManager/IMOPackageManager.h; sourceTree = "<group>"; };
+		289F003D198985410032B0C8 /* IMOPackageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOPackageManager.m; path = Classes/PackageManager/IMOPackageManager.m; sourceTree = "<group>"; };
+		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
+		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		28CF066719895783003347BB /* IMOSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOSessionManager.m; path = Classes/SessionManager/IMOSessionManager.m; sourceTree = "<group>"; };
+		28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOSessionManager.h; path = Classes/SessionManager/IMOSessionManager.h; sourceTree = "<group>"; };
 		4D55008D197EED29003B2F89 /* IMOItemTestDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemTestDataSource.h; sourceTree = "<group>"; };
 		4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItemTestDataSource.m; sourceTree = "<group>"; };
 		4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemTestDataSource.swift; sourceTree = "<group>"; };
@@ -212,6 +239,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		289F004219898A3E0032B0C8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				284F988919898A9F0008DD90 /* IMOConstants.h */,
+				284F988D19898AB00008DD90 /* IMOConstants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		28CF066A19895AF4003347BB /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */,
+				28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */,
+				2805497C19895B7C0049D619 /* IMONetworkManager.h */,
+				2805497D19895B7C0049D619 /* IMONetworkManager.m */,
+			);
+			name = NetworkManager;
+			sourceTree = "<group>";
+		};
+		28EC28781980DF0A0086CE7A /* SessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				28CF066719895783003347BB /* IMOSessionManager.m */,
+				28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */,
+			);
+			name = SessionManager;
+			sourceTree = "<group>";
+		};
+		28EC28791980DF120086CE7A /* PackageManager */ = {
+			isa = PBXGroup;
+			children = (
+				289F003C198985410032B0C8 /* IMOPackageManager.h */,
+				289F003D198985410032B0C8 /* IMOPackageManager.m */,
+			);
+			name = PackageManager;
+			sourceTree = "<group>";
+		};
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +338,10 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				289F004219898A3E0032B0C8 /* Constants */,
+				28CF066A19895AF4003347BB /* NetworkManager */,
+				28EC28791980DF120086CE7A /* PackageManager */,
+				28EC28781980DF0A0086CE7A /* SessionManager */,
 				4D89290119749EFD00AD8A28 /* AppDelegate */,
 				4D89290019749EF700AD8A28 /* Helpers */,
 				4D8928A019747FF100AD8A28 /* Controllers */,
@@ -356,6 +425,7 @@
 			dependencies = (
 				284CBBC81946F35A006539A3 /* PBXTargetDependency */,
 				2857089F1978F44800C7F37B /* PBXTargetDependency */,
+				28D9462019804B1A00DF7ADC /* PBXTargetDependency */,
 			);
 			name = iModsTests;
 			productName = iModsTests;
@@ -501,18 +571,23 @@
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				4D8928A61974812A00AD8A28 /* PackagesViewController.swift in Sources */,
+				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4DF721E21979CC2C0011B91C /* FeaturedTabBarController.swift in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
+				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
+				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
 				284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				4D74155A197E13E9002750D7 /* IMOItemTestDataSource.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
+				28CF066819895783003347BB /* IMOSessionManager.m in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
 				4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
+				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
 				4D55008F197EED29003B2F89 /* IMOItemTestDataSource.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */,
@@ -525,11 +600,16 @@
 			files = (
 				2830E8A61978C808008E42ED /* IMOItem.m in Sources */,
 				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
+				28CF066919895783003347BB /* IMOSessionManager.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
+				2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
+				289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */,
 				284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */,
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
 				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
+				284F988F19898AB00008DD90 /* IMOConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +625,11 @@
 			isa = PBXTargetDependency;
 			target = 284CBBB11946F35A006539A3 /* iMods */;
 			targetProxy = 2857089E1978F44800C7F37B /* PBXContainerItemProxy */;
+		};
+		28D9462019804B1A00DF7ADC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 28D9461F19804B1A00DF7ADC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
