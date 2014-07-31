@@ -20,13 +20,47 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CTOpenSSLWrapper (1.2.1):
-    - OpenSSL-Universal (= 1.0.1.h)
+  - ChuzzleKit (1.0.4)
   - HexColors (2.2.1)
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
-  - OpenSSL-Universal (1.0.1.h)
+  - OMGHTTPURLRQ (1.1.4):
+    - ChuzzleKit
+    - OMGHTTPURLRQ/RQ
+    - OMGHTTPURLRQ/UserAgent
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/RQ (1.1.4):
+    - ChuzzleKit
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (1.1.4):
+    - ChuzzleKit
+    - OMGHTTPURLRQ/UserAgent
+  - Overcoat (2.0.2):
+    - Overcoat/NSURLSession
+  - Overcoat/Core (2.0.2):
+    - AFNetworking (~> 2.0)
+    - Mantle (~> 1.3)
+  - Overcoat/NSURLSession (2.0.2):
+    - Overcoat/Core
+  - Overcoat/PromiseKit (2.0.2):
+    - Overcoat/Core
+    - Overcoat/NSURLSession
+    - PromiseKit (= 0.9.10)
+  - PromiseKit (0.9.10):
+    - PromiseKit/defaults
+  - PromiseKit/base (0.9.10)
+  - PromiseKit/defaults (0.9.10):
+    - PromiseKit/Foundation
+    - PromiseKit/UIKit
+  - PromiseKit/Foundation (0.9.10):
+    - ChuzzleKit
+    - OMGHTTPURLRQ
+    - PromiseKit/base
+  - PromiseKit/private (0.9.10)
+  - PromiseKit/UIKit (0.9.10):
+    - PromiseKit/base
+    - PromiseKit/private
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI
   - ReactiveCocoa/Core (2.3.1):
@@ -39,17 +73,21 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - CTOpenSSLWrapper
   - Mantle
+  - Overcoat (~> 2.0)
+  - Overcoat/PromiseKit (~> 2.0)
+  - PromiseKit
   - ReactiveCocoa
   - TSMessages
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  CTOpenSSLWrapper: 51c8d1e9f238da4a54edf7182ea6122e50450f5a
+  ChuzzleKit: b47a96cb59dfb0b972cd539b8cc1e66c97b20f42
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
-  OpenSSL-Universal: 9c112508615ed33bb35f730eed820e93175a9dec
+  OMGHTTPURLRQ: ca928b53ae60cb4cc078d8f7201f4f647f435351
+  Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
+  PromiseKit: 8c7c9fd5a326ba19f410a8912da58d6f9c6dc624
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
