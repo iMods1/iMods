@@ -94,4 +94,15 @@ IMONetworkManager* networkManager = nil;
     });
 }
 
+- (PMKPromise*) refreshBillingInfo {
+    if(!self.userLoggedIn){
+        @throw [NSException exceptionWithName:@"UserNotLogin" reason:@"User must login to get billing information" userInfo:nil];
+    }
+    return [networkManager POST:@"billing/list" parameters:@{}]
+    .then(^(OVCResponse* response, NSError* error){
+        NSArray* billingInfoList = response.result;
+        [self.userProfile setBillingInfo:billingInfoList];
+    });
+}
+
 @end
