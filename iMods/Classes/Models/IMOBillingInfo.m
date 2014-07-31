@@ -22,6 +22,9 @@
              @"country": @"country",
              @"currency": @"currency",
              @"paymentType": @"type_",
+             @"masked_creditcard_number": @"cc_no",
+             @"masked_cv_code": @"cc_cv",
+             @"creditcard_expiration_date":@"cc_expr"
              };
 }
 

@@ -21,6 +21,11 @@
 @property (nonatomic, copy, readwrite) NSString * state;
 @property (nonatomic, copy, readwrite) NSString * country;
 @property (nonatomic, copy, readwrite) NSString * currency; // TODO: Use a dedicated type for currency
+
+// Fields below are credit card information, they should only be used when submitting to the server,
+@property (nonatomic, copy, readwrite) NSString * masked_creditcard_number; // credit card number
+@property (nonatomic, copy, readwrite) NSString * masked_cv_code; // credit card cv code
+@property (nonatomic, copy, readwrite) NSDate * creditcard_expiration_date;
 @property (nonatomic, assign, readwrite) PaymentType paymentType; // paymentType -> "type_" in JSON
 
 /* Non-JSON fields */
