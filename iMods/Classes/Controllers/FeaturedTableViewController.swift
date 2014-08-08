@@ -9,26 +9,28 @@
 import UIKit
 
 class FeaturedTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var dataSource: IMOItemTestDataSource
+
+    var dataSource: UITableViewDataSource
 
     init(coder aDecoder: NSCoder!) {
         self.dataSource = IMOItemTestDataSource()
         super.init(coder: aDecoder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         var imageView = UIImageView(image: UIImage(named: "imods-assets-featured-tableview-background.png"))
         self.tableView.backgroundView = imageView
     }
-    
+
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int  {
         return self.dataSource.tableView(tableView, numberOfRowsInSection: section)
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        return dataSource.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        var cell = dataSource.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.backgroundColor = UIColor.clearColor()
+        return cell
     }
 }
