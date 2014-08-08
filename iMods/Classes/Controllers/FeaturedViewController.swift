@@ -41,8 +41,10 @@ class FeaturedViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         super.prepareForSegue(segue, sender: sender)
         // Store the contained ViewController for later use
-        if segue.identifier == "featured_tableview_embed" {
-            self.featuredTableViewController = segue.destinationViewController as? FeaturedTableViewController
+        if let identifier = segue.identifier {
+            if identifier == "featured_tableview_embed" {
+                self.featuredTableViewController = segue.destinationViewController as? FeaturedTableViewController
+            }
         }
     }
 
