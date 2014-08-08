@@ -23,7 +23,7 @@
 }
 
 - (id) init:(NSNumber *)cid parent:(NSNumber *)parent_id name:(NSString *)name desc:(NSString *)desc {
-    self = [self.class init];
+    self = [super init];
     if(self == nil) return nil;
     
     self->_cid = cid;
