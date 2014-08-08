@@ -11,6 +11,12 @@ import iMods
 
 class iModsTests: XCTestCase {
     
+//#define wait(t) [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:t]]
+    let session = IMOSessionManager.sharedSessionManager(NSURL(string:"http://192.168.96.1:8000/api/"))
+    
+    func wait(interval:NSTimeInterval) {
+        NSRunLoop.mainRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:interval))
+    }
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -23,12 +29,35 @@ class iModsTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
     }
     
-    func testUser() {
-        //var user = IMOUser(1, email:"ryan@ryan.com", role:NormalUser, fullname:"ryan", age:10, author:"imods.ryan")
-        XCTAssert(true, "Pass")
+    func testUserLogin() {
+        var login:PMKPromise = session.userLogin("test@test.com", password:"test")
+        var resolved = false
+        login.finally()({() in
+            NSLog("Request finished")
+            XCTAssert(self.session.userLoggedIn, "Login failed")
+            let user:IMOUser = self.session.userProfile
+            XCTAssert(user.fullname == "admin" , "User fullname doesn't match")
+            resolved = true
+        })
+        wait(0.5)
+        XCTAssert(resolved, "Request is not resolved")
+    }
+    
+    func testUserRegister() {
+        let user = session.userRegister("test@swift.com", password: "password", fullname: "testing", age: 10, author_id: "imods.testing")
+        var resolved = false
+        user.finally()({() in
+            XCTAssert(self.session.userProfile.fullname == "testing", "User name doesn't match");
+            resolved = true
+        })
+        wait(0.5)
+        XCTAssert(resolved, "Request not resolved")
+    }
+    
+    func testUserUpdate() {
+        
     }
     
     func testPerformanceExample() {

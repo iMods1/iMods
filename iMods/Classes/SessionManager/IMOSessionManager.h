@@ -22,6 +22,7 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
  * @return The singleton object of IMOSessionManager
  */
 + (IMOSessionManager*) sharedSessionManager;
++ (IMOSessionManager*) sharedSessionManager:(NSURL*) baseURL;
 
 /* User login
  * @param userEmail User's email address
@@ -29,6 +30,15 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
  * @return PMKPromise object of the current execution.
  */
 - (PMKPromise*) userLogin:(NSString*)userEmail password:(NSString*)userPassword;
+
+/* Register a user
+ * @param email User email
+ * @param password User's password
+ * @param fullname User's fullname
+ * @param age User's age
+ * @param author_id Author identifier of the user
+ */
+- (PMKPromise*) userRegister:(NSString*)email password:(NSString*)password fullname:(NSString*)fullname age:(NSNumber*)age author_id:(NSString*)author_id;
 
 /* Logout
  * @return Always returns YES
@@ -41,5 +51,6 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
  * @param oldPassword Current password, may be nil.
  * @param newPassword New password, may be nil, this cannot be nil if oldPassword is not nil.
  */
+- (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age;
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
 @end

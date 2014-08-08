@@ -10,8 +10,9 @@
 
 @implementation IMOPackageManager
 
+static IMOPackageManager* sharedIMOPackageManager = nil;
+
 + (IMOPackageManager*) sharedPackageManager {
-    static IMOPackageManager* sharedIMOPackageManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,^{
         sharedIMOPackageManager = [[IMOPackageManager alloc] init];
@@ -20,9 +21,7 @@
 }
 
 - (id) init{
-    if(self == [super init]){
-        // initialize properties
-    }
+    self = [super init];
     return self;
 }
 @end

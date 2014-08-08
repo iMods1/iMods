@@ -13,22 +13,42 @@
 
 @implementation IMOSessionManager
 
-IMONetworkManager* networkManager = nil;
+static IMONetworkManager* networkManager = nil;
+static IMOSessionManager* sharedSessionManager = nil;
 
 + (IMOSessionManager*) sharedSessionManager {
-    static IMOSessionManager * sharedSessionManager = nil;
-    static dispatch_once_t onceToken;
+    if(sharedSessionManager == nil || networkManager == nil) {
+        NSLog(@"Shared session manager is not initialized corrected, call sharedSessionManager:baseUrl to initialize.");
+    }
+    return sharedSessionManager;
+}
+
++ (IMOSessionManager*) sharedSessionManager:(NSURL*) baseURL {
+    if (sharedSessionManager != nil) {
+        return sharedSessionManager;
+    }
+    static dispatch_once_t onceToken = 0;
     dispatch_once(&onceToken, ^{
-        sharedSessionManager = [[IMOSessionManager alloc] init];
+        sharedSessionManager = [[IMOSessionManager alloc] init:baseURL];
     });
     return sharedSessionManager;
 }
 
 - (id) init {
-    if (self == [super init]) {
+    self = [super init];
+    if(self) {
         self.userLoggedIn = NO;
+        networkManager = [IMONetworkManager sharedNetworkManager];
     }
-    networkManager = [IMONetworkManager sharedNetworkManager];
+    return self;
+}
+
+- (id) init:(NSURL*)baseURL {
+    self = [super init];
+    if(self) {
+        self.userLoggedIn = NO;
+        networkManager = [IMONetworkManager sharedNetworkManager:baseURL];
+    }
     return self;
 }
 
@@ -43,15 +63,17 @@ IMONetworkManager* networkManager = nil;
     }
     
     return [networkManager POST:@"user/login" parameters:postData]
-    .then((^(OVCResponse *response, NSError* error){
+    .then((^id(OVCResponse *response, NSError* error){
         if(error != nil){
             NSLog(@"Login failed...");
-            return;
-        } else {
+            return nil;
+        } else{
+            NSLog(@"Login Success");
             self.userLoggedIn = YES;
-            self.userProfile = (IMOUser*)response.result;
+            return [self refreshUserProfile];
         }
-    }));
+    }))
+    ;
 }
 
 - (BOOL) userLogout{
@@ -63,13 +85,21 @@ IMONetworkManager* networkManager = nil;
 - (PMKPromise*) refreshUserProfile{
     return
         [networkManager GET:@"user/profile" parameters:@{}]
-        .catch(^(OVCResponse* response, NSError* error){
+        .then(^(OVCResponse* response, NSError* error){
+            if(error != nil){
+                NSLog(@"Failed to get user profile: %@", error.description);
+            }
             self.userProfile = (IMOUser*)response.result;
+            NSLog(@"User: %@", self.userProfile);
         });
 }
 
+- (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age {
+    return [self updateUserProfile:fullname age:age oldPassword:nil newPassword:nil];
+}
+
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword{
-    NSDictionary* postData = [NSDictionary dictionary];
+    NSMutableDictionary* postData = [NSMutableDictionary dictionary];
     if(fullname != nil){
         [postData setValue:fullname forKey:@"fullname"];
     }
@@ -92,6 +122,22 @@ IMONetworkManager* networkManager = nil;
         }
         return [self refreshUserProfile];
     });
+}
+
+- (PMKPromise*) userRegister:(NSString*)email password:(NSString*)password fullname:(NSString*)fullname age:(NSNumber*)age author_id:(NSString*)author_id {
+    NSMutableDictionary* data = [NSMutableDictionary dictionary];
+    [data setValue:fullname forKey:@"fullname"];
+    [data setValue:email forKey:@"email"];
+    [data setValue:age forKey:@"age"];
+    [data setValue:password forKey:@"password"];
+    [data setValue:author_id forKey:@"author_id"];
+    return [networkManager POST:@"user/register" parameters:data]
+    .catch((^(NSError* error){
+        NSLog(@"Failed to register: %@", error);
+    }))
+    .then((^(OVCResponse* response, NSError* error){
+        self.userProfile = (IMOUser*)response.result;
+    }));
 }
 
 @end

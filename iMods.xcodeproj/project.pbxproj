@@ -29,6 +29,8 @@
 		284F988F19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		285708951978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
+		289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
+		289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
 		289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
 		289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
@@ -61,6 +63,69 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		282130471994802B000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		282130491994802B000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821304B199486D0000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821304D199486D0000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821304F19948D1F000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821305119949373000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821305319949C73000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821305519949C76000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
+		2821305719949C7B000A8FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
 		284CBBC71946F35A006539A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
@@ -113,6 +178,8 @@
 		2857089A1978E6E500C7F37B /* IMODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMODevice.h; sourceTree = "<group>"; };
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
+		289C58FB1994C33900AD0F5D /* IMOResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOResponse.h; path = Classes/NetworkManager/IMOResponse.h; sourceTree = "<group>"; };
+		289C58FC1994C33900AD0F5D /* IMOResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOResponse.m; path = Classes/NetworkManager/IMOResponse.m; sourceTree = "<group>"; };
 		289F003C198985410032B0C8 /* IMOPackageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOPackageManager.h; path = Classes/PackageManager/IMOPackageManager.h; sourceTree = "<group>"; };
 		289F003D198985410032B0C8 /* IMOPackageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOPackageManager.m; path = Classes/PackageManager/IMOPackageManager.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
@@ -255,6 +322,8 @@
 				28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */,
 				2805497C19895B7C0049D619 /* IMONetworkManager.h */,
 				2805497D19895B7C0049D619 /* IMONetworkManager.m */,
+				289C58FB1994C33900AD0F5D /* IMOResponse.h */,
+				289C58FC1994C33900AD0F5D /* IMOResponse.m */,
 			);
 			name = NetworkManager;
 			sourceTree = "<group>";
@@ -426,6 +495,15 @@
 				284CBBC81946F35A006539A3 /* PBXTargetDependency */,
 				2857089F1978F44800C7F37B /* PBXTargetDependency */,
 				28D9462019804B1A00DF7ADC /* PBXTargetDependency */,
+				282130481994802B000A8FCF /* PBXTargetDependency */,
+				2821304A1994802B000A8FCF /* PBXTargetDependency */,
+				2821304C199486D0000A8FCF /* PBXTargetDependency */,
+				2821304E199486D0000A8FCF /* PBXTargetDependency */,
+				2821305019948D1F000A8FCF /* PBXTargetDependency */,
+				2821305219949373000A8FCF /* PBXTargetDependency */,
+				2821305419949C73000A8FCF /* PBXTargetDependency */,
+				2821305619949C76000A8FCF /* PBXTargetDependency */,
+				2821305819949C7B000A8FCF /* PBXTargetDependency */,
 			);
 			name = iModsTests;
 			productName = iModsTests;
@@ -588,6 +666,7 @@
 				4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				4D55008F197EED29003B2F89 /* IMOItemTestDataSource.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */,
@@ -609,6 +688,7 @@
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
 				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
+				289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				284F988F19898AB00008DD90 /* IMOConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +696,51 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		282130481994802B000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 282130471994802B000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821304A1994802B000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 282130491994802B000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821304C199486D0000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821304B199486D0000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821304E199486D0000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821304D199486D0000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821305019948D1F000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821304F19948D1F000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821305219949373000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821305119949373000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821305419949C73000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821305319949C73000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821305619949C76000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821305519949C76000A8FCF /* PBXContainerItemProxy */;
+		};
+		2821305819949C7B000A8FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 2821305719949C7B000A8FCF /* PBXContainerItemProxy */;
+		};
 		284CBBC81946F35A006539A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 284CBBB11946F35A006539A3 /* iMods */;
