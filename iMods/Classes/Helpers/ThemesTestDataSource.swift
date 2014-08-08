@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemesTestDataSource: NSObject, UITableViewDataSource {
+class ThemesTestDataSource: NSObject, IMOItemDataSource {
     var items: [IMOItem]
 
     init() {
@@ -23,7 +23,7 @@ class ThemesTestDataSource: NSObject, UITableViewDataSource {
             "pkg_assets_path": "imods-assets-ultraflat-icon.png",
             "pkg_dependencies": "",
             "display_name": "UltraFlat",
-            "price": 0.99,
+            "price": 1.99,
             "summary": "Flatten your experience to the extreme",
             "desc": "This is a description of a test theme with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
             "add_date": NSDate(timeIntervalSinceNow: 0.0),
@@ -68,7 +68,7 @@ class ThemesTestDataSource: NSObject, UITableViewDataSource {
             "pkg_assets_path": "imods-assets-aura-icon.png",
             "pkg_dependencies": "",
             "display_name": "Aura",
-            "price": 0.99,
+            "price": 1.99,
             "summary": "Take a different approach on style",
             "desc": "This is a description of a test theme with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
             "add_date": NSDate(timeIntervalSinceNow: -10.0),
@@ -109,6 +109,14 @@ class ThemesTestDataSource: NSObject, UITableViewDataSource {
             return cell
         } else {
             return UITableViewCell(style: .Default, reuseIdentifier: "Cell")
+        }
+    }
+
+    func retrieveItemForIndexPath(path: NSIndexPath) -> IMOItem? {
+        if path.row < countElements(items) {
+            return items[path.row]
+        } else {
+            return nil
         }
     }
 }

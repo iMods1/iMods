@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweaksTestDataSource: NSObject, UITableViewDataSource {
+class TweaksTestDataSource: NSObject, IMOItemDataSource {
     var items: [IMOItem]
 
     init() {
@@ -53,7 +53,7 @@ class TweaksTestDataSource: NSObject, UITableViewDataSource {
             "pkg_assets_path": "imods-assets-zeppelin-icon.png",
             "pkg_dependencies": "",
             "display_name": "Zeppelin",
-            "price": 0.99,
+            "price": 3.99,
             "summary": "Redesign your status bar Carrier logos",
             "desc": "This is a description of a test tweak with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
             "add_date": NSDate(timeIntervalSinceNow: -10.0),
@@ -68,7 +68,7 @@ class TweaksTestDataSource: NSObject, UITableViewDataSource {
             "pkg_assets_path": "imods-assets-callbar-icon.png",
             "pkg_dependencies": "",
             "display_name": "Callbar",
-            "price": 0.99,
+            "price": 1.99,
             "summary": "Answer your phone calls like never before",
             "desc": "This is a description of a test tweak with Lorem Ipsum text. Lorem ipsum dolor amet sit.",
             "add_date": NSDate(timeIntervalSinceNow: -10.0),
@@ -109,6 +109,14 @@ class TweaksTestDataSource: NSObject, UITableViewDataSource {
             return cell
         } else {
             return UITableViewCell(style: .Default, reuseIdentifier: "Cell")
+        }
+    }
+
+    func retrieveItemForIndexPath(path: NSIndexPath) -> IMOItem? {
+        if path.row < countElements(items) {
+            return items[path.row]
+        } else {
+            return nil
         }
     }
 }
