@@ -13,6 +13,10 @@ class iModsTests: XCTestCase {
     
 //#define wait(t) [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:t]]
     let session = IMOSessionManager.sharedSessionManager(NSURL(string:"http://192.168.96.1:8000/api/"))
+    var infoDict:NSDictionary = NSDictionary()
+    var build:NSString = ""
+    var userEmail:NSString = ""
+    var userFullName:NSString = ""
     
     func wait(interval:NSTimeInterval) {
         NSRunLoop.mainRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:interval))
@@ -20,6 +24,10 @@ class iModsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        infoDict = NSBundle.mainBundle().infoDictionary
+        build = infoDict[kCFBundleVersionKey] as NSString
+        userEmail = NSString(format: "test%@@imods.com", build)
+        userFullName = NSString(format: "testing%@", build)
     }
     
     override func tearDown() {
@@ -47,20 +55,12 @@ class iModsTests: XCTestCase {
     }
     
     func testUserRegister() {
-        //NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
-        
-        //NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
-        //NSString *bundleName = infoDictionary[(NSString *)kCFBundleNameKey];
-        let infoDict = NSBundle.mainBundle().infoDictionary
-        let build = infoDict[kCFBundleVersionKey] as NSString
-        let userEmail = NSString(format: "test%@@imods.com", build)
-        let userFullName = NSString(format: "testing%@", build)
         let user = session.userRegister(userEmail, password: "password", fullname: userFullName, age: 10, author_id: "imods.testing")
         var resolved = false
         user.finally()({() in
             let response:IMOUser? = self.session.userProfile
             XCTAssertNotNil(response, "Response is nil")
-            XCTAssert(response?.fullname.isEqual(userFullName), "User name doesn't match");
+            XCTAssert(response?.fullname.isEqual(self.userFullName), "User name doesn't match");
             resolved = true
         })
         wait(0.5)
@@ -68,7 +68,17 @@ class iModsTests: XCTestCase {
     }
     
     func testUserUpdate() {
-        
+        let newname = NSString(format:"testing_updated %@", build)
+        let user = session.updateUserProfile(newname, age: 20)
+        var resolved = false
+        user.finally()({() in
+            let response:IMOUser? = self.session.userProfile
+            XCTAssertNotNil(response, "Response is nil")
+            XCTAssert(response?.fullname.isEqual(newname), "User name doesn't match")
+            resolved = true
+        })
+        wait(0.5)
+        XCTAssert(resolved, "Request not resolved")
     }
     
     func testPerformanceExample() {
