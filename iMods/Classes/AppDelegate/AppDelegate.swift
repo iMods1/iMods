@@ -12,8 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
-    let networkManager:IMONetworkManager? = IMONetworkManager.sharedNetworkManager(NSURL(string:BASE_API_ENDPOINT))
-    let sessionManager:IMOSessionManager? = IMOSessionManager.sharedSessionManager()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
