@@ -52,7 +52,7 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
 + (NSDictionary *)modelClassesByResourcePath {
     return @{
              @"user/register": [IMOUser class],
-             @"user/profile": [IMOUser class],
+             @"/user/profile": [IMOUser class],
              @"user/login": [IMOResponse class],
              @"billing/*": [IMOBillingInfo class],
              @"category/*": [IMOCategory class],

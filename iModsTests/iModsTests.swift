@@ -58,7 +58,9 @@ class iModsTests: XCTestCase {
         let user = session.userRegister(userEmail, password: "password", fullname: userFullName, age: 10, author_id: "imods.testing")
         var resolved = false
         user.finally()({() in
-            XCTAssert(self.session.userProfile.fullname == userFullName, "User name doesn't match");
+            let response:IMOUser? = self.session.userProfile
+            XCTAssertNotNil(response, "Response is nil")
+            XCTAssert(response?.fullname.isEqual(userFullName), "User name doesn't match");
             resolved = true
         })
         wait(0.5)

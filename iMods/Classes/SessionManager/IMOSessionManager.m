@@ -78,7 +78,7 @@ static IMOSessionManager* sharedSessionManager = nil;
 
 - (BOOL) userLogout{
     self.userLoggedIn = NO;
-    [networkManager GET:@"user/logout" parameters:@{}];
+    [networkManager GET:@"user/logout" parameters:nil];
     return YES;
 }
 

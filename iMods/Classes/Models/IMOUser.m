@@ -23,7 +23,7 @@ NSMutableArray *billing_infos;
              @"age": @"age",
              @"author_id": @"author_identifier",
              @"role": @"role",
-             @"billing_infos": NSNull.null
+             //@"billing_infos": NSNull.null
              };
 }
 
