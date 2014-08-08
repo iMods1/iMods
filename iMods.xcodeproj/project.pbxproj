@@ -20,8 +20,6 @@
 		2830E8A51978C808008E42ED /* IMOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* IMOItem.m */; };
 		2830E8A61978C808008E42ED /* IMOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* IMOItem.m */; };
 		284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB71946F35A006539A3 /* AppDelegate.swift */; };
-		284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB91946F35A006539A3 /* FirstViewController.swift */; };
-		284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBBB1946F35A006539A3 /* SecondViewController.swift */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBCC1946F35A006539A3 /* iModsTests.swift */; };
@@ -36,12 +34,9 @@
 		28CF066819895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
 		28CF066919895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
-		4D55008F197EED29003B2F89 /* IMOItemTestDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */; };
-		4D74155A197E13E9002750D7 /* IMOItemTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */; };
 		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
 		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
-		4D8928A61974812A00AD8A28 /* PackagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A51974812A00AD8A28 /* PackagesViewController.swift */; };
 		4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* UpdatesViewController.swift */; };
 		4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */; };
 		4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */; };
@@ -57,7 +52,6 @@
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
 		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
 		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
-		4DF721E21979CC2C0011B91C /* FeaturedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF721E11979CC2C0011B91C /* FeaturedTabBarController.swift */; };
 		4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF721E31979CE880011B91C /* ItemDetailViewController.swift */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -99,8 +93,6 @@
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBB71946F35A006539A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		284CBBB91946F35A006539A3 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		284CBBBB1946F35A006539A3 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		284CBBBE1946F35A006539A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		284CBBC01946F35A006539A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,13 +114,9 @@
 		28CF066719895783003347BB /* IMOSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOSessionManager.m; path = Classes/SessionManager/IMOSessionManager.m; sourceTree = "<group>"; };
 		28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOSessionManager.h; path = Classes/SessionManager/IMOSessionManager.h; sourceTree = "<group>"; };
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		4D55008D197EED29003B2F89 /* IMOItemTestDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemTestDataSource.h; sourceTree = "<group>"; };
-		4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItemTestDataSource.m; sourceTree = "<group>"; };
-		4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemTestDataSource.swift; sourceTree = "<group>"; };
 		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		4D8928A51974812A00AD8A28 /* PackagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackagesViewController.swift; sourceTree = "<group>"; };
 		4D8928A71974813300AD8A28 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedNavigationController.swift; sourceTree = "<group>"; };
 		4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +138,6 @@
 		4DDFAC5F19762C860094FB8D /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
 		4DDFAC6019762C860094FB8D /* libPods-TSMessages.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TSMessages.a"; path = "Pods/build/Debug-iphoneos/libPods-TSMessages.a"; sourceTree = "<group>"; };
 		4DDFAC6619762E650094FB8D /* iMods-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iMods-Bridging-Header.h"; sourceTree = "<group>"; };
-		4DF721E11979CC2C0011B91C /* FeaturedTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTabBarController.swift; sourceTree = "<group>"; };
 		4DF721E31979CE880011B91C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		9015AF55E8614A20A367229A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,16 +273,12 @@
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				284CBBBB1946F35A006539A3 /* SecondViewController.swift */,
-				284CBBB91946F35A006539A3 /* FirstViewController.swift */,
 				4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */,
 				4D8928A11974801900AD8A28 /* CategoriesViewController.swift */,
 				4D8928A31974809200AD8A28 /* SearchViewController.swift */,
-				4D8928A51974812A00AD8A28 /* PackagesViewController.swift */,
 				4D8928A71974813300AD8A28 /* UpdatesViewController.swift */,
 				4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */,
 				4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */,
-				4DF721E11979CC2C0011B91C /* FeaturedTabBarController.swift */,
 				4DF721E31979CE880011B91C /* ItemDetailViewController.swift */,
 			);
 			name = Controllers;
@@ -369,9 +352,6 @@
 		4D89290019749EF700AD8A28 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */,
-				4D55008D197EED29003B2F89 /* IMOItemTestDataSource.h */,
-				4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */,
 				4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */,
 				4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */,
 			);
@@ -578,18 +558,14 @@
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
-				4D8928A61974812A00AD8A28 /* PackagesViewController.swift in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
-				4DF721E21979CC2C0011B91C /* FeaturedTabBarController.swift in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
 				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
-				284CBBBC1946F35A006539A3 /* SecondViewController.swift in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
-				4D74155A197E13E9002750D7 /* IMOItemTestDataSource.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				28CF066819895783003347BB /* IMOSessionManager.m in Sources */,
@@ -598,9 +574,7 @@
 				4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
-				4D55008F197EED29003B2F89 /* IMOItemTestDataSource.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
-				284CBBBA1946F35A006539A3 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

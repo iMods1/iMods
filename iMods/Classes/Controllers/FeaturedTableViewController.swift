@@ -13,7 +13,7 @@ class FeaturedTableViewController: UITableViewController, UITableViewDataSource,
     var dataSource: UITableViewDataSource
 
     init(coder aDecoder: NSCoder!) {
-        self.dataSource = IMOItemTestDataSource()
+        self.dataSource = ThemesTestDataSource()
         super.init(coder: aDecoder)
     }
 

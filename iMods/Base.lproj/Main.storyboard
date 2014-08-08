@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="selectedImageTintColor" patternImage="32E46EDA-5ED1-46A0-9085-319F2F75FF04" colorSpace="pattern"/>
+                        <color key="selectedImageTintColor" patternImage="E1D1165F-9C6A-4476-B5DC-2588512802F5" colorSpace="pattern"/>
                     </tabBar>
                     <connections>
                         <segue destination="sxD-oe-RHH" kind="relationship" relationship="viewControllers" id="4O5-Z5-jXN"/>
@@ -205,7 +205,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="32E46EDA-5ED1-46A0-9085-319F2F75FF04" width="320" height="460">
+        <image name="E1D1165F-9C6A-4476-B5DC-2588512802F5" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
