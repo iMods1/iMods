@@ -37,8 +37,9 @@ class iModsTests: XCTestCase {
         login.finally()({() in
             NSLog("Request finished")
             XCTAssert(self.session.userLoggedIn, "Login failed")
-            let user:IMOUser = self.session.userProfile
-            XCTAssert(user.fullname == "admin" , "User fullname doesn't match")
+            let user:IMOUser? = self.session.userProfile
+            XCTAssertNotNil(user, "Response is nil")
+            XCTAssert(user?.fullname == "admin" , "User fullname doesn't match")
             resolved = true
         })
         wait(0.5)

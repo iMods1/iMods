@@ -35,7 +35,7 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
         _jsonRequestSerializer = [[AFJSONRequestSerializer alloc] init];
         _jsonResponseSerializer = [[AFJSONResponseSerializer alloc] init];
         _sharedNetworkManager.requestSerializer = _jsonRequestSerializer;
-//        _sharedNetworkManager.responseSerializer = _jsonResponseSerializer;
+        //_sharedNetworkManager.responseSerializer = _jsonResponseSerializer;
     });
     
     return _sharedNetworkManager;

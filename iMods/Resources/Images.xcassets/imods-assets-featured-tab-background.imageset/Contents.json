@@ -5,12 +5,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "imods-assets-featured-tab-background.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "imods-assets-featured-tab-background.png"
     }
   ],
   "info" : {
