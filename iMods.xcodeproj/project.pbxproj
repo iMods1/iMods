@@ -35,7 +35,7 @@
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28CF066819895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
 		28CF066919895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
-		2CCFAD374414470F867AE39B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
+		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D55008F197EED29003B2F89 /* IMOItemTestDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */; };
 		4D74155A197E13E9002750D7 /* IMOItemTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */; };
 		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
@@ -55,6 +55,8 @@
 		4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */; };
 		4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */; };
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
+		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
+		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
 		4DF721E21979CC2C0011B91C /* FeaturedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF721E11979CC2C0011B91C /* FeaturedTabBarController.swift */; };
 		4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF721E31979CE880011B91C /* ItemDetailViewController.swift */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
@@ -119,6 +121,7 @@
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
 		28CF066719895783003347BB /* IMOSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOSessionManager.m; path = Classes/SessionManager/IMOSessionManager.m; sourceTree = "<group>"; };
 		28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOSessionManager.h; path = Classes/SessionManager/IMOSessionManager.h; sourceTree = "<group>"; };
+		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		4D55008D197EED29003B2F89 /* IMOItemTestDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemTestDataSource.h; sourceTree = "<group>"; };
 		4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItemTestDataSource.m; sourceTree = "<group>"; };
 		4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemTestDataSource.swift; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 		4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweaksTestDataSource.swift; sourceTree = "<group>"; };
+		4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTestDataSource.swift; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
@@ -155,7 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CCFAD374414470F867AE39B /* libPods.a in Frameworks */,
+				4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +178,7 @@
 		237E9CEAFDC54C2EA68D6159 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4D3A7F771991D0940024AB2B /* libPods.a */,
 				4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */,
 				4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */,
 				4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */,
@@ -366,6 +372,8 @@
 				4D741559197E13E9002750D7 /* IMOItemTestDataSource.swift */,
 				4D55008D197EED29003B2F89 /* IMOItemTestDataSource.h */,
 				4D55008E197EED29003B2F89 /* IMOItemTestDataSource.m */,
+				4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */,
+				4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */,
 			);
 			name = Helpers;
 			path = Classes/Helpers;
@@ -574,6 +582,7 @@
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4DF721E21979CC2C0011B91C /* FeaturedTabBarController.swift in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
+				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
@@ -585,6 +594,7 @@
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				28CF066819895783003347BB /* IMOSessionManager.m in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
+				4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */,
 				4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
