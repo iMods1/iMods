@@ -52,6 +52,9 @@
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
 		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
 		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
+		4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9831994817D00918424 /* ProfileViewController.swift */; };
+		4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */; };
+		4DDAD9881994971C00918424 /* IMOItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9871994971C00918424 /* IMOItemDataSource.swift */; };
 		4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF721E31979CE880011B91C /* ItemDetailViewController.swift */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -132,6 +135,9 @@
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweaksTestDataSource.swift; sourceTree = "<group>"; };
 		4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTestDataSource.swift; sourceTree = "<group>"; };
+		4DDAD9831994817D00918424 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerController.swift; sourceTree = "<group>"; };
+		4DDAD9871994971C00918424 /* IMOItemDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemDataSource.swift; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
@@ -280,6 +286,8 @@
 				4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */,
 				4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */,
 				4DF721E31979CE880011B91C /* ItemDetailViewController.swift */,
+				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
+				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -354,6 +362,7 @@
 			children = (
 				4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */,
 				4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */,
+				4DDAD9871994971C00918424 /* IMOItemDataSource.swift */,
 			);
 			name = Helpers;
 			path = Classes/Helpers;
@@ -560,8 +569,11 @@
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
+				4DDAD9881994971C00918424 /* IMOItemDataSource.swift in Sources */,
+				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
 				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
+				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
