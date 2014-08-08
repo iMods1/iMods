@@ -10,7 +10,7 @@ import UIKit
 
 class FeaturedTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var dataSource: UITableViewDataSource
+    var dataSource: IMOItemDataSource
 
     init(coder aDecoder: NSCoder!) {
         self.dataSource = ThemesTestDataSource()
@@ -32,5 +32,18 @@ class FeaturedTableViewController: UITableViewController, UITableViewDataSource,
         var cell = dataSource.tableView(tableView, cellForRowAtIndexPath: indexPath)
         cell.backgroundColor = UIColor.clearColor()
         return cell
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        super.prepareForSegue(segue, sender: sender)
+
+        if let identifier = segue.identifier {
+            if identifier == "item_detail_push" {
+                if let indexPath = self.tableView.indexPathForCell(sender as? UITableViewCell) {
+                    var item = self.dataSource.retrieveItemForIndexPath(indexPath)
+                    (segue.destinationViewController as ItemDetailViewController).item = item
+                }
+            }
+        }
     }
 }
