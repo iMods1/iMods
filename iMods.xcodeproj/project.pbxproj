@@ -146,6 +146,13 @@
 			remoteGlobalIDString = 284CBBB11946F35A006539A3;
 			remoteInfo = iMods;
 		};
+		289C590D1994F5EA00AD0F5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
 		28D9461F19804B1A00DF7ADC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
@@ -509,6 +516,7 @@
 				2821305619949C76000A8FCF /* PBXTargetDependency */,
 				2821305819949C7B000A8FCF /* PBXTargetDependency */,
 				289C59001994F3B900AD0F5D /* PBXTargetDependency */,
+				289C590E1994F5EA00AD0F5D /* PBXTargetDependency */,
 			);
 			name = iModsTests;
 			productName = iModsTests;
@@ -759,6 +767,11 @@
 			isa = PBXTargetDependency;
 			target = 284CBBB11946F35A006539A3 /* iMods */;
 			targetProxy = 289C58FF1994F3B900AD0F5D /* PBXContainerItemProxy */;
+		};
+		289C590E1994F5EA00AD0F5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 289C590D1994F5EA00AD0F5D /* PBXContainerItemProxy */;
 		};
 		28D9462019804B1A00DF7ADC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

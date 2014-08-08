@@ -47,10 +47,18 @@ class iModsTests: XCTestCase {
     }
     
     func testUserRegister() {
-        let user = session.userRegister("test@swift.com", password: "password", fullname: "testing", age: 10, author_id: "imods.testing")
+        //NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
+        
+        //NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
+        //NSString *bundleName = infoDictionary[(NSString *)kCFBundleNameKey];
+        let infoDict = NSBundle.mainBundle().infoDictionary
+        let build = infoDict[kCFBundleVersionKey] as NSString
+        let userEmail = NSString(format: "test%@@imods.com", build)
+        let userFullName = NSString(format: "testing%@", build)
+        let user = session.userRegister(userEmail, password: "password", fullname: userFullName, age: 10, author_id: "imods.testing")
         var resolved = false
         user.finally()({() in
-            XCTAssert(self.session.userProfile.fullname == "testing", "User name doesn't match");
+            XCTAssert(self.session.userProfile.fullname == userFullName, "User name doesn't match");
             resolved = true
         })
         wait(0.5)

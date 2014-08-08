@@ -84,13 +84,14 @@ static IMOSessionManager* sharedSessionManager = nil;
 
 - (PMKPromise*) refreshUserProfile{
     return
-        [networkManager GET:@"user/profile" parameters:@{}]
+        [networkManager GET:@"user/profile" parameters:nil]
         .then(^(OVCResponse* response, NSError* error){
             if(error != nil){
                 NSLog(@"Failed to get user profile: %@", error.description);
             }
             self.userProfile = (IMOUser*)response.result;
-            NSLog(@"User: %@", self.userProfile);
+            NSLog(@"Response: %@", response);
+            NSLog(@"User: %@ %@", self.userProfile.class, self.userProfile);
         });
 }
 
