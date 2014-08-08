@@ -17,13 +17,13 @@ NSMutableArray *billing_infos;
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"uid": @"url",
+             @"uid": @"uid",
              @"email": @"email",
              @"fullname": @"fullname",
              @"age": @"age",
-             @"author_id": @"author_id",
+             @"author_id": @"author_identifier",
              @"role": @"role",
-             @"billing_infos": NSNull.null
+             //@"billing_infos": NSNull.null
              };
 }
 
