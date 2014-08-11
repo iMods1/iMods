@@ -20,21 +20,18 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ChuzzleKit (1.0.4)
+  - ChuzzleKit (1.0.5)
   - HexColors (2.2.1)
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
-  - OMGHTTPURLRQ (1.1.4):
-    - ChuzzleKit
+  - OMGHTTPURLRQ (1.1.5):
     - OMGHTTPURLRQ/RQ
     - OMGHTTPURLRQ/UserAgent
     - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/RQ (1.1.4):
-    - ChuzzleKit
+  - OMGHTTPURLRQ/RQ (1.1.5):
     - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (1.1.4):
-    - ChuzzleKit
+  - OMGHTTPURLRQ/UserAgent (1.1.5):
     - OMGHTTPURLRQ/UserAgent
   - Overcoat (2.0.2):
     - Overcoat/NSURLSession
@@ -82,10 +79,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  ChuzzleKit: b47a96cb59dfb0b972cd539b8cc1e66c97b20f42
+  ChuzzleKit: 940893d61e8b4bc25a8b07aab77db19f6a03f446
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
-  OMGHTTPURLRQ: ca928b53ae60cb4cc078d8f7201f4f647f435351
+  OMGHTTPURLRQ: c8dd3f83341702f0a3cae94e09d7e368d79a8b6e
   Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
   PromiseKit: 8c7c9fd5a326ba19f410a8912da58d6f9c6dc624
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
