@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4C468A94-4758-4D8F-8AB6-40B8DFF75DA0</string>
+	<string>7F81DE71-8916-4502-A92D-7BA25DE2A067</string>
 	<key>IDESourceControlProjectName</key>
 	<string>iMods</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A744DDE537C2ADA9B24075707A0A28ADEFD2FEC5</key>
-		<string>https://github.com/Wunderkind-Technologies/iMods.git</string>
+		<string>github.com:JLCServicesINC/iMods.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iMods.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Wunderkind-Technologies/iMods.git</string>
+	<string>github.com:JLCServicesINC/iMods.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
