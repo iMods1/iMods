@@ -11,7 +11,7 @@ import UIKit
 class ThemesTestDataSource: NSObject, IMOItemDataSource {
     var items: [IMOItem]
 
-    init() {
+    override init() {
         items = []
 
         let testDict1 = [
