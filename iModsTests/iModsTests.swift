@@ -9,18 +9,27 @@
 import XCTest
 import iMods
 
-class iModsTests: XCTestCase {
+struct SharedObjects {
+    static private var _session = IMOSessionManager.sharedSessionManager(NSURL(string:"http://192.168.119.1:8000/api/"))
+}
+
+func sharedTestingSession() -> IMOSessionManager {
+    return SharedObjects._session
+}
+
+func wait(interval:NSTimeInterval) {
+    NSRunLoop.mainRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:interval))
+}
+
+class UserSessionTests: XCTestCase {
     
-//#define wait(t) [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:t]]
-    let session = IMOSessionManager.sharedSessionManager(NSURL(string:"http://192.168.96.1:8000/api/"))
+    var session = sharedTestingSession()
+    var userManager = IMOUserManager()
     var infoDict:NSDictionary = NSDictionary()
-    var build:NSString = ""
-    var userEmail:NSString = ""
-    var userFullName:NSString = ""
+    var build:NSString = NSString()
+    var userEmail:NSString = NSString()
+    var userFullName = ""
     
-    func wait(interval:NSTimeInterval) {
-        NSRunLoop.mainRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:interval))
-    }
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -35,17 +44,13 @@ class iModsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-    }
-    
     func testUserLogin() {
-        var login:PMKPromise = session.userLogin("test@test.com", password:"test")
+        var login:PMKPromise = userManager.userLogin("test@test.com", password:"test")
         var resolved = false
         login.finally()({() in
             NSLog("Request finished")
-            XCTAssert(self.session.userLoggedIn, "Login failed")
-            let user:IMOUser? = self.session.userProfile
+            XCTAssert(self.userManager.userLoggedIn, "Login failed")
+            let user:IMOUser? = self.userManager.userProfile
             XCTAssertNotNil(user, "Response is nil")
             XCTAssert(user?.fullname == "admin" , "User fullname doesn't match")
             resolved = true
@@ -55,12 +60,12 @@ class iModsTests: XCTestCase {
     }
     
     func testUserRegister() {
-        let user = session.userRegister(userEmail, password: "password", fullname: userFullName, age: 10, author_id: "imods.testing")
+        let user = userManager.userRegister(userEmail, password: "password", fullname: userFullName, age: 10, author_id: "imods.testing")
         var resolved = false
         user.finally()({() in
-            let response:IMOUser? = self.session.userProfile
+            let response:IMOUser? = self.userManager.userProfile
             XCTAssertNotNil(response, "Response is nil")
-            XCTAssert(response?.fullname.isEqual(self.userFullName), "User name doesn't match");
+            XCTAssert(response?.fullname == self.userFullName, "User name doesn't match");
             resolved = true
         })
         wait(0.5)
@@ -68,13 +73,13 @@ class iModsTests: XCTestCase {
     }
     
     func testUserUpdate() {
-        let newname = NSString(format:"testing_updated %@", build)
-        let user = session.updateUserProfile(newname, age: 20)
+        let newname = String(format:"testing_updated %@", build)
+        let user = userManager.updateUserProfile(newname, age: 20)
         var resolved = false
         user.finally()({() in
-            let response:IMOUser? = self.session.userProfile
+            let response:IMOUser? = self.userManager.userProfile
             XCTAssertNotNil(response, "Response is nil")
-            XCTAssert(response?.fullname.isEqual(newname), "User name doesn't match")
+            XCTAssert(response?.fullname == newname, "User name doesn't match")
             resolved = true
         })
         wait(0.5)
@@ -88,4 +93,19 @@ class iModsTests: XCTestCase {
         }
     }
     
+}
+
+class CategorySessionTests: XCTestCase {
+    let session = sharedTestingSession()
+    override func setUp() {
+        super.setUp()
+        
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testFeatured() {
+    }
 }

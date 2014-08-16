@@ -11,7 +11,7 @@ import UIKit
 class TweaksTestDataSource: NSObject, IMOItemDataSource {
     var items: [IMOItem]
 
-    init() {
+    override init() {
         items = []
 
         let testDict1 = [
