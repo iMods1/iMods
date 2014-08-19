@@ -16,6 +16,9 @@
 static IMONetworkManager* networkManager = nil;
 static IMOSessionManager* sessionManager = nil;
 
+#pragma mark -
+#pragma mark Initialization
+
 + (IMOSessionManager*) sharedSessionManager {
     if(sessionManager == nil || networkManager == nil) {
         NSLog(@"Shared session manager is not initialized corrected, call sessionManager:baseUrl to initialize.");
@@ -50,25 +53,28 @@ static IMOSessionManager* sessionManager = nil;
     return self;
 }
 
+#pragma mark -
+#pragma mark Request helpers
+
 - (PMKPromise*) getJSON:(NSString*)url parameters:(NSDictionary *)parameters {
     return [networkManager GET:url parameters:parameters]
-    .catch((^(NSError* error){
+    .catch(^(NSError* error){
         NSLog(@"Error occurred during request: %@", error);
-    }));
+    });
 }
 
 - (PMKPromise*) getJSON:(NSString *)url urlParameters:(NSArray *)urlParameters parameters:(NSDictionary *)parameters {
-    NSURL* finalURL = [NSURL URLWithString:url];
+    NSString* finalURL = url;
     for(NSString* param in urlParameters){
-        finalURL = [NSURL URLWithString:param relativeToURL:finalURL];
+        finalURL = [finalURL stringByAppendingPathComponent:param];
     }
-    return [self getJSON:[finalURL absoluteString] parameters:parameters];
+    return [self getJSON:finalURL parameters:parameters];
 }
 
 - (PMKPromise*) postJSON:(NSString*)url data:(NSDictionary *)data {
     return [networkManager POST:url parameters:data]
-    .catch((^(NSError* error){
+    .catch(^(NSError* error){
         NSLog(@"Error occurred during request: %@", error);
-    }));
+    });
 }
 @end

@@ -25,7 +25,7 @@
              @"total_price": @"total_price",
              @"total_charged": @"total_charged",
              @"order_date": @"order_date",
-             @"billingInfo": NSNull.null,
+             //@"billingInfo": NSNull.null,
              };
 }
 

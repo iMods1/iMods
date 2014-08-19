@@ -13,11 +13,12 @@
 @interface IMOCategoryManager: NSObject
 /* Async fetch categories, the final result should be a NSArray of IMOCategory.
  */
-+(PMKPromise*) fetchCategories;
-+(PMKPromise*) fetchCategoriesByName:(NSString*)category;
-+(PMKPromise*) fetchCategoriesByID:(NSNumber*)categoryID;
+-(PMKPromise*) fetchCategories;
+-(PMKPromise*) fetchCategoriesByName:(NSString*)category;
+-(PMKPromise*) fetchCategoriesByID:(NSNumber*)categoryID;
 
 /* Get featured apps, the final result should be a NSArray of IMOItem.
  */
-+(PMKPromise*) fetchFeatured;
+-(PMKPromise*) fetchFeatured;
+-(instancetype) init;
 @end

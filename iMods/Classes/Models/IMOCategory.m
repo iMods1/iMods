@@ -7,29 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/NSDictionary+MTLManipulationAdditions.h>
 #import "IMOCategory.h"
 
 @implementation IMOCategory
 
-@synthesize description;
-
 + (NSDictionary*) JSONKeyPathsByPropertyKey {
     return @{
              @"cid": @"cid",
-             @"parent_id": @"parent",
+             @"parent_id": @"parent_id",
              @"name": @"name",
              @"desc": @"description",
+             @"parent": @"parent",
+             @"children": @"children"
              };
 }
 
-- (id) init:(NSNumber *)cid parent:(NSNumber *)parent_id name:(NSString *)name desc:(NSString *)desc {
+- (id) init:(NSInteger)cid parent_id:(NSInteger)parent_id name:(NSString *)name description:(NSString *)description {
     self = [super init];
     if(self == nil) return nil;
     
     self->_cid = cid;
     self->_parent_id = parent_id;
     self->_name = name;
-    self->_desc = desc;
+    self->_desc = description;
     return self;
 }
+
 @end

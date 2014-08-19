@@ -27,7 +27,7 @@ NSMutableArray *billing_infos;
              };
 }
 
-- (id)init:(NSNumber *)uid email:(NSString *)email role:(UserRole)role fullname:(NSString *)fullname age:(NSNumber *)age author:(NSString *)author_id {
+- (id)init:(NSInteger)uid email:(NSString *)email role:(UserRole)role fullname:(NSString *)fullname age:(NSInteger)age author:(NSString *)author_id {
     self = [super init];
     if(self == nil) return nil;
     

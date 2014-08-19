@@ -12,8 +12,14 @@
 @implementation IMOUserManager
 
 static IMOSessionManager* sessionManager = nil;
+static IMOUser* currentUser = nil;
 
-- (id)init {
+@synthesize userProfile = currentUser;
+
+#pragma mark -
+#pragma mark Initialization
+
+- (instancetype)init {
     self = [super init];
     if(self != nil){
         self.userLoggedIn = NO;
@@ -24,6 +30,21 @@ static IMOSessionManager* sessionManager = nil;
     }
     return self;
 }
+
++ (IMOUserManager*) sharedUserManager {
+    static IMOUserManager* sharedUserManager = nil;
+    if(sharedUserManager) {
+        return sharedUserManager;
+    }
+    static dispatch_once_t token = 0;
+    dispatch_once(&token, ^{
+        sharedUserManager = [[IMOUserManager alloc] init];
+    });
+    return sharedUserManager;
+}
+
+#pragma mark -
+#pragma mark User methods
 
 - (PMKPromise*) userLogin:(NSString*)userEmail password:(NSString*) userPassword{
     NSDictionary * postData = @{
@@ -64,8 +85,6 @@ static IMOSessionManager* sessionManager = nil;
                 NSLog(@"Failed to get user profile: %@", error.description);
             }
             self.userProfile = (IMOUser*)response.result;
-            NSLog(@"Response: %@", response);
-            NSLog(@"User: %@ %@", self.userProfile.class, self.userProfile);
         });
 }
 
@@ -114,6 +133,9 @@ static IMOSessionManager* sessionManager = nil;
         self.userProfile = (IMOUser*)response.result;
     }));
 }
+
+#pragma mark -
+#pragma mark Billing Information
 
 - (PMKPromise*) refreshBillingInfo {
     if(!self.userLoggedIn){

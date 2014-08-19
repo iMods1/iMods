@@ -14,10 +14,10 @@
 @interface IMOBillingInfo : MTLModel <MTLJSONSerializing>
 
 /* JSON fields */
-@property (nonatomic, copy, readonly) NSNumber * bid;
-@property (nonatomic, copy, readonly) NSNumber * uid;
+@property (nonatomic, assign, readonly) NSInteger bid;
+@property (nonatomic, assign, readonly) NSInteger uid;
 @property (nonatomic, copy, readwrite) NSString * address;
-@property (nonatomic, copy, readwrite) NSNumber * zipcode;
+@property (nonatomic, assign, readwrite) NSInteger zipcode;
 @property (nonatomic, copy, readwrite) NSString * state;
 @property (nonatomic, copy, readwrite) NSString * country;
 @property (nonatomic, copy, readwrite) NSString * currency; // TODO: Use a dedicated type for currency

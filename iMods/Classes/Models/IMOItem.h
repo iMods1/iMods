@@ -13,8 +13,8 @@
 
 /* JSON data fields */
 
-@property (nonatomic, copy, readonly) NSNumber * item_id;
-@property (nonatomic, copy, readonly) NSNumber * category_id;
+@property (nonatomic, assign, readonly) NSInteger item_id;
+@property (nonatomic, assign, readonly) NSInteger category_id;
 @property (nonatomic, copy, readonly) NSString * author_id;
 @property (nonatomic, copy, readonly) NSString * pkg_name;
 @property (nonatomic, copy, readonly) NSString * pkg_version;
