@@ -14,15 +14,15 @@
 @interface IMOUser : MTLModel <MTLJSONSerializing>
 
 /* JSON fields */
-@property (nonatomic, copy, readonly) NSNumber *uid;
+@property (nonatomic, assign, readonly) NSInteger uid;
 @property (nonatomic, copy, readonly) NSString *email;
 @property (nonatomic, assign, readonly) UserRole role;
 @property (nonatomic, copy, readwrite) NSString *fullname;
-@property (nonatomic, copy, readwrite) NSNumber *age;
+@property (nonatomic, assign, readwrite) NSInteger age;
 @property (nonatomic, copy, readonly) NSString *author_id;
 @property (nonatomic, copy, readonly) NSArray *billing_methods;
 /* Non-JSON fields */
-- (id) init:(NSNumber*)uid email:(NSString*)email role:(UserRole)role fullname:(NSString*)fullname age:(NSNumber*)age author:(NSString*)author_id;
+- (id) init:(NSInteger)uid email:(NSString*)email role:(UserRole)role fullname:(NSString*)fullname age:(NSInteger)age author:(NSString*)author_id;
 
 - (void) updateBillingInfoAtIndex:(NSUInteger)index billing:(IMOBillingInfo*)billing;
 - (void) setBillingInfo:(NSArray*)billingInfoArray;

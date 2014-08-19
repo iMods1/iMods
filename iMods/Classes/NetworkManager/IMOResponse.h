@@ -11,7 +11,8 @@
 
 @interface IMOResponse : MTLModel <MTLJSONSerializing>
 
-@property NSNumber* status_code;
-@property NSString* message;
+@property (nonatomic, assign, readonly) NSInteger status_code;
+@property (nonatomic, copy, readonly) NSString* message;
+@property (nonatomic, copy, readonly) NSDictionary* payload;
 
 @end

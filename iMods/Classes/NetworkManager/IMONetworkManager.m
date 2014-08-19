@@ -21,10 +21,16 @@
 
 @implementation IMONetworkManager
 
+#pragma mark -
+#pragma mark Static objects
+
 static IMONetworkManager * _sharedNetworkManager =  nil;
 static dispatch_once_t _onceToken = 0;
 static AFJSONRequestSerializer* _jsonRequestSerializer = nil;
 static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
+
+#pragma mark -
+#pragma mark Initialization
 
 + (IMONetworkManager*) sharedNetworkManager:(NSURL*)baseAPIEndpoint {
     if (_sharedNetworkManager != nil) {
@@ -35,7 +41,6 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
         _jsonRequestSerializer = [[AFJSONRequestSerializer alloc] init];
         _jsonResponseSerializer = [[AFJSONResponseSerializer alloc] init];
         _sharedNetworkManager.requestSerializer = _jsonRequestSerializer;
-        //_sharedNetworkManager.responseSerializer = _jsonResponseSerializer;
     });
     
     return _sharedNetworkManager;
@@ -49,22 +54,27 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
     return _sharedNetworkManager;
 }
 
+- (id) init {
+    self = [super init];
+    return self;
+}
+
+#pragma mark -
+#pragma mark Overloaded methods
+
 + (NSDictionary *)modelClassesByResourcePath {
     return @{
              @"user/register": [IMOUser class],
-             @"/user/profile": [IMOUser class],
+             @"user/profile": [IMOUser class],
              @"user/login": [IMOResponse class],
              @"billing/*": [IMOBillingInfo class],
-             @"category/*": [IMOCategory class],
+             @"category/featured": [IMOCategory class],
+             @"category/id/*": [IMOCategory class],
+             @"category/name/*": [IMOCategory class],
              @"device/*": [IMODevice class],
              @"item/*": [IMOItem class],
              @"order/*": [IMOOrder class]
              };
-}
-
-- (id) init {
-    self = [super init];
-    return self;
 }
 
 @end

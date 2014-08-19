@@ -45,4 +45,8 @@
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age;
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
 
+/* An shared instance of IMOUserManager, it represents the current user.
+ */
++ (IMOUserManager*) sharedUserManager;
+
 @end

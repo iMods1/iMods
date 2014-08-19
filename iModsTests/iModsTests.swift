@@ -24,7 +24,7 @@ func wait(interval:NSTimeInterval) {
 class UserSessionTests: XCTestCase {
     
     var session = sharedTestingSession()
-    var userManager = IMOUserManager()
+    var userManager = IMOUserManager.sharedUserManager();
     var infoDict:NSDictionary = NSDictionary()
     var build:NSString = NSString()
     var userEmail:NSString = NSString()
@@ -52,10 +52,9 @@ class UserSessionTests: XCTestCase {
             XCTAssert(self.userManager.userLoggedIn, "Login failed")
             let user:IMOUser? = self.userManager.userProfile
             XCTAssertNotNil(user, "Response is nil")
-            XCTAssert(user?.fullname == "admin" , "User fullname doesn't match")
             resolved = true
         })
-        wait(0.5)
+        wait(0.2)
         XCTAssert(resolved, "Request is not resolved")
     }
     
@@ -68,7 +67,7 @@ class UserSessionTests: XCTestCase {
             XCTAssert(response?.fullname == self.userFullName, "User name doesn't match");
             resolved = true
         })
-        wait(0.5)
+        wait(0.1)
         XCTAssert(resolved, "Request not resolved")
     }
     
@@ -82,30 +81,7 @@ class UserSessionTests: XCTestCase {
             XCTAssert(response?.fullname == newname, "User name doesn't match")
             resolved = true
         })
-        wait(0.5)
+        wait(0.1)
         XCTAssert(resolved, "Request not resolved")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
-}
-
-class CategorySessionTests: XCTestCase {
-    let session = sharedTestingSession()
-    override func setUp() {
-        super.setUp()
-        
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
-    func testFeatured() {
     }
 }
