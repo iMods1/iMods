@@ -25,7 +25,6 @@
 		284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB71946F35A006539A3 /* AppDelegate.swift */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
-		284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBCC1946F35A006539A3 /* iModsTests.swift */; };
 		284F988E19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		284F988F19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		28502F8D19A2F2A300AECCDA /* IMOOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28502F8C19A2F2A300AECCDA /* IMOOrderManager.m */; };
@@ -195,7 +194,6 @@
 		284CBBC01946F35A006539A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		284CBBCC1946F35A006539A3 /* iModsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModsTests.swift; sourceTree = "<group>"; };
 		284F988919898A9F0008DD90 /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOConstants.h; path = Classes/Constants/IMOConstants.h; sourceTree = "<group>"; };
 		284F988D19898AB00008DD90 /* IMOConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOConstants.m; path = Classes/Constants/IMOConstants.m; sourceTree = "<group>"; };
 		28502F8B19A2F2A300AECCDA /* IMOOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOOrderManager.h; path = Classes/SessionManager/IMOOrderManager.h; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				28052DB319A2BF370080DBEA /* iModsTests_Objc.m */,
-				284CBBCC1946F35A006539A3 /* iModsTests.swift */,
 				284CBBCA1946F35A006539A3 /* Supporting Files */,
 			);
 			path = iModsTests;
@@ -379,8 +376,8 @@
 				28285A38199896A40056B707 /* IMOUserManager.m */,
 				28C955C41998904A00319DD0 /* IMOCategoryManager.h */,
 				28C955C11998903A00319DD0 /* IMOCategoryManager.m */,
-				28CF066719895783003347BB /* IMOSessionManager.m */,
 				28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */,
+				28CF066719895783003347BB /* IMOSessionManager.m */,
 				2887937319A2F26500A5922C /* IMOBillingInfoManager.h */,
 				2887937419A2F26500A5922C /* IMOBillingInfoManager.m */,
 				2887937719A2F27600A5922C /* IMODeviceManager.h */,
@@ -759,7 +756,6 @@
 				28C955C31998903A00319DD0 /* IMOCategoryManager.m in Sources */,
 				289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */,
 				28052DB419A2BF370080DBEA /* iModsTests_Objc.m in Sources */,
-				284CBBCD1946F35A006539A3 /* iModsTests.swift in Sources */,
 				28285A3A199896A40056B707 /* IMOUserManager.m in Sources */,
 				2887937619A2F26500A5922C /* IMOBillingInfoManager.m in Sources */,
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,

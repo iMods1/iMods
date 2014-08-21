@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <PromiseKit/Promise.h>
 #import "IMOUser.h"
+#import "IMOBillingInfo.h"
+#import "IMOItem.h"
+#import "IMOOrder.h"
 
 @interface IMOUserManager : NSObject
 
 @property (atomic, assign) bool userLoggedIn;
 @property IMOUser* userProfile;
+
+/* An shared instance of IMOUserManager, it represents the current user.
+ */
++ (IMOUserManager*) sharedUserManager;
 
 /* User login
  * @param userEmail User's email address
@@ -45,8 +52,17 @@
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age;
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
 
-/* An shared instance of IMOUserManager, it represents the current user.
- */
-+ (IMOUserManager*) sharedUserManager;
+- (PMKPromise*) registerCurrentDevice;
+
+- (PMKPromise*) addNewBillingMethod:(IMOBillingInfo*)billingInfo;
+- (PMKPromise*) updateBillingMethod:(IMOBillingInfo*)newBillingInfo;
+- (PMKPromise*) removeBillingMethod:(IMOBillingInfo*)billingInfo;
+- (PMKPromise*) removeBillingMethodAtIndex:(NSInteger)index;
+- (PMKPromise*) refreshBillingMethods;
+
+- (PMKPromise*) placeNewOrder:(IMOOrder*)newOrder;
+- (PMKPromise*) cancelOrder:(IMOOrder*)order;
+- (PMKPromise*) cancelOrderAtIndex:(NSInteger)index;
+- (PMKPromise*) refreshOrders;
 
 @end

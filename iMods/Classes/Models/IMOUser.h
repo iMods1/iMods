@@ -17,15 +17,12 @@
 @property (nonatomic, assign, readonly) NSInteger uid;
 @property (nonatomic, copy, readonly) NSString *email;
 @property (nonatomic, assign, readonly) UserRole role;
-@property (nonatomic, copy, readwrite) NSString *fullname;
-@property (nonatomic, assign, readwrite) NSInteger age;
+@property (nonatomic, copy, readonly) NSString *fullname;
+@property (nonatomic, assign, readonly) NSInteger age;
 @property (nonatomic, copy, readonly) NSString *author_id;
-@property (nonatomic, copy, readonly) NSArray *billing_methods;
+@property (atomic, retain, readwrite) NSMutableArray *billing_methods;
+@property (atomic, retain, readwrite) NSMutableArray *orders;
 /* Non-JSON fields */
 - (id) init:(NSInteger)uid email:(NSString*)email role:(UserRole)role fullname:(NSString*)fullname age:(NSInteger)age author:(NSString*)author_id;
 
-- (void) updateBillingInfoAtIndex:(NSUInteger)index billing:(IMOBillingInfo*)billing;
-- (void) setBillingInfo:(NSArray*)billingInfoArray;
-- (IMOBillingInfo*) billingInfoAtIndex:(NSUInteger)index;
-- (NSArray*) listBillingInfo;
 @end

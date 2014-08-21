@@ -24,4 +24,5 @@
 /* Non-JSON data fields */
 
 - (id) init:(NSInteger)cid parent_id:(NSInteger)parent_id name:(NSString*)name description:(NSString*)description;
+- (BOOL) isEqual:(id)object;
 @end

@@ -29,5 +29,5 @@
 @property (nonatomic, copy, readonly) NSDate * last_update_date;
 
 /* Non-JSON data fields */
-
+- (BOOL) isEqual:(id)object;
 @end

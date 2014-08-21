@@ -34,4 +34,11 @@
     return self;
 }
 
+- (BOOL) isEqual:(id)object {
+    if (![object isKindOfClass:IMOCategory.class]) {
+        return NO;
+    }
+    return ((IMOCategory*)object).cid == self.cid;
+}
+
 @end

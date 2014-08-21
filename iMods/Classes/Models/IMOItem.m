@@ -48,4 +48,11 @@
     }];
 }
 
+- (BOOL) isEqual:(id)object {
+    if (![object isKindOfClass:IMOItem.class]) {
+        return NO;
+    }
+    return ((IMOItem*)object).item_id == self.item_id;
+}
+
 @end

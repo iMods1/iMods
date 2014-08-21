@@ -22,6 +22,7 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
 
 
 - (PMKPromise*) postJSON:(NSString*)url data:(NSDictionary*)data;
+- (PMKPromise*) postJSON:(NSString*)url urlParameters:(NSArray*)urlParameters data:(NSDictionary*)data;
 - (PMKPromise*) getJSON:(NSString*)url parameters:(NSDictionary*)parameters;
 - (PMKPromise*) getJSON:(NSString *)url urlParameters:(NSArray*)urlParameters parameters:(NSDictionary *)parameters;
 @end

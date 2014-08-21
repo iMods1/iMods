@@ -21,10 +21,10 @@
              @"quantity": @"quantity",
              @"currencty": @"currency",
              @"status": @"status",
-             @"billing_id": @"billing_id",
-             @"total_price": @"total_price",
-             @"total_charged": @"total_charged",
-             @"order_date": @"order_date",
+             @"billingID": @"billing_id",
+             @"totalPrice": @"total_price",
+             @"totalCharged": @"total_charged",
+             @"orderDate": @"order_date",
              //@"billingInfo": NSNull.null,
              };
 }
@@ -43,6 +43,25 @@
     }reverseBlock:^(NSDate* date){
         return [self.dateFormatter stringFromDate:date];
     }];
+}
+
+- (void) updateFromModel:(IMOOrder *)model {
+    self->_oid = model.oid;
+    self->_uid = model.uid;
+    self->_quantity = model.quantity;
+    self->_currency = model.currency;
+    self->_status = model.status;
+    self->_bid = model.bid;
+    self->_totalPrice = model.totalPrice;
+    self->_totalCharged = model.totalCharged;
+    self->_orderDate = model.orderDate;
+}
+
+- (BOOL) isEqual:(id)object {
+    if (![object isKindOfClass:IMOOrder.class]) {
+        return NO;
+    }
+    return ((IMOOrder*)object).oid == self.oid;
 }
 
 @end
