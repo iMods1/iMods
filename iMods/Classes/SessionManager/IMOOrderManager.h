@@ -11,11 +11,18 @@
  */
 #import <Foundation/Foundation.h>
 #import <PromiseKit/Promise.h>
+#import "IMOOrder.h"
 
 @interface IMOOrderManager : NSObject
 
+@property (retain) NSMutableArray* orders;
+
 - (instancetype) init;
 
-- (PMKPromise*) fetchOrders;
-
+- (PMKPromise*) placeNewOrder:(IMOOrder*)newOrder;
+- (PMKPromise*) cancelOrder:(IMOOrder*)order;
+- (PMKPromise*) cancelOrderAtIndex:(NSInteger)index;
+- (PMKPromise*) refreshOrders;
+- (PMKPromise*) fetchOrderByOrder:(IMOOrder*)order;
+- (PMKPromise*) fetchOrderByID:(NSUInteger)oid;
 @end

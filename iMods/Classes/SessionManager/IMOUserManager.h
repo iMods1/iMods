@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <PromiseKit/Promise.h>
 #import "IMOUser.h"
-#import "IMOBillingInfo.h"
-#import "IMOItem.h"
-#import "IMOOrder.h"
 
 @interface IMOUserManager : NSObject
 
@@ -51,18 +48,5 @@
  */
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age;
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
-
-- (PMKPromise*) registerCurrentDevice;
-
-- (PMKPromise*) addNewBillingMethod:(IMOBillingInfo*)billingInfo;
-- (PMKPromise*) updateBillingMethod:(IMOBillingInfo*)newBillingInfo;
-- (PMKPromise*) removeBillingMethod:(IMOBillingInfo*)billingInfo;
-- (PMKPromise*) removeBillingMethodAtIndex:(NSInteger)index;
-- (PMKPromise*) refreshBillingMethods;
-
-- (PMKPromise*) placeNewOrder:(IMOOrder*)newOrder;
-- (PMKPromise*) cancelOrder:(IMOOrder*)order;
-- (PMKPromise*) cancelOrderAtIndex:(NSInteger)index;
-- (PMKPromise*) refreshOrders;
 
 @end

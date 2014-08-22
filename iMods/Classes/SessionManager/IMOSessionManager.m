@@ -75,6 +75,15 @@ static IMOSessionManager* sessionManager = nil;
     return self;
 }
 
+- (void) initManagers {
+    self->_userManager = [IMOUserManager sharedUserManager];
+    self->_categoryManager = [[IMOCategoryManager alloc] init];
+    self->_billingManager = [[IMOBillingInfoManager alloc] init];
+    self->_deviceManager = [[IMODeviceManager alloc] init];
+    self->_orderManager = [[IMOOrderManager alloc] init];
+    self->_itemManager = [[IMOItemManager alloc] init];
+}
+
 #pragma mark -
 #pragma mark Request helpers
 

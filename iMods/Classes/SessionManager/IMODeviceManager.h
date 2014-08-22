@@ -13,8 +13,6 @@
 
 @property IMODevice* currentDevice;
 
-- (instancetype) init;
-- (void) registerCurrentDevice;
-
++ (IMODevice*) currentDevice;
 
 @end

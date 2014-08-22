@@ -14,6 +14,9 @@
 #import "IMOCategoryManager.h"
 #import "IMOItem.h"
 #import "IMOItemManager.h"
+#import "IMOBillingInfoManager.h"
+#import "IMOOrderManager.h"
+#import "IMODeviceManager.h"
 
 @interface iModsTestCase: XCTestCase
 
@@ -23,19 +26,44 @@
 @property (readonly) NSString* userFullName;
 @property (readonly) NSString* userEmail;
 @property (readonly) IMOUserManager* userManager;
-
+@property (readonly) IMOCategoryManager* categoryManager;
+@property (readonly) IMOItemManager* itemManager;
+@property (readonly) IMOBillingInfoManager* billingManager;
+@property (readonly) IMOOrderManager* orderManager;
+@property (readonly) IMODeviceManager* deviceManager;
 
 @end
 
 @implementation iModsTestCase
 
-- (void)setUp {
+- (void)setUp{
     [super setUp];
-    self->_sessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString:@"http://192.168.119.1:8000/api/"]];
-    self->_userManager = [IMOUserManager sharedUserManager];
+    
     self->_build = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*) kCFBundleVersionKey];
     self->_userFullName = [NSString stringWithFormat:@"test-%@@imods.com", self.build];
     self->_userEmail = [NSString stringWithFormat:@"testing-%@", self.build];
+    
+    if (!self.sessionManager) {
+        self->_sessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString:@"http://192.168.119.1:8000/api/"]];
+    }
+    if (!self.userManager) {
+        self->_userManager = [IMOUserManager sharedUserManager];
+    }
+    if (!self.itemManager) {
+        self->_itemManager = [[IMOItemManager alloc] init];
+    }
+    if(!self.billingManager){
+        self->_billingManager = [[IMOBillingInfoManager alloc] init];
+    }
+    if(!self.orderManager){
+        self->_orderManager = [[IMOOrderManager alloc] init];
+    }
+    if(!self.deviceManager){
+        self->_deviceManager = [[IMODeviceManager alloc] init];
+    }
+    if(!self.categoryManager){
+        self->_categoryManager = [[IMOCategoryManager alloc] init];
+    }
 }
 
 - (void)tearDown {
@@ -67,11 +95,8 @@
 
 @implementation CategorySessionTest
 
-IMOCategoryManager* categoryManager = nil;
-
 - (void)setUp {
     [super setUp];
-    categoryManager = [[IMOCategoryManager alloc] init];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -82,7 +107,7 @@ IMOCategoryManager* categoryManager = nil;
 
 - (void)testFeatured{
     __block BOOL resolved = NO;
-    PMKPromise* request = [categoryManager fetchFeatured];
+    PMKPromise* request = [self.categoryManager fetchFeatured];
     XCTAssertNotNil(request);
     request.then(^(OVCResponse* response, NSError* error){
         XCTAssertNil(error, @"Error occurred during request");
@@ -98,7 +123,7 @@ IMOCategoryManager* categoryManager = nil;
 
 - (void)testFetchCategoryByName{
     __block BOOL resovled = NO;
-    [categoryManager fetchCategoriesByName:@"featured"]
+    [self.categoryManager fetchCategoriesByName:@"featured"]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNotNil(response);
         NSArray* cat_list = response.result;
@@ -113,7 +138,7 @@ IMOCategoryManager* categoryManager = nil;
 
 - (void)testFetchCategoryByID{
     __block BOOL resolved = NO;
-    [categoryManager fetchCategoriesByID:@1]
+    [self.categoryManager fetchCategoriesByID:@1]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNotNil(response);
         IMOCategory* featured = response.result;
@@ -133,11 +158,8 @@ IMOCategoryManager* categoryManager = nil;
 
 @implementation ItemTest
 
-IMOItemManager* itemManager = nil;
-
 - (void)setUp {
     [super setUp];
-    itemManager = [[IMOItemManager alloc] init];
 }
 
 - (void)tearDown {
@@ -146,7 +168,7 @@ IMOItemManager* itemManager = nil;
 
 - (void)testItemFetch {
     __block BOOL resolved = NO;
-    [itemManager fetchItem:1].then(^(OVCResponse* response, NSError* error){
+    [self.itemManager fetchItemByID:1].then(^(OVCResponse* response, NSError* error){
         XCTAssertNotNil(response);
         XCTAssertNil(error);
         IMOItem* item = response.result;
@@ -271,10 +293,10 @@ IMOItemManager* itemManager = nil;
     
     __block BOOL resolved = NO;
     // Add first billing info
-    [self.userManager addNewBillingMethod:billingInfo]
+    [self.billingManager addNewBillingMethod:billingInfo]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNil(error);
-        IMOBillingInfo* billing = [self.userManager.userProfile.billing_methods lastObject];
+        IMOBillingInfo* billing = [self.billingManager.billingMethods lastObject];
         XCTAssertNotNil(billing);
         // Integrity check
         XCTAssert(billing.zipcode == 12345);
@@ -285,10 +307,10 @@ IMOItemManager* itemManager = nil;
     
     // Add second billing info
     resolved = NO;
-    [self.userManager addNewBillingMethod:billingInfo]
+    [self.billingManager addNewBillingMethod:billingInfo]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNil(error);
-        IMOBillingInfo* billing = [self.userManager.userProfile.billing_methods lastObject];
+        IMOBillingInfo* billing = [self.billingManager.billingMethods lastObject];
         XCTAssertNotNil(billing);
         // Integrity check
         XCTAssert(billing.zipcode == 12345);
@@ -299,10 +321,10 @@ IMOItemManager* itemManager = nil;
 }
 
 - (void) test_06_BillingMethodUpdate {
-    [self.userManager refreshBillingMethods];
+    [self.billingManager refreshBillingMethods];
     [self waitFor:0.2];
     
-    IMOBillingInfo* lastBilling = [self.userManager.userProfile.billing_methods lastObject];
+    IMOBillingInfo* lastBilling = [self.billingManager.billingMethods lastObject];
     NSDictionary* newbilling = @{
                               @"bid": @(lastBilling.bid),
                               @"uid": @(lastBilling.uid),
@@ -322,10 +344,10 @@ IMOItemManager* itemManager = nil;
     XCTAssertNil(error);
     
     __block BOOL resolved = NO;
-    [self.userManager updateBillingMethod:newBillingInfo]
+    [self.billingManager updateBillingMethod:newBillingInfo]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNil(error);
-        IMOBillingInfo* billing = [self.userManager.userProfile.billing_methods lastObject];
+        IMOBillingInfo* billing = [self.billingManager.billingMethods lastObject];
         XCTAssertNotNil(billing);
         // Integrity check
         XCTAssert(billing.zipcode == 54321);
@@ -336,28 +358,28 @@ IMOItemManager* itemManager = nil;
 }
 
 - (void) test_07_BillingMethodRemove {
-    [self.userManager refreshBillingMethods];
+    [self.billingManager refreshBillingMethods];
     [self waitFor:0.2];
-    IMOBillingInfo* billing = [self.userManager.userProfile.billing_methods lastObject];
-    NSUInteger billingCount = [self.userManager.userProfile.billing_methods count];
+    IMOBillingInfo* billing = [self.billingManager.billingMethods lastObject];
+    NSUInteger billingCount = [self.billingManager.billingMethods count];
     XCTAssertNotNil(billing);
     XCTAssert(billingCount > 0);
     
     __block BOOL resolved = NO;
-    [self.userManager removeBillingMethod:billing]
+    [self.billingManager removeBillingMethod:billing]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNil(error);
-        XCTAssert(self.userManager.userProfile.billing_methods.count == billingCount - 1);
+        XCTAssert(self.billingManager.billingMethods.count == billingCount - 1);
         resolved = YES;
     });
     [self waitFor:0.2];
     XCTAssert(resolved);
     
     resolved = NO;
-    [self.userManager removeBillingMethodAtIndex:[self.userManager.userProfile.billing_methods count]-1]
+    [self.billingManager removeBillingMethodAtIndex:[self.billingManager.billingMethods count]-1]
     .then(^(OVCResponse* response, NSError* error){
         XCTAssertNil(error);
-        XCTAssert(self.userManager.userProfile.billing_methods.count == billingCount - 2);
+        XCTAssert(self.billingManager.billingMethods.count == billingCount - 2);
         resolved = YES;
     });
     [self waitFor:0.2];
@@ -371,28 +393,108 @@ IMOItemManager* itemManager = nil;
 
 @implementation OrderTest
 
+IMOOrderManager* orderManager = nil;
+
 - (void)setUp {
     [super setUp];
     [self login:@"test@test.com" password:@"test"];
+    [self waitFor:0.2];
 }
 
 - (void)tearDown {
     [super tearDown];
 }
 
-- (void)testPlaceNewOrder {
+- (void)test_01_PlaceNewOrder {
+    // Fetch item and billing info
+    __block IMOBillingInfo* billing = nil;
+    [self.billingManager refreshBillingMethods]
+    .then(^{
+        billing = [self.billingManager.billingMethods lastObject];
+    });
+    [self waitFor:0.2];
+    XCTAssertNotNil(billing);
+    
+    __block IMOItem* item = nil;
+    __block BOOL resolved = NO;
+    [self.itemManager fetchItemByID:1]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        item = response.result;
+        XCTAssertNotNil(item);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    
     NSDictionary* jsonData = @{
-                               @"item_id": @1,
-                               @"quantity": @1,
-                               @"currency": @"USD",
-                               @"billing_id": @1,
+                               @"billing_id": @(billing.bid),
+                               @"item_id": @(item.item_id),
+                               @"pkg_name": item.pkg_name,
                                @"total_price": @0.99,
                                @"total_charged": @1.99
                                };
     NSError * error = nil;
+    // Create new order
     IMOOrder* order = [MTLJSONAdapter modelOfClass:IMOOrder.class fromJSONDictionary:jsonData error:&error];
     XCTAssertNil(error);
+    order.item = item;
+    order.billingInfo = billing;
+    resolved = NO;
+    // Send request
+    [self.orderManager placeNewOrder:order]
+    .then(^{
+        IMOOrder* lastOrder = [self.orderManager.orders lastObject];
+        XCTAssertNotNil(lastOrder);
+        XCTAssert([lastOrder.item isEqual:item]);
+        XCTAssert([lastOrder.billingInfo isEqual:billing]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+}
+
+- (void) test_02_RefreshOrder {
     __block BOOL resolved = NO;
+    [self.orderManager refreshOrders]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        XCTAssertNotNil(self.orderManager.orders);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+}
+
+- (void) test_03_CancelOrder {
+    if(!self.orderManager.orders){
+        [self test_02_RefreshOrder];
+        [self waitFor:0.2];
+    }
+    __block BOOL resolved = NO;
+    [self.orderManager cancelOrder:[self.orderManager.orders lastObject]]
+    .finally(^{
+        IMOOrder* lastOrder = [self.orderManager.orders lastObject];
+        XCTAssert(lastOrder.status == OrderCancelled);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+}
+
+@end
+
+@interface DeviceTest : iModsTestCase
+
+@end
+
+@implementation DeviceTest
+
+- (void) setUp {
+    [super setUp];
+}
+
+- (void) tearDown {
+    [super tearDown];
 }
 
 @end

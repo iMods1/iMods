@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28052DB419A2BF370080DBEA /* iModsTests_Objc.m in Sources */ = {isa = PBXBuildFile; fileRef = 28052DB319A2BF370080DBEA /* iModsTests_Objc.m */; };
+		28052DB419A2BF370080DBEA /* iModsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28052DB319A2BF370080DBEA /* iModsTests.m */; };
 		2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
 		2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
 		28285A39199896A40056B707 /* IMOUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28285A38199896A40056B707 /* IMOUserManager.m */; };
@@ -176,7 +176,7 @@
 
 /* Begin PBXFileReference section */
 		0B3C95FDF7B146ABBF782234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		28052DB319A2BF370080DBEA /* iModsTests_Objc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iModsTests_Objc.m; sourceTree = "<group>"; };
+		28052DB319A2BF370080DBEA /* iModsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iModsTests.m; sourceTree = "<group>"; };
 		2805497C19895B7C0049D619 /* IMONetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkManager.h; path = Classes/NetworkManager/IMONetworkManager.h; sourceTree = "<group>"; };
 		2805497D19895B7C0049D619 /* IMONetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkManager.m; path = Classes/NetworkManager/IMONetworkManager.m; sourceTree = "<group>"; };
 		28285A37199896A40056B707 /* IMOUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOUserManager.h; path = Classes/SessionManager/IMOUserManager.h; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		284CBBC91946F35A006539A3 /* iModsTests */ = {
 			isa = PBXGroup;
 			children = (
-				28052DB319A2BF370080DBEA /* iModsTests_Objc.m */,
+				28052DB319A2BF370080DBEA /* iModsTests.m */,
 				284CBBCA1946F35A006539A3 /* Supporting Files */,
 			);
 			path = iModsTests;
@@ -755,7 +755,7 @@
 				28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				28C955C31998903A00319DD0 /* IMOCategoryManager.m in Sources */,
 				289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */,
-				28052DB419A2BF370080DBEA /* iModsTests_Objc.m in Sources */,
+				28052DB419A2BF370080DBEA /* iModsTests.m in Sources */,
 				28285A3A199896A40056B707 /* IMOUserManager.m in Sources */,
 				2887937619A2F26500A5922C /* IMOBillingInfoManager.m in Sources */,
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,

@@ -20,8 +20,6 @@
 @property (nonatomic, copy, readonly) NSString *fullname;
 @property (nonatomic, assign, readonly) NSInteger age;
 @property (nonatomic, copy, readonly) NSString *author_id;
-@property (atomic, retain, readwrite) NSMutableArray *billing_methods;
-@property (atomic, retain, readwrite) NSMutableArray *orders;
 /* Non-JSON fields */
 - (id) init:(NSInteger)uid email:(NSString*)email role:(UserRole)role fullname:(NSString*)fullname age:(NSInteger)age author:(NSString*)author_id;
 

@@ -16,7 +16,8 @@
 /* Fetch an item from the server, result is an IMOItem object.
  * @param pkg_id Package ID
  */
-- (PMKPromise*) fetchItem:(NSInteger)pkg_id;
+- (PMKPromise*) fetchItemByID:(NSUInteger) pkg_id;
+- (PMKPromise*) fetchItemByName:(NSString*) pkg_name;
 
 // TODO: fetchItemPreviewAssets should return something that can be directly used by controllers and views.
 /* Fetch and store preview assets of an item.

@@ -72,7 +72,8 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
              @"category/id/*": [IMOCategory class],
              @"category/name/*": [IMOCategory class],
              @"device/*": [IMODevice class],
-             @"item/*": [IMOItem class],
+             @"item/id/*": [IMOItem class],
+             @"item/pkg/*": [IMOItem class],
              @"order/*": [IMOOrder class]
              };
 }

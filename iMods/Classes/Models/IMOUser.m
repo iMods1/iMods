@@ -23,8 +23,6 @@
              @"age": @"age",
              @"author_id": @"author_identifier",
              @"role": @"role",
-             @"billing_methods": @"billing_methods",
-             @"orders": @"orders"
              };
 }
 
@@ -37,8 +35,6 @@
     self->_role = role;
     self->_fullname = fullname;
     self->_author_id = author_id;
-    self.billing_methods = nil;
-    self.orders = nil;
     
     return self;
 }

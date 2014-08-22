@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <Overcoat/OVCResponse.h>
 #import <PromiseKit/Promise.h>
+#import "IMOUserManager.h"
+#import "IMOCategoryManager.h"
+#import "IMODeviceManager.h"
+#import "IMOOrderManager.h"
+#import "IMOItemManager.h"
+#import "IMOBillingInfoManager.h"
+
+@class IMOCategoryManager;
 
 typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
 
@@ -20,6 +28,12 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
 + (IMOSessionManager*) sharedSessionManager;
 + (IMOSessionManager*) sharedSessionManager:(NSURL*) baseURL;
 
+@property (readonly) IMOUserManager* userManager;
+@property (readonly) IMOBillingInfoManager* billingManager;
+@property (readonly) IMODeviceManager* deviceManager;
+@property (readonly) IMOCategoryManager* categoryManager;
+@property (readonly) IMOItemManager* itemManager;
+@property (readonly) IMOOrderManager* orderManager;
 
 - (PMKPromise*) postJSON:(NSString*)url data:(NSDictionary*)data;
 - (PMKPromise*) postJSON:(NSString*)url urlParameters:(NSArray*)urlParameters data:(NSDictionary*)data;
