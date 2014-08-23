@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol BannerDataSource {
+protocol BannerDataSource: NSObjectProtocol {
     func dataForBanner(#tag: String) -> IMOItem
 }
