@@ -12,8 +12,6 @@
 
 @interface IMONetworkManager : OVCHTTPSessionManager
 
-@property (nonatomic, strong, readonly) NSURL * baseURL;
-
 + (IMONetworkManager*)sharedNetworkManager:(NSURL*)baseAPIEndpoint;
 + (IMONetworkManager*)sharedNetworkManager;
 @end

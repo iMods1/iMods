@@ -40,6 +40,7 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
     }
     dispatch_once(&_onceToken, ^{
         _sharedNetworkManager = [[IMONetworkManager alloc] initWithBaseURL:baseAPIEndpoint];
+        [_sharedNetworkManager setupReachabilityMonitor];
         _jsonRequestSerializer = [[AFJSONRequestSerializer alloc] init];
         _jsonResponseSerializer = [[AFJSONResponseSerializer alloc] init];
         _sharedNetworkManager.requestSerializer = _jsonRequestSerializer;
@@ -58,7 +59,29 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
 
 - (id) init {
     self = [super init];
+    if(self){
+    }
     return self;
+}
+
+- (void) setupReachabilityMonitor {
+    NSOperationQueue *operationQueue = self.operationQueue;
+    [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"Server is reachable");
+                [operationQueue setSuspended:NO];
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                NSLog(@"Server is not reachable, suspending operation queue...");
+            default:
+                [operationQueue setSuspended:YES];
+                break;
+        }
+    }];
+    
+    [self.reachabilityManager startMonitoring];
 }
 
 #pragma mark -
