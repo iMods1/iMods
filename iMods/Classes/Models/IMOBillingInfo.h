@@ -16,17 +16,22 @@
 /* JSON fields */
 @property (nonatomic, assign, readonly) NSInteger bid;
 @property (nonatomic, assign, readonly) NSInteger uid;
-@property (nonatomic, copy, readwrite) NSString * address;
-@property (nonatomic, assign, readwrite) NSInteger zipcode;
-@property (nonatomic, copy, readwrite) NSString * state;
-@property (nonatomic, copy, readwrite) NSString * country;
-@property (nonatomic, copy, readwrite) NSString * currency; // TODO: Use a dedicated type for currency
+@property (nonatomic, copy, readonly) NSString * address;
+@property (nonatomic, assign, readonly) NSInteger zipcode;
+@property (nonatomic, copy, readonly) NSString * city;
+@property (nonatomic, copy, readonly) NSString * state;
+@property (nonatomic, copy, readonly) NSString * country;
 
 // Fields below are credit card information, they should only be used when submitting to the server,
-@property (nonatomic, copy, readwrite) NSString * masked_creditcard_number; // credit card number
-@property (nonatomic, copy, readwrite) NSString * masked_cv_code; // credit card cv code
-@property (nonatomic, copy, readwrite) NSDate * creditcard_expiration_date;
-@property (nonatomic, assign, readwrite) PaymentType paymentType; // paymentType -> "type_" in JSON
+@property (nonatomic, copy, readonly) NSString * creditcardName;
+@property (nonatomic, copy, readonly) NSString * creditcardNumber; // credit card number
+@property (nonatomic, copy, readonly) NSString * creditcardCVV; // credit card cv code
+@property (nonatomic, copy, readonly) NSDate * creditcardExpiration;
+@property (nonatomic, assign, readonly) PaymentType paymentType; // paymentType -> "type_" in JSON
 
 /* Non-JSON fields */
+
+- (void) maskCreditCardInfo;
+- (void) updateFromModel:(IMOBillingInfo*) model;
+- (BOOL) isEqual:(id)object;
 @end

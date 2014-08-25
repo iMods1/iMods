@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
+#import <AFNetworking/AFURLRequestSerialization.h>
+#import <AFNetworking/AFURLResponseSerialization.h>
+
 #import "IMONetworkManager.h"
 #import "IMONetworkErrorResponse.h"
 
@@ -16,8 +19,7 @@
 #import "IMOItem.h"
 #import "IMOOrder.h"
 #import "IMOResponse.h"
-#import <AFNetworking/AFURLRequestSerialization.h>
-#import <AFNetworking/AFURLResponseSerialization.h>
+#import "IMOReview.h"
 
 @implementation IMONetworkManager
 
@@ -67,13 +69,49 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
              @"user/register": [IMOUser class],
              @"user/profile": [IMOUser class],
              @"user/login": [IMOResponse class],
-             @"billing/*": [IMOBillingInfo class],
+             @"user/logout": [IMOResponse class],
+             @"user/reset_password/*": [IMOResponse class],
+             @"user/update": [IMOResponse class],
+             
+             @"billing/list": [IMOBillingInfo class],
+             @"billing/id/*": [IMOBillingInfo class],
+             @"billing/add": [IMOBillingInfo class],
+             @"billing/update/*": [IMOResponse class],
+             @"billing/delete/*": [IMOResponse class],
+             
              @"category/featured": [IMOCategory class],
              @"category/id/*": [IMOCategory class],
              @"category/name/*": [IMOCategory class],
-             @"device/*": [IMODevice class],
-             @"item/*": [IMOItem class],
-             @"order/*": [IMOOrder class]
+             @"category/update/*": [IMOResponse class],
+             @"category/delete/*": [IMOResponse class],
+             
+             @"device/add": [IMODevice class],
+             @"device/list": [IMOResponse class],
+             
+             @"item/list": [IMOItem class],
+             @"item/id/*": [IMOItem class],
+             @"item/pkg/*": [IMOItem class],
+             @"item/add": [IMOResponse class],
+             @"item/update/*": [IMOResponse class],
+             @"item/delete/*": [IMOResponse class],
+             @"item/featured": [IMOItem class],
+             
+             @"order/list": [IMOOrder class],
+             @"order/id/*": [IMOOrder class],
+             @"order/add": [IMOOrder class],
+             @"order/update/*": [IMOOrder class],
+             @"order/cancel/*": [IMOOrder class],
+             
+             @"wishlist": [IMOItem class],
+             @"wishlist/add": [IMOResponse class],
+             @"wishlist/delete/*": [IMOResponse class],
+             @"wishlist/clear": [IMOResponse class],
+             
+             @"review/add": [IMOReview class],
+             @"review/list": [IMOReview class],
+             @"review/user/*": [IMOReview class],
+             @"review/item/*": [IMOReview class],
+             @"review/delete/*": [IMOResponse class],
              };
 }
 

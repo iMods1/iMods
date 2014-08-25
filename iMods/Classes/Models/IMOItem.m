@@ -28,7 +28,8 @@
              @"summary": @"summary",
              @"desc": @"description",
              @"add_date": @"add_date",
-             @"last_update_date": @"last_update_date"
+             @"last_update_date": @"last_update_date",
+             @"reviews": @"reviews"
              };
 }
 
@@ -46,6 +47,31 @@
     }reverseBlock:^(NSDate* date){
         return [self.dateFormatter stringFromDate:date];
     }];
+}
+
+- (BOOL) isEqual:(id)object {
+    if (![object isKindOfClass:IMOItem.class]) {
+        return NO;
+    }
+    return ((IMOItem*)object).item_id == self.item_id;
+}
+
+- (void) updateFromModel:(IMOItem*)model{
+    self->_add_date = model.add_date;
+    self->_author_id = model.author_id;
+    self->_category_id = model.category_id;
+    self->_desc = model.desc;
+    self->_display_name = model.display_name;
+    self->_item_id = model.item_id;
+    self->_last_update_date = model.last_update_date;
+    self->_pkg_assets_path = model.pkg_assets_path;
+    self->_pkg_dependencies = model.pkg_dependencies;
+    self->_pkg_name = model.pkg_name;
+    self->_pkg_signature = model.pkg_signature;
+    self->_pkg_version = model.pkg_version;
+    self->_price = model.price;
+    self->_summary = model.summary;
+    // Don't update reviews, because the response won't contain reviews by default.
 }
 
 @end

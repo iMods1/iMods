@@ -8,6 +8,7 @@
 
 #import "IMOSessionManager.h"
 #import "IMOUserManager.h"
+#import "IMOOrder.h"
 
 @implementation IMOUserManager
 
@@ -19,7 +20,7 @@ static IMOUser* currentUser = nil;
 #pragma mark -
 #pragma mark Initialization
 
-- (instancetype)init {
+- (id)init {
     self = [super init];
     if(self != nil){
         self.userLoggedIn = NO;
@@ -93,6 +94,9 @@ static IMOUser* currentUser = nil;
 }
 
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword{
+    if (!self.userLoggedIn) {
+        NSLog(@"User not loggedin");
+    }
     NSMutableDictionary* postData = [NSMutableDictionary dictionary];
     if(fullname != nil){
         [postData setValue:fullname forKey:@"fullname"];
@@ -132,20 +136,6 @@ static IMOUser* currentUser = nil;
     .then((^(OVCResponse* response, NSError* error){
         self.userProfile = (IMOUser*)response.result;
     }));
-}
-
-#pragma mark -
-#pragma mark Billing Information
-
-- (PMKPromise*) refreshBillingInfo {
-    if(!self.userLoggedIn){
-        @throw [NSException exceptionWithName:@"UserNotLogin" reason:@"User must login to get billing information" userInfo:nil];
-    }
-    return [sessionManager getJSON:@"billing/list" parameters:nil]
-    .then(^(OVCResponse* response, NSError* error){
-        NSArray* billingInfoList = response.result;
-        [self.userProfile setBillingInfo:billingInfoList];
-    });
 }
 
 @end

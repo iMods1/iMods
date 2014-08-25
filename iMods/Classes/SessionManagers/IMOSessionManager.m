@@ -11,6 +11,28 @@
 #import "IMONetworkManager.h"
 #import "IMOUser.h"
 
+@interface NSString (NSString_stringByAddingPathComponents)
+
+- (NSString*) stringByAppendingPathComponents:(NSArray*)components;
+
+@end
+
+@implementation NSString (NSString_stringByAddingPathComponents)
+
+- (NSString*) stringByAppendingPathComponents:(NSArray *)components {
+    NSString* result = self;
+    for(NSString* param in components){
+        if(param.class != NSString.class){
+            result = [result stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", param]];
+        } else {
+            result = [result stringByAppendingPathComponent:param];
+        }
+    }
+    return result;
+}
+
+@end
+
 @implementation IMOSessionManager
 
 static IMONetworkManager* networkManager = nil;
@@ -53,6 +75,15 @@ static IMOSessionManager* sessionManager = nil;
     return self;
 }
 
+- (void) initManagers {
+    self->_userManager = [IMOUserManager sharedUserManager];
+    self->_categoryManager = [[IMOCategoryManager alloc] init];
+    self->_billingManager = [[IMOBillingInfoManager alloc] init];
+    self->_deviceManager = [[IMODeviceManager alloc] init];
+    self->_orderManager = [[IMOOrderManager alloc] init];
+    self->_itemManager = [[IMOItemManager alloc] init];
+}
+
 #pragma mark -
 #pragma mark Request helpers
 
@@ -64,10 +95,7 @@ static IMOSessionManager* sessionManager = nil;
 }
 
 - (PMKPromise*) getJSON:(NSString *)url urlParameters:(NSArray *)urlParameters parameters:(NSDictionary *)parameters {
-    NSString* finalURL = url;
-    for(NSString* param in urlParameters){
-        finalURL = [finalURL stringByAppendingPathComponent:param];
-    }
+    NSString* finalURL = [url stringByAppendingPathComponents:urlParameters];
     return [self getJSON:finalURL parameters:parameters];
 }
 
@@ -76,5 +104,10 @@ static IMOSessionManager* sessionManager = nil;
     .catch(^(NSError* error){
         NSLog(@"Error occurred during request: %@", error);
     });
+}
+
+- (PMKPromise*) postJSON:(NSString *)url urlParameters:(NSArray *)urlParameters data:(NSDictionary *)data {
+    NSString* finalURL = [url stringByAppendingPathComponents:urlParameters];
+    return [self postJSON:finalURL data:data];
 }
 @end

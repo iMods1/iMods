@@ -22,4 +22,6 @@
 
 /* Non-JSON data fields */
 
+- (void) updateFromModel:(IMODevice*) model;
+- (BOOL) isEqual:(id)object;
 @end

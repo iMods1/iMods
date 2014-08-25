@@ -22,4 +22,15 @@
              };
 }
 
+- (BOOL) isEqual:(id)object {
+    if(![object isKindOfClass:IMODevice.class]){
+        return NO;
+    }
+    return ((IMODevice*)object).dev_id == self.dev_id;
+}
+
+- (void) updateFromModel:(IMODevice *)model {
+    self->_dev_id = model.dev_id;
+    self->_uid = model.uid;
+}
 @end

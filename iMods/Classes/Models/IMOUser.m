@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/NSValueTransformer+MTLPredefinedTransformerAdditions.h>
+#import "IMOItem.h"
 #import "IMOUser.h"
 
 @implementation IMOUser
 
 // TODO: Only store last 4 digits of credit card number.
-NSMutableArray *billing_infos;
+
 // For security reason, we don't store registered devices information on client-side.
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -23,7 +25,7 @@ NSMutableArray *billing_infos;
              @"age": @"age",
              @"author_id": @"author_identifier",
              @"role": @"role",
-             //@"billing_infos": NSNull.null
+             @"wishlist": @"wishlist"
              };
 }
 
@@ -40,24 +42,24 @@ NSMutableArray *billing_infos;
     return self;
 }
 
-- (NSArray*) listBillingInfo {
-    return [NSArray arrayWithArray:billing_infos];
++ (NSValueTransformer*)wishlistJSONTransformer{
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:IMOItem.class];
 }
 
-- (IMOBillingInfo*) billingInfoAtIndex:(NSUInteger)index {
-    return [billing_infos objectAtIndex:index];
+- (BOOL) isEqual:(id)object {
+    if(![object isKindOfClass:IMOUser.class]){
+        return NO;
+    }
+    return ((IMOUser*)object).uid == self.uid;
 }
 
-- (void) updateBillingInfoAtIndex:(NSUInteger)index billing:(IMOBillingInfo *)billing {
-    [billing_infos replaceObjectAtIndex:index withObject:billing];
-}
-
-- (void) setBillingInfo:(NSArray *)billingInfoArray {
-    [billing_infos setArray:billingInfoArray];
-}
-
-- (void) addBillingInfo:(IMOBillingInfo*)billing {
-    [billing_infos addObject:billing];
+- (void) updateFromModel:(IMOUser*)model {
+    self->_uid = model.uid;
+    self->_age = model.age;
+    self->_fullname = model.fullname;
+    self->_role = model.role;
+    self->_email = model.email;
+    self->_wishlist = model.wishlist;
 }
 
 @end

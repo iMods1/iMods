@@ -15,6 +15,10 @@
 @property (atomic, assign) bool userLoggedIn;
 @property IMOUser* userProfile;
 
+/* An shared instance of IMOUserManager, it represents the current user.
+ */
++ (IMOUserManager*) sharedUserManager;
+
 /* User login
  * @param userEmail User's email address
  * @param userPassword User's password
@@ -44,9 +48,5 @@
  */
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age;
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
-
-/* An shared instance of IMOUserManager, it represents the current user.
- */
-+ (IMOUserManager*) sharedUserManager;
 
 @end

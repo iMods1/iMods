@@ -32,9 +32,14 @@ static IMOSessionManager* sessionManager = nil;
 #pragma mark -
 #pragma mark Item methods
 
-- (PMKPromise*) fetchItem:(NSInteger)pkg_id {
+- (PMKPromise*) fetchItemByID:(NSUInteger)pkg_id {
     NSParameterAssert(pkg_id);
-    return [sessionManager getJSON:@"item/" urlParameters:@[[NSString stringWithFormat:@"%ld", (long)pkg_id]] parameters:nil];
+    return [sessionManager getJSON:@"item/id" urlParameters:@[[NSString stringWithFormat:@"%ld", (long)pkg_id]] parameters:nil];
+}
+
+- (PMKPromise*) fetchItemByName:(NSString *)pkg_name {
+    NSParameterAssert(pkg_name);
+    return [sessionManager getJSON:@"item/pkg" urlParameters:@[pkg_name] parameters:nil];
 }
 
 - (PMKPromise*) fetchItemPreviewAssets:(NSInteger)pkg_id dstPath:(NSString *)dstPath {

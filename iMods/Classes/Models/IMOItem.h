@@ -29,5 +29,7 @@
 @property (nonatomic, copy, readonly) NSDate * last_update_date;
 
 /* Non-JSON data fields */
-
+@property NSMutableArray* reviews;
+- (BOOL) isEqual:(id)object;
+- (void) updateFromMode:(IMOItem*)model;
 @end
