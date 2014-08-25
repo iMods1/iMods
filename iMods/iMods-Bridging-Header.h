@@ -17,6 +17,6 @@
 
 #import "Classes/NetworkManager/IMONetworkManager.h"
 #import "Classes/PackageManager/IMOPackageManager.h"
-#import "Classes/SessionManager/IMOSessionManager.h"
-#import "Classes/SessionManager/IMOCategoryManager.h"
-#import "Classes/SessionManager/IMOUserManager.h"
+#import "Classes/SessionManagers/IMOSessionManager.h"
+#import "Classes/SessionManagers/IMOCategoryManager.h"
+#import "Classes/SessionManagers/IMOUserManager.h"

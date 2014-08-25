@@ -10,8 +10,6 @@
 		28052DB419A2BF370080DBEA /* iModsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28052DB319A2BF370080DBEA /* iModsTests.m */; };
 		2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
 		2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
-		28285A39199896A40056B707 /* IMOUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28285A38199896A40056B707 /* IMOUserManager.m */; };
-		28285A3A199896A40056B707 /* IMOUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28285A38199896A40056B707 /* IMOUserManager.m */; };
 		2830E8901978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8911978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* IMOBillingInfo.m */; };
@@ -22,31 +20,39 @@
 		2830E8A21978C46E008E42ED /* IMODevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A01978C46E008E42ED /* IMODevice.m */; };
 		2830E8A51978C808008E42ED /* IMOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* IMOItem.m */; };
 		2830E8A61978C808008E42ED /* IMOItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8A41978C808008E42ED /* IMOItem.m */; };
+		2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493019AA8EFA00DDB922 /* IMOReviewManager.m */; };
+		2833493D19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493019AA8EFA00DDB922 /* IMOReviewManager.m */; };
+		2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493119AA8EFA00DDB922 /* IMOWishListManager.m */; };
+		2833493F19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493119AA8EFA00DDB922 /* IMOWishListManager.m */; };
+		2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493319AA8EFA00DDB922 /* IMOUserManager.m */; };
+		2833494119AA8EFA00DDB922 /* IMOUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493319AA8EFA00DDB922 /* IMOUserManager.m */; };
+		2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493419AA8EFA00DDB922 /* IMOOrderManager.m */; };
+		2833494319AA8EFA00DDB922 /* IMOOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493419AA8EFA00DDB922 /* IMOOrderManager.m */; };
+		2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493519AA8EFA00DDB922 /* IMOSessionManager.m */; };
+		2833494519AA8EFA00DDB922 /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493519AA8EFA00DDB922 /* IMOSessionManager.m */; };
+		2833494619AA8EFA00DDB922 /* IMODeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493719AA8EFA00DDB922 /* IMODeviceManager.m */; };
+		2833494719AA8EFA00DDB922 /* IMODeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493719AA8EFA00DDB922 /* IMODeviceManager.m */; };
+		2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493819AA8EFA00DDB922 /* IMOItemManager.m */; };
+		2833494919AA8EFA00DDB922 /* IMOItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493819AA8EFA00DDB922 /* IMOItemManager.m */; };
+		2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */; };
+		2833494B19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */; };
+		2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
+		2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
 		284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB71946F35A006539A3 /* AppDelegate.swift */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284F988E19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		284F988F19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
-		28502F8D19A2F2A300AECCDA /* IMOOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28502F8C19A2F2A300AECCDA /* IMOOrderManager.m */; };
-		28502F8E19A2F2A300AECCDA /* IMOOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28502F8C19A2F2A300AECCDA /* IMOOrderManager.m */; };
 		285708951978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
-		2887937119A2F24D00A5922C /* IMOItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887937019A2F24D00A5922C /* IMOItemManager.m */; };
-		2887937219A2F24D00A5922C /* IMOItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887937019A2F24D00A5922C /* IMOItemManager.m */; };
-		2887937519A2F26500A5922C /* IMOBillingInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887937419A2F26500A5922C /* IMOBillingInfoManager.m */; };
-		2887937619A2F26500A5922C /* IMOBillingInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887937419A2F26500A5922C /* IMOBillingInfoManager.m */; };
-		2887937919A2F27600A5922C /* IMODeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887937819A2F27600A5922C /* IMODeviceManager.m */; };
-		2887937A19A2F27600A5922C /* IMODeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887937819A2F27600A5922C /* IMODeviceManager.m */; };
 		289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
 		289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
 		289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
 		289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
+		28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
+		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
-		28C955C21998903A00319DD0 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C955C11998903A00319DD0 /* IMOCategoryManager.m */; };
-		28C955C31998903A00319DD0 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C955C11998903A00319DD0 /* IMOCategoryManager.m */; };
-		28CF066819895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
-		28CF066919895783003347BB /* IMOSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CF066719895783003347BB /* IMOSessionManager.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
@@ -179,14 +185,30 @@
 		28052DB319A2BF370080DBEA /* iModsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iModsTests.m; sourceTree = "<group>"; };
 		2805497C19895B7C0049D619 /* IMONetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkManager.h; path = Classes/NetworkManager/IMONetworkManager.h; sourceTree = "<group>"; };
 		2805497D19895B7C0049D619 /* IMONetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkManager.m; path = Classes/NetworkManager/IMONetworkManager.m; sourceTree = "<group>"; };
-		28285A37199896A40056B707 /* IMOUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOUserManager.h; path = Classes/SessionManager/IMOUserManager.h; sourceTree = "<group>"; };
-		28285A38199896A40056B707 /* IMOUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOUserManager.m; path = Classes/SessionManager/IMOUserManager.m; sourceTree = "<group>"; };
 		2830E88F1978A5BE008E42ED /* IMOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUser.m; sourceTree = "<group>"; };
 		2830E8931978AFA5008E42ED /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOConstants.h; sourceTree = "<group>"; };
 		2830E8981978BBAC008E42ED /* IMOBillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBillingInfo.m; sourceTree = "<group>"; };
 		2830E89C1978BE75008E42ED /* IMOCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategory.m; sourceTree = "<group>"; };
 		2830E8A01978C46E008E42ED /* IMODevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMODevice.m; sourceTree = "<group>"; };
 		2830E8A41978C808008E42ED /* IMOItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItem.m; sourceTree = "<group>"; };
+		2833492F19AA8EFA00DDB922 /* IMOReviewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOReviewManager.h; path = Classes/SessionManagers/IMOReviewManager.h; sourceTree = "<group>"; };
+		2833493019AA8EFA00DDB922 /* IMOReviewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOReviewManager.m; path = Classes/SessionManagers/IMOReviewManager.m; sourceTree = "<group>"; };
+		2833493119AA8EFA00DDB922 /* IMOWishListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOWishListManager.m; path = Classes/SessionManagers/IMOWishListManager.m; sourceTree = "<group>"; };
+		2833493219AA8EFA00DDB922 /* IMOWishListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOWishListManager.h; path = Classes/SessionManagers/IMOWishListManager.h; sourceTree = "<group>"; };
+		2833493319AA8EFA00DDB922 /* IMOUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOUserManager.m; path = Classes/SessionManagers/IMOUserManager.m; sourceTree = "<group>"; };
+		2833493419AA8EFA00DDB922 /* IMOOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOOrderManager.m; path = Classes/SessionManagers/IMOOrderManager.m; sourceTree = "<group>"; };
+		2833493519AA8EFA00DDB922 /* IMOSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOSessionManager.m; path = Classes/SessionManagers/IMOSessionManager.m; sourceTree = "<group>"; };
+		2833493619AA8EFA00DDB922 /* IMOSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOSessionManager.h; path = Classes/SessionManagers/IMOSessionManager.h; sourceTree = "<group>"; };
+		2833493719AA8EFA00DDB922 /* IMODeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODeviceManager.m; path = Classes/SessionManagers/IMODeviceManager.m; sourceTree = "<group>"; };
+		2833493819AA8EFA00DDB922 /* IMOItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOItemManager.m; path = Classes/SessionManagers/IMOItemManager.m; sourceTree = "<group>"; };
+		2833493919AA8EFA00DDB922 /* IMOItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOItemManager.h; path = Classes/SessionManagers/IMOItemManager.h; sourceTree = "<group>"; };
+		2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOBillingInfoManager.m; path = Classes/SessionManagers/IMOBillingInfoManager.m; sourceTree = "<group>"; };
+		2833493B19AA8EFA00DDB922 /* IMOBillingInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOBillingInfoManager.h; path = Classes/SessionManagers/IMOBillingInfoManager.h; sourceTree = "<group>"; };
+		2833494C19AA8F2500DDB922 /* IMOOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOOrderManager.h; path = Classes/SessionManagers/IMOOrderManager.h; sourceTree = "<group>"; };
+		2833494D19AA8F2500DDB922 /* IMOUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOUserManager.h; path = Classes/SessionManagers/IMOUserManager.h; sourceTree = "<group>"; };
+		2833494E19AA8F2500DDB922 /* IMODeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODeviceManager.h; path = Classes/SessionManagers/IMODeviceManager.h; sourceTree = "<group>"; };
+		2833494F19AA8F2500DDB922 /* IMOCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOCategoryManager.h; path = Classes/SessionManagers/IMOCategoryManager.h; sourceTree = "<group>"; };
+		2833495019AA8F2500DDB922 /* IMOCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryManager.m; path = Classes/SessionManagers/IMOCategoryManager.m; sourceTree = "<group>"; };
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBB71946F35A006539A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -196,8 +218,6 @@
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284F988919898A9F0008DD90 /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOConstants.h; path = Classes/Constants/IMOConstants.h; sourceTree = "<group>"; };
 		284F988D19898AB00008DD90 /* IMOConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOConstants.m; path = Classes/Constants/IMOConstants.m; sourceTree = "<group>"; };
-		28502F8B19A2F2A300AECCDA /* IMOOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOOrderManager.h; path = Classes/SessionManager/IMOOrderManager.h; sourceTree = "<group>"; };
-		28502F8C19A2F2A300AECCDA /* IMOOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOOrderManager.m; path = Classes/SessionManager/IMOOrderManager.m; sourceTree = "<group>"; };
 		285708941978CF5C00C7F37B /* IMOOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOOrder.m; sourceTree = "<group>"; };
 		285708971978E5F800C7F37B /* IMOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUser.h; sourceTree = "<group>"; };
 		285708981978E63F00C7F37B /* IMOCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCategory.h; sourceTree = "<group>"; };
@@ -205,22 +225,14 @@
 		2857089A1978E6E500C7F37B /* IMODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMODevice.h; sourceTree = "<group>"; };
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
-		2887936F19A2F24D00A5922C /* IMOItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOItemManager.h; path = Classes/SessionManager/IMOItemManager.h; sourceTree = "<group>"; };
-		2887937019A2F24D00A5922C /* IMOItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOItemManager.m; path = Classes/SessionManager/IMOItemManager.m; sourceTree = "<group>"; };
-		2887937319A2F26500A5922C /* IMOBillingInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOBillingInfoManager.h; path = Classes/SessionManager/IMOBillingInfoManager.h; sourceTree = "<group>"; };
-		2887937419A2F26500A5922C /* IMOBillingInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOBillingInfoManager.m; path = Classes/SessionManager/IMOBillingInfoManager.m; sourceTree = "<group>"; };
-		2887937719A2F27600A5922C /* IMODeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODeviceManager.h; path = Classes/SessionManager/IMODeviceManager.h; sourceTree = "<group>"; };
-		2887937819A2F27600A5922C /* IMODeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODeviceManager.m; path = Classes/SessionManager/IMODeviceManager.m; sourceTree = "<group>"; };
 		289C58FB1994C33900AD0F5D /* IMOResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOResponse.h; path = Classes/NetworkManager/IMOResponse.h; sourceTree = "<group>"; };
 		289C58FC1994C33900AD0F5D /* IMOResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOResponse.m; path = Classes/NetworkManager/IMOResponse.m; sourceTree = "<group>"; };
 		289F003C198985410032B0C8 /* IMOPackageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOPackageManager.h; path = Classes/PackageManager/IMOPackageManager.h; sourceTree = "<group>"; };
 		289F003D198985410032B0C8 /* IMOPackageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOPackageManager.m; path = Classes/PackageManager/IMOPackageManager.m; sourceTree = "<group>"; };
+		28A35C4819A6F58100FE3260 /* IMOReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOReview.h; sourceTree = "<group>"; };
+		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
-		28C955C11998903A00319DD0 /* IMOCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryManager.m; path = Classes/SessionManager/IMOCategoryManager.m; sourceTree = "<group>"; };
-		28C955C41998904A00319DD0 /* IMOCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOCategoryManager.h; path = Classes/SessionManager/IMOCategoryManager.h; sourceTree = "<group>"; };
-		28CF066719895783003347BB /* IMOSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOSessionManager.m; path = Classes/SessionManager/IMOSessionManager.m; sourceTree = "<group>"; };
-		28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOSessionManager.h; path = Classes/SessionManager/IMOSessionManager.h; sourceTree = "<group>"; };
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +297,31 @@
 				0B3C95FDF7B146ABBF782234 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2833492E19AA8EAE00DDB922 /* SessionManagers */ = {
+			isa = PBXGroup;
+			children = (
+				2833493B19AA8EFA00DDB922 /* IMOBillingInfoManager.h */,
+				2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */,
+				2833494F19AA8F2500DDB922 /* IMOCategoryManager.h */,
+				2833495019AA8F2500DDB922 /* IMOCategoryManager.m */,
+				2833494E19AA8F2500DDB922 /* IMODeviceManager.h */,
+				2833493719AA8EFA00DDB922 /* IMODeviceManager.m */,
+				2833493919AA8EFA00DDB922 /* IMOItemManager.h */,
+				2833493819AA8EFA00DDB922 /* IMOItemManager.m */,
+				2833494C19AA8F2500DDB922 /* IMOOrderManager.h */,
+				2833493419AA8EFA00DDB922 /* IMOOrderManager.m */,
+				2833492F19AA8EFA00DDB922 /* IMOReviewManager.h */,
+				2833493019AA8EFA00DDB922 /* IMOReviewManager.m */,
+				2833493619AA8EFA00DDB922 /* IMOSessionManager.h */,
+				2833493519AA8EFA00DDB922 /* IMOSessionManager.m */,
+				2833494D19AA8F2500DDB922 /* IMOUserManager.h */,
+				2833493319AA8EFA00DDB922 /* IMOUserManager.m */,
+				2833493219AA8EFA00DDB922 /* IMOWishListManager.h */,
+				2833493119AA8EFA00DDB922 /* IMOWishListManager.m */,
+			);
+			name = SessionManagers;
 			sourceTree = "<group>";
 		};
 		284CBBA91946F35A006539A3 = {
@@ -365,27 +402,6 @@
 			name = NetworkManager;
 			sourceTree = "<group>";
 		};
-		28EC28781980DF0A0086CE7A /* SessionManager */ = {
-			isa = PBXGroup;
-			children = (
-				28502F8B19A2F2A300AECCDA /* IMOOrderManager.h */,
-				28502F8C19A2F2A300AECCDA /* IMOOrderManager.m */,
-				2887936F19A2F24D00A5922C /* IMOItemManager.h */,
-				2887937019A2F24D00A5922C /* IMOItemManager.m */,
-				28285A37199896A40056B707 /* IMOUserManager.h */,
-				28285A38199896A40056B707 /* IMOUserManager.m */,
-				28C955C41998904A00319DD0 /* IMOCategoryManager.h */,
-				28C955C11998903A00319DD0 /* IMOCategoryManager.m */,
-				28EC287A1980DF4F0086CE7A /* IMOSessionManager.h */,
-				28CF066719895783003347BB /* IMOSessionManager.m */,
-				2887937319A2F26500A5922C /* IMOBillingInfoManager.h */,
-				2887937419A2F26500A5922C /* IMOBillingInfoManager.m */,
-				2887937719A2F27600A5922C /* IMODeviceManager.h */,
-				2887937819A2F27600A5922C /* IMODeviceManager.m */,
-			);
-			name = SessionManager;
-			sourceTree = "<group>";
-		};
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +462,8 @@
 				2830E8A41978C808008E42ED /* IMOItem.m */,
 				2857089C1978E73B00C7F37B /* IMOOrder.h */,
 				285708941978CF5C00C7F37B /* IMOOrder.m */,
+				28A35C4819A6F58100FE3260 /* IMOReview.h */,
+				28A35C4919A6F58100FE3260 /* IMOReview.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -454,10 +472,10 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				289F004219898A3E0032B0C8 /* Constants */,
 				28CF066A19895AF4003347BB /* NetworkManager */,
 				28EC28791980DF120086CE7A /* PackageManager */,
-				28EC28781980DF0A0086CE7A /* SessionManager */,
+				2833492E19AA8EAE00DDB922 /* SessionManagers */,
+				289F004219898A3E0032B0C8 /* Constants */,
 				4D89290119749EFD00AD8A28 /* AppDelegate */,
 				4D89290019749EF700AD8A28 /* Helpers */,
 				4D8928A019747FF100AD8A28 /* Controllers */,
@@ -708,34 +726,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
-				28285A39199896A40056B707 /* IMOUserManager.m in Sources */,
+				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
-				28C955C21998903A00319DD0 /* IMOCategoryManager.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
-				2887937119A2F24D00A5922C /* IMOItemManager.m in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
 				4DDAD9881994971C00918424 /* IMOItemDataSource.swift in Sources */,
 				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
 				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
+				2833494619AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
 				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
+				2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
-				2887937519A2F26500A5922C /* IMOBillingInfoManager.m in Sources */,
+				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
+				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
+				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
-				28CF066819895783003347BB /* IMOSessionManager.m in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
-				28502F8D19A2F2A300AECCDA /* IMOOrderManager.m in Sources */,
-				2887937919A2F27600A5922C /* IMODeviceManager.m in Sources */,
+				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */,
 				4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
+				2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
+				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 			);
@@ -745,23 +766,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28502F8E19A2F2A300AECCDA /* IMOOrderManager.m in Sources */,
-				2887937A19A2F27600A5922C /* IMODeviceManager.m in Sources */,
+				2833494719AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
+				2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
+				2833493F19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2830E8A61978C808008E42ED /* IMOItem.m in Sources */,
 				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
-				28CF066919895783003347BB /* IMOSessionManager.m in Sources */,
+				28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				2833493D19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
+				2833494B19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
+				2833494319AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
-				28C955C31998903A00319DD0 /* IMOCategoryManager.m in Sources */,
 				289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */,
 				28052DB419A2BF370080DBEA /* iModsTests.m in Sources */,
-				28285A3A199896A40056B707 /* IMOUserManager.m in Sources */,
-				2887937619A2F26500A5922C /* IMOBillingInfoManager.m in Sources */,
+				2833494119AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
+				2833494919AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
 				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
+				2833494519AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
-				2887937219A2F24D00A5922C /* IMOItemManager.m in Sources */,
 				289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				284F988F19898AB00008DD90 /* IMOConstants.m in Sources */,
 			);

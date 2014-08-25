@@ -99,7 +99,7 @@ static IMOUserManager* currentUser = nil;
         NSLog(@"User not logged in when placing new order.");
         return nil;
     }
-    return [sessionManager getJSON:@"order" urlParameters:@[@(oid)] parameters:nil];
+    return [sessionManager getJSON:@"order/id" urlParameters:@[@(oid)] parameters:nil];
 }
 
 - (PMKPromise*) fetchOrderByOrder:(IMOOrder*)order {

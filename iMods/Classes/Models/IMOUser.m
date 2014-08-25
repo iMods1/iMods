@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/NSValueTransformer+MTLPredefinedTransformerAdditions.h>
+#import "IMOItem.h"
 #import "IMOUser.h"
 
 @implementation IMOUser
@@ -23,6 +25,7 @@
              @"age": @"age",
              @"author_id": @"author_identifier",
              @"role": @"role",
+             @"wishlist": @"wishlist"
              };
 }
 
@@ -39,11 +42,24 @@
     return self;
 }
 
++ (NSValueTransformer*)wishlistJSONTransformer{
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:IMOItem.class];
+}
+
 - (BOOL) isEqual:(id)object {
     if(![object isKindOfClass:IMOUser.class]){
         return NO;
     }
     return ((IMOUser*)object).uid == self.uid;
+}
+
+- (void) updateFromModel:(IMOUser*)model {
+    self->_uid = model.uid;
+    self->_age = model.age;
+    self->_fullname = model.fullname;
+    self->_role = model.role;
+    self->_email = model.email;
+    self->_wishlist = model.wishlist;
 }
 
 @end

@@ -17,6 +17,11 @@
 #import "IMOBillingInfoManager.h"
 #import "IMOOrderManager.h"
 #import "IMODeviceManager.h"
+#import "IMOReviewManager.h"
+#import "IMOWishListManager.h"
+
+#pragma mark -
+#pragma mark Base test case class
 
 @interface iModsTestCase: XCTestCase
 
@@ -31,6 +36,8 @@
 @property (readonly) IMOBillingInfoManager* billingManager;
 @property (readonly) IMOOrderManager* orderManager;
 @property (readonly) IMODeviceManager* deviceManager;
+@property (readonly) IMOReviewManager* reviewManager;
+@property (readonly) IMOWishListManager* wishlistManager;
 
 @end
 
@@ -64,6 +71,12 @@
     if(!self.categoryManager){
         self->_categoryManager = [[IMOCategoryManager alloc] init];
     }
+    if(!self.reviewManager) {
+        self->_reviewManager = [[IMOReviewManager alloc] init];
+    }
+    if(!self.wishlistManager) {
+        self->_wishlistManager = [[IMOWishListManager alloc] init];
+    }
 }
 
 - (void)tearDown {
@@ -89,6 +102,9 @@
 }
 
 @end
+
+#pragma mark -
+#pragma mark Category testing
 
 @interface CategorySessionTest: iModsTestCase
 @end
@@ -152,6 +168,9 @@
 
 @end
 
+#pragma mark -
+#pragma mark Item testing
+
 @interface ItemTest : iModsTestCase
 
 @end
@@ -182,6 +201,9 @@
 }
 
 @end
+
+#pragma mark -
+#pragma mark User testing
 
 @interface UserManagerTest: iModsTestCase
 
@@ -257,6 +279,9 @@
     XCTAssert(resolved);
 }
 @end
+
+#pragma mark -
+#pragma mark BillingInfo testing
 
 @interface BillingInfoTest : iModsTestCase
 
@@ -387,6 +412,9 @@
 }
 @end
 
+#pragma mark -
+#pragma mark Order testing
+
 @interface OrderTest : iModsTestCase
 
 @end
@@ -483,6 +511,9 @@ IMOOrderManager* orderManager = nil;
 
 @end
 
+#pragma mark -
+#pragma mark Device testing
+
 @interface DeviceTest : iModsTestCase
 
 @end
@@ -495,6 +526,244 @@ IMOOrderManager* orderManager = nil;
 
 - (void) tearDown {
     [super tearDown];
+}
+
+@end
+
+#pragma mark -
+#pragma ReviewTest
+
+@interface ReviewTest : iModsTestCase
+
+@end
+
+#pragma mark -
+#pragma mark Review testing
+
+@implementation ReviewTest
+
+- (void) setUp {
+    [super setUp];
+    [self login:@"test@test.com" password:@"test"];
+    [self waitFor:0.2];
+}
+
+- (void) tearDown {
+    [super tearDown];
+}
+
+- (void) test_01_AddReview {
+    __block BOOL resolved = NO;
+    __block IMOItem* item = nil;
+    [self.itemManager fetchItemByID:1]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        item = response.result;
+        XCTAssertNotNil(item);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    resolved = NO;
+    NSDictionary* reviewJSON = @{
+                                 @"iid": @(item.item_id),
+                                 @"rating": @10,
+                                 @"content": @"this is a review of an item",
+                                 @"title": @"title!title here"
+                                 };
+    NSError* error = nil;
+    IMOReview* review = [MTLJSONAdapter modelOfClass:IMOReview.class fromJSONDictionary:reviewJSON error:&error];
+    XCTAssertNil(error);
+    [self.reviewManager addReviewForItem:item review:review]
+    .then(^{
+        IMOReview* newReview = [item.reviews lastObject];
+        XCTAssertNotNil(newReview);
+        XCTAssert([[newReview valueForKey:@"title"] isEqualToString:[review valueForKey:@"title"]]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+}
+
+- (void) test_02_RefreshReview {
+    __block BOOL resolved = NO;
+    __block IMOItem* item = nil;
+    [self.itemManager fetchItemByID:1]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        item = response.result;
+        XCTAssertNotNil(item);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    resolved = NO;
+    NSDictionary* reviewJSON = @{
+                                 @"iid": @(item.item_id),
+                                 @"rating": @10,
+                                 @"content": @"this is a review of an item",
+                                 @"title": @"title!title here"
+                                 };
+    NSError* error = nil;
+    IMOReview* review = [MTLJSONAdapter modelOfClass:IMOReview.class fromJSONDictionary:reviewJSON error:&error];
+    XCTAssertNil(error);
+    [self.reviewManager addReviewForItem:item review:review]
+    .then(^{
+        IMOReview* newReview = [item.reviews lastObject];
+        XCTAssertNotNil(newReview);
+        XCTAssert([[newReview valueForKey:@"title"] isEqualToString:[review valueForKey:@"title"]]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    resolved = NO;
+    [self.reviewManager getReviewsByItem:item]
+    .then(^{
+        XCTAssert([item.reviews count] > 0);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    resolved = NO;
+    [self.reviewManager getReviewsByUser:self.userManager.userProfile]
+    .then(^(NSArray* reviews){
+        XCTAssertNotNil(reviews);
+        XCTAssert([reviews count] > 0);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+}
+
+- (void) test_03_DeleteReview {
+    __block BOOL resolved = NO;
+    __block IMOReview* review = nil;
+    __block NSUInteger reviewCount = 0;
+    [self.reviewManager getReviewsByUser:self.userManager.userProfile]
+    .then(^(NSArray* reviews){
+        XCTAssert([reviews count] > 0);
+        review = [reviews lastObject];
+        reviewCount = [reviews count];
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    XCTAssertNotNil(review);
+
+    resolved = NO;
+    [self.reviewManager removeReview:review]
+    .then(^{
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    [self.reviewManager getReviewsByUser:self.userManager.userProfile]
+    .then(^(NSArray* reviews){
+        NSUInteger rcount = [reviews count];
+        XCTAssert((rcount == 0 && reviewCount == 0) || rcount == reviewCount - 1);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    XCTAssertNotNil(review);
+}
+
+@end
+
+#pragma mark -
+#pragma WishListTest
+
+@interface WishListTest : iModsTestCase
+
+@end
+
+@implementation WishListTest
+
+- (void)setUp {
+    [super setUp];
+    [self login:@"test@test.com" password:@"test"];
+    [self waitFor:0.3];
+}
+
+- (void)tearDown {
+    [super tearDown];
+}
+
+- (void)testWishList{
+    __block BOOL resolved = NO;
+    __block IMOItem* item = nil;
+    [self.itemManager fetchItemByID:1]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        item = response.result;
+        XCTAssertNotNil(item);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+
+    // Add item
+    resolved = NO;
+    [self.wishlistManager addItemToWishList:item]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        IMOItem* newitem = [self.userManager.userProfile.wishlist lastObject];
+        XCTAssert([newitem isEqual:item]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    // Removew item
+    resolved = NO;
+    [self.wishlistManager removeItemFromWishListByItem:item]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        XCTAssert(NSNotFound == [self.userManager.userProfile.wishlist indexOfObject:item]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    // Add item again
+    resolved = NO;
+    [self.wishlistManager addItemToWishList:item]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        IMOItem* newitem = [self.userManager.userProfile.wishlist lastObject];
+        XCTAssert([newitem isEqual:item]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    // Clear wishlist
+    resolved = NO;
+    [self.wishlistManager clearWishList]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        XCTAssert([self.userManager.userProfile.wishlist count] == 0);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+    
+    // Check if wishlist is empty
+    resolved = YES;
+    [self.wishlistManager refreshWishList]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNil(error);
+        NSArray* wishlist = self.userManager.userProfile.wishlist;
+        XCTAssert(wishlist == nil || [wishlist count] == 0);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
 }
 
 @end

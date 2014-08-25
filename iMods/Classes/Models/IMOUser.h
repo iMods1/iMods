@@ -8,7 +8,6 @@
 
 #import <Mantle/MTLModel.h>
 #import <Mantle/MTLJSONAdapter.h>
-#import "IMOBillingInfo.h"
 #import "IMOConstants.h"
 
 @interface IMOUser : MTLModel <MTLJSONSerializing>
@@ -20,7 +19,10 @@
 @property (nonatomic, copy, readonly) NSString *fullname;
 @property (nonatomic, assign, readonly) NSInteger age;
 @property (nonatomic, copy, readonly) NSString *author_id;
+@property NSMutableArray* wishlist;
 /* Non-JSON fields */
 - (id) init:(NSInteger)uid email:(NSString*)email role:(UserRole)role fullname:(NSString*)fullname age:(NSInteger)age author:(NSString*)author_id;
+- (BOOL) isEqual:(id)object;
+- (void) updateFromModel:(IMOUser*)model;
 
 @end
