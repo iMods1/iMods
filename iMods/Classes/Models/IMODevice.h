@@ -13,8 +13,8 @@
 
 /* JSON data fields */
 
-@property (nonatomic, copy, readonly) NSNumber * dev_id;
-@property (nonatomic, copy, readonly) NSNumber * uid;
+@property (nonatomic, assign, readonly) NSInteger dev_id;
+@property (nonatomic, assign, readonly) NSInteger uid;
 @property (nonatomic, copy, readonly) NSString * device_name;
 @property (nonatomic, copy, readonly) NSString * IMEI;
 @property (nonatomic, copy, readonly) NSString * UDID;
@@ -22,4 +22,6 @@
 
 /* Non-JSON data fields */
 
+- (void) updateFromModel:(IMODevice*) model;
+- (BOOL) isEqual:(id)object;
 @end

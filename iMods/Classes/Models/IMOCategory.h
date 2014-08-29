@@ -14,12 +14,15 @@
 
 /* JSON data fields */
 
-@property (nonatomic, copy, readonly) NSNumber * cid;
-@property (nonatomic, copy, readonly) NSNumber * parent_id;
+@property (nonatomic, assign, readonly) NSInteger cid;
+@property (nonatomic, assign, readonly) NSInteger parent_id;
 @property (nonatomic, copy, readonly) NSString * name;
 @property (nonatomic, copy, readonly) NSString * desc;
+@property NSArray * children;
+@property IMOCategory * parent;
 
 /* Non-JSON data fields */
 
-- (id) init:(NSNumber*)cid parent:(NSNumber*)parent_id name:(NSString*)name desc:(NSString*) desc;
+- (id) init:(NSInteger)cid parent_id:(NSInteger)parent_id name:(NSString*)name description:(NSString*)description;
+- (BOOL) isEqual:(id)object;
 @end

@@ -13,7 +13,10 @@
 #import "Classes/Models/IMOItem.h"
 #import "Classes/Models/IMOOrder.h"
 #import "Classes/Models/IMOConstants.h"
+#import "Classes/Constants/IMOConstants.h"
+
 #import "Classes/NetworkManager/IMONetworkManager.h"
 #import "Classes/PackageManager/IMOPackageManager.h"
-#import "Classes/SessionManager/IMOSessionManager.h"
-#import "Classes/Constants/IMOConstants.h"
+#import "Classes/SessionManagers/IMOSessionManager.h"
+#import "Classes/SessionManagers/IMOCategoryManager.h"
+#import "Classes/SessionManagers/IMOUserManager.h"

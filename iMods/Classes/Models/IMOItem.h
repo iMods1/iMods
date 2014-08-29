@@ -13,8 +13,8 @@
 
 /* JSON data fields */
 
-@property (nonatomic, copy, readonly) NSNumber * item_id;
-@property (nonatomic, copy, readonly) NSNumber * category_id;
+@property (nonatomic, assign, readonly) NSInteger item_id;
+@property (nonatomic, assign, readonly) NSInteger category_id;
 @property (nonatomic, copy, readonly) NSString * author_id;
 @property (nonatomic, copy, readonly) NSString * pkg_name;
 @property (nonatomic, copy, readonly) NSString * pkg_version;
@@ -29,5 +29,7 @@
 @property (nonatomic, copy, readonly) NSDate * last_update_date;
 
 /* Non-JSON data fields */
-
+@property NSMutableArray* reviews;
+- (BOOL) isEqual:(id)object;
+- (void) updateFromMode:(IMOItem*)model;
 @end

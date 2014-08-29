@@ -1,28 +1,23 @@
 //
-//  SessionManager.h
+//  IMOUserManager.h
 //  iMods
 //
-//  Created by Ryan Feng on 7/24/14.
+//  Created by Ryan Feng on 8/11/14.
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <Overcoat/OVCResponse.h>
 #import <PromiseKit/Promise.h>
 #import "IMOUser.h"
 
-typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
-
-@interface IMOSessionManager : NSObject
+@interface IMOUserManager : NSObject
 
 @property (atomic, assign) bool userLoggedIn;
 @property IMOUser* userProfile;
 
-/* Shared session manager instance, you should use this whenever you need session manager.
- * @return The singleton object of IMOSessionManager
+/* An shared instance of IMOUserManager, it represents the current user.
  */
-+ (IMOSessionManager*) sharedSessionManager;
-+ (IMOSessionManager*) sharedSessionManager:(NSURL*) baseURL;
++ (IMOUserManager*) sharedUserManager;
 
 /* User login
  * @param userEmail User's email address
@@ -53,4 +48,5 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
  */
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age;
 - (PMKPromise*) updateUserProfile:(NSString*)fullname age:(NSNumber*)age oldPassword:(NSString*)oldPassword newPassword:(NSString*)newPassword;
+
 @end
