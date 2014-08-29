@@ -54,6 +54,7 @@
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
 		4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */; };
 		4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */; };
+		4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE1F8619B0349300B7673C /* LoginViewController.swift */; };
 		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
 		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
 		4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9831994817D00918424 /* ProfileViewController.swift */; };
@@ -220,6 +221,7 @@
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerTestDataSource.swift; sourceTree = "<group>"; };
 		4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerDataSource.swift; sourceTree = "<group>"; };
+		4DCE1F8619B0349300B7673C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweaksTestDataSource.swift; sourceTree = "<group>"; };
 		4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTestDataSource.swift; sourceTree = "<group>"; };
 		4DDAD9831994817D00918424 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				4DF721E31979CE880011B91C /* ItemDetailViewController.swift */,
 				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
 				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
+				4DCE1F8619B0349300B7673C /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -701,6 +704,7 @@
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
+				4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */,
 				4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */,
 				28CF066819895783003347BB /* IMOSessionManager.m in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
