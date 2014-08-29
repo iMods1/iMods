@@ -10,4 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    override func viewDidLoad() {
+        self.navigationController.navigationBar.backgroundColor = UIColor.clearColor()
+    }
 }
