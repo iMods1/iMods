@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="NBX-nP-4aF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="NBX-nP-4aF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
@@ -94,13 +94,78 @@
                     </tabBar>
                     <connections>
                         <segue destination="sxD-oe-RHH" kind="relationship" relationship="viewControllers" id="4O5-Z5-jXN"/>
-                        <segue destination="jWD-6h-dAB" kind="relationship" relationship="viewControllers" id="0D8-e5-nQx"/>
                         <segue destination="tzY-PI-mnw" kind="relationship" relationship="viewControllers" id="7Cm-YH-42g"/>
+                        <segue destination="WnN-I5-zcg" kind="relationship" relationship="viewControllers" id="hug-5a-Ven"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1624" y="1156"/>
+        </scene>
+        <!--Top Charts-->
+        <scene sceneID="Sxd-Ad-Lbp">
+            <objects>
+                <viewController id="4LT-JI-ITL" customClass="IMOChartsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8fY-l4-LlA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Top Charts" id="ej8-T5-ayp">
+                        <barButtonItem key="leftBarButtonItem" image="imods-assets-chart-icon-deselected" id="aSe-Ze-alf">
+                            <connections>
+                                <segue destination="lgQ-8t-VFJ" kind="custom" id="Fcz-hk-r4c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAV-aR-XXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="o3A-hb-jAe">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </objects>
+            <point key="canvasLocation" x="2718" y="1156"/>
+        </scene>
+        <!--Categories Controller-->
+        <scene sceneID="o7O-a3-HNL">
+            <objects>
+                <viewController id="lgQ-8t-VFJ" customClass="IMOCategoriesController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tKg-mx-Jv5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xZD-UA-I67">
+                                <rect key="frame" x="118" y="83" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9fh-k4-kkZ">
+                                <rect key="frame" x="0.0" y="122" width="320" height="446"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="fp2-S4-06U">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fp2-S4-06U" id="mpt-GC-BSB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="categoriesTableView" destination="9fh-k4-kkZ" id="O9v-TM-MdE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZn-if-zQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3146" y="1156"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1gw-3k-akj">
@@ -194,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3324" y="1428"/>
+            <point key="canvasLocation" x="2992" y="-311"/>
         </scene>
         <!--Featured-->
         <scene sceneID="aWc-4F-evb">
@@ -318,7 +383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JtB-qd-IzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3082" y="215.5"/>
+            <point key="canvasLocation" x="3082" y="249.5"/>
         </scene>
         <!--Featured Table View Controller-->
         <scene sceneID="4Qb-qs-vWv">
@@ -426,47 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-bb-DXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3587" y="553.5"/>
-        </scene>
-        <!--Categories-->
-        <scene sceneID="sUc-VQ-gnn">
-            <objects>
-                <viewController title="Categories" id="MFN-GL-wb6" customClass="CategoriesViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ueP-th-yJC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories View is not yet implemented." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oqr-ol-Fji">
-                                <rect key="frame" x="73" y="260" width="174" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Categories" id="Faa-Nc-rwD">
-                        <barButtonItem key="leftBarButtonItem" image="imods-assets-user-icon" id="Caw-wT-XQa">
-                            <inset key="imageInsets" minX="20" minY="0.0" maxX="-20" maxY="0.0"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="LjG-VE-q2v" kind="push" identifier="profile_push" id="b2n-58-0ct"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="imods-assets-search-icon" id="cPD-bz-NuN">
-                            <inset key="imageInsets" minX="20" minY="0.0" maxX="-20" maxY="0.0"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="Xws-Q5-Mtm" kind="push" identifier="search_push" id="vWN-RB-SqE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f5g-KA-46X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2584" y="1156"/>
+            <point key="canvasLocation" x="3457" y="553.5"/>
         </scene>
         <!--Updates-->
         <scene sceneID="hqk-aX-lh4">
@@ -490,16 +515,10 @@
                         <barButtonItem key="leftBarButtonItem" image="imods-assets-user-icon" id="ab4-gf-ohr">
                             <inset key="imageInsets" minX="20" minY="0.0" maxX="-20" maxY="0.0"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="LjG-VE-q2v" kind="push" identifier="profile_push" id="Lf7-wW-Odb"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="imods-assets-search-icon" id="SQp-9w-CMA">
                             <inset key="imageInsets" minX="20" minY="0.0" maxX="-20" maxY="0.0"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="Xws-Q5-Mtm" kind="push" identifier="search_push" id="pwv-Hb-NmB"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -543,7 +562,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3028" y="-297"/>
+            <point key="canvasLocation" x="3342" y="-311"/>
         </scene>
         <!--Featured-->
         <scene sceneID="RCo-dt-eAr">
@@ -568,27 +587,6 @@
             <point key="canvasLocation" x="2118" y="403"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="yUt-Bo-7bQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jWD-6h-dAB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="imods-assets-chart-icon-deselected" id="8JF-sh-UdK">
-                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nJK-V7-Wqx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="MFN-GL-wb6" kind="relationship" relationship="rootViewController" id="K3g-es-ocF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="59E-0I-8kG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2118" y="1156"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="jZD-py-fpf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tzY-PI-mnw" sceneMemberID="viewController">
@@ -610,9 +608,31 @@
             </objects>
             <point key="canvasLocation" x="2118" y="1904"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SSP-md-n4H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WnN-I5-zcg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" image="imods-assets-chart-icon-selected" id="dPE-8b-tNN">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KtT-d8-0KW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4LT-JI-ITL" kind="relationship" relationship="rootViewController" id="hcZ-rY-axu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iln-VO-hlk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2220" y="1156"/>
+        </scene>
     </scenes>
     <resources>
         <image name="imods-assets-chart-icon-deselected" width="31" height="27"/>
+        <image name="imods-assets-chart-icon-selected" width="31" height="27"/>
         <image name="imods-assets-featured-banner" width="320" height="158"/>
         <image name="imods-assets-featured-icon-deselected" width="28" height="26"/>
         <image name="imods-assets-featured-tab-background" width="160" height="56"/>
@@ -635,8 +655,4 @@
             <size key="landscapeSize" width="568" height="320"/>
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="b2n-58-0ct"/>
-        <segue reference="vWN-RB-SqE"/>
-    </inferredMetricsTieBreakers>
 </document>
