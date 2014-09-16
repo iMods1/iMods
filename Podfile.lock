@@ -25,13 +25,13 @@ PODS:
   - Mantle (1.5):
     - Mantle/extobjc
   - Mantle/extobjc (1.5)
-  - OMGHTTPURLRQ (1.1.5):
+  - OMGHTTPURLRQ (1.1.6):
     - OMGHTTPURLRQ/RQ
     - OMGHTTPURLRQ/UserAgent
     - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/RQ (1.1.5):
+  - OMGHTTPURLRQ/RQ (1.1.6):
     - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (1.1.5):
+  - OMGHTTPURLRQ/UserAgent (1.1.6):
     - OMGHTTPURLRQ/UserAgent
   - Overcoat (2.0.2):
     - Overcoat/NSURLSession
@@ -82,7 +82,7 @@ SPEC CHECKSUMS:
   ChuzzleKit: baeaabc3f09edbc56bbf776993afe7953286116f
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
-  OMGHTTPURLRQ: c8dd3f83341702f0a3cae94e09d7e368d79a8b6e
+  OMGHTTPURLRQ: 6fd7b1dcaed31734959699e42ea920eea380d1e7
   Overcoat: a9504cd1f0389641526ba1784592503c012c4b5f
   PromiseKit: 8c7c9fd5a326ba19f410a8912da58d6f9c6dc624
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
