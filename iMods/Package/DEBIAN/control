@@ -1,0 +1,17 @@
+Package: com.Wunderkinds.iMods
+Name: iMods
+Version: 1.0
+Description:
+Section: System
+Depends: firmware (>= 7.0)
+Conflicts:
+Replaces:
+Priority: optional
+Architecture: iphoneos-arm
+Author: Wunderkind Technologies
+dev:
+Homepage:
+Depiction:
+Maintainer:
+Icon:
+
