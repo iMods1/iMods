@@ -12,7 +12,7 @@ class FeaturedTableViewController: UITableViewController, UITableViewDataSource,
 
     var dataSource: IMOItemDataSource
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         self.dataSource = ThemesTestDataSource()
         super.init(coder: aDecoder)
     }
@@ -24,25 +24,24 @@ class FeaturedTableViewController: UITableViewController, UITableViewDataSource,
         self.tableView.backgroundView = imageView
     }
 
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int  {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int  {
         return self.dataSource.tableView(tableView, numberOfRowsInSection: section)
     }
 
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = dataSource.tableView(tableView, cellForRowAtIndexPath: indexPath)
         cell.backgroundColor = UIColor.clearColor()
         return cell
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         super.prepareForSegue(segue, sender: sender)
 
-        if let identifier = segue.identifier {
-            if identifier == "item_detail_push" {
-                if let indexPath = self.tableView.indexPathForCell(sender as? UITableViewCell) {
-                    var item = self.dataSource.retrieveItemForIndexPath(indexPath)
-                    (segue.destinationViewController as ItemDetailViewController).item = item
-                }
+        let identifier = segue.identifier
+        if identifier == "item_detail_push" {
+            if let indexPath = self.tableView.indexPathForCell(sender as UITableViewCell!) {
+                var item = self.dataSource.retrieveItemForIndexPath(indexPath)
+                (segue.destinationViewController as ItemDetailViewController).item = item
             }
         }
     }

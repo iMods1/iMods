@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
 
     let reuseIdentifier = "SearchCell"
     
@@ -21,11 +21,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
     }
     
     func searchDisplayControllerWillBeginSearch(controller: UISearchDisplayController!) {
-        self.navigationController.navigationBarHidden = true
+        self.navigationController?.navigationBarHidden = true
     }
     
     func searchDisplayControllerWillEndSearch(controller: UISearchDisplayController!) {
-        self.navigationController.navigationBarHidden = false
+        self.navigationController?.navigationBarHidden = false
     }
     
     func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!) {
@@ -37,14 +37,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
         
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        // TODO: Implement
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier) as UITableViewCell
         return cell
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        // TODO: Implement
-        return 0
-    }
 }

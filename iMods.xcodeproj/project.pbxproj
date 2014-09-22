@@ -10,6 +10,11 @@
 		28052DB419A2BF370080DBEA /* iModsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28052DB319A2BF370080DBEA /* iModsTests.m */; };
 		2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
 		2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805497D19895B7C0049D619 /* IMONetworkManager.m */; };
+		281788D019B0150A0003C1A3 /* IMOTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 281788CF19B0150A0003C1A3 /* IMOTask.m */; };
+		281788D119B0150A0003C1A3 /* IMOTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 281788CF19B0150A0003C1A3 /* IMOTask.m */; };
+		2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2821439C19B01322004AB17D /* IMODPKGManager.m */; };
+		2821439E19B01322004AB17D /* IMODPKGManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2821439C19B01322004AB17D /* IMODPKGManager.m */; };
+		2826720119D0123B0063CF94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2826720019D0123B0063CF94 /* main.m */; };
 		2830E8901978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8911978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* IMOBillingInfo.m */; };
@@ -38,9 +43,9 @@
 		2833494B19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */; };
 		2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
 		2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
-		284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284CBBB71946F35A006539A3 /* AppDelegate.swift */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
+		284E113D19D0101F000B513A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 284E113C19D0101F000B513A /* AppDelegate.m */; };
 		284F988E19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		284F988F19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		285708951978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
@@ -70,6 +75,8 @@
 		4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */; };
 		4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */; };
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
+		4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */; };
+		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
 		4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */; };
 		4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */; };
 		4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE1F8619B0349300B7673C /* LoginViewController.swift */; };
@@ -190,6 +197,11 @@
 		28052DB319A2BF370080DBEA /* iModsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iModsTests.m; sourceTree = "<group>"; };
 		2805497C19895B7C0049D619 /* IMONetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkManager.h; path = Classes/NetworkManager/IMONetworkManager.h; sourceTree = "<group>"; };
 		2805497D19895B7C0049D619 /* IMONetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkManager.m; path = Classes/NetworkManager/IMONetworkManager.m; sourceTree = "<group>"; };
+		281788CE19B0150A0003C1A3 /* IMOTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOTask.h; path = Classes/PackageManager/IMOTask.h; sourceTree = "<group>"; };
+		281788CF19B0150A0003C1A3 /* IMOTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOTask.m; path = Classes/PackageManager/IMOTask.m; sourceTree = "<group>"; };
+		2821439B19B01322004AB17D /* IMODPKGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODPKGManager.h; path = Classes/PackageManager/IMODPKGManager.h; sourceTree = "<group>"; };
+		2821439C19B01322004AB17D /* IMODPKGManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODPKGManager.m; path = Classes/PackageManager/IMODPKGManager.m; sourceTree = "<group>"; };
+		2826720019D0123B0063CF94 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2830E88F1978A5BE008E42ED /* IMOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUser.m; sourceTree = "<group>"; };
 		2830E8931978AFA5008E42ED /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOConstants.h; sourceTree = "<group>"; };
 		2830E8981978BBAC008E42ED /* IMOBillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBillingInfo.m; sourceTree = "<group>"; };
@@ -216,11 +228,12 @@
 		2833495019AA8F2500DDB922 /* IMOCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryManager.m; path = Classes/SessionManagers/IMOCategoryManager.m; sourceTree = "<group>"; };
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		284CBBB71946F35A006539A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		284CBBBE1946F35A006539A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		284CBBC01946F35A006539A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		284CBBC61946F35A006539A3 /* iModsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iModsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBCB1946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		284E113B19D0101F000B513A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		284E113C19D0101F000B513A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		284F988919898A9F0008DD90 /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOConstants.h; path = Classes/Constants/IMOConstants.h; sourceTree = "<group>"; };
 		284F988D19898AB00008DD90 /* IMOConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOConstants.m; path = Classes/Constants/IMOConstants.m; sourceTree = "<group>"; };
 		285708941978CF5C00C7F37B /* IMOOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOOrder.m; sourceTree = "<group>"; };
@@ -255,6 +268,10 @@
 		4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCategoriesController.h; sourceTree = "<group>"; };
+		4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesController.m; sourceTree = "<group>"; };
+		4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOChartsViewController.h; sourceTree = "<group>"; };
+		4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOChartsViewController.m; sourceTree = "<group>"; };
 		4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerTestDataSource.swift; sourceTree = "<group>"; };
 		4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerDataSource.swift; sourceTree = "<group>"; };
 		4DCE1F8619B0349300B7673C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -415,6 +432,10 @@
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
+				281788CE19B0150A0003C1A3 /* IMOTask.h */,
+				281788CF19B0150A0003C1A3 /* IMOTask.m */,
+				2821439B19B01322004AB17D /* IMODPKGManager.h */,
+				2821439C19B01322004AB17D /* IMODPKGManager.m */,
 				289F003C198985410032B0C8 /* IMOPackageManager.h */,
 				289F003D198985410032B0C8 /* IMOPackageManager.m */,
 			);
@@ -434,6 +455,10 @@
 				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
 				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
 				4DCE1F8619B0349300B7673C /* LoginViewController.swift */,
+				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
+				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
+				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
+				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -483,6 +508,7 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4DBABF1719C76B1000274A45 /* Views */,
 				28CF066A19895AF4003347BB /* NetworkManager */,
 				28EC28791980DF120086CE7A /* PackageManager */,
 				2833492E19AA8EAE00DDB922 /* SessionManagers */,
@@ -523,7 +549,9 @@
 		4D89290119749EFD00AD8A28 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				284CBBB71946F35A006539A3 /* AppDelegate.swift */,
+				2826720019D0123B0063CF94 /* main.m */,
+				284E113B19D0101F000B513A /* AppDelegate.h */,
+				284E113C19D0101F000B513A /* AppDelegate.m */,
 			);
 			name = AppDelegate;
 			path = Classes/AppDelegate;
@@ -535,6 +563,13 @@
 				284CBBBD1946F35A006539A3 /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4DBABF1719C76B1000274A45 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +585,7 @@
 				284CBBB01946F35A006539A3 /* Resources */,
 				E572A205119B4446BCA8A9D3 /* Copy Pods Resources */,
 				2845F30319952DB200D88EB8 /* ShellScript */,
+				281788D219B04D980003C1A3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -690,6 +726,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		281788D219B04D980003C1A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"myiphone\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
+		};
 		2845F30319952DB200D88EB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -740,14 +789,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				284E113D19D0101F000B513A /* AppDelegate.m in Sources */,
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
+				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
 				4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */,
+				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
 				4DDAD9881994971C00918424 /* IMOItemDataSource.swift in Sources */,
 				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
 				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
@@ -756,17 +808,16 @@
 				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
 				2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
 				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
+				2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
-				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */,
 				4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */,
-				28CF066819895783003347BB /* IMOSessionManager.m in Sources */,
 				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */,
@@ -774,11 +825,13 @@
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				4DE74A4A199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift in Sources */,
 				2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
+				4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
 				2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */,
+				2826720119D0123B0063CF94 /* main.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -787,12 +840,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2821439E19B01322004AB17D /* IMODPKGManager.m in Sources */,
 				2833494719AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
 				2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				2833493F19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2830E8A61978C808008E42ED /* IMOItem.m in Sources */,
 				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
 				28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */,
+				281788D119B0150A0003C1A3 /* IMOTask.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */,
 				2833493D19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
@@ -916,6 +971,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Feng (82JU4Y7R9Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -959,7 +1015,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Feng (82JU4Y7R9Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -986,7 +1043,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer";
 				INFOPLIST_FILE = iMods/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -994,7 +1053,9 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1006,7 +1067,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer";
 				INFOPLIST_FILE = iMods/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1014,7 +1077,9 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
