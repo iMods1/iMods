@@ -19,6 +19,7 @@
 #import "IMODeviceManager.h"
 #import "IMOReviewManager.h"
 #import "IMOWishListManager.h"
+#import "IMOPackageManager.h"
 
 #pragma mark -
 #pragma mark Base test case class
@@ -38,6 +39,8 @@
 @property (readonly) IMODeviceManager* deviceManager;
 @property (readonly) IMOReviewManager* reviewManager;
 @property (readonly) IMOWishListManager* wishlistManager;
+@property (readonly) IMODPKGManager* dpkgManager;
+@property (readonly) IMOPackageManager* packageManager;
 
 @end
 
@@ -51,7 +54,7 @@
     self->_userEmail = [NSString stringWithFormat:@"testing-%@", self.build];
     
     if (!self.sessionManager) {
-        self->_sessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString:@"http://192.168.119.1:8000/api/"]];
+        self->_sessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString:@"http://192.168.1.123:8000/api/"]];
     }
     if (!self.userManager) {
         self->_userManager = [IMOUserManager sharedUserManager];
@@ -76,6 +79,12 @@
     }
     if(!self.wishlistManager) {
         self->_wishlistManager = [[IMOWishListManager alloc] init];
+    }
+    if(!self.dpkgManager) {
+        self->_dpkgManager = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
+    }
+    if(!self.packageManager) {
+        self->_packageManager = [[IMOPackageManager alloc] init];
     }
 }
 
@@ -160,6 +169,20 @@
         IMOCategory* featured = response.result;
         XCTAssertNotNil(featured);
         XCTAssert([featured.name isEqualToString:@"featured"]);
+        resolved = YES;
+    });
+    [self waitFor:0.2];
+    XCTAssert(resolved);
+}
+
+- (void)testCategoryList {
+    __block BOOL resolved = NO;
+    [self.categoryManager fetchCategories]
+    .then(^(OVCResponse* response, NSError* error){
+        XCTAssertNotNil(response);
+        XCTAssertNil(error);
+        NSArray* categories = response.result;
+        XCTAssert([categories count] > 0);
         resolved = YES;
     });
     [self waitFor:0.2];
@@ -764,6 +787,84 @@ IMOOrderManager* orderManager = nil;
     });
     [self waitFor:0.2];
     XCTAssert(resolved);
+}
+
+
+@end
+
+@interface PackageManagerTest : iModsTestCase
+
+@end
+
+@implementation PackageManagerTest
+
+- (void)setUp {
+    [super setUp];
+}
+
+- (void)tearDown {
+    [super tearDown];
+}
+
+- (void) testTask {
+    [IMOTask launchTask:@"/bin/echo" arguments:@[@"Hello",@"world!"]]
+    .catch(^(int code){
+        NSLog(@"Test error, process exited with code: %d", code);
+        XCTAssert(false);
+    })
+    .then(^(IMOTask* task){
+        XCTAssert(task.terminationStatus == 0);
+        NSData* data = [task.standardOutput readDataToEndOfFile];
+        NSString* output = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+        NSLog(@"Process stdout: %@", output);
+    });
+    
+    [self waitFor:0.1];
+}
+
+- (void) testDPKGManager {
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSString* debPath = @"/var/tmp/test.deb";
+    NSString* installedFilePath = @"/var/tmp/imods_test_packge_file";
+    NSString* installedConfFilePath = @"/var/tmp/imods_test_package.conf";
+    NSString* pkg_name = @"iModsTestPackage";
+    [self.dpkgManager installDEB:debPath]
+    .then(^(IMOTask* task){
+        XCTAssert([fileManager fileExistsAtPath: installedFilePath]);
+        XCTAssert([fileManager fileExistsAtPath: installedConfFilePath]);
+    });
+    
+    [self.dpkgManager listInstalledDEBs]
+    .then(^(IMOTask* task){
+        NSString* output = [task outputStringFromStandardOutputUTF8];
+        XCTAssert(output.length > 0);
+        NSRange range = [output rangeOfString:pkg_name];
+        XCTAssert(range.location != NSNotFound);
+    });
+    
+    [self.dpkgManager removePackage:pkg_name]
+    .then(^(IMOTask* task){
+        XCTAssert(![fileManager fileExistsAtPath:installedFilePath]);
+    });
+    
+    [self.dpkgManager cleanPackage:pkg_name]
+    .then(^(IMOTask* task){
+        XCTAssert(![fileManager fileExistsAtPath:installedConfFilePath]);
+    });
+    
+    [self waitFor:0.1];
+}
+
+- (void) testDownloadPackage {
+    
+}
+
+- (void) testInstallPackage {
+    
+}
+
+- (void) testUpdatePackage {
+    
 }
 
 @end

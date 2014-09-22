@@ -31,5 +31,5 @@
 /* Non-JSON data fields */
 @property NSMutableArray* reviews;
 - (BOOL) isEqual:(id)object;
-- (void) updateFromMode:(IMOItem*)model;
+- (void) updateFromModel:(IMOItem*)model;
 @end

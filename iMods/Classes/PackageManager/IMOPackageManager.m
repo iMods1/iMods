@@ -22,6 +22,32 @@ static IMOPackageManager* sharedIMOPackageManager = nil;
 
 - (id) init{
     self = [super init];
+    if (self) {
+        self->_dpkgManager = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
+    }
     return self;
 }
+
+- (PMKPromise*) installPackage:(NSString *)pkg_path {
+    // TODO: Send package dependency solution request
+    // TODO: Fetch package files
+    // TODO: Check package checksums
+    // TODO: Install packages
+    // TODO: Apply patches
+}
+
+- (PMKPromise*) removePackage:(NSString *)pkg_name {
+    // TODO: Check dependency
+    // TODO: Remove pacakge
+}
+
+- (PMKPromise*) cleanPackage:(NSString *)pkg_name {
+    // TODO: Clean package configs
+}
+
+- (PMKPromise*) listInstalledPackages {
+    // TODO: List installed debian pacakges
+    // TODO: Construct an array of IMOItem objects
+}
+
 @end

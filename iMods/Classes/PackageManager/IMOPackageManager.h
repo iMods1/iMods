@@ -7,9 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IMOTask.h"
+#import "IMODPKGManager.h"
 
 @interface IMOPackageManager : NSObject
 
+@property (readonly) IMODPKGManager* dpkgManager;
+
 + (IMOPackageManager*) sharedPackageManager;
+
+- (PMKPromise*) installPackage:(NSString*) pkg_path;
+
+- (PMKPromise*) removePackage:(NSString*) pkg_name;
+
+- (PMKPromise*) cleanPackage:(NSString*) pkg_name;
+
+- (PMKPromise*) listInstalledPackages;
 
 @end
