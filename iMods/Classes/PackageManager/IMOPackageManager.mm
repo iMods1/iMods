@@ -7,6 +7,7 @@
 //
 
 #import "IMOPackageManager.h"
+#include "libimpkg.h"
 
 @implementation IMOPackageManager
 
@@ -20,7 +21,7 @@ static IMOPackageManager* sharedIMOPackageManager = nil;
     return sharedIMOPackageManager;
 }
 
-- (id) init{
+- (id) init {
     self = [super init];
     if (self) {
         self->_dpkgManager = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
