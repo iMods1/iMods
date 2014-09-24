@@ -18,6 +18,7 @@
  */
 - (PMKPromise*) fetchItemByID:(NSUInteger) pkg_id;
 - (PMKPromise*) fetchItemByName:(NSString*) pkg_name;
+- (PMKPromise*) fetchItemsByCategory:(NSString*) category_name;
 
 // TODO: fetchItemPreviewAssets should return something that can be directly used by controllers and views.
 /* Fetch and store preview assets of an item.
