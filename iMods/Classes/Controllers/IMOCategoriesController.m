@@ -78,7 +78,7 @@
     if (indexPath.row < [categories count]) {
         NSDictionary *category = categories[indexPath.row];
         
-        cell.textLabel.text = [category debugDescription];
+        cell.textLabel.text = [category objectForKey:@"name"];
     }
     
     return cell;
