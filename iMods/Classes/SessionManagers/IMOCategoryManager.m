@@ -37,8 +37,8 @@ static IMOSessionManager* sessionManager = nil;
     return [sessionManager getJSON:@"category/id" urlParameters:@[[categoryID stringValue]] parameters:nil];
 }
 
--(PMKPromise*) fetchCategoriesByName:(NSString *)categoryName {
-    return [sessionManager getJSON:@"category/name" urlParameters:@[categoryName] parameters:nil];
+-(PMKPromise*) fetchCategoriesByName:(NSString *)category {
+    return [sessionManager getJSON:@"category/name" urlParameters:@[category] parameters:nil];
 }
 
 #pragma mark -

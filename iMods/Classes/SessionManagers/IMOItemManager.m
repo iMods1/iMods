@@ -45,11 +45,9 @@ static IMOSessionManager* sessionManager = nil;
 
 - (PMKPromise*) fetchItemsByCategory:(NSString *)category_name {
     NSParameterAssert(category_name);
-    return [sessionManager getJSON:@"category/name"
+    return [sessionManager getJSON:@"item/cat"
                      urlParameters:@[category_name]
-                        parameters:nil].then(^(OVCResponse *response) {
-        return [response.result valueForKey: @"items"];
-    });
+                        parameters:nil];
 }
 
 - (PMKPromise*) fetchItemPreviewAssets:(NSInteger)pkg_id dstPath:(NSString *)dstPath {

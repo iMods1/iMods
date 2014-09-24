@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "IMOConstants.h"
 
 @interface AppDelegate ()
 
@@ -37,7 +38,7 @@ static BOOL isRunningTests(void) {
         self.sharedSessionManager = nil;
         return YES;
     }
-    self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString:@"https://imods.wunderkind.us/api/"]];
+    self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [BASE_API_ENDPOINT stringByAppendingString: @"/api/"]]];
     
     return YES;
 }

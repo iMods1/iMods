@@ -10,4 +10,6 @@
 
 @interface IMOChartsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+- (IBAction)unwindToCharts:(UIStoryboardSegue *)segue;
+
 @end
