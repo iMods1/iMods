@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FeaturedViewController: UIViewController {
 
     @IBOutlet var themesButton: UIButton!
@@ -38,13 +39,15 @@ class FeaturedViewController: UIViewController {
         (featuredTableViewController!.view as UITableView).reloadData()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         super.prepareForSegue(segue, sender: sender)
+        if sender == nil {
+            return
+        }
         // Store the contained ViewController for later use
-        if let identifier = segue.identifier {
-            if identifier == "featured_tableview_embed" {
-                self.featuredTableViewController = segue.destinationViewController as? FeaturedTableViewController
-            }
+        let identifier = segue.identifier
+        if identifier == "featured_tableview_embed" {
+            self.featuredTableViewController = segue.destinationViewController as? FeaturedTableViewController
         }
     }
 
