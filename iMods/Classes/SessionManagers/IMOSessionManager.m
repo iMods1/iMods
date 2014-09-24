@@ -91,6 +91,8 @@ static IMOSessionManager* sessionManager = nil;
     return [networkManager GET:url parameters:parameters]
     .catch(^(NSError* error){
         NSLog(@"Error occurred during request: %@", error);
+        // Should propagate errors to clients to handle
+        return error;
     });
 }
 
@@ -103,6 +105,8 @@ static IMOSessionManager* sessionManager = nil;
     return [networkManager POST:url parameters:data]
     .catch(^(NSError* error){
         NSLog(@"Error occurred during request: %@", error);
+        // Should propagate errors to clients to handle
+        return error;
     });
 }
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="NBX-nP-4aF">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="wf9-Vg-5SM">
             <objects>
-                <viewController id="NBX-nP-4aF" customClass="LoginViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NBX-nP-4aF" customClass="IMOLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jp-Np-uo4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +20,7 @@
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="NBX-nP-4aF" id="AOa-H4-cnf"/>
+                                    <outlet property="delegate" destination="NBX-nP-4aF" id="laK-Kw-tBJ"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" id="OgZ-Vb-xPc">
@@ -28,9 +29,6 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="NBX-nP-4aF" id="1AP-iU-m0j"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FSv-7f-e2t">
                                 <rect key="frame" x="26" y="367" width="268" height="46"/>
@@ -40,7 +38,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressLogin:" destination="NBX-nP-4aF" eventType="touchUpInside" id="eTb-dl-8O4"/>
+                                    <action selector="loginButtonWasTapped:" destination="NBX-nP-4aF" eventType="touchUpInside" id="dGF-OW-5g2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xcg-hI-wpz">
@@ -51,13 +49,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressRegister:" destination="NBX-nP-4aF" eventType="touchUpInside" id="QUD-FV-iRw"/>
+                                    <action selector="registerButtonWasTapped:" destination="NBX-nP-4aF" eventType="touchUpInside" id="Lxk-CU-4yg"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="imods-assets-logo-large" id="qKV-C0-65A">
                                 <rect key="frame" x="91" y="60" width="139" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pXw-oh-Phs">
+                                <rect key="frame" x="26" y="194" width="268" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                         <gestureRecognizers/>
@@ -67,14 +72,17 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="textFieldTapRecognizer" destination="RfZ-vH-WYM" id="HDB-nh-v75"/>
-                        <segue destination="49e-Tb-3d3" kind="modal" identifier="tabbar_main" id="UGZ-6t-HWG"/>
+                        <outlet property="errorLabel" destination="pXw-oh-Phs" id="v41-ms-9bQ"/>
+                        <outlet property="passwordField" destination="OgZ-Vb-xPc" id="0Ea-9r-oxF"/>
+                        <outlet property="tapRecognizer" destination="RfZ-vH-WYM" id="aOb-3p-wJt"/>
+                        <outlet property="userNameField" destination="HXq-22-Tna" id="4sx-SM-dCc"/>
+                        <segue destination="49e-Tb-3d3" kind="modal" identifier="tabbar_main" modalTransitionStyle="coverVertical" id="UGZ-6t-HWG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecu-nV-VQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="RfZ-vH-WYM">
                     <connections>
-                        <action selector="didTapOutsideTextField:" destination="NBX-nP-4aF" id="1cW-pJ-8bV"/>
+                        <action selector="didTapOutsideTextFields:" destination="NBX-nP-4aF" id="PUT-iU-9AM"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -114,7 +122,7 @@
                     <navigationItem key="navigationItem" title="Top Charts" id="ej8-T5-ayp">
                         <barButtonItem key="leftBarButtonItem" image="imods-assets-chart-icon-deselected" id="aSe-Ze-alf">
                             <connections>
-                                <segue destination="lgQ-8t-VFJ" kind="custom" id="Fcz-hk-r4c"/>
+                                <segue destination="lgQ-8t-VFJ" kind="modal" identifier="categories_modal" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Fcz-hk-r4c"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -302,7 +310,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="pfa-6j-OUT" kind="embed" id="y3V-5G-Zei"/>
+                                    <segue destination="pfa-6j-OUT" kind="embed" identifier="featured_banner_embed" id="y3V-5G-Zei"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -475,12 +483,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fne-ID-k7d">
+                                <rect key="frame" x="177" y="56" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Buy">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapBuyButton:" destination="Uk8-Gh-CHI" eventType="touchUpInside" id="UZa-Kt-gP9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="FBG-RA-VvJ"/>
                     <connections>
+                        <outlet property="buyButton" destination="fne-ID-k7d" id="8cv-G2-dvY"/>
                         <outlet property="itemDetailLabel" destination="Acl-jD-lr2" id="cJm-MA-PJf"/>
                         <outlet property="itemIconImage" destination="tzz-i3-DA6" id="RN6-wN-Myn"/>
                         <outlet property="itemPriceLabel" destination="UZu-uC-VOV" id="f7C-Zn-Jvp"/>
