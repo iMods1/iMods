@@ -61,7 +61,7 @@ static IMOUser* currentUser = nil;
     .then((^id(OVCResponse *response, NSError* error){
         if(error != nil){
             NSLog(@"Login failed...");
-            return nil;
+            return error;
         } else{
             NSLog(@"Login Success");
             self.userLoggedIn = YES;
@@ -83,9 +83,13 @@ static IMOUser* currentUser = nil;
     return [sessionManager getJSON:@"user/profile" parameters:nil]
         .then(^(OVCResponse* response, NSError* error){
             if(error != nil){
-                NSLog(@"Failed to get user profile: %@", error.description);
+                NSString *errorString = [NSString stringWithFormat:@"Failed to get user profile: %@", error.description];
+
+                NSException *exception = [NSException exceptionWithName:@"LoginFailureException" reason:errorString userInfo:nil];
+                @throw exception;
             }
             self.userProfile = (IMOUser*)response.result;
+            return self.userProfile;
         });
 }
 
