@@ -14,6 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let sessionManager:IMOSessionManager = IMOSessionManager.sharedSessionManager(NSURL(string: BASE_API_ENDPOINT))
     
+    lazy var managedObjectContext: NSManagedObjectContext = {
+        
+        let modelURL = NSBundle.mainBundle().URLForResource("iMods", withExtension: "momd")
+        let mom = NSManagedObjectModel(contentsOfURL: modelURL)
+        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+            
+        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let storeURL = (urls[urls.endIndex-1]).URLByAppendingPathComponent("iMods.sqlite")
+            
+        var error: NSError? = nil
+            
+        var store = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error)
+            
+        var managedObjectContext = NSManagedObjectContext()
+            managedObjectContext.persistentStoreCoordinator = psc
+            
+        return managedObjectContext
+    }()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
         return true

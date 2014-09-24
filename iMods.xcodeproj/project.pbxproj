@@ -53,6 +53,8 @@
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
+		4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
@@ -240,6 +242,9 @@
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOLoginViewController.h; sourceTree = "<group>"; };
+		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
+		4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMods.xcdatamodel; sourceTree = "<group>"; };
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +432,14 @@
 			name = PackageManager;
 			sourceTree = "<group>";
 		};
+		4D29D0E819D267CC004DCE49 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +457,8 @@
 				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
 				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
 				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
+				4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */,
+				4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -509,6 +524,7 @@
 		4D8928FF19749E0500AD8A28 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D29D0E819D267CC004DCE49 /* Data */,
 				4D89290219749F1000AD8A28 /* Storyboards */,
 				4D8928BF19748AC400AD8A28 /* Fonts */,
 				284CBBC01946F35A006539A3 /* Images.xcassets */,
@@ -758,6 +774,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */,
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
@@ -778,6 +795,7 @@
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
+				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				284CBBB81946F35A006539A3 /* AppDelegate.swift in Sources */,
@@ -1111,6 +1129,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */,
+			);
+			currentVersion = 4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */;
+			path = iMods.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 284CBBAA1946F35A006539A3 /* Project object */;
 }
