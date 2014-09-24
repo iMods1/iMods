@@ -22,3 +22,5 @@
 #import "Classes/SessionManagers/IMOSessionManager.h"
 #import "Classes/SessionManagers/IMOCategoryManager.h"
 #import "Classes/SessionManagers/IMOUserManager.h"
+
+#import "Classes/Helpers/IMOItemDataSource.h"
