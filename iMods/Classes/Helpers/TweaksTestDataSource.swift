@@ -120,4 +120,8 @@ class TweaksTestDataSource: NSObject, IMOItemDataSource {
             return nil
         }
     }
+    
+    func refresh() {
+        // stub
+    }
 }

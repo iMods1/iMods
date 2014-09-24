@@ -119,4 +119,8 @@ class ThemesTestDataSource: NSObject, IMOItemDataSource {
             return nil
         }
     }
+    
+    func refresh() {
+        // stub
+    }
 }
