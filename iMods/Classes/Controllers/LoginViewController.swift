@@ -20,7 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField!) {
         self.textFieldToResign = textField
-        if self.view.gestureRecognizers?.count == 0 {
+        if self.view.gestureRecognizers.count == 0 {
             self.view.addGestureRecognizer(self.textFieldTapRecognizer)
         }
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="NBX-nP-4aF">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
@@ -121,7 +122,7 @@
                     <navigationItem key="navigationItem" title="Top Charts" id="ej8-T5-ayp">
                         <barButtonItem key="leftBarButtonItem" image="imods-assets-chart-icon-deselected" id="aSe-Ze-alf">
                             <connections>
-                                <segue destination="lgQ-8t-VFJ" kind="custom" id="Fcz-hk-r4c"/>
+                                <segue destination="lgQ-8t-VFJ" kind="modal" identifier="categories_modal" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Fcz-hk-r4c"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -309,7 +310,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="pfa-6j-OUT" kind="embed" id="y3V-5G-Zei"/>
+                                    <segue destination="pfa-6j-OUT" kind="embed" identifier="featured_banner_embed" id="y3V-5G-Zei"/>
                                 </connections>
                             </containerView>
                         </subviews>
