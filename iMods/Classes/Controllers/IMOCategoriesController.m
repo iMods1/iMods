@@ -7,12 +7,16 @@
 //
 
 #import "IMOCategoriesController.h"
+#import "IMOCategoriesDetailTableViewController.h"
 #import "IMOCategory.h"
 #import "IMOCategoryManager.h"
 
 @interface IMOCategoriesController ()
 @property (nonatomic, strong) NSArray *categories;
 @property (nonatomic, strong) IMOCategoryManager *manager;
+@property (nonatomic, strong) NSSet *disallowedCategories;
+
+- (NSArray *)removeDisallowedCategories:(NSArray *)source;
 @end
 
 @implementation IMOCategoriesController
@@ -21,6 +25,7 @@
 @synthesize manager;
 
 - (void)viewDidLoad {
+    self.disallowedCategories = [NSSet setWithArray: @[@"Featured", @"Banner", @"Paid", @"Free", @"Tweaks", @"Themes", @"featured"]];
     [super viewDidLoad];
     
     self.categoriesTableView.delegate = self;
@@ -38,12 +43,10 @@
     
     NSLog(@"Sending HTTP request for category data");
     [self.manager fetchCategories].then(^(OVCResponse *response) {
-        // FIXME: Use correct method to work with OVCResponse
-        NSLog(@"%@", response.result);
         if ([response.result isKindOfClass: [NSArray class]]) {
-            self.categories = response.result;
+            self.categories = [self removeDisallowedCategories: response.result];
         } else {
-            self.categories = [NSArray arrayWithObject:response.result];
+            self.categories = [self removeDisallowedCategories:[NSArray arrayWithObject:response.result]];
         }
         [self.categoriesTableView reloadData];
     }).catch(^(NSError *error) {
@@ -88,8 +91,22 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    if ([segue.identifier isEqual:@"category-push"]) {
+    if ([segue.identifier isEqual:@"categories_categories_detail_push"]) {
         // TODO: Pass selected category information to the destination
+        IMOCategoriesDetailTableViewController *detailController = [segue destinationViewController];
+        detailController.category = [self.categories[[self.categoriesTableView indexPathForSelectedRow].row] objectForKey: @"name"];
     }
+}
+
+#pragma mark - Misc
+
+- (NSArray *)removeDisallowedCategories:(NSArray *)source {
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSDictionary *category in source) {
+        if (![self.disallowedCategories containsObject:[category objectForKey:@"name"]]) {
+            [result addObject:category];
+        }
+    }
+    return result;
 }
 @end

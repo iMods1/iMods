@@ -24,3 +24,4 @@
 #import "Classes/SessionManagers/IMOUserManager.h"
 
 #import "Classes/Helpers/IMOItemDataSource.h"
+#import "Classes/Controllers/IMOItemDetailViewController.h"
