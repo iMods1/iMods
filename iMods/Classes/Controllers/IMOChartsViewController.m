@@ -7,9 +7,19 @@
 //
 
 #import "IMOChartsViewController.h"
+#import "IMOItemDetailViewController.h"
+#import "IMOItem.h"
+#import "IMOItemManager.h"
+#import <Overcoat/OVCResponse.h>
 
 @interface IMOChartsViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *topChartsSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIImageView *bannerImage;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IMOItemManager *manager;
+@property NSArray *items;
 
+- (void)loadDataForCategory:(NSString *)category;
 @end
 
 @implementation IMOChartsViewController
@@ -22,6 +32,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.manager = [[IMOItemManager alloc] init];
+    
+    NSString *category = [self.topChartsSegmentedControl titleForSegmentAtIndex: self.topChartsSegmentedControl.selectedSegmentIndex];
+    
+    [self loadDataForCategory: category];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,69 +50,72 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.items count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     
-    // Configure the cell...
+    NSDictionary *item = [self.items objectAtIndex: indexPath.row];
+    
+    
+    // TODO: Other cell setup
+    cell.textLabel.text = [item objectForKey: @"display_name"];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"charts_item_detail_push"]) {
+        NSLog(@"Passing item: %@", self.items[[self.tableView indexPathForSelectedRow].row]);
+        
+        IMOItemDetailViewController *controller = [segue destinationViewController];
+        controller.item = self.items[[self.tableView indexPathForSelectedRow].row];
+    }
 }
-*/
+
+
+# pragma mark - Misc
+
+- (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender {
+    NSString *category = [sender titleForSegmentAtIndex: sender.selectedSegmentIndex];
+    
+    [self loadDataForCategory: category];
+}
+
+- (void)loadDataForCategory:(NSString *)category {
+    [self.manager fetchItemsByCategory: category].then(^(OVCResponse *response) {
+        if ([response.result isKindOfClass: [NSArray class]]) {
+            self.items = response.result;
+        } else {
+            self.items = [NSArray arrayWithObject:response.result];
+        }
+    }).catch(^(NSError *error) {
+        NSLog(@"Problem with HTTP request: %@", [error localizedDescription]);
+        self.items = @[];
+    }).finally(^() {
+        [self.tableView reloadData];
+    });
+}
+
+- (IBAction)unwindToCharts:(UIStoryboardSegue *)segue {
+    
+}
 
 @end

@@ -42,8 +42,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UISearchBar
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier) as UITableViewCell
-        return cell
+        return UITableViewCell(style: .Default, reuseIdentifier: "Cell")
     }
     
 }

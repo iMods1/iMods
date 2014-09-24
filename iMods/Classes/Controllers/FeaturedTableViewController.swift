@@ -41,7 +41,7 @@ class FeaturedTableViewController: UITableViewController, UITableViewDataSource,
         if identifier == "item_detail_push" {
             if let indexPath = self.tableView.indexPathForCell(sender as UITableViewCell!) {
                 var item = self.dataSource.retrieveItemForIndexPath(indexPath)
-                (segue.destinationViewController as ItemDetailViewController).item = item
+                (segue.destinationViewController as IMOItemDetailViewController).item = item
             }
         }
     }
