@@ -15,10 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIButton *buyButton;
+@property (weak, nonatomic) IBOutlet UIButton *installButton;
 @property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IMOItem *item;
-- (IBAction)didTapBuyButton:(UIButton *)sender;
+- (IBAction)didTapInstallButton:(UIButton *)sender;
 @end

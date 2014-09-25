@@ -33,8 +33,8 @@
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = self.entity;
-    NSLog(@"Item ID: %@", [self.item valueForKey: @"item_id"]);
-    request.predicate = [NSPredicate predicateWithFormat:@"id == %@", [self.item valueForKey: @"item_id"]];
+    NSLog(@"Item ID: %@", [self.item valueForKey: @"iid"]);
+    request.predicate = [NSPredicate predicateWithFormat:@"id == %@", [self.item valueForKey: @"iid"]];
     
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:request error: &error];
@@ -46,8 +46,8 @@
         NSLog(@"Fetched result: %@", result);
         if (!([result count] == 0)) {
             self.managedItem = result[0];
-            self.buyButton.enabled = false;
-            [self.buyButton setTitle:@"Purchased" forState:UIControlStateNormal | UIControlStateDisabled];
+            self.installButton.enabled = false;
+            [self.installButton setTitle:@"Installed" forState:UIControlStateNormal | UIControlStateDisabled];
         }
     }
     [self setupItemLabels];
@@ -70,10 +70,10 @@
 
 #pragma mark - Misc
 
-- (IBAction)didTapBuyButton:(UIButton *)sender {
+- (IBAction)didTapInstallButton:(UIButton *)sender {
     self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
     [self.managedItem setValue:[self.item valueForKey: @"pkg_name"] forKey: @"name"];
-    [self.managedItem setValue:[self.item valueForKey: @"item_id"] forKey: @"id"];
+    [self.managedItem setValue:[self.item valueForKey: @"iid"] forKey: @"id"];
     [self.managedItem setValue:[self.item valueForKey: @"pkg_version"] forKey: @"version"];
     
     NSError *error = nil;
@@ -85,12 +85,12 @@
         [alert addAction: action];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
-        self.buyButton.enabled = false;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Purchased" message:@"The item was purchased." preferredStyle:UIAlertControllerStyleAlert];
+        self.installButton.enabled = false;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Installed" message:@"The item was installed." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction: action];
         [self presentViewController:alert animated:YES completion:nil];
-        [self.buyButton setTitle:@"Purchased" forState:UIControlStateNormal | UIControlStateDisabled];
+        [self.installButton setTitle:@"Installed" forState:UIControlStateNormal | UIControlStateDisabled];
     }
 }
 

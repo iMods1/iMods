@@ -42,6 +42,7 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSLog(@"textfield: %@ passwordField: %@", textField, self.passwordField);
     if (textField == self.passwordField) {
         [self.view endEditing:YES];
     } else {
@@ -67,6 +68,8 @@
 #ifdef DEBUG
     [self performSegueWithIdentifier:@"tabbar_main" sender:self];
 #endif
+    
+    // TODO: Store/retrieve login credentials from Key Chain
     
     IMOUserManager *manager = [IMOUserManager sharedUserManager];
     [manager userLogin:self.userNameField.text

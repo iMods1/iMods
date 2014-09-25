@@ -64,13 +64,11 @@
 		4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */; };
 		4D29D10619D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */; };
 		4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */; };
+		4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
-		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
 		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
 		4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* UpdatesViewController.swift */; };
-		4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */; };
-		4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -276,13 +274,12 @@
 		4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesDetailTableViewController.m; sourceTree = "<group>"; };
 		4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemDetailViewController.h; sourceTree = "<group>"; };
 		4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItemDetailViewController.m; sourceTree = "<group>"; };
+		4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedViewController.h; sourceTree = "<group>"; };
+		4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedViewController.m; sourceTree = "<group>"; };
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4D8928A71974813300AD8A28 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
-		4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedNavigationController.swift; sourceTree = "<group>"; };
-		4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewController.swift; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -507,12 +504,9 @@
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */,
 				4D8928A11974801900AD8A28 /* CategoriesViewController.swift */,
 				4D8928A31974809200AD8A28 /* SearchViewController.swift */,
 				4D8928A71974813300AD8A28 /* UpdatesViewController.swift */,
-				4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */,
-				4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */,
 				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
 				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
 				4DCE1F8619B0349300B7673C /* LoginViewController.swift */,
@@ -526,6 +520,8 @@
 				4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */,
 				4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */,
 				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
+				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
+				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -931,7 +927,7 @@
 				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
-				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
+				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
 				4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
 				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
@@ -941,7 +937,6 @@
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
 				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
 				2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
-				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
 				2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
@@ -954,7 +949,6 @@
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
 				4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */,
 				4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */,
-				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
