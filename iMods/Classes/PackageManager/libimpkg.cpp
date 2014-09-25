@@ -886,7 +886,9 @@ bool PackageCache::checkDep(const PackageDepTuple& dep) const {
     return false;
 }
 
-const std::map<std::string, Package>& allPackages() const;
+const std::map<std::string, Package>& PackageCache::allPackages() const {
+    return m_packages;
+}
 
 const Package* PackageCache::package(const std::string& pkgName) const {
     auto pkg = m_packages.find(pkgName);
