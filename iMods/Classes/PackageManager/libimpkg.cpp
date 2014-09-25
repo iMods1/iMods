@@ -296,16 +296,85 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
     return result;
 }
 
-bool checkDep(const std::string& depString, const TagSection& targetPackage) {
-    // Parse dependency string
-    std::vector<std::vector<PackageDepTuple>> dep_list = std::move(parseDepString(depString));
+bool resolveDep(const Package& pkg,
+                std::map<std::string, const Package*>& mark,
+                PackageCache& cache,
+                PackageCache& index,
+                std::vector<const Package*>& res) {
+    
+    mark[pkg.name()] = &pkg;
+    
+    std::vector<const Version*> verList(pkg.ver_list());
+    
+    // Return if there are no actual package files
+    if (verList.empty()) {
+        std::cerr << "Package '" << pkg.name() << "' has no deb files" << std::endl;
+        return false;
+    }
+    
+    // FIXME: Move sorting to Package class
+    // Sort versions in reverse order, later versions come first
+    std::sort(verList.begin(), verList.end(), [](Version* v1, Version* v2){
+        return pkgVersionCmp(v1->version(), v2->version());
+    });
+    // Try the latest version first
+    bool fulfilled = true;
+    for(auto& depTuples:verList[0]->dep_list()) {
+        if (depTuples.empty()) {
+            // Shouldn't happen
+            std::cerr << "Empty dependency tuple list found, this shouldn't happen, it's possibly a bug." << std::endl;
+            continue;
+        }
+        // Remove all dependencies that are already installed.
+        std::vector<PackageDepTuple> notInstalledDeps;
+        std::accumulate(depTuples.begin(), depTuples.end(), nullptr,
+                        [&cache, &notInstalledDeps](const void*, const PackageDepTuple& dep){
+                            auto ninstPkg = cache.package(std::get<0>(dep));
+                            if (!ninstPkg) {
+                                notInstalledDeps.push_back(dep);
+                            }
+                        });
+        // notInstalledDeps contain a list of choices of packages, pick the first one in the index
+        const Package* depPkg = index.findFirstOfDeps(notInstalledDeps);
+        if (depPkg != nullptr) {
+            fulfilled = false;
+            std::cerr << "Dependencies of " << pkg.name() << "' cannot be resolved";
+            break;
+        }
+        fulfilled &= resolveDep(*depPkg, mark, cache, index, res);
+    }
+    
+    if (fulfilled) {
+        res.push_back(&pkg);
+        return true;
+    } else if(verList.size() == 1){
+        // Tried last version, so the dependency cannot be resolved.
+        std::cerr << "Cannot resolve dependencies of package '" << pkg.name() << "'" << std::endl;
+    } else {
+        // #FIXME: Try other versions
+        //std::cout << "Trying other versions of package '" << pkg.name() << "'" << std::endl;
+    }
+    return false;
 }
 
-bool calcDep(TagFile& localCache, TagFile& remoteIndex,
-             std::vector<TagSection>& targetPackages,
-             std::vector<TagSection>& out_toInstallPackages,
-             std::vector<TagSection>& out_missingPackages) {
-    
+bool calcDep(PackageCache& localCache, PackageCache& remoteIndex,
+             const std::vector<const Package*>& targetPackages,
+             std::vector<const Package*>& out_toInstallPackages)
+{
+    std::map<std::string, const Package*> mark;
+    std::vector<const Package*> resolved;
+    for(auto& pkg: targetPackages) {
+        if (localCache.package(pkg->name())) {
+            // Package already installed
+            mark.insert(std::make_pair(pkg->name(), pkg));
+            continue;
+        }
+        if(!resolveDep(*pkg, mark, localCache, remoteIndex, resolved)){
+            return false;
+        }
+    }
+    out_toInstallPackages = std::move(resolved);
+    return true;
 }
 
 /* TagParser is used to parse index or status files.
@@ -616,4 +685,227 @@ std::vector<TagSection> TagFile::filter(const FilterConditions& conds) {
         }
     }
     return results;
+}
+
+#pragma mark -
+
+Version::Version(const TagSection& ctrlFile): m_section(ctrlFile) {
+    // Build dep list
+    m_depList = std::move(parseDepString(depString()));
+}
+
+Version::~Version() {
+    
+}
+
+uint64_t Version::itemID() const {
+    std::string id;
+    if(m_section.tag("itemid", id)) {
+        return strtoull(id.c_str(), nullptr, 10);
+    }
+    return 0;
+}
+
+bool Version::checkDep(const PackageDepTuple& dep) const {
+    if (std::get<0>(dep) != packageName()) {
+        return false;
+    }
+    
+    switch (std::get<1>(dep)) {
+        case VER_EQ:
+            return pkgVersionCmp(version(), std::get<2>(dep)) == 0;
+            break;
+            
+        case VER_GE:
+            return pkgVersionCmp(version(), std::get<2>(dep)) >= 0;
+            break;
+            
+        case VER_GT:
+            return pkgVersionCmp(version(), std::get<2>(dep)) > 0;
+            break;
+            
+        case VER_LE:
+            return pkgVersionCmp(version(), std::get<2>(dep)) <= 0;
+            break;
+            
+        case VER_LT:
+            return pkgVersionCmp(version(), std::get<2>(dep)) < 0;
+            break;
+            
+        default:
+            break;
+    }
+    return false;
+}
+
+std::string Version::packageName() const {
+    std::string name;
+    if (m_section.tag("package", name)) {
+        return name;
+    }
+    return "";
+}
+
+std::string Version::version() const {
+    std::string ver;
+    if (m_section.tag("version", ver)) {
+        return ver;
+    }
+    return "";
+}
+
+std::string Version::sha1Checksum() const {
+    std::string sha1;
+    if (m_section.tag("sha1", sha1)) {
+        return sha1;
+    }
+    return "";
+}
+
+std::string Version::md5Checksum() const {
+    std::string md5;
+    if (m_section.tag("md5", md5)) {
+        return md5;
+    }
+    return "";
+}
+
+std::string Version::sha256Checksum() const {
+    std::string sha256;
+    if (m_section.tag("sha256", sha256)) {
+        return sha256;
+    }
+    return "";
+}
+
+const std::vector<std::vector<PackageDepTuple>>& Version::dep_list() const {
+    return m_depList;
+}
+
+const std::string& Version::debFilePath() const {
+    return m_debFilePath;
+}
+
+void Version::setDebFilePath(const std::string& path) {
+    m_debFilePath = path;
+}
+
+#pragma mark -
+
+Package::Package(const std::string& pkgName, TagFile& ctrlFile):m_pkgName(pkgName) {
+    initWithTagFile(pkgName, ctrlFile);
+}
+
+Package::Package(const std::string& pkgName, const std::vector<TagSection>& sections):m_pkgName(pkgName) {
+    initWithSections(sections);
+}
+
+void Package::initWithTagFile(const std::string& pkgName, TagFile& ctrlFile) {
+    FilterCondition nameFilter(std::make_pair("package", pkgName), FilterCondition::TAG_EQ);
+    auto sections = std::move(ctrlFile.filter(FilterConditions({nameFilter})));
+    initWithSections(sections);
+}
+
+void Package::initWithSections(const std::vector<TagSection>& sections) {
+    for (const auto& sec: sections) {
+        Version ver(sec);
+        m_versions.insert(std::make_pair(ver.version(), std::move(ver)));
+    }
+}
+
+Package::~Package() {
+    
+}
+
+const std::string& Package::name() const {
+    return m_pkgName;
+}
+
+const std::vector<const Version*> Package::ver_list() const {
+    std::vector<const Version*> versions;
+    for(const auto& ver: m_versions) {
+        versions.push_back(&ver.second);
+    }
+    return versions;
+}
+
+void Package::selectVersions(const std::vector<const Version*>& versions) {
+    m_selectedVersions = versions;
+}
+
+void Package::selectVersions(const std::vector<std::string>& versionStr) {
+    m_selectedVersions.clear();
+    for(auto& str: versionStr) {
+        auto res = m_versions.find(str);
+        if (res != m_versions.end()) {
+            m_selectedVersions.push_back(&(res->second));
+        }
+    }
+}
+
+const std::vector<const Version*>& Package::selectedVersions() const {
+    return m_selectedVersions;
+}
+
+void Package::addVersion(const Version& version) {
+    m_versions.insert(std::make_pair(version.version(), std::move(version)));
+}
+
+bool Package::checkDep(const PackageDepTuple& dep) const {
+    if(std::get<0>(dep) != name()) {
+        return false;
+    }
+    if (ver_list().empty()) {
+        return false;
+    }
+    return ver_list()[0]->checkDep(dep);
+}
+
+#pragma mark -
+
+PackageCache::PackageCache(const TagFile& cacheFile) {
+    initWithTagFile(cacheFile);
+}
+
+PackageCache::PackageCache(const std::string& filename) {
+    initWithTagFile(TagFile(filename));
+}
+
+PackageCache::~PackageCache() {
+
+}
+
+void PackageCache::addPackage(const Package& package) {
+    m_packages.insert(std::make_pair(package.name(), std::move(package)));
+}
+
+bool PackageCache::checkDep(const PackageDepTuple& dep) const {
+    for(const auto& pkg: m_packages) {
+        return pkg.second.checkDep(dep);
+    }
+    return false;
+}
+
+const std::map<std::string, Package>& allPackages() const;
+
+const Package* PackageCache::package(const std::string& pkgName) const {
+    auto pkg = m_packages.find(pkgName);
+    if (pkg != m_packages.end()) {
+        return &(pkg->second);
+    }
+    return nullptr;
+}
+
+const Package* PackageCache::findFirstOfDeps(const std::vector<PackageDepTuple>& deps) {
+    auto pkgIter = std::find_first_of(m_packages.begin(),
+                                      m_packages.end(),
+                                      deps.begin(),
+                                      deps.end(),
+                                      [](const Package& pkg, const PackageDepTuple& dep){
+                                          return pkg.checkDep(dep);
+                                      });
+    if (pkgIter != m_packages.end()) {
+        return &(pkgIter->second);
+    }
+    return nullptr;
 }

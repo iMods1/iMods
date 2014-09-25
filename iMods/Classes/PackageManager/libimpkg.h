@@ -14,6 +14,7 @@
 #include <vector>
 #include <unordered_map>
 #include <fstream>
+#include <map>
 
 typedef std::pair<std::string, std::string> TagField;
 
@@ -30,10 +31,9 @@ int pkgVersionCmp(const std::string& v1, const std::string& v2);
 
 bool checkDep(const std::string& depString, const TagSection& targetPackage);
 
-bool calcDep(TagFile& localCache, TagFile& remoteIndex,
-             std::vector<TagSection>& targetPackages,
-             std::vector<TagSection>& out_toInstallPackages,
-             std::vector<TagSection>& out_missingPackages);
+bool calcDep(PackageCache& localCache, PackageCache& remoteIndex,
+             const std::vector<const Package*>& targetPackages,
+             std::vector<const Package*>& out_toInstallPackages);
 
 size_t calcInstalledSize(TagFile& localCache);
 
@@ -166,17 +166,106 @@ typedef std::tuple<std::string, PackageVersionOp, std::string> PackageDepTuple;
 class Package {
     
 public:
-    Package(TagFile& ctrlFile);
-    ~Package(){}
+    Package(const std::string& pkgName, TagFile& ctrlFile);
     
-    uint64_t itemID() const;
+    Package(const std::string& pkgName, const std::vector<TagSection>& sections);
     
-    bool checkDep(const Package& pkg);
+    ~Package();
     
-    std::vector<PackageDepTuple> dep_list() const;
+    const std::string& name() const;
     
-    std::vector<Version> ver_list() const;
+    const std::vector<const Version*> ver_list() const;
+    
+    bool checkDep(const PackageDepTuple& dep) const;
+    
+    // Select a list of versions to install
+    // Only one version should be selected before dowload
+    void selectVersions(const std::vector<const Version*>& versions);
+    
+    void selectVersions(const std::vector<std::string>& versionStr);
+    
+    const std::vector<const Version*>& selectedVersions() const;
+    
+    void addVersion(const Version& version);
+    
+private:
+    
+    void initWithTagFile(const std::string& pkgName, TagFile& ctrlFile);
+    
+    void initWithSections(const std::vector<TagSection>& sections);
+    
+    std::string m_pkgName;
+    
+    std::map<std::string, Version> m_versions;
+    
+    std::vector<const Version*> m_selectedVersions;
     
 };
 
+class Version {
+    
+public:
+
+    Version(const TagSection& ctrlFile);
+    
+    ~Version();
+    
+    uint64_t itemID() const;
+    
+    // Check whether the version fullfils the dependency
+    bool checkDep(const PackageDepTuple& dep) const;
+    
+    std::string packageName() const;
+    
+    std::string version() const;
+    
+    std::string depString () const;
+
+    std::string sha1Checksum() const;
+    
+    std::string md5Checksum() const;
+    
+    std::string sha256Checksum() const;
+    
+    const std::vector<std::vector<PackageDepTuple>>& dep_list() const;
+    
+    const std::string& debFilePath() const;
+    
+    void setDebFilePath(const std::string& path);
+
+private:
+    
+    std::vector<std::vector<PackageDepTuple>> m_depList;
+    
+    std::string m_debFilePath;
+    
+    TagSection m_section;
+};
+
+class PackageCache {
+    
+public:
+    PackageCache(const TagFile& cacheFile);
+    PackageCache(const std::string& filename);
+    ~PackageCache();
+    
+    void addPackage(const Package& package);
+    
+    bool checkDep(const PackageDepTuple& dep) const;
+    
+    const Package* package(const std::string& pkgName) const;
+    
+    const Package* findFirstOfDeps(const std::vector<PackageDepTuple>& deps);
+    
+    const std::map<std::string, Package>& allPackages() const;
+    
+private:
+    
+    PackageCache(const PackageCache&) {}
+    PackageCache& operator=(const PackageCache&) { return *this;}
+    
+    void initWithTagFile(const TagFile& cacheFile);
+    
+    std::map<std::string, Package> m_packages;
+};
 #endif /* defined(__iMods__libimpkg__) */
