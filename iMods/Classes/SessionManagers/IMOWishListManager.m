@@ -72,7 +72,7 @@ static IMOUserManager* userManager = nil;
 - (PMKPromise*)removeItemFromWishListByIndex:(NSUInteger)idx {
     IMOItem* item = [userManager.userProfile.wishlist objectAtIndex:idx];
     if (!item) {
-        NSLog(@"Wishlist item at index %ld is not found.", idx);
+        NSLog(@"Wishlist item at index %ld is not found.", (unsigned long)idx);
         return nil;
     }
     return [self removeItemFromWishListByItem:item];

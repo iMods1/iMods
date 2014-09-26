@@ -33,12 +33,12 @@ PackageCache* packageIndex;
     return self;
 }
 
-- (BOOL) readCache:(NSString*) path {
+- (BOOL) openCache:(NSString*) path {
     packageCache = new PackageCache([path UTF8String]);
     return packageCache != nullptr;
 }
 
-- (BOOL) readIndex:(NSString*) path {
+- (BOOL) openIndex:(NSString*) path {
     packageIndex = new PackageCache([path UTF8String]);
     return packageIndex != nullptr;
 }

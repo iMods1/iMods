@@ -16,7 +16,7 @@
 #include <fstream>
 #include <map>
 
-typedef std::pair<std::string, std::string> TagField;
+#pragma mark Forward Declarations
 
 class TagSection;
 class TagFile;
@@ -25,7 +25,27 @@ class Package;
 class Version;
 class PackageCache;
 
-#pragma mark -
+#pragma mark Enumerations
+
+enum PackageVersionOp {
+    VER_EQ,
+    VER_LT,
+    VER_LE,
+    VER_GT,
+    VER_GE
+};
+
+#pragma mark typedef
+
+typedef std::pair<std::string, std::string> TagField;
+
+typedef std::vector<FilterCondition> FilterConditions;
+
+typedef std::tuple<std::string, PackageVersionOp, std::string> PackageDepTuple;
+
+typedef PackageCache PackageIndex;
+
+#pragma mark Core Utility Functions
 
 int pkgVersionCmp(const std::string& v1, const std::string& v2);
 
@@ -48,9 +68,12 @@ size_t calcDownloadSize(TagFile& remoteIndex, const std::vector<TagSection>& toI
 class TagSection {
     
 public:
+    TagSection();
     TagSection(TagSection* next);
     TagSection(const TagSection& other);
     TagSection(const TagSection&& other);
+    
+    TagSection& operator=(const TagSection& other);
     
     ~TagSection();
     
@@ -119,8 +142,6 @@ private:
     FilterOperator m_op;
 };
 
-typedef std::vector<FilterCondition> FilterConditions;
-
 #pragma mark -
 
 class TagFile {
@@ -139,6 +160,10 @@ public:
     // go to next section
     bool nextSection();
     
+    size_t sectionCount() const;
+    
+    void rewind();
+    
     // query current section
     bool tag(const std::string& tagname, std::string& out_tagvalue);
     
@@ -153,22 +178,25 @@ private:
 
 #pragma mark -
 
-enum PackageVersionOp {
-    VER_EQ,
-    VER_LT,
-    VER_LE,
-    VER_GT,
-    VER_GE
-};
-
-typedef std::tuple<std::string, PackageVersionOp, std::string> PackageDepTuple;
-
 class Package {
     
 public:
+    
+    Package();
+    
     Package(const std::string& pkgName, TagFile& ctrlFile);
     
     Package(const std::string& pkgName, const std::vector<TagSection>& sections);
+    
+    Package(const std::string& pkgName);
+    
+    Package(const Package& other);
+
+    Package(const Package&& other);
+    
+    Package& operator=(const Package& other);
+    
+    Package& operator=(const Package&& other);
     
     ~Package();
     
@@ -187,6 +215,8 @@ public:
     const std::vector<const Version*>& selectedVersions() const;
     
     void addVersion(const Version& version);
+    
+    size_t versionCount() const;
     
 private:
     
@@ -207,6 +237,7 @@ class Version {
 public:
 
     Version(const TagSection& ctrlFile);
+    Version(const Version& other);
     
     ~Version();
     
@@ -245,7 +276,7 @@ private:
 class PackageCache {
     
 public:
-    PackageCache(const TagFile& cacheFile);
+    PackageCache(TagFile& cacheFile);
     PackageCache(const std::string& filename);
     ~PackageCache();
     
@@ -264,7 +295,7 @@ private:
     PackageCache(const PackageCache&) {}
     PackageCache& operator=(const PackageCache&) { return *this;}
     
-    void initWithTagFile(const TagFile& cacheFile);
+    void initWithTagFile(TagFile& cacheFile);
     
     std::map<std::string, Package> m_packages;
 };

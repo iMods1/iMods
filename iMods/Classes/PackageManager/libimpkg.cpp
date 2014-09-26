@@ -85,37 +85,45 @@ int pkgVerComponentCmp(const std::string& v1, const std::string& v2){
         }
     }
     
-    if(v1.empty() && v2.empty()) {
+    if(pv1 == v1.end() && pv2 == v2.end()) {
         return 0;
-    } else if(v1.empty()) {
-        if(v2[0] == '~'){
+    } else if(pv1 == v1.end()) {
+        if(*pv2 == '~'){
             return 1;
         }
         return -1;
-    } else if(v2.empty()) {
-        if(v1[0] == '~') {
+    } else if(pv2 == v2.end()) {
+        if(*pv1 == '~') {
             return -1;
         }
         return 1;
     }
     
-    return 999999; // Not possible
+    return 9999999; // Not possible
 }
 
 int pkgVersionCmp(const std::string& v1, const std::string& v2) {
     // Get epoch
     std::string epoch1, epoch2;
-    auto epoch_end1 = std::find(v1.begin(), v1.end(), ':');
-    auto epoch_end2 = std::find(v2.begin(), v2.end(), ':');
+    
     auto pv1 = v1.begin();
     auto pv2 = v2.begin();
+    auto epoch_end1 = pv1, epoch_end2 = pv2;
     
-    if (epoch_end1 != v1.end()) {
+    while (isnumber(*epoch_end1)) {
+        epoch_end1++;
+    }
+    
+    while (isnumber(*epoch_end2)) {
+        epoch_end2++;
+    }
+    
+    if (epoch_end1 != v1.end() && *epoch_end1 == ':') {
         epoch1 = std::string(pv1, epoch_end1);
         pv1 = epoch_end1 + 1; // Skip the ':'
     }
     
-    if(epoch_end2 != v2.end()) {
+    if (epoch_end2 != v2.end() && *epoch_end2 == ':') {
         epoch2 = std::string(pv2, epoch_end2);
         pv2 = epoch_end2 + 1; // Skip the ':'
     }
@@ -130,9 +138,25 @@ int pkgVersionCmp(const std::string& v1, const std::string& v2) {
     std::string pkgV1, pkgV2;
     
     // Find the last '-'
-    auto pkgVerEnd1 = v1.begin() + v1.rfind('-');
+    auto pkgVerEnd1 = v1.begin();
     
-    auto pkgVerEnd2 = v2.begin() + v2.rfind('-');
+    auto pkgVerEnd2 = v2.begin();
+    
+    auto rend1 = v1.rfind('-');
+    
+    auto rend2 = v2.rfind('-');
+    
+    if (rend1 != std::string::npos) {
+        pkgVerEnd1 += rend1;
+    } else {
+        pkgVerEnd1 = v1.end();
+    }
+    
+    if (rend2 != std::string::npos) {
+        pkgVerEnd2 += rend2;
+    } else {
+        pkgVerEnd2 = v2.end();
+    }
     
     pkgV1 = std::string(pv1, pkgVerEnd1);
     pkgV2 = std::string(pv2, pkgVerEnd2);
@@ -143,6 +167,8 @@ int pkgVersionCmp(const std::string& v1, const std::string& v2) {
     }
     
     // Get revision numbers and compare them
+    pv1 = pkgVerEnd1;
+    pv2 = pkgVerEnd2;
     if(pkgVerEnd1 != v1.end()) {
         pv1 = pkgVerEnd1 + 1;
     }
@@ -163,13 +189,14 @@ enum PackageDepTokenType {
     TK_VER,
     TK_SEP, // Separator ','
     TK_OR,
+    TK_ANY,
     TK_EOF
 };
 
 typedef std::pair<PackageDepTokenType, std::string> PackageDepToken;
 
 
-PackageDepToken nextToken(std::istringstream& sstream) {
+PackageDepToken nextToken(std::istringstream& sstream, PackageDepTokenType expected) {
     static std::string pkgNameChars = "+-.";
     static std::string pkgVerChars = "+-.~:";
     static std::string opChars = "<>=";
@@ -210,8 +237,13 @@ parse_begin:
     
     // Determine token type
     if (isPkgNameChar(nch)) {
-        tk_type = TK_PKG;
-        tkPred = isPkgNameChar;
+        if (expected == TK_PKG) {
+            tk_type = TK_PKG;
+            tkPred = isPkgNameChar;
+        } else if (expected == TK_VER) {
+            tk_type = TK_VER;
+            tkPred = isPkgVerChar;
+        }
     } else if (isOpChar(nch)) {
         tk_type = TK_OP;
         tkPred = isOpChar;
@@ -221,10 +253,14 @@ parse_begin:
     } else if (nch == ',') {
         tk_type = TK_SEP;
         token = nch;
+        sstream.get();
     } else if (nch == '|') {
         tk_type = TK_OR;
         token = nch;
+        sstream.get();
     } else if (nch == '(' || nch == ')') {
+        // Consume the parathesis
+        sstream.get();
         goto parse_begin;
     } else if (nch == '[') {
         // Skip architecture restrictions
@@ -232,6 +268,8 @@ parse_begin:
             nch = sstream.get();
         }
         goto parse_begin;
+    } else {
+        tk_type = TK_ANY;
     }
 
     // If it's a separater(',' or '|'), return
@@ -258,7 +296,14 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
     PackageVersionOp targetOp;
     bool parseDone = false;
     while (!parseDone) {
-        PackageDepToken token = nextToken(sstream);
+        PackageDepTokenType tkType;
+        if (targetPkg.empty()) {
+            tkType = TK_PKG;
+        } else {
+            tkType = TK_VER;
+        }
+        PackageDepToken token = nextToken(sstream, tkType);
+        
         switch (token.first) {
             case TK_PKG:
                 targetPkg = token.second;
@@ -280,13 +325,22 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
                 targetVer = token.second;
                 break;
             case TK_SEP:
-                result.push_back(group);
+                group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
+                result.push_back(std::move(group));
                 group.clear();
+                targetPkg.clear();
+                targetVer.clear();
+                targetOp = PackageVersionOp(-1);
                 break;
             case TK_OR:
                 group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
+                targetPkg.clear();
+                targetVer.clear();
+                targetOp = PackageVersionOp(-1);
                 break;
             case TK_EOF:
+                group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
+                result.push_back(std::move(group));
                 parseDone = true;
                 break;
             default:
@@ -314,7 +368,7 @@ bool resolveDep(const Package& pkg,
     
     // FIXME: Move sorting to Package class
     // Sort versions in reverse order, later versions come first
-    std::sort(verList.begin(), verList.end(), [](Version* v1, Version* v2){
+    std::sort(verList.begin(), verList.end(), [](const Version* v1, const Version* v2){
         return pkgVersionCmp(v1->version(), v2->version());
     });
     // Try the latest version first
@@ -327,13 +381,12 @@ bool resolveDep(const Package& pkg,
         }
         // Remove all dependencies that are already installed.
         std::vector<PackageDepTuple> notInstalledDeps;
-        std::accumulate(depTuples.begin(), depTuples.end(), nullptr,
-                        [&cache, &notInstalledDeps](const void*, const PackageDepTuple& dep){
-                            auto ninstPkg = cache.package(std::get<0>(dep));
-                            if (!ninstPkg) {
-                                notInstalledDeps.push_back(dep);
-                            }
-                        });
+        for (const auto& dep: depTuples){
+            auto ninstPkg = cache.package(std::get<0>(dep));
+            if (!ninstPkg) {
+                notInstalledDeps.push_back(dep);
+            }
+        }
         // notInstalledDeps contain a list of choices of packages, pick the first one in the index
         const Package* depPkg = index.findFirstOfDeps(notInstalledDeps);
         if (depPkg != nullptr) {
@@ -382,6 +435,8 @@ bool calcDep(PackageCache& localCache, PackageCache& remoteIndex,
  */
 class TagParser {
     
+public:
+    
     TagParser(std::ifstream& tagfile);
     
     bool nextSection(TagSection& section);
@@ -403,6 +458,9 @@ bool TagParser::nextTag(std::string& tag, std::string& value) {
     std::string linebuf;
     if (linebuf.length() == 0) {
         std::getline(m_tagFile, linebuf);
+    }
+    if (linebuf.empty()) {
+        return false;
     }
     std::string tagname, tagvalue;
     auto p = linebuf.begin();
@@ -457,8 +515,12 @@ bool TagParser::nextTag(std::string& tag, std::string& value) {
         p = linebuf.end();
         if (token.length() == 0) {
             tagvalue = "";
+        } else {
+            tagvalue = token;
         }
     }
+    tag = tagname;
+    value = tagvalue;
     return true;
 }
 
@@ -466,11 +528,13 @@ bool TagParser::nextSection(TagSection& tagsection) {
     std::string tagname, tagvalue;
     TagSection section(nullptr);
     while (!m_tagFile.eof() && nextTag(tagname, tagvalue)) {
+        std::transform(tagname.begin(), tagname.end(), tagname.begin(), ::tolower);
         section << TagField(tagname, tagvalue);
     }
     if (section.fieldCount() == 0) {
         return false;
     }
+    tagsection = std::move(section);
     return true;
 }
 
@@ -478,6 +542,10 @@ bool TagParser::nextSection(TagSection& tagsection) {
 
 TagSection::TagSection(TagSection* next):m_next(next) {
 
+}
+
+TagSection::TagSection():m_next(nullptr) {
+    
 }
 
 TagSection::TagSection(const TagSection& other) {
@@ -488,6 +556,12 @@ TagSection::TagSection(const TagSection& other) {
 TagSection::TagSection(const TagSection&& other) {
     m_mapping = std::move(m_mapping);
     m_next = other.m_next;
+}
+
+TagSection& TagSection::operator=(const TagSection& other) {
+    m_mapping = other.m_mapping;
+    m_next = other.m_next;
+    return *this;
 }
 
 TagSection::~TagSection() {
@@ -503,8 +577,10 @@ void TagSection::setNext(TagSection* next) {
 }
 
 bool TagSection::tag(const std::string& tagname, std::string& out_tagvalue) const {
-    if (m_mapping.find(tagname) != m_mapping.end()) {
-        out_tagvalue = m_mapping.at(tagname);
+    std::string lowerTagname = tagname;
+    std::transform(lowerTagname.begin(), lowerTagname.end(), lowerTagname.begin(), tolower);
+    if (m_mapping.find(lowerTagname) != m_mapping.end()) {
+        out_tagvalue = m_mapping.at(lowerTagname);
         return true;
     }
     return false;
@@ -519,7 +595,9 @@ TagSection& TagSection::operator<<(const TagField& field) {
 }
 
 const std::string& TagSection::operator[] (const std::string& tagname) {
-    return m_mapping[tagname];
+    std::string lowerTagname = tagname;
+    std::transform(lowerTagname.begin(), lowerTagname.end(), lowerTagname.begin(), ::tolower);
+    return m_mapping[lowerTagname];
 }
 
 size_t TagSection::fieldCount() const {
@@ -545,7 +623,7 @@ bool FilterCondition::matchSection(const TagSection& section) const {
     return false;
 }
 
-bool FilterCondition::matchTag(const std::string& tagname, const std::string& tagvalue) const{
+bool FilterCondition::matchTag(const std::string& tagname, const std::string& tagvalue) const {
     const std::string& srcvalue = m_srcField.second;
     switch (m_op) {
         case TAG_EQ:
@@ -652,25 +730,37 @@ const TagSection& TagFile::section() const {
 }
 
 bool TagFile::nextSection() {
-    if (m_cur >= m_sections.size()) {
+    if (m_cur >= m_sections.size() - 1) {
         return false;
     }
     m_cur++;
     return true;
 }
 
+void TagFile::rewind() {
+    m_cur = 0;
+}
+
 bool TagFile::tag(const std::string& tagname, std::string& out_tagvalue) {
     return section().tag(tagname, out_tagvalue);
+}
+
+void TagFile::parseSections(std::ifstream& stream) {
+    TagParser parser(stream);
+    TagSection sec;
+    while (parser.nextSection(sec)) {
+        m_sections.push_back(sec);
+    }
 }
 
 std::vector<TagSection> TagFile::filter(const FilterConditions& conds) {
     std::vector<TagSection> results;
     TagSection* prevSection = nullptr;
     for(const auto& section: m_sections){
-        bool match = true;
+        bool match = false;
         for(const auto& cond: conds) {
             if (cond.matchSection(section)) {
-                match = false;
+                match = true;
                 break;
             }
         }
@@ -694,6 +784,12 @@ Version::Version(const TagSection& ctrlFile): m_section(ctrlFile) {
     m_depList = std::move(parseDepString(depString()));
 }
 
+Version::Version(const Version& other) {
+    m_depList = other.m_depList;
+    m_debFilePath = other.m_debFilePath;
+    m_section = other.m_section;
+}
+
 Version::~Version() {
     
 }
@@ -707,6 +803,7 @@ uint64_t Version::itemID() const {
 }
 
 bool Version::checkDep(const PackageDepTuple& dep) const {
+    std::cout << packageName() << std::endl;
     if (std::get<0>(dep) != packageName()) {
         return false;
     }
@@ -742,6 +839,14 @@ std::string Version::packageName() const {
     std::string name;
     if (m_section.tag("package", name)) {
         return name;
+    }
+    return "";
+}
+
+std::string Version::depString() const {
+    std::string dep;
+    if (m_section.tag("depends", dep)) {
+        return dep;
     }
     return "";
 }
@@ -792,12 +897,46 @@ void Version::setDebFilePath(const std::string& path) {
 
 #pragma mark -
 
+Package::Package() {
+    
+}
+
 Package::Package(const std::string& pkgName, TagFile& ctrlFile):m_pkgName(pkgName) {
     initWithTagFile(pkgName, ctrlFile);
 }
 
 Package::Package(const std::string& pkgName, const std::vector<TagSection>& sections):m_pkgName(pkgName) {
     initWithSections(sections);
+}
+
+Package::Package(const std::string& pkgName):m_pkgName(pkgName) {
+    
+}
+
+Package& Package::operator=(const Package& other) {
+    m_pkgName = other.m_pkgName;
+    m_selectedVersions = other.m_selectedVersions;
+    m_versions = other.m_versions;
+    return *this;
+}
+
+Package& Package::operator=(const Package&& other) {
+    m_pkgName = std::move(other.m_pkgName);
+    m_selectedVersions = std::move(other.m_selectedVersions);
+    m_versions = std::move(other.m_versions);
+    return *this;
+}
+
+Package::Package(const Package& other) {
+    m_pkgName = other.m_pkgName;
+    m_selectedVersions = other.m_selectedVersions;
+    m_versions = other.m_versions;
+}
+
+Package::Package(const Package&& other) {
+    m_pkgName = std::move(other.m_pkgName);
+    m_selectedVersions = std::move(other.m_selectedVersions);
+    m_versions = std::move(other.m_versions);
 }
 
 void Package::initWithTagFile(const std::string& pkgName, TagFile& ctrlFile) {
@@ -819,6 +958,10 @@ Package::~Package() {
 
 const std::string& Package::name() const {
     return m_pkgName;
+}
+
+size_t Package::versionCount() const {
+    return m_versions.size();
 }
 
 const std::vector<const Version*> Package::ver_list() const {
@@ -863,12 +1006,27 @@ bool Package::checkDep(const PackageDepTuple& dep) const {
 
 #pragma mark -
 
-PackageCache::PackageCache(const TagFile& cacheFile) {
+PackageCache::PackageCache(TagFile& cacheFile) {
     initWithTagFile(cacheFile);
 }
 
 PackageCache::PackageCache(const std::string& filename) {
-    initWithTagFile(TagFile(filename));
+    TagFile tagFile(filename);
+    initWithTagFile(tagFile);
+}
+
+void PackageCache::initWithTagFile(TagFile& cacheFile) {
+    do {
+        auto sec = cacheFile.section();
+        std::string pkgName;
+        sec.tag("package", pkgName);
+        if (m_packages.find(pkgName) == m_packages.end()) {
+            Package pkg(pkgName);
+            m_packages[pkgName] = std::move(pkg);
+        }
+        Version ver(sec);
+        m_packages[pkgName].addVersion(std::move(sec));
+    } while(cacheFile.nextSection());
 }
 
 PackageCache::~PackageCache() {
@@ -881,7 +1039,9 @@ void PackageCache::addPackage(const Package& package) {
 
 bool PackageCache::checkDep(const PackageDepTuple& dep) const {
     for(const auto& pkg: m_packages) {
-        return pkg.second.checkDep(dep);
+        if(pkg.second.checkDep(dep)){
+            return true;
+        }
     }
     return false;
 }
@@ -903,8 +1063,8 @@ const Package* PackageCache::findFirstOfDeps(const std::vector<PackageDepTuple>&
                                       m_packages.end(),
                                       deps.begin(),
                                       deps.end(),
-                                      [](const Package& pkg, const PackageDepTuple& dep){
-                                          return pkg.checkDep(dep);
+                                      [](const std::pair<std::string, Package>& pkg, const PackageDepTuple& dep){
+                                          return pkg.second.checkDep(dep);
                                       });
     if (pkgIter != m_packages.end()) {
         return &(pkgIter->second);
