@@ -69,7 +69,6 @@
 		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
 		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
-		4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* UpdatesViewController.swift */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -282,7 +281,6 @@
 		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		4D8928A71974813300AD8A28 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -509,7 +507,6 @@
 			children = (
 				4D8928A11974801900AD8A28 /* CategoriesViewController.swift */,
 				4D8928A31974809200AD8A28 /* SearchViewController.swift */,
-				4D8928A71974813300AD8A28 /* UpdatesViewController.swift */,
 				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
 				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
 				4DCE1F8619B0349300B7673C /* LoginViewController.swift */,
@@ -949,7 +946,6 @@
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
-				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
