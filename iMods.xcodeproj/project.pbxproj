@@ -66,6 +66,7 @@
 		4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */; };
 		4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
+		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
 		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
 		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
 		4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* UpdatesViewController.swift */; };
@@ -277,6 +278,8 @@
 		4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedViewController.h; sourceTree = "<group>"; };
 		4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedViewController.m; sourceTree = "<group>"; };
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUpdatesViewController.h; sourceTree = "<group>"; };
+		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
 		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4D8928A71974813300AD8A28 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
 				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
 				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
+				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
+				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -938,6 +943,7 @@
 				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
 				2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
 				2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */,
+				4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,

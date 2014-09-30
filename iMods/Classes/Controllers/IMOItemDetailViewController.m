@@ -31,6 +31,10 @@
     self.managedObjectContext = [((AppDelegate *)[[UIApplication sharedApplication] delegate]) managedObjectContext];
     self.entity = [NSEntityDescription entityForName:@"IMOInstalledItem" inManagedObjectContext:self.managedObjectContext];
     
+       [self setupItemLabels];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = self.entity;
     NSLog(@"Item ID: %@", [self.item valueForKey: @"iid"]);
@@ -50,7 +54,6 @@
             [self.installButton setTitle:@"Installed" forState:UIControlStateNormal | UIControlStateDisabled];
         }
     }
-    [self setupItemLabels];
 }
 
 - (void)didReceiveMemoryWarning {
