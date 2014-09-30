@@ -187,6 +187,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="418"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0004s_0003_Rectangle-1" id="i9O-iK-ZIe">
+                                <rect key="frame" x="0.0" y="315" width="320" height="63"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T0h-EF-OWc">
                                 <rect key="frame" x="64" y="244" width="72" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -209,23 +213,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9I7-Ct-Sut">
-                                <rect key="frame" x="185" y="249" width="25" height="30"/>
+                                <rect key="frame" x="190" y="244" width="25" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rxl-Ca-Rw1">
-                                <rect key="frame" x="218" y="244" width="43" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on your wishlist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WW4-9v-Qqg">
-                                <rect key="frame" x="218" y="264" width="123" height="21"/>
+                                <rect key="frame" x="190" y="264" width="123" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -236,31 +233,79 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rxl-Ca-Rw1">
+                                <rect key="frame" x="211" y="251" width="43" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Image" id="hWN-G9-hM1">
+                                <rect key="frame" x="107" y="83" width="106" height="106"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need some help?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QC5-Ql-OXC">
-                                <rect key="frame" x="0.0" y="316" width="320" height="37"/>
+                                <rect key="frame" x="0.0" y="378" width="320" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333339689999995" green="0.93333339689999995" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0004s_0000_wallet-128" id="4i4-6I-Iys">
+                                <rect key="frame" x="84" y="336" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0004s_0001_Your-Wallet" id="4xC-M5-i2t">
+                                <rect key="frame" x="117" y="341" width="96" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EMn-f7-yc6">
-                                <rect key="frame" x="0.0" y="457" width="320" height="61"/>
+                                <rect key="frame" x="0.0" y="478" width="320" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333339689999995" green="0.93333339689999995" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="Share iMods with the world!">
+                                <state key="normal" image="login-account-imods_0002_Share-iMods-with-the-world!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact buttons not yet implemented." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bdc-Qz-CWe">
-                                <rect key="frame" x="86" y="381" width="175" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Image" id="hWN-G9-hM1">
-                                <rect key="frame" x="107" y="83" width="106" height="106"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0004_Rectangle-4" id="Mud-rB-Udt">
+                                <rect key="frame" x="1" y="415" width="318" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0002s_0003_Ellipse-2" id="OQu-P0-hak">
+                                <rect key="frame" x="29" y="428" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0004_Ellipse-2" id="bRh-oJ-LsA">
+                                <rect key="frame" x="136" y="428" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0000s_0003_Ellipse-2" id="Dxp-Wn-DZo">
+                                <rect key="frame" x="242" y="428" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0002s_0000_headset-128" id="VT5-Sp-b04">
+                                <rect key="frame" x="41" y="440" width="26" height="26"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0000_message-128" id="JZV-qp-Nu5">
+                                <rect key="frame" x="147" y="442" width="27" height="19"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0000s_0000_about-128" id="m5Y-PV-28b">
+                                <rect key="frame" x="254" y="439" width="26" height="26"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0000s_0001_Chat-with-us" id="CdW-IJ-4KE">
+                                <rect key="frame" x="242" y="480" width="50" height="7"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0002s_0001_Call-Us" id="jR2-2c-aJ5">
+                                <rect key="frame" x="39" y="482" width="28" height="7"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0001_Email-Us" id="ELr-3G-kRS">
+                                <rect key="frame" x="143" y="482" width="35" height="7"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
@@ -710,6 +755,20 @@
         <image name="imods-assets-tweaks-icon" width="31" height="31"/>
         <image name="imods-assets-update-icon-selected" width="28" height="28"/>
         <image name="imods-assets-user-icon" width="20" height="24"/>
+        <image name="login-account-imods_0000s_0000_about-128" width="27" height="26"/>
+        <image name="login-account-imods_0000s_0001_Chat-with-us" width="50" height="7"/>
+        <image name="login-account-imods_0000s_0003_Ellipse-2" width="48" height="48"/>
+        <image name="login-account-imods_0001s_0000_message-128" width="27" height="19"/>
+        <image name="login-account-imods_0001s_0001_Email-Us" width="35" height="7"/>
+        <image name="login-account-imods_0001s_0004_Ellipse-2" width="48" height="48"/>
+        <image name="login-account-imods_0002_Share-iMods-with-the-world!" width="155" height="10"/>
+        <image name="login-account-imods_0002s_0000_headset-128" width="27" height="27"/>
+        <image name="login-account-imods_0002s_0001_Call-Us" width="28" height="7"/>
+        <image name="login-account-imods_0002s_0003_Ellipse-2" width="48" height="48"/>
+        <image name="login-account-imods_0004_Rectangle-4" width="318" height="80"/>
+        <image name="login-account-imods_0004s_0000_wallet-128" width="25" height="25"/>
+        <image name="login-account-imods_0004s_0001_Your-Wallet" width="96" height="14"/>
+        <image name="login-account-imods_0004s_0003_Rectangle-1" width="320" height="63"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
