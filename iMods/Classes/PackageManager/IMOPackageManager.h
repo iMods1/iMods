@@ -26,6 +26,8 @@
 
 - (PMKPromise*) cleanPackage:(NSString*) pkg_name;
 
+- (void) respring;
+
 - (PMKPromise*) listInstalledPackages;
 
 @end

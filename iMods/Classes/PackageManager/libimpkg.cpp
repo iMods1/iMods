@@ -528,6 +528,7 @@ bool TagParser::nextSection(TagSection& tagsection) {
     std::string tagname, tagvalue;
     TagSection section(nullptr);
     while (!m_tagFile.eof() && nextTag(tagname, tagvalue)) {
+        // Tag names are case insensitive, so we convert it to lower case here.
         std::transform(tagname.begin(), tagname.end(), tagname.begin(), ::tolower);
         section << TagField(tagname, tagvalue);
     }

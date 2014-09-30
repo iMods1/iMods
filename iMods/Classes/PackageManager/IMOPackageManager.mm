@@ -88,6 +88,11 @@ PackageCache* packageIndex;
     return [self.dpkgManager cleanPackage:pkg_name];
 }
 
+- (void) respring {
+    // TODO: Insert respring code here.
+
+}
+
 // Return a list of item IDs
 - (NSArray*) listInstalledPackages {
     NSMutableArray* result = [[NSMutableArray alloc] init];
