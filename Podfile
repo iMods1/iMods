@@ -8,6 +8,7 @@ pod 'Overcoat', '~>2.0'
 pod 'Overcoat/PromiseKit', '~>2.0'
 pod 'PromiseKit'
 pod 'PRHTask@aufflick'
+pod 'UICKeyChainStore'
 
 target 'iMods UI Tests', :exclusive => true do
     pod 'KIF', '~> 3.0'

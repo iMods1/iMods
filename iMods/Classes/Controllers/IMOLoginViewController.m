@@ -8,6 +8,7 @@
 
 #import "IMOLoginViewController.h"
 #import "IMOUserManager.h"
+#import "UICKeyChainStore.h"
 
 @interface IMOLoginViewController ()
 
@@ -23,6 +24,8 @@
 @end
 
 @implementation IMOLoginViewController
+
+@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,10 +45,12 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"textfield: %@ passwordField: %@", textField, self.passwordField);
+    NSLog(@"textField == self.passwordField is %d", textField == self.passwordField);
     if (textField == self.passwordField) {
         [self.view endEditing:YES];
+        [textField resignFirstResponder];
     } else {
+        [textField resignFirstResponder];
         [self.passwordField becomeFirstResponder];
     }
     return false;
@@ -66,7 +71,7 @@
     // Don't require login on debug
     
 #ifdef DEBUG
-    [self performSegueWithIdentifier:@"tabbar_main" sender:self];
+    [self.delegate loginViewControllerDidFinishLogin: self];
 #endif
     
     // TODO: Store/retrieve login credentials from Key Chain
@@ -74,7 +79,10 @@
     IMOUserManager *manager = [IMOUserManager sharedUserManager];
     [manager userLogin:self.userNameField.text
              password:self.passwordField.text].then(^(IMOUser *user){
-        [self performSegueWithIdentifier:@"tabbar_main" sender:self];
+        
+        [UICKeyChainStore setString: user.email forKey: @"email"];
+        [UICKeyChainStore setString: self.passwordField.text forKey: @"password"];
+        [self.delegate loginViewControllerDidFinishLogin: self];
     }).catch(^(NSError *error) {
         self.errorLabel.text = @"Could not login. Please try again.";
     });
