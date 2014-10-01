@@ -69,10 +69,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqual: @"featured_item_detail_push"]) {
+    if ([segue.identifier isEqualToString: @"featured_item_detail_push"]) {
         // TODO: Retrieve item
         IMOItemDetailViewController *controller = [segue destinationViewController];
         controller.item = self.items[[self.tableView indexPathForSelectedRow].row];
+    } else if ([segue.identifier isEqualToString: @"profile_push"]) {
+        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
 }
 
