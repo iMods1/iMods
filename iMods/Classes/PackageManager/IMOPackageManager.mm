@@ -88,6 +88,10 @@ PackageCache* packageIndex;
     return [self.dpkgManager cleanPackage:pkg_name];
 }
 
+- (BOOL) isSBTargeted {
+    // TODO: Check whether SpringBoard is the target bundle
+}
+
 - (void) respring {
     // TODO: Insert respring code here.
 
