@@ -180,7 +180,7 @@
         <!--Profile-->
         <scene sceneID="1gw-3k-akj">
             <objects>
-                <viewController title="Profile" id="LjG-VE-q2v" customClass="ProfileViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Profile" id="LjG-VE-q2v" customClass="IMOProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a11-cb-1aB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,7 +247,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need some help?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QC5-Ql-OXC">
-                                <rect key="frame" x="0.0" y="378" width="320" height="37"/>
+                                <rect key="frame" x="0.0" y="378" width="320" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333339689999995" green="0.93333339689999995" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -263,58 +263,60 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EMn-f7-yc6">
-                                <rect key="frame" x="0.0" y="478" width="320" height="61"/>
+                                <rect key="frame" x="0.0" y="506" width="320" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333339689999995" green="0.93333339689999995" blue="0.93333339689999995" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" image="login-account-imods_0002_Share-iMods-with-the-world!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0004_Rectangle-4" id="Mud-rB-Udt">
-                                <rect key="frame" x="1" y="415" width="318" height="80"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="login-account-imods_0004_Rectangle-4" id="Mud-rB-Udt">
+                                <rect key="frame" x="1" y="420" width="318" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0002s_0003_Ellipse-2" id="OQu-P0-hak">
-                                <rect key="frame" x="29" y="428" width="48" height="48"/>
+                                <rect key="frame" x="29" y="437" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0004_Ellipse-2" id="bRh-oJ-LsA">
-                                <rect key="frame" x="136" y="428" width="48" height="48"/>
+                                <rect key="frame" x="136" y="437" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0000s_0003_Ellipse-2" id="Dxp-Wn-DZo">
-                                <rect key="frame" x="242" y="428" width="48" height="48"/>
+                                <rect key="frame" x="242" y="437" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0002s_0000_headset-128" id="VT5-Sp-b04">
-                                <rect key="frame" x="41" y="440" width="26" height="26"/>
+                                <rect key="frame" x="41" y="449" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0000_message-128" id="JZV-qp-Nu5">
-                                <rect key="frame" x="147" y="442" width="27" height="19"/>
+                                <rect key="frame" x="147" y="451" width="27" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0000s_0000_about-128" id="m5Y-PV-28b">
-                                <rect key="frame" x="254" y="439" width="26" height="26"/>
+                                <rect key="frame" x="254" y="448" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0000s_0001_Chat-with-us" id="CdW-IJ-4KE">
-                                <rect key="frame" x="242" y="480" width="50" height="7"/>
+                                <rect key="frame" x="242" y="489" width="50" height="7"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0002s_0001_Call-Us" id="jR2-2c-aJ5">
-                                <rect key="frame" x="39" y="482" width="28" height="7"/>
+                                <rect key="frame" x="39" y="491" width="28" height="7"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0001_Email-Us" id="ELr-3G-kRS">
-                                <rect key="frame" x="143" y="482" width="35" height="7"/>
+                                <rect key="frame" x="143" y="491" width="35" height="7"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="bzY-AV-96a"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
