@@ -86,7 +86,6 @@
 		4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */; };
 		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
 		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
-		4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9831994817D00918424 /* ProfileViewController.swift */; };
 		4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */; };
 		4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */; };
 		4DE74A4A199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */; };
@@ -302,7 +301,6 @@
 		4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerDataSource.swift; sourceTree = "<group>"; };
 		4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweaksTestDataSource.swift; sourceTree = "<group>"; };
 		4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTestDataSource.swift; sourceTree = "<group>"; };
-		4DDAD9831994817D00918424 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerController.swift; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
@@ -508,7 +506,6 @@
 			isa = PBXGroup;
 			children = (
 				4D8928A31974809200AD8A28 /* SearchViewController.swift */,
-				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
 				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
 				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
 				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
@@ -936,7 +933,6 @@
 				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
 				4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
-				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
 				4D29D10619D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m in Sources */,
 				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
 				2833494619AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
