@@ -20,7 +20,7 @@ PackageCache* packageIndex;
 // A (package_name, tweak_plist) mapping
 // The plist file is located at <substrate root dir>/DynamicLibraries/{name}.plist
 // For mobilesubstrate the root dir would be ' /Library/MobileSubstrate'
-NSDictionary* tweakDictionray;
+NSArray* tweakArray;
 
 + (IMOPackageManager*) sharedPackageManager {
     static dispatch_once_t onceToken;
@@ -96,10 +96,73 @@ NSDictionary* tweakDictionray;
 - (BOOL) isSBTargeted {
     // TODO: Check whether SpringBoard is the target bundle
     // Use tweakDictionary to check the plist
+    BOOL *returnedBool = FALSE;
+    for (NSDictionary *dictionary in tweakArray) {
+        NSArray *allTargets = [[dictionary objectForKey:@"Filter"] objectForKey:@"Bundles"];
+        for (NSString *bundle in allTargets) {
+            if ([bundle isEqualToString:@"com.apple.springboard"]) {
+                returnedBool = TRUE;
+            }
+        }
+    }
+    return returnedBool;
 }
 
 - (void) respring {
     // TODO: Insert respring code here.
+    char file_type[40];
+    FILE *fp = popen("ps -ax | grep \"App\"", "r");
+    if (fp == NULL) {
+        printf("Failed to run command\n" );
+    }
+    NSString *consoleOutput = @"";
+    while (fgets(file_type, sizeof(file_type), fp) != NULL) {
+        consoleOutput = [consoleOutput stringByAppendingFormat:@"%s", file_type];
+    }
+    pclose(fp);
+    NSArray *bundleData = [consoleOutput componentsSeparatedByString:@"\n"];
+    NSMutableDictionary *allProcesses = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < bundleData.count - 1; i ++) {
+        NSString *currentLine = bundleData[i];
+        NSArray *largeSeparator = [currentLine componentsSeparatedByString:@"         "];
+        NSArray *firstSmallSeparator = [[largeSeparator objectAtIndex:0] componentsSeparatedByString:@" "];
+        NSArray *secondSmallSeparator = [[largeSeparator objectAtIndex:1] componentsSeparatedByString:@" "];
+        NSString *appLocation = [secondSmallSeparator objectAtIndex:1];
+        int found = 0;
+        for (int f = 0; f < firstSmallSeparator.count; f++) {
+            if (![firstSmallSeparator[f] isEqual:@""]) {
+                found = f;
+            }
+        }
+        NSString *pid = [firstSmallSeparator objectAtIndex:found-1];
+        NSString *appID = [firstSmallSeparator objectAtIndex:found];
+        NSString *number = [secondSmallSeparator objectAtIndex:0];
+        if ([appLocation rangeOfString:@".app" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            NSString *appContainer = [[[appLocation componentsSeparatedByString:@".app"] objectAtIndex:0] stringByAppendingString:@".app/Info.plist"];
+            NSDictionary *appDictionary = [[NSDictionary alloc] initWithContentsOfFile:appContainer];
+            appLocation = [appDictionary objectForKey:@"CFBundleIdentifier"];
+        }
+        NSDictionary *processData = @{@"pid": pid, @"id": appID, @"number":number};
+        NSDictionary *entry = @{appLocation: processData};
+        [allProcesses addEntriesFromDictionary:entry];
+    }
+    for (NSDictionary *dictionary in tweakArray) {
+        NSArray *allTargets = [[dictionary objectForKey:@"Filter"] objectForKey:@"Bundles"];
+        for (NSString *bundle in allTargets) {
+            if ([bundle isEqual:@"com.apple.springboard"]) {
+                system("killall SpringBoard");
+            }
+            else {
+                NSDictionary *target = [allProcesses objectForKey:bundle];
+                if (target != nil) {
+                    NSString *process = [NSString stringWithFormat:@"kill -9 %@", [target objectForKey:@"pid"]];
+                    const char *cProcess = [process cStringUsingEncoding:NSASCIIStringEncoding];
+                    system(cProcess);
+                }
+            }
+            
+        }
+    }
 
 }
 
