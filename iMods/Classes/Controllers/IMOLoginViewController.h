@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IMOLoginViewController : UIViewController <UITextFieldDelegate>
+@class IMOLoginViewController;
 
+@protocol IMOLoginViewDelegate <NSObject>
+- (void)loginViewControllerDidFinishLogin:(IMOLoginViewController *)lvc;
+@end
+
+@interface IMOLoginViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) id<IMOLoginViewDelegate>delegate;
 @end
