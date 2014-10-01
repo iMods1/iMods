@@ -228,8 +228,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSV-TY-2dM">
-                                <rect key="frame" x="102" y="198" width="117" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSV-TY-2dM">
+                                <rect key="frame" x="29" y="198" width="256" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -317,6 +317,12 @@
                     <navigationItem key="navigationItem" title="Profile" id="bzY-AV-96a"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="installedItemsLabel" destination="R4t-H5-uyZ" id="Zgc-z4-JaR"/>
+                        <outlet property="nameLabel" destination="OSV-TY-2dM" id="q4R-9M-QXg"/>
+                        <outlet property="profilePictureImageView" destination="hWN-G9-hM1" id="rw3-fp-Hzl"/>
+                        <outlet property="wishlistItemsLabel" destination="9I7-Ct-Sut" id="c3T-yq-xgh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
