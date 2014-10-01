@@ -95,6 +95,7 @@ NSDictionary* tweakDictionray;
 
 - (BOOL) isSBTargeted {
     // TODO: Check whether SpringBoard is the target bundle
+    // Use tweakDictionary to check the plist
 }
 
 - (void) respring {
