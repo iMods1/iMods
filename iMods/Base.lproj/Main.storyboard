@@ -415,7 +415,7 @@
         <!--Featured Banner Controller-->
         <scene sceneID="SpA-Pp-NpA">
             <objects>
-                <viewController id="pfa-6j-OUT" customClass="FeaturedBannerController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pfa-6j-OUT" customClass="IMOFeaturedBannerController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Uo-TA-yLV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -614,7 +614,7 @@
         <!--Search View Controller-->
         <scene sceneID="0QE-QZ-fmj">
             <objects>
-                <viewController id="Xws-Q5-Mtm" customClass="SearchViewController" customModule="iMods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xws-Q5-Mtm" customClass="IMOSearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uj9-E1-W8B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
