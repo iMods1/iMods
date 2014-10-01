@@ -14,8 +14,6 @@
 
 @property (readonly) IMODPKGManager* dpkgManager;
 
-@property NSDictionary* substrateBundleDict;
-
 + (IMOPackageManager*) sharedPackageManager;
 
 - (BOOL) openCache:(NSString*) path;

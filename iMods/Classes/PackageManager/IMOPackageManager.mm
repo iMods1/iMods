@@ -17,6 +17,11 @@ static IMOPackageManager* sharedIMOPackageManager = nil;
 PackageCache* packageCache;
 PackageCache* packageIndex;
 
+// A (package_name, tweak_plist) mapping
+// The plist file is located at <substrate root dir>/DynamicLibraries/{name}.plist
+// For mobilesubstrate the root dir would be ' /Library/MobileSubstrate'
+NSDictionary* tweakDictionray;
+
 + (IMOPackageManager*) sharedPackageManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,^{
