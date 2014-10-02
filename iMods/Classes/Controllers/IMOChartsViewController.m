@@ -13,16 +13,26 @@
 #import <Overcoat/OVCResponse.h>
 
 @interface IMOChartsViewController ()
-@property (weak, nonatomic) IBOutlet UISegmentedControl *topChartsSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIImageView *bannerImage;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *topFreeButton;
+@property (weak, nonatomic) IBOutlet UIButton *topPaidButton;
+@property (weak, nonatomic) IBOutlet UIButton *topNewButton;
 @property (strong, nonatomic) IMOItemManager *manager;
-@property NSArray *items;
+@property (strong, nonatomic) NSArray *items;
+@property (assign, nonatomic) NSInteger selectedButtonIndex;
 
+- (IBAction)topFreeButtonTapped:(UIButton *)sender;
+- (IBAction)topPaidButtonTapped:(UIButton *)sender;
+- (IBAction)topNewButtonTapped:(UIButton *)sender;
 - (void)loadDataForCategory:(NSString *)category;
+- (void)customizeNavigationBar;
+- (NSString *)categoryForSelectedIndex;
 @end
 
 @implementation IMOChartsViewController
+
+@synthesize selectedButtonIndex;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +47,13 @@
     self.tableView.dataSource = self;
     self.manager = [[IMOItemManager alloc] init];
     
-    NSString *category = [self.topChartsSegmentedControl titleForSegmentAtIndex: self.topChartsSegmentedControl.selectedSegmentIndex];
+    NSString *category = [self categoryForSelectedIndex];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"imods-assets-featured-tableview-background"]];
+    
+    self.tableView.backgroundView = imageView;
+    
+    [self customizeNavigationBar];
     
     [self loadDataForCategory: category];
 }
@@ -71,6 +87,7 @@
     
     // TODO: Other cell setup
     cell.textLabel.text = [item objectForKey: @"display_name"];
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
@@ -93,8 +110,38 @@
 
 # pragma mark - Misc
 
-- (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender {
-    NSString *category = [sender titleForSegmentAtIndex: sender.selectedSegmentIndex];
+- (IBAction)topFreeButtonTapped:(UIButton *)sender {
+    self.selectedButtonIndex = 0;
+    sender.selected = YES;
+    
+    self.topPaidButton.selected = NO;
+    self.topNewButton.selected = NO;
+    
+    NSString *category = [self categoryForSelectedIndex];
+    
+    [self loadDataForCategory: category];
+}
+
+- (IBAction)topPaidButtonTapped:(UIButton *)sender {
+    self.selectedButtonIndex = 1;
+    sender.selected = YES;
+    
+    self.topFreeButton.selected = NO;
+    self.topNewButton.selected = NO;
+    
+    NSString *category = [self categoryForSelectedIndex];
+    
+    [self loadDataForCategory: category];
+}
+
+- (IBAction)topNewButtonTapped:(UIButton *)sender {
+    self.selectedButtonIndex = 2;
+    sender.selected = YES;
+    
+    self.topFreeButton.selected = NO;
+    self.topPaidButton.selected = NO;
+    
+    NSString *category = [self categoryForSelectedIndex];
     
     [self loadDataForCategory: category];
 }
@@ -112,6 +159,19 @@
     }).finally(^() {
         [self.tableView reloadData];
     });
+}
+
+- (void)customizeNavigationBar {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+}
+
+- (NSString *)categoryForSelectedIndex {
+    NSArray *categories = @[@"Free", @"Paid", @"New"];
+    
+    return categories[self.selectedButtonIndex];
 }
 
 - (IBAction)unwindToCharts:(UIStoryboardSegue *)segue {
