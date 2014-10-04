@@ -724,6 +724,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iMods_Updates_0002s_0000_BG" id="Htz-zw-9v1">
+                                <rect key="frame" x="0.0" y="-45" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ubU-iu-bGZ">
                                 <rect key="frame" x="0.0" y="138" width="320" height="430"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -737,30 +741,45 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QhM-YI-H0o">
-                                <rect key="frame" x="90" y="91" width="51" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Update">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="updateButtonWasTapped:" destination="Vvo-xf-nJ2" eventType="touchUpInside" id="GPa-yD-ZrX"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qDl-05-yoM">
-                                <rect key="frame" x="183" y="91" width="60" height="30"/>
+                                <rect key="frame" x="211" y="100" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="Uninstall">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="uninstallButtonWasTapped:" destination="Vvo-xf-nJ2" eventType="touchUpInside" id="P0q-94-JXc"/>
                                 </connections>
                             </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iMods_Updates_0000s_0000s_0001s_0000_error-128" id="6TM-oR-uig">
+                                <rect key="frame" x="57" y="79" width="25" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QhM-YI-H0o">
+                                <rect key="frame" x="44" y="100" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateButtonWasTapped:" destination="Vvo-xf-nJ2" eventType="touchUpInside" id="GPa-yD-ZrX"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iMods_Updates_0001s_0004s_0000_Layer-27" id="pXa-4N-89O">
+                                <rect key="frame" x="231" y="78" width="20" height="23"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KfC-GG-Uiq"/>
+                    <navigationItem key="navigationItem" id="KfC-GG-Uiq">
+                        <barButtonItem key="leftBarButtonItem" image="iMods_Updates_0000s_0006s_0001s_0000_Updates" id="KHu-mt-hXD">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ubU-iu-bGZ" id="iac-Eo-gLQ"/>
                         <outlet property="uninstallButton" destination="qDl-05-yoM" id="ZkO-F0-yN1"/>
@@ -797,6 +816,10 @@
     </scenes>
     <resources>
         <image name="Image" width="106" height="106"/>
+        <image name="iMods_Updates_0000s_0000s_0001s_0000_error-128" width="25" height="22"/>
+        <image name="iMods_Updates_0000s_0006s_0001s_0000_Updates" width="75" height="17"/>
+        <image name="iMods_Updates_0001s_0004s_0000_Layer-27" width="20" height="23"/>
+        <image name="iMods_Updates_0002s_0000_BG" width="320" height="568"/>
         <image name="imods-assets-categories-icon" width="23" height="21"/>
         <image name="imods-assets-chart-icon-selected" width="31" height="27"/>
         <image name="imods-assets-featured-banner" width="320" height="158"/>
@@ -843,4 +866,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="tEk-R1-nSP"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>
