@@ -31,7 +31,11 @@
     self.managedObjectContext = [((AppDelegate *)[[UIApplication sharedApplication] delegate]) managedObjectContext];
     self.entity = [NSEntityDescription entityForName:@"IMOInstalledItem" inManagedObjectContext:self.managedObjectContext];
     
-       [self setupItemLabels];
+    [self setupItemLabels];
+
+    [self.installButton setTitle:@"Install" forState: UIControlStateNormal];
+    [self.installButton setTitle:@"Installed" forState: UIControlStateDisabled];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -51,7 +55,8 @@
         if (!([result count] == 0)) {
             self.managedItem = result[0];
             self.installButton.enabled = false;
-            [self.installButton setTitle:@"Installed" forState:UIControlStateNormal | UIControlStateDisabled];
+        } else {
+            self.installButton.enabled = true;
         }
     }
 }

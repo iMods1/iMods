@@ -60,6 +60,9 @@
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
 		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
+		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
+		4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */; };
+		4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */; };
 		4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */; };
 		4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0F319D29747004DCE49 /* TweaksDataSource.m */; };
 		4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */; };
@@ -68,8 +71,6 @@
 		4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
-		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
-		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -82,15 +83,6 @@
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
 		4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */; };
 		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
-		4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */; };
-		4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */; };
-		4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE1F8619B0349300B7673C /* LoginViewController.swift */; };
-		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
-		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
-		4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9831994817D00918424 /* ProfileViewController.swift */; };
-		4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */; };
-		4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */; };
-		4DE74A4A199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -266,6 +258,12 @@
 		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
 		4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTabBarController.h; sourceTree = "<group>"; };
 		4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOTabBarController.m; sourceTree = "<group>"; };
+		4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOProfileViewController.h; sourceTree = "<group>"; };
+		4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOProfileViewController.m; sourceTree = "<group>"; };
+		4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedBannerController.h; sourceTree = "<group>"; };
+		4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedBannerController.m; sourceTree = "<group>"; };
+		4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOSearchViewController.h; sourceTree = "<group>"; };
+		4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOSearchViewController.m; sourceTree = "<group>"; };
 		4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMods.xcdatamodel; sourceTree = "<group>"; };
 		4D29D0EF19D29190004DCE49 /* IMOItemDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemDataSource.h; sourceTree = "<group>"; };
 		4D29D0F219D29747004DCE49 /* TweaksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweaksDataSource.h; sourceTree = "<group>"; };
@@ -282,8 +280,6 @@
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUpdatesViewController.h; sourceTree = "<group>"; };
 		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
-		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -298,21 +294,12 @@
 		4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesController.m; sourceTree = "<group>"; };
 		4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOChartsViewController.h; sourceTree = "<group>"; };
 		4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOChartsViewController.m; sourceTree = "<group>"; };
-		4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerTestDataSource.swift; sourceTree = "<group>"; };
-		4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerDataSource.swift; sourceTree = "<group>"; };
-		4DCE1F8619B0349300B7673C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweaksTestDataSource.swift; sourceTree = "<group>"; };
-		4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTestDataSource.swift; sourceTree = "<group>"; };
-		4DDAD9831994817D00918424 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerController.swift; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
 		4DDFAC5F19762C860094FB8D /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
 		4DDFAC6019762C860094FB8D /* libPods-TSMessages.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TSMessages.a"; path = "Pods/build/Debug-iphoneos/libPods-TSMessages.a"; sourceTree = "<group>"; };
 		4DDFAC6619762E650094FB8D /* iMods-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iMods-Bridging-Header.h"; sourceTree = "<group>"; };
-		4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAssetsResolver.swift; sourceTree = "<group>"; };
-		4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAssetsTestResolver.swift; sourceTree = "<group>"; };
 		9015AF55E8614A20A367229A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B6343D3166694159A75FBE1B /* Pods-iMods UI Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.xcconfig"; path = "Pods/Pods-iMods UI Tests.xcconfig"; sourceTree = "<group>"; };
 		F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iMods UI Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -508,11 +495,6 @@
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D8928A11974801900AD8A28 /* CategoriesViewController.swift */,
-				4D8928A31974809200AD8A28 /* SearchViewController.swift */,
-				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
-				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
-				4DCE1F8619B0349300B7673C /* LoginViewController.swift */,
 				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
 				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
 				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
@@ -529,6 +511,12 @@
 				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
 				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
 				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
+				4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */,
+				4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */,
+				4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */,
+				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
+				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
+				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -605,12 +593,6 @@
 		4D89290019749EF700AD8A28 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */,
-				4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */,
-				4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */,
-				4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */,
-				4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */,
-				4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */,
 				4D29D0EF19D29190004DCE49 /* IMOItemDataSource.h */,
 				4D29D0F219D29747004DCE49 /* TweaksDataSource.h */,
 				4D29D0F319D29747004DCE49 /* TweaksDataSource.m */,
@@ -931,18 +913,13 @@
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
-				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
 				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
-				4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
-				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
 				4D29D10619D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m in Sources */,
-				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
 				2833494619AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
-				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
 				2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
 				2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */,
 				4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */,
@@ -952,22 +929,19 @@
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
-				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
-				4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */,
-				4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
-				4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */,
+				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
+				4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */,
 				4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */,
-				4DE74A4A199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift in Sources */,
 				2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
 				4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */,
 				2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
-				4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */,
 				2826720119D0123B0063CF94 /* main.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 			);

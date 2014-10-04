@@ -5,7 +5,7 @@
 	<key>CFBuildDate</key>
 	<date>2014-08-08T12:47:10Z</date>
 	<key>CFBuildNumber</key>
-	<string>603</string>
+	<string>661</string>
 	<key>CFBuildVersion</key>
 	<string>0</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLongVersionString</key>
-	<string>1.0.603.20141002.162415</string>
+	<string>1.0.661.20141002.020419</string>
 	<key>CFBundleMajorVersion</key>
 	<string>1</string>
 	<key>CFBundleName</key>
@@ -29,7 +29,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.603</string>
+	<string>1.0.661</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
