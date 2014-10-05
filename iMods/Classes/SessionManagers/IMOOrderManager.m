@@ -105,8 +105,23 @@ static IMOUserManager* currentUser = nil;
 - (PMKPromise*) fetchOrderByOrder:(IMOOrder*)order {
     if(!order){
         NSLog(@"'nil' order received. Return.");
+        return nil;
     }
     return [self fetchOrderByID:order.oid];
+}
+
+- (PMKPromise*) fetchOrderByUserItem:(NSUInteger)iid {
+    if(!iid <= 0) {
+        NSLog(@"Invalid item id recieved. Return.");
+        return nil;
+    }
+    if(!currentUser.userLoggedIn) {
+        NSLog(@"User not logged in when placing new order.");
+        return nil;
+    }
+    
+    // TODO: Implement backend api method
+    return [sessionManager getJSON:@"order/user/item" urlParameters:@[@(iid)] parameters:nil];
 }
 
 - (PMKPromise*) refreshOrders {
