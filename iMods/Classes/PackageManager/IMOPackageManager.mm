@@ -96,12 +96,12 @@ NSArray* tweakArray;
 - (BOOL) isSBTargeted {
     // TODO: Check whether SpringBoard is the target bundle
     // Use tweakDictionary to check the plist
-    BOOL *returnedBool = FALSE;
+    BOOL returnedBool = NO;
     for (NSDictionary *dictionary in tweakArray) {
         NSArray *allTargets = [[dictionary objectForKey:@"Filter"] objectForKey:@"Bundles"];
         for (NSString *bundle in allTargets) {
             if ([bundle isEqualToString:@"com.apple.springboard"]) {
-                returnedBool = TRUE;
+                returnedBool = YES;
             }
         }
     }

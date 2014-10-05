@@ -182,6 +182,11 @@ SHA256: 6b5f5d0a83d335a8e85a1de933a7a253dd14c9d65b30edc91239f0566b924028\n\
     XCTAssert(dep.size() == 1);
     XCTAssert(dep[0].size() == 1);
     XCTAssert(dep[0][0] == std::make_tuple("coreutils", VER_GE, "8.0"));
+    dep = parseDepString("coreutils | debianutils");
+    XCTAssert(dep.size() == 1);
+    XCTAssert(dep[0].size() == 2);
+    XCTAssert(dep[0][0] == std::make_tuple("coreutils", VER_ANY, ""));
+    XCTAssert(dep[0][1] == std::make_tuple("debianutils", VER_ANY, ""));
     dep = parseDepString("coreutils (>> 8.0) | coreutils (<= 5.0)");
     XCTAssert(dep.size() == 1);
     XCTAssert(dep[0].size() == 2);

@@ -13,8 +13,10 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <fstream>
 #include <map>
+#include <ostream>
 
 #pragma mark Forward Declarations
 
@@ -24,15 +26,17 @@ class FilterCondition;
 class Package;
 class Version;
 class PackageCache;
+class DependencySolver;
 
 #pragma mark Enumerations
 
 enum PackageVersionOp {
-    VER_EQ,
-    VER_LT,
-    VER_LE,
-    VER_GT,
-    VER_GE
+    VER_EQ = 0,
+    VER_LT = -2,
+    VER_LE = -1,
+    VER_GT = 1,
+    VER_GE = 2,
+    VER_ANY = 0xFF
 };
 
 #pragma mark typedef
@@ -43,17 +47,32 @@ typedef std::vector<FilterCondition> FilterConditions;
 
 typedef std::tuple<std::string, PackageVersionOp, std::string> PackageDepTuple;
 
+typedef std::vector<PackageDepTuple> DepVector;
+
 typedef PackageCache PackageIndex;
 
-#pragma mark Core Utility Functions
+#pragma mark Constants
+
+// How far the dependency resolver can go in the dependency graph
+const int MaxDependencyResolveDepth = 500;
+
+#pragma mark Utilities
+
+std::string depTuplePackageName(const PackageDepTuple& dep);
+
+PackageVersionOp depTupleVersionOp(const PackageDepTuple& dep);
+
+std::string depTupleVersion(const PackageDepTuple& dep);
+
+#pragma mark Core Functions
 
 int pkgVersionCmp(const std::string& v1, const std::string& v2);
 
 bool checkDep(const std::string& depString, const TagSection& targetPackage);
 
-bool calcDep(PackageCache& localCache, PackageCache& remoteIndex,
-             const std::vector<const Package*>& targetPackages,
-             std::vector<const Package*>& out_toInstallPackages);
+bool checkDep(const PackageDepTuple& v1, const PackageDepTuple& v2);
+
+std::ostream& operator<<(std::ostream& stream, const PackageDepTuple& dep);
 
 size_t calcInstalledSize(TagFile& localCache);
 
@@ -184,51 +203,46 @@ public:
     
     Package();
     
-    Package(const std::string& pkgName, TagFile& ctrlFile);
+    Package(const std::string& pkgName, TagFile& ctrlFile, bool installed=false);
     
-    Package(const std::string& pkgName, const std::vector<TagSection>& sections);
+    Package(const std::string& pkgName, const std::vector<TagSection>& sections, bool installed=false);
     
-    Package(const std::string& pkgName);
+    Package(const std::string& pkgName, bool installed=false);
     
     Package(const Package& other);
 
     Package(const Package&& other);
     
-    Package& operator=(const Package& other);
-    
-    Package& operator=(const Package&& other);
-    
     ~Package();
+    
+    // Currently installed version
+    const Version* curVersion() const;
     
     const std::string& name() const;
     
     const std::vector<const Version*> ver_list() const;
     
-    bool checkDep(const PackageDepTuple& dep) const;
-    
-    // Select a list of versions to install
-    // Only one version should be selected before dowload
-    void selectVersions(const std::vector<const Version*>& versions);
-    
-    void selectVersions(const std::vector<std::string>& versionStr);
-    
-    const std::vector<const Version*>& selectedVersions() const;
+    const Version* checkDep(const PackageDepTuple& dep) const;
     
     void addVersion(const Version& version);
     
     size_t versionCount() const;
     
+    Package& operator=(const Package& other);
+    
+    Package& operator=(const Package&& other);
+    
 private:
     
-    void initWithTagFile(const std::string& pkgName, TagFile& ctrlFile);
+    void initWithTagFile(const std::string& pkgName, TagFile& ctrlFile, bool installed);
     
-    void initWithSections(const std::vector<TagSection>& sections);
+    void initWithSections(const std::vector<TagSection>& sections, bool installed);
     
     std::string m_pkgName;
     
-    std::map<std::string, Version> m_versions;
+    const Version* m_curVersion;
     
-    std::vector<const Version*> m_selectedVersions;
+    std::map<std::string, Version> m_versions;
     
 };
 
@@ -263,6 +277,19 @@ public:
     const std::string& debFilePath() const;
     
     void setDebFilePath(const std::string& path);
+    
+    // Compare versions
+    bool operator<(const Version& version);
+    
+    bool operator>(const Version& version);
+    
+    bool operator<=(const Version& version);
+    
+    bool operator>=(const Version& version);
+    
+    bool operator==(const Version& version);
+    
+    std::ostream& operator<<(std::ostream& out);
 
 private:
     
@@ -286,7 +313,7 @@ public:
     
     const Package* package(const std::string& pkgName) const;
     
-    const Package* findFirstOfDeps(const std::vector<PackageDepTuple>& deps);
+    const Version* findFirstVersionOfDeps(const std::vector<PackageDepTuple>& deps) const;
     
     const std::map<std::string, Package>& allPackages() const;
     
@@ -299,4 +326,69 @@ private:
     
     std::map<std::string, Package> m_packages;
 };
+
+#pragma mark -
+
+class DependencySolver {
+    
+public:
+    
+    DependencySolver(const PackageCache& cache, const PackageIndex& index,
+                     const DepVector& unresolvedDeps);
+    
+    DependencySolver(const PackageCache& cache, const PackageIndex& index);
+
+    void initUnresolvedDeps(const DepVector& unresolvedDeps);
+    
+    DepVector getUpdates() const;
+    
+    DepVector findSolution();
+    
+private:
+    
+    struct Step {
+        Step* parent;
+        
+        std::vector<Step*> children;
+        
+        int level;
+        
+        const Version* srcVersion;
+        
+        PackageDepTuple targetDep;
+        
+        Step(const Version* srcVersion, const PackageDepTuple& targetDep, Step* parent=nullptr);
+        Step();
+    };
+    
+    bool calcDep(DepVector& out_targetDeps, DepVector& out_brokenDeps);
+    
+    Step& newStep(const Version* ver, const PackageDepTuple& dep, Step* parent=nullptr);
+    
+    bool resolveSingleDep(Step& step);
+    
+    bool checkConflicts(const Step& step);
+    
+    void initRevDepMap();
+    
+    std::unordered_set<std::string> m_visited;
+    
+    // The actual dependency graph
+    // A "target package name" to "source step" mapping
+    std::unordered_map<std::string, Step> m_steps;
+    
+    // Reverse dependencies map, <target package name, <source version, target dependency>>
+    std::unordered_multimap<std::string, std::pair<const Version*, PackageDepTuple>> m_cacheRevDepMap;
+    
+    const PackageCache& m_cache;
+    
+    const PackageIndex& m_index;
+    
+    DepVector m_unresolvedDeps;
+
+    DepVector m_resolvedDeps;
+    
+    DepVector m_brokenDeps;
+};
+
 #endif /* defined(__iMods__libimpkg__) */

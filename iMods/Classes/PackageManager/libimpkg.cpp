@@ -14,6 +14,56 @@
 #include <tuple>
 #include <sstream>
 #include <functional>
+#include <unordered_map>
+#include <cassert>
+
+#pragma mark -
+
+std::string depTuplePackageName(const PackageDepTuple& dep) {
+    return std::get<0>(dep);
+}
+
+PackageVersionOp depTupleVersionOp(const PackageDepTuple& dep) {
+    return std::get<1>(dep);
+}
+
+std::string depTupleVersion(const PackageDepTuple& dep) {
+    return std::get<2>(dep);
+}
+
+std::ostream& operator<<(std::ostream& stream, const PackageDepTuple& dep) {
+    std::string verOp;
+    switch (depTupleVersionOp(dep)) {
+        case VER_ANY:
+            verOp = "any";
+            break;
+            
+        case VER_EQ:
+            verOp = "=";
+            break;
+            
+        case VER_GE:
+            verOp = ">=";
+            break;
+            
+        case VER_GT:
+            verOp = ">";
+            break;
+            
+        case VER_LE:
+            verOp = "<=";
+            break;
+        
+        case VER_LT:
+            verOp = "<";
+            break;
+        
+        default:
+            break;
+    }
+    stream << "'" << depTuplePackageName(dep) << "' " << verOp << " " << depTupleVersion(dep);
+    return stream;
+}
 
 #pragma mark -
 
@@ -293,7 +343,7 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
     
     std::string targetPkg;
     std::string targetVer;
-    PackageVersionOp targetOp;
+    PackageVersionOp targetOp = VER_ANY;
     bool parseDone = false;
     while (!parseDone) {
         PackageDepTokenType tkType;
@@ -330,13 +380,13 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
                 group.clear();
                 targetPkg.clear();
                 targetVer.clear();
-                targetOp = PackageVersionOp(-1);
+                targetOp = VER_ANY;
                 break;
             case TK_OR:
                 group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
                 targetPkg.clear();
                 targetVer.clear();
-                targetOp = PackageVersionOp(-1);
+                targetOp = VER_ANY;
                 break;
             case TK_EOF:
                 group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
@@ -348,86 +398,6 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
         }
     }
     return result;
-}
-
-bool resolveDep(const Package& pkg,
-                std::map<std::string, const Package*>& mark,
-                PackageCache& cache,
-                PackageCache& index,
-                std::vector<const Package*>& res) {
-    
-    mark[pkg.name()] = &pkg;
-    
-    std::vector<const Version*> verList(pkg.ver_list());
-    
-    // Return if there are no actual package files
-    if (verList.empty()) {
-        std::cerr << "Package '" << pkg.name() << "' has no deb files" << std::endl;
-        return false;
-    }
-    
-    // FIXME: Move sorting to Package class
-    // Sort versions in reverse order, later versions come first
-    std::sort(verList.begin(), verList.end(), [](const Version* v1, const Version* v2){
-        return pkgVersionCmp(v1->version(), v2->version());
-    });
-    // Try the latest version first
-    bool fulfilled = true;
-    for(auto& depTuples:verList[0]->dep_list()) {
-        if (depTuples.empty()) {
-            // Shouldn't happen
-            std::cerr << "Empty dependency tuple list found, this shouldn't happen, it's possibly a bug." << std::endl;
-            continue;
-        }
-        // Remove all dependencies that are already installed.
-        std::vector<PackageDepTuple> notInstalledDeps;
-        for (const auto& dep: depTuples){
-            auto ninstPkg = cache.package(std::get<0>(dep));
-            if (!ninstPkg) {
-                notInstalledDeps.push_back(dep);
-            }
-        }
-        // notInstalledDeps contain a list of choices of packages, pick the first one in the index
-        const Package* depPkg = index.findFirstOfDeps(notInstalledDeps);
-        if (depPkg != nullptr) {
-            fulfilled = false;
-            std::cerr << "Dependencies of " << pkg.name() << "' cannot be resolved";
-            break;
-        }
-        fulfilled &= resolveDep(*depPkg, mark, cache, index, res);
-    }
-    
-    if (fulfilled) {
-        res.push_back(&pkg);
-        return true;
-    } else if(verList.size() == 1){
-        // Tried last version, so the dependency cannot be resolved.
-        std::cerr << "Cannot resolve dependencies of package '" << pkg.name() << "'" << std::endl;
-    } else {
-        // #FIXME: Try other versions
-        //std::cout << "Trying other versions of package '" << pkg.name() << "'" << std::endl;
-    }
-    return false;
-}
-
-bool calcDep(PackageCache& localCache, PackageCache& remoteIndex,
-             const std::vector<const Package*>& targetPackages,
-             std::vector<const Package*>& out_toInstallPackages)
-{
-    std::map<std::string, const Package*> mark;
-    std::vector<const Package*> resolved;
-    for(auto& pkg: targetPackages) {
-        if (localCache.package(pkg->name())) {
-            // Package already installed
-            mark.insert(std::make_pair(pkg->name(), pkg));
-            continue;
-        }
-        if(!resolveDep(*pkg, mark, localCache, remoteIndex, resolved)){
-            return false;
-        }
-    }
-    out_toInstallPackages = std::move(resolved);
-    return true;
 }
 
 /* TagParser is used to parse index or status files.
@@ -812,23 +782,21 @@ bool Version::checkDep(const PackageDepTuple& dep) const {
     switch (std::get<1>(dep)) {
         case VER_EQ:
             return pkgVersionCmp(version(), std::get<2>(dep)) == 0;
-            break;
             
         case VER_GE:
             return pkgVersionCmp(version(), std::get<2>(dep)) >= 0;
-            break;
             
         case VER_GT:
             return pkgVersionCmp(version(), std::get<2>(dep)) > 0;
-            break;
             
         case VER_LE:
             return pkgVersionCmp(version(), std::get<2>(dep)) <= 0;
-            break;
             
         case VER_LT:
             return pkgVersionCmp(version(), std::get<2>(dep)) < 0;
-            break;
+            
+        case VER_ANY:
+            return true;
             
         default:
             break;
@@ -858,6 +826,31 @@ std::string Version::version() const {
         return ver;
     }
     return "";
+}
+
+bool Version::operator<(const Version& version) {
+    return pkgVersionCmp(this->version(), version.version()) < 0;
+}
+
+bool Version::operator>(const Version& version) {
+    return pkgVersionCmp(this->version(), version.version()) > 0;
+}
+
+bool Version::operator<=(const Version& version) {
+    return pkgVersionCmp(this->version(), version.version()) <= 0;
+}
+
+bool Version::operator>=(const Version& version) {
+    return pkgVersionCmp(this->version(), version.version()) >= 0;
+}
+
+bool Version::operator==(const Version& version) {
+    return pkgVersionCmp(this->version(), version.version()) == 0;
+}
+
+std::ostream& Version::operator<<(std::ostream& out) {
+    out << packageName() << " " << version();
+    return out;
 }
 
 std::string Version::sha1Checksum() const {
@@ -898,58 +891,67 @@ void Version::setDebFilePath(const std::string& path) {
 
 #pragma mark -
 
-Package::Package() {
+Package::Package():m_curVersion(nullptr) {
     
 }
 
-Package::Package(const std::string& pkgName, TagFile& ctrlFile):m_pkgName(pkgName) {
-    initWithTagFile(pkgName, ctrlFile);
+Package::Package(const std::string& pkgName, TagFile& ctrlFile, bool installed)
+:m_pkgName(pkgName), m_curVersion(nullptr) {
+    initWithTagFile(pkgName, ctrlFile, installed);
 }
 
-Package::Package(const std::string& pkgName, const std::vector<TagSection>& sections):m_pkgName(pkgName) {
-    initWithSections(sections);
+Package::Package(const std::string& pkgName, const std::vector<TagSection>& sections, bool installed)
+:m_pkgName(pkgName), m_curVersion(nullptr) {
+    initWithSections(sections, installed);
 }
 
-Package::Package(const std::string& pkgName):m_pkgName(pkgName) {
+Package::Package(const std::string& pkgName, bool installed)
+:m_pkgName(pkgName), m_curVersion(nullptr) {
     
 }
 
 Package& Package::operator=(const Package& other) {
     m_pkgName = other.m_pkgName;
-    m_selectedVersions = other.m_selectedVersions;
     m_versions = other.m_versions;
+    m_curVersion = other.m_curVersion;
     return *this;
 }
 
 Package& Package::operator=(const Package&& other) {
     m_pkgName = std::move(other.m_pkgName);
-    m_selectedVersions = std::move(other.m_selectedVersions);
     m_versions = std::move(other.m_versions);
+    m_curVersion = other.m_curVersion;
     return *this;
 }
 
 Package::Package(const Package& other) {
     m_pkgName = other.m_pkgName;
-    m_selectedVersions = other.m_selectedVersions;
     m_versions = other.m_versions;
+    m_curVersion = other.m_curVersion;
 }
 
 Package::Package(const Package&& other) {
     m_pkgName = std::move(other.m_pkgName);
-    m_selectedVersions = std::move(other.m_selectedVersions);
     m_versions = std::move(other.m_versions);
+    m_curVersion = other.m_curVersion;
 }
 
-void Package::initWithTagFile(const std::string& pkgName, TagFile& ctrlFile) {
+void Package::initWithTagFile(const std::string& pkgName, TagFile& ctrlFile, bool installed) {
     FilterCondition nameFilter(std::make_pair("package", pkgName), FilterCondition::TAG_EQ);
     auto sections = std::move(ctrlFile.filter(FilterConditions({nameFilter})));
-    initWithSections(sections);
+    initWithSections(sections, installed);
 }
 
-void Package::initWithSections(const std::vector<TagSection>& sections) {
+void Package::initWithSections(const std::vector<TagSection>& sections, bool installed) {
     for (const auto& sec: sections) {
         Version ver(sec);
         m_versions.insert(std::make_pair(ver.version(), std::move(ver)));
+    }
+    
+    // If this is an installed package, there should be only one version installed
+    if (installed) {
+        assert(m_versions.size() == 1);
+        m_curVersion = &(m_versions.begin()->second);
     }
 }
 
@@ -965,6 +967,10 @@ size_t Package::versionCount() const {
     return m_versions.size();
 }
 
+const Version* Package::curVersion() const {
+    return m_curVersion;
+}
+
 const std::vector<const Version*> Package::ver_list() const {
     std::vector<const Version*> versions;
     for(const auto& ver: m_versions) {
@@ -973,36 +979,23 @@ const std::vector<const Version*> Package::ver_list() const {
     return versions;
 }
 
-void Package::selectVersions(const std::vector<const Version*>& versions) {
-    m_selectedVersions = versions;
-}
-
-void Package::selectVersions(const std::vector<std::string>& versionStr) {
-    m_selectedVersions.clear();
-    for(auto& str: versionStr) {
-        auto res = m_versions.find(str);
-        if (res != m_versions.end()) {
-            m_selectedVersions.push_back(&(res->second));
-        }
-    }
-}
-
-const std::vector<const Version*>& Package::selectedVersions() const {
-    return m_selectedVersions;
-}
-
 void Package::addVersion(const Version& version) {
     m_versions.insert(std::make_pair(version.version(), std::move(version)));
 }
 
-bool Package::checkDep(const PackageDepTuple& dep) const {
+const Version* Package::checkDep(const PackageDepTuple& dep) const {
     if(std::get<0>(dep) != name()) {
-        return false;
+        return nullptr;
     }
     if (ver_list().empty()) {
-        return false;
+        return nullptr;
     }
-    return ver_list()[0]->checkDep(dep);
+    for(auto ver:m_versions) {
+        if (ver.second.checkDep(dep)) {
+            return &m_versions.at(ver.first);
+        }
+    }
+    return nullptr;
 }
 
 #pragma mark -
@@ -1059,16 +1052,155 @@ const Package* PackageCache::package(const std::string& pkgName) const {
     return nullptr;
 }
 
-const Package* PackageCache::findFirstOfDeps(const std::vector<PackageDepTuple>& deps) {
-    auto pkgIter = std::find_first_of(m_packages.begin(),
-                                      m_packages.end(),
-                                      deps.begin(),
-                                      deps.end(),
-                                      [](const std::pair<std::string, Package>& pkg, const PackageDepTuple& dep){
-                                          return pkg.second.checkDep(dep);
-                                      });
-    if (pkgIter != m_packages.end()) {
-        return &(pkgIter->second);
+const Version* PackageCache::findFirstVersionOfDeps(const std::vector<PackageDepTuple>& deps) const {
+    const Version* ver = nullptr;
+    std::find_first_of(m_packages.begin(),
+                       m_packages.end(),
+                       deps.begin(),
+                       deps.end(),
+                       [&ver](const std::pair<std::string, Package>& pkg, const PackageDepTuple& dep){
+                           auto v = pkg.second.checkDep(dep);
+                           if(v){
+                               ver = v;
+                               return true;
+                           }
+                           return false;
+                       });
+    return ver;       
+}
+
+#pragma mark -
+
+DependencySolver::Step::Step(const Version* srcVersion, const PackageDepTuple& targetDep, Step* parent)
+:srcVersion(srcVersion), targetDep(targetDep), parent(parent)
+{
+    if (parent) {
+        parent->children.push_back(this);
     }
-    return nullptr;
+}
+
+DependencySolver::Step::Step()
+:srcVersion(nullptr), parent(nullptr)
+{
+}
+
+DependencySolver::DependencySolver(const PackageCache& cache, const PackageIndex& index,
+                                   const DepVector& unresolvedDeps)
+:m_cache(cache), m_index(index), m_unresolvedDeps(unresolvedDeps)
+{
+    // Init reverse dependencies map
+    initRevDepMap();
+}
+
+DependencySolver::DependencySolver(const PackageCache& cache, const PackageIndex& index)
+:m_cache(cache), m_index(index)
+{
+    // Init reverse dependencies map
+    initRevDepMap();
+}
+
+void DependencySolver::initUnresolvedDeps(const DepVector& unresolvedDeps) {
+    if (!unresolvedDeps.empty()) {
+        return;
+    }
+
+    m_unresolvedDeps = unresolvedDeps;
+}
+
+void DependencySolver::initRevDepMap() {
+    // Insert reverse dependency entries into the hashtable
+    auto pkgMap = m_cache.allPackages();
+    for(auto pkg: pkgMap) {
+        auto ver = pkg.second.curVersion();
+        auto depList = ver->dep_list();
+        for(auto& depChoiceList: depList) {
+            for(auto& dep:depChoiceList) {
+                auto targetPkg = m_cache.package(depTuplePackageName(dep));
+                if(targetPkg){
+                    auto revDepEntry = std::make_pair(targetPkg, std::make_pair(ver, dep));
+                    m_cacheRevDepMap.insert(revDepEntry);
+                }
+            } // for dep
+        } // for depChoiceList
+    }// for pkg
+}
+
+bool DependencySolver::checkConflicts(const Step& step) {
+    auto targetPkgName = depTuplePackageName(step.targetDep);
+    // Check whether it breaks the current installation
+    auto revDep = m_cacheRevDepMap.find(targetPkgName);
+}
+
+DependencySolver::Step& DependencySolver::newStep(const Version* ver, const PackageDepTuple& dep, Step* parent) {
+    Step step(ver, dep, parent);
+    step.level = m_steps.size() + 1;
+    m_steps[depTuplePackageName(dep)] = std::move(step);
+    return m_steps[ver->packageName()];
+}
+
+bool DependencySolver::resolveSingleDep(Step& step) {
+    auto targetPkgName = depTuplePackageName(step.targetDep);
+    auto targetPkgVer = depTupleVersion(step.targetDep);
+    auto iter = m_visited.find(targetPkgName);
+    // Check if visited
+    if (iter == m_visited.end()) {
+        m_visited.insert(targetPkgName);
+    }
+    
+    // Check if installed
+    auto installed = m_cache.package(targetPkgName);
+    if (installed) {
+        // It's installed, then check if it is an upgrade or downgrade
+        if (depTupleVersionOp(step.targetDep) == VER_ANY) {
+            // The dependency doesn't have version restrictions, so it's satisfied.
+            return true;
+        }
+        auto installedVer = installed->curVersion()->version();
+        auto verCmp = pkgVersionCmp(installedVer, targetPkgVer);
+        if (verCmp > 0) {
+            std::cerr << step.srcVersion << " requires " << step.targetDep
+            << " but version " << installedVer << " is already installed" << std::endl;
+            std::cerr << "Cannot downgrade." << std::endl;
+            return false;
+        }
+        else if(verCmp < 0) {
+            // It's an upgrade, move alone(treat it as a new package
+        } else {
+            // The same version installed, return
+            return true;
+        }
+    }
+    
+    // Get the latest target version that satisfies the dependency
+    auto ver = m_index.findFirstVersionOfDeps({step.targetDep});
+    if (!ver) {
+        m_brokenDeps.push_back(step.targetDep);
+        return false;
+    }
+
+    // Get the target package
+    auto pkg = m_index.package(ver->packageName());
+    std::vector<const Version*> verList(pkg->ver_list());
+    
+    // Check dependencies
+    for(auto tarDeps: ver->dep_list()) {
+        //dep_list() returns a list of list
+        // The inner list is an "OR" list, e.g. "iptools | ipconfig"
+        // Just need to choose one of them.
+        // The outter list is an "AND" list, e.g. "coreutils, debianutils, dpkg"
+        // All of them need to be satisfied.
+        
+        // TODO: Make a better algorithm to choose a version from tarDeps
+        // Currently, we only use the first dependency
+        assert(tarDeps.size() > 0);
+        auto dep = tarDeps[0];
+        // Create a step for it
+        auto nstep = newStep(ver, dep, &step);
+    }
+    
+    return false;
+}
+
+bool DependencySolver::calcDep(DepVector& out_targetDeps, DepVector& out_brokenDeps) {
+    return false;
 }
