@@ -350,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600" y="-299"/>
+            <point key="canvasLocation" x="2584" y="-279"/>
         </scene>
         <!--Featured-->
         <scene sceneID="aWc-4F-evb">
@@ -484,7 +484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JtB-qd-IzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3072" y="242.5"/>
+            <point key="canvasLocation" x="3148" y="114.5"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="c9D-jX-JLI">
@@ -556,11 +556,12 @@
                         <outlet property="summaryLabel" destination="QSV-5c-0h3" id="zF4-YN-yDJ"/>
                         <outlet property="titleLabel" destination="h5b-fU-AcB" id="Qo9-tq-Aco"/>
                         <outlet property="versionLabel" destination="9wF-AX-myF" id="1YJ-41-4iF"/>
+                        <segue destination="9sT-yx-CwZ" kind="modal" identifier="item_detail_card_modal" id="dFw-nh-O5U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-bb-DXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3481" y="373"/>
+            <point key="canvasLocation" x="3148" y="605"/>
         </scene>
         <!--Categories Controller-->
         <scene sceneID="eQU-VR-A5d">
@@ -670,7 +671,36 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3018" y="-299"/>
+            <point key="canvasLocation" x="3142" y="-315"/>
+        </scene>
+        <!--Card View Controller-->
+        <scene sceneID="iUo-E8-7XE">
+            <objects>
+                <viewController storyboardIdentifier="card-view-controller" id="9sT-yx-CwZ" customClass="IMOCardViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="obc-Fb-Nfq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Z0q-Vz-U46">
+                                <rect key="frame" x="136" y="142" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonTapped:" destination="9sT-yx-CwZ" eventType="touchUpInside" id="gFg-9R-EnX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="submitButton" destination="Z0q-Vz-U46" id="arY-G4-3MJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aqN-U6-sxm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3610" y="605"/>
         </scene>
         <!--Featured-->
         <scene sceneID="RCo-dt-eAr">

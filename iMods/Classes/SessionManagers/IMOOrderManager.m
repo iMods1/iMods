@@ -41,7 +41,7 @@ static IMOUserManager* currentUser = nil;
     return [sessionManager postJSON:@"order/add" data:data]
     .then(^(OVCResponse* response, NSError* error){
         if(error){
-            return;
+            @throw error.localizedDescription;
         }
         IMOOrder* order = response.result;
         IMOOrder* serverNewOrder = [[IMOOrder alloc] init];
@@ -49,14 +49,20 @@ static IMOUserManager* currentUser = nil;
         [serverNewOrder updateFromModel:order];
         if(![order isKindOfClass:IMOOrder.class]){
             NSLog(@"Errored when placing new order");
-            return;
+            @throw @"Error placing new order";
         }
         if(self.orders) {
             [self.orders addObject:serverNewOrder];
         }else{
             self.orders = [NSMutableArray arrayWithObject:serverNewOrder];
         }
+        return serverNewOrder;
     });
+}
+
+- (PMKPromise *) placeNewOrder:(IMOOrder *)newOrder withToken:(NSString *)token {
+    // TODO: Finish stubbed method
+    return [PMKPromise new];
 }
 
 - (PMKPromise*) cancelOrder:(IMOOrder *)order {
@@ -105,8 +111,19 @@ static IMOUserManager* currentUser = nil;
 - (PMKPromise*) fetchOrderByOrder:(IMOOrder*)order {
     if(!order){
         NSLog(@"'nil' order received. Return.");
+        return nil;
     }
     return [self fetchOrderByID:order.oid];
+}
+
+- (PMKPromise*) fetchOrderByUserItem:(NSUInteger)iid {
+    if(!currentUser.userLoggedIn) {
+        NSLog(@"User not logged in when placing new order.");
+        return nil;
+    }
+    
+    return [sessionManager getJSON:@"order/user_item_purchases"
+                     urlParameters:@[@(iid)] parameters:nil];
 }
 
 - (PMKPromise*) refreshOrders {

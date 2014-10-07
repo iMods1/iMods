@@ -82,6 +82,7 @@
 		4D8928FB19749D7800AD8A28 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */; };
 		4D8928FC19749D7800AD8A28 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */; };
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
+		4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */; };
 		4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */; };
 		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
@@ -294,6 +295,9 @@
 		4D8928F119749D7800AD8A28 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D8928F219749D7800AD8A28 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		4D8A3B6219E1AA7C007172A6 /* iMods 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "iMods 2.xcdatamodel"; sourceTree = "<group>"; };
+		4D8A3B6319E1B99A007172A6 /* IMOCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCardViewController.h; sourceTree = "<group>"; };
+		4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCardViewController.m; sourceTree = "<group>"; };
 		4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCategoriesController.h; sourceTree = "<group>"; };
 		4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesController.m; sourceTree = "<group>"; };
 		4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOChartsViewController.h; sourceTree = "<group>"; };
@@ -524,6 +528,8 @@
 				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
 				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
 				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
+				4D8A3B6319E1B99A007172A6 /* IMOCardViewController.h */,
+				4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -934,6 +940,7 @@
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
+				4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */,
 				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
@@ -1369,6 +1376,7 @@
 		4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4D8A3B6219E1AA7C007172A6 /* iMods 2.xcdatamodel */,
 				4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */,
 			);
 			currentVersion = 4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */;

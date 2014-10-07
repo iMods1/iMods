@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "IMOConstants.h"
+#import "Stripe.h"
+
+NSString * const StripePublishableKey = @"pk_test_3Qq0B7VdKihml3YpFwOidV5P";
+
 
 @interface AppDelegate ()
 
@@ -15,6 +19,10 @@
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory;
+- (NSURL *)applicationStoresDirectory;
+- (NSURL *)applicationIncompatibleStoresDirectory;
+
+- (NSString *)nameForIncompatibleStore;
 
 @end
 
@@ -39,6 +47,8 @@ static BOOL isRunningTests(void) {
         return YES;
     }
     self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [BASE_API_ENDPOINT stringByAppendingString: @"/api/"]]];
+    
+    [Stripe setDefaultPublishableKey:StripePublishableKey];
     
     return YES;
 }
@@ -94,8 +104,12 @@ static BOOL isRunningTests(void) {
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"iMods.sqlite"];
     
     NSError *error = nil;
+    
+    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @(YES),
+                               NSInferMappingModelAutomaticallyOption : @(YES) };
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -119,8 +133,21 @@ static BOOL isRunningTests(void) {
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        NSLog(@"Error initializing persistent store coordinator: error %@, %@", error, [error userInfo]);
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        // Move Incompatible Store
+        if ([fm fileExistsAtPath:[storeURL path]]) {
+            NSURL *corruptURL = [[self applicationIncompatibleStoresDirectory] URLByAppendingPathComponent:[self nameForIncompatibleStore]];
+            
+            // Move Corrupt Store
+            NSError *errorMoveStore = nil;
+            [fm moveItemAtURL:storeURL toURL:corruptURL error:&errorMoveStore];
+            
+            if (errorMoveStore) {
+                NSLog(@"Unable to move corrupt store.");
+            }
+        }
     }
     
     return _persistentStoreCoordinator;
@@ -138,6 +165,54 @@ static BOOL isRunningTests(void) {
 
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains: NSUserDomainMask] lastObject];
+}
+
+- (NSURL *)applicationStoresDirectory {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *applicationApplicationSupportDirectory = [[fm URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *URL = [applicationApplicationSupportDirectory URLByAppendingPathComponent:@"Stores"];
+    
+    if (![fm fileExistsAtPath:[URL path]]) {
+        NSError *error = nil;
+        [fm createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Unable to create directory for data stores.");
+            
+            return nil;
+        }
+    }
+    
+    return URL;
+}
+
+- (NSURL *)applicationIncompatibleStoresDirectory {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *URL = [[self applicationStoresDirectory] URLByAppendingPathComponent:@"Incompatible"];
+    
+    if (![fm fileExistsAtPath:[URL path]]) {
+        NSError *error = nil;
+        [fm createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Unable to create directory for corrupt data stores.");
+            
+            return nil;
+        }
+    }
+    
+    return URL;
+}
+
+- (NSString *)nameForIncompatibleStore {
+    // Initialize Date Formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    // Configure Date Formatter
+    [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+    
+    return [NSString stringWithFormat:@"%@.sqlite", [dateFormatter stringFromDate:[NSDate date]]];
 }
 
 @end

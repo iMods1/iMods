@@ -20,9 +20,11 @@
 - (instancetype) init;
 
 - (PMKPromise*) placeNewOrder:(IMOOrder*)newOrder;
+- (PMKPromise*) placeNewOrder:(IMOOrder*)newOrder withToken:(NSString *)token;
 - (PMKPromise*) cancelOrder:(IMOOrder*)order;
 - (PMKPromise*) cancelOrderAtIndex:(NSInteger)index;
 - (PMKPromise*) refreshOrders;
 - (PMKPromise*) fetchOrderByOrder:(IMOOrder*)order;
 - (PMKPromise*) fetchOrderByID:(NSUInteger)oid;
+- (PMKPromise*) fetchOrderByUserItem:(NSUInteger)iid;
 @end
