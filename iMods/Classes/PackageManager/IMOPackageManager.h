@@ -16,11 +16,17 @@
 
 + (IMOPackageManager*) sharedPackageManager;
 
+- (BOOL) openCache:(NSString*) path;
+
+- (BOOL) openIndex:(NSString*) path;
+
 - (PMKPromise*) installPackage:(NSString*) pkg_path;
 
 - (PMKPromise*) removePackage:(NSString*) pkg_name;
 
 - (PMKPromise*) cleanPackage:(NSString*) pkg_name;
+
+- (void) respring;
 
 - (PMKPromise*) listInstalledPackages;
 

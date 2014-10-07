@@ -1,0 +1,10 @@
+Package: iModsTestPackage
+Architecture: all
+Maintainer: Ryan Feng
+Depends: coreutils
+Priority: optional
+Version: 0.1
+Description: Test package
+ This script provides an easy way of creating backups
+ .
+ Creating backups is now more fun than ever!

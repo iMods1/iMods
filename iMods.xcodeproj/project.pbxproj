@@ -50,10 +50,11 @@
 		284F988F19898AB00008DD90 /* IMOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 284F988D19898AB00008DD90 /* IMOConstants.m */; };
 		285708951978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
+		285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 282DECAA19D180960093348D /* libimpkg.cpp */; };
+		285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285791F419D4ADE20052A3EF /* PackageManagerTests.mm */; };
 		289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
 		289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
-		289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
-		289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.m */; };
+		289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.mm */; };
 		28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
@@ -205,6 +206,8 @@
 		2821439B19B01322004AB17D /* IMODPKGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODPKGManager.h; path = Classes/PackageManager/IMODPKGManager.h; sourceTree = "<group>"; };
 		2821439C19B01322004AB17D /* IMODPKGManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODPKGManager.m; path = Classes/PackageManager/IMODPKGManager.m; sourceTree = "<group>"; };
 		2826720019D0123B0063CF94 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		282DECAA19D180960093348D /* libimpkg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libimpkg.cpp; path = Classes/PackageManager/libimpkg.cpp; sourceTree = "<group>"; };
+		282DECAB19D180960093348D /* libimpkg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libimpkg.h; path = Classes/PackageManager/libimpkg.h; sourceTree = "<group>"; };
 		2830E88F1978A5BE008E42ED /* IMOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUser.m; sourceTree = "<group>"; };
 		2830E8931978AFA5008E42ED /* IMOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOConstants.h; sourceTree = "<group>"; };
 		2830E8981978BBAC008E42ED /* IMOBillingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBillingInfo.m; sourceTree = "<group>"; };
@@ -246,10 +249,11 @@
 		2857089A1978E6E500C7F37B /* IMODevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMODevice.h; sourceTree = "<group>"; };
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
+		285791F419D4ADE20052A3EF /* PackageManagerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PackageManagerTests.mm; sourceTree = "<group>"; };
 		289C58FB1994C33900AD0F5D /* IMOResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOResponse.h; path = Classes/NetworkManager/IMOResponse.h; sourceTree = "<group>"; };
 		289C58FC1994C33900AD0F5D /* IMOResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOResponse.m; path = Classes/NetworkManager/IMOResponse.m; sourceTree = "<group>"; };
 		289F003C198985410032B0C8 /* IMOPackageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOPackageManager.h; path = Classes/PackageManager/IMOPackageManager.h; sourceTree = "<group>"; };
-		289F003D198985410032B0C8 /* IMOPackageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOPackageManager.m; path = Classes/PackageManager/IMOPackageManager.m; sourceTree = "<group>"; };
+		289F003D198985410032B0C8 /* IMOPackageManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IMOPackageManager.mm; path = Classes/PackageManager/IMOPackageManager.mm; sourceTree = "<group>"; };
 		28A35C4819A6F58100FE3260 /* IMOReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOReview.h; sourceTree = "<group>"; };
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 		284CBBC91946F35A006539A3 /* iModsTests */ = {
 			isa = PBXGroup;
 			children = (
+				285791F419D4ADE20052A3EF /* PackageManagerTests.mm */,
 				28052DB319A2BF370080DBEA /* iModsTests.m */,
 				284CBBCA1946F35A006539A3 /* Supporting Files */,
 			);
@@ -457,12 +462,14 @@
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
+				282DECAA19D180960093348D /* libimpkg.cpp */,
+				282DECAB19D180960093348D /* libimpkg.h */,
 				281788CE19B0150A0003C1A3 /* IMOTask.h */,
 				281788CF19B0150A0003C1A3 /* IMOTask.m */,
 				2821439B19B01322004AB17D /* IMODPKGManager.h */,
 				2821439C19B01322004AB17D /* IMODPKGManager.m */,
 				289F003C198985410032B0C8 /* IMOPackageManager.h */,
-				289F003D198985410032B0C8 /* IMOPackageManager.m */,
+				289F003D198985410032B0C8 /* IMOPackageManager.mm */,
 			);
 			name = PackageManager;
 			sourceTree = "<group>";
@@ -641,6 +648,7 @@
 				E572A205119B4446BCA8A9D3 /* Copy Pods Resources */,
 				2845F30319952DB200D88EB8 /* ShellScript */,
 				281788D219B04D980003C1A3 /* ShellScript */,
+				286C098C19E39990000997B9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -839,6 +847,19 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n# This was taken from variations from:\n# http://davedelong.com/blog/2009/04/15/incrementing-build-numbers-xcode\n\nbuildPlist=\"${PRODUCT_NAME}/Info.plist\"\n# Get the existing buildVersion and buildNumber values from the buildPlist\nbuildVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBuildVersion\" $buildPlist)\nbuildMajorVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleMajorVersion\" $buildPlist)\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" $buildPlist)\nbuildDate=$(date \"+%Y%m%d.%H%M%S\")\n\n# Increment the buildNumber\nbuildNumber=$(($buildNumber + 1))\n\n# Set the version numbers in the buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $buildNumber\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $buildDate\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildMajorVersion.$buildVersion.$buildNumber\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $buildMajorVersion.$buildVersion\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleLongVersionString $buildMajorVersion.$buildVersion.$buildNumber.$buildDate\" $buildPlist\n";
 		};
+		286C098C19E39990000997B9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+		};
 		630EADD6C2D941318BFD925B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -914,6 +935,7 @@
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
+				285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */,
 				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
 				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
@@ -925,7 +947,7 @@
 				4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
-				289F003E198985410032B0C8 /* IMOPackageManager.m in Sources */,
+				289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */,
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
@@ -965,7 +987,7 @@
 				2833494B19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				2833494319AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
-				289F003F198985410032B0C8 /* IMOPackageManager.m in Sources */,
+				285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */,
 				28052DB419A2BF370080DBEA /* iModsTests.m in Sources */,
 				2833494119AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
@@ -1113,7 +1135,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1151,7 +1173,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1180,6 +1202,14 @@
 				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = myiphone;
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = NO;
 			};
 			name = Debug;
 		};
@@ -1204,6 +1234,14 @@
 				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "iMods/iMods-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = myiphone;
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = NO;
 			};
 			name = Release;
 		};
@@ -1296,7 +1334,7 @@
 				284CBBCF1946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		284CBBD01946F35A006539A3 /* Build configuration list for PBXNativeTarget "iMods" */ = {
 			isa = XCConfigurationList;
@@ -1305,7 +1343,7 @@
 				284CBBD21946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		284CBBD31946F35A006539A3 /* Build configuration list for PBXNativeTarget "iModsTests" */ = {
 			isa = XCConfigurationList;
@@ -1314,7 +1352,7 @@
 				284CBBD51946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4D29D10119D314BA004DCE49 /* Build configuration list for PBXNativeTarget "iMods UI Tests" */ = {
 			isa = XCConfigurationList;
@@ -1323,7 +1361,7 @@
 				4D29D10319D314BA004DCE49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
