@@ -67,6 +67,13 @@ Version: 13.5.3ubuntu1-1p\n\
 Pre-Depends: dpkg (>= 1.14.25-8)\n\
 Description: pretty much just run-parts. yep? run-parts\n\
 Name: Debian Utilities\n\
+\n\
+Package: a\n\
+Version: v1\n\
+\n\
+Package: b\n\
+Version: v2\n\
+\n\
 ";
 
 static std::string testIndexFile =
@@ -116,9 +123,26 @@ Size: 986\n\
 MD5sum: 38bf0f2c507e0d339fd9c1255e20acbe\n\
 SHA1: 45ae613d0c8cb8bc01b40437357f626d8fe657d2\n\
 SHA256: 6b5f5d0a83d335a8e85a1de933a7a253dd14c9d65b30edc91239f0566b924028\n\
-\
+\n\
 # Dependency calculator testing\
 # \
+\n\
+Package: a\n\
+Version: v1\n\
+Depends: \n\
+\n\
+Package: b\n\
+Version: v2\n\
+Depends: a (>= v1)\n\
+\n\
+Package: b\n\
+Version: v1\n\
+Depends: \n\
+\n\
+Package: c\n\
+Version: v1\n\
+Depends: a (>= v1), b (>= v2)\n\
+\n\
 ";
 
 - (void)setUp {
@@ -262,10 +286,22 @@ SHA256: 6b5f5d0a83d335a8e85a1de933a7a253dd14c9d65b30edc91239f0566b924028\n\
 }
 
 - (void)testDependencyCalculator {
-    TagFile cacheFile(testCacheFile);
-    TagFile indexFile(testIndexFile);
+    TagFile cacheFile(testCacheFilePath);
+    TagFile indexFile(testIndexFilePath);
     PackageCache cache(cacheFile);
     PackageIndex index(indexFile);
+    index.markInstalled(cacheFile);
+    std::vector<std::string> deps = {"a", "b"};
+    DepVector depV;
+    for(auto dep:deps){
+        depV.push_back(parseDepString(dep)[0][0]);
+    }
+    DependencySolver solver(cache, index, depV);
+    std::vector<const Version*> versions;
+    DepVector brokenDeps;
+    XCTAssert(solver.calcDep(versions, brokenDeps));
+    XCTAssert(versions.size() > 0);
+    XCTAssert(brokenDeps.empty());
 }
 
 - (void)testPerformanceExample {

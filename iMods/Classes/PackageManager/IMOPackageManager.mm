@@ -70,16 +70,16 @@ NSArray* tweakArray;
         }
         
         std::vector<const Package*> dependencies;
-        bool resolved = calcDep(*packageCache, *packageIndex, {targetPkg}, dependencies);
+//        bool resolved = calcDep(*packageCache, *packageIndex, {targetPkg}, dependencies);
         
-        if (!resolved) {
-            reject([NSError errorWithDomain:@"IMOCannotResolveDependencies" code:0 userInfo:nil]);
-            return;
-        }
-        
-        if (dependencies.empty()) {
-            reject([NSError errorWithDomain:@"IMOZeroDependencies" code:0 userInfo:nil]);
-        }
+//        if (!resolved) {
+//            reject([NSError errorWithDomain:@"IMOCannotResolveDependencies" code:0 userInfo:nil]);
+//            return;
+//        }
+//        
+//        if (dependencies.empty()) {
+//            reject([NSError errorWithDomain:@"IMOZeroDependencies" code:0 userInfo:nil]);
+//        }
         // TODO: Send request for package download
     }];
     return promise;

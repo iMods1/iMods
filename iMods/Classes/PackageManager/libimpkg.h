@@ -14,6 +14,7 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+#include <queue>
 #include <fstream>
 #include <map>
 #include <ostream>
@@ -54,7 +55,8 @@ typedef PackageCache PackageIndex;
 #pragma mark Constants
 
 // How far the dependency resolver can go in the dependency graph
-const int MaxDependencyResolveDepth = 500;
+// Increase its value as the algorithm improves and the number of packages increases
+const int MaxDependencyResolveDepth = 100;
 
 #pragma mark Utilities
 
@@ -67,10 +69,6 @@ std::string depTupleVersion(const PackageDepTuple& dep);
 #pragma mark Core Functions
 
 int pkgVersionCmp(const std::string& v1, const std::string& v2);
-
-bool checkDep(const std::string& depString, const TagSection& targetPackage);
-
-bool checkDep(const PackageDepTuple& v1, const PackageDepTuple& v2);
 
 std::ostream& operator<<(std::ostream& stream, const PackageDepTuple& dep);
 
@@ -218,6 +216,8 @@ public:
     // Currently installed version
     const Version* curVersion() const;
     
+    void setCurVersion(const std::string verStr);
+    
     const std::string& name() const;
     
     const std::vector<const Version*> ver_list() const;
@@ -225,6 +225,8 @@ public:
     const Version* checkDep(const PackageDepTuple& dep) const;
     
     void addVersion(const Version& version);
+    
+    const Version* version(const std::string& version)const;
     
     size_t versionCount() const;
     
@@ -289,8 +291,11 @@ public:
     
     bool operator==(const Version& version);
     
-    std::ostream& operator<<(std::ostream& out);
-
+    friend std::ostream& operator<<(std::ostream& out, const Version& version) {
+        out << version.packageName() << " " << version.version();
+        return out;
+    }
+    
 private:
     
     std::vector<std::vector<PackageDepTuple>> m_depList;
@@ -310,6 +315,10 @@ public:
     void addPackage(const Package& package);
     
     bool checkDep(const PackageDepTuple& dep) const;
+    
+    void markInstalled(TagFile& cacheFile);
+
+    void markInstalled(const std::string& tagfilename);
     
     const Package* package(const std::string& pkgName) const;
     
@@ -344,38 +353,84 @@ public:
     
     DepVector findSolution();
     
+    bool calcDep(std::vector<const Version*>& out_targetDeps, DepVector& out_brokenDeps);
+    
 private:
     
+    typedef std::pair<std::string, std::pair<const Version*, PackageDepTuple>> RevDepMapEntry;
+    
+    // NOTE: We use 'Step' structure here, which is similar to what aptitude used,
+    // so we can extend it to a better algorithm in the future.
     struct Step {
+        // For root step, parent is nullptr
         Step* parent;
         
-        std::vector<Step*> children;
+        // 'children' stores all steps of the dependencies of current version
+        std::vector<Step> children;
         
         int level;
         
+        // The current package needs to be resolved
+        const Package* curPackage;
+        
+        // For root step, srcVersion is nullptr, otherwise it's the same as parent->srcVersion
         const Version* srcVersion;
+        
+        //  The current selected version, it's also the resolved version after all dependencies are fulfilled
+        const Version* targetVersion;
         
         PackageDepTuple targetDep;
         
-        Step(const Version* srcVersion, const PackageDepTuple& targetDep, Step* parent=nullptr);
+        int curVerIndex;
+        
+        std::vector<const Version*> versions;
+        
+        Step(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent=nullptr, const Version* srcVersion=nullptr, const Version* targetVersion=nullptr);
+        Step(const Step && other);
+        Step(const Step & other);
         Step();
+        
+        Step& operator=(const Step& other);
+        
+        friend std::ostream& operator<<(std::ostream& out, const Step& step) {
+            out << std::endl;
+            out << "Step: " << step.level << std::endl;
+            out << "parent: " << step.parent->level << std::endl;
+            out << "package: " << step.curPackage->name() << std::endl;
+            out << "srcVersion: " << *step.srcVersion << std::endl;
+            out << "versions: " << std::endl;
+            for (auto version: step.versions) {
+                out << " " << *version << std::endl;
+            }
+            return out;
+        }
     };
     
-    bool calcDep(DepVector& out_targetDeps, DepVector& out_brokenDeps);
+    void addSuccessors(Step& step);
     
-    Step& newStep(const Version* ver, const PackageDepTuple& dep, Step* parent=nullptr);
+    void processSteps();
+    
+    void processNextVersion(Step& step);
+    
+    Step& newStep(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent=nullptr, const Version* srcVer=nullptr);
     
     bool resolveSingleDep(Step& step);
     
-    bool checkConflicts(const Step& step);
+    std::vector<std::pair<const Version*, PackageDepTuple>> checkConflicts(const Version* targetVersion);
     
     void initRevDepMap();
+    
+    void clearContainers();
+    
+    RevDepMapEntry make_revDepEntry(const std::string& targetPkgName, const Version* srcVersion, const PackageDepTuple& targetDep);
     
     std::unordered_set<std::string> m_visited;
     
     // The actual dependency graph
     // A "target package name" to "source step" mapping
     std::unordered_map<std::string, Step> m_steps;
+    
+    std::queue<Step*> m_unprocessedSteps;
     
     // Reverse dependencies map, <target package name, <source version, target dependency>>
     std::unordered_multimap<std::string, std::pair<const Version*, PackageDepTuple>> m_cacheRevDepMap;
@@ -386,7 +441,7 @@ private:
     
     DepVector m_unresolvedDeps;
 
-    DepVector m_resolvedDeps;
+    std::vector<const Version*> m_resolvedDeps;
     
     DepVector m_brokenDeps;
 };
