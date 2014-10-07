@@ -38,12 +38,16 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
     if (_sharedNetworkManager != nil) {
         return _sharedNetworkManager;
     }
+    // FIXME: Remove permissive security policy that allows invalid certificates
     dispatch_once(&_onceToken, ^{
         _sharedNetworkManager = [[IMONetworkManager alloc] initWithBaseURL:baseAPIEndpoint];
         [_sharedNetworkManager setupReachabilityMonitor];
         _jsonRequestSerializer = [[AFJSONRequestSerializer alloc] init];
         _jsonResponseSerializer = [[AFJSONResponseSerializer alloc] init];
         _sharedNetworkManager.requestSerializer = _jsonRequestSerializer;
+        
+        // Allow invalid and expired security certificates
+        [_sharedNetworkManager.securityPolicy setAllowInvalidCertificates:YES];
     });
     
     return _sharedNetworkManager;

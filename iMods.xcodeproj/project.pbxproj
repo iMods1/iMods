@@ -59,13 +59,19 @@
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
+		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
+		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
+		4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */; };
+		4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */; };
+		4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */; };
+		4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0F319D29747004DCE49 /* TweaksDataSource.m */; };
+		4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */; };
+		4D29D10619D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */; };
+		4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */; };
+		4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
-		4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */; };
-		4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A11974801900AD8A28 /* CategoriesViewController.swift */; };
-		4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A31974809200AD8A28 /* SearchViewController.swift */; };
-		4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928A71974813300AD8A28 /* UpdatesViewController.swift */; };
-		4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */; };
-		4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */; };
+		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -78,17 +84,7 @@
 		4D8928FD19749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928F319749D7800AD8A28 /* OpenSans-SemiboldItalic.ttf */; };
 		4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */; };
 		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
-		4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */; };
-		4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */; };
-		4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCE1F8619B0349300B7673C /* LoginViewController.swift */; };
-		4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */; };
-		4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */; };
-		4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9831994817D00918424 /* ProfileViewController.swift */; };
-		4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */; };
-		4DDAD9881994971C00918424 /* IMOItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDAD9871994971C00918424 /* IMOItemDataSource.swift */; };
-		4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */; };
-		4DE74A4A199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */; };
-		4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF721E31979CE880011B91C /* ItemDetailViewController.swift */; };
+		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +187,13 @@
 			remoteGlobalIDString = 284CBBB11946F35A006539A3;
 			remoteInfo = iMods;
 		};
+		4D29D0FF19D314BA004DCE49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 284CBBB11946F35A006539A3;
+			remoteInfo = iMods;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -255,13 +258,32 @@
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOLoginViewController.h; sourceTree = "<group>"; };
+		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
+		4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTabBarController.h; sourceTree = "<group>"; };
+		4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOTabBarController.m; sourceTree = "<group>"; };
+		4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOProfileViewController.h; sourceTree = "<group>"; };
+		4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOProfileViewController.m; sourceTree = "<group>"; };
+		4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedBannerController.h; sourceTree = "<group>"; };
+		4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedBannerController.m; sourceTree = "<group>"; };
+		4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOSearchViewController.h; sourceTree = "<group>"; };
+		4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOSearchViewController.m; sourceTree = "<group>"; };
+		4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMods.xcdatamodel; sourceTree = "<group>"; };
+		4D29D0EF19D29190004DCE49 /* IMOItemDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemDataSource.h; sourceTree = "<group>"; };
+		4D29D0F219D29747004DCE49 /* TweaksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweaksDataSource.h; sourceTree = "<group>"; };
+		4D29D0F319D29747004DCE49 /* TweaksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweaksDataSource.m; sourceTree = "<group>"; };
+		4D29D0F919D314BA004DCE49 /* iMods UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iMods UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D29D0FC19D314BA004DCE49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iMods_UI_Tests.m; sourceTree = "<group>"; };
+		4D29D10419D342E6004DCE49 /* IMOCategoriesDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOCategoriesDetailTableViewController.h; sourceTree = "<group>"; };
+		4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesDetailTableViewController.m; sourceTree = "<group>"; };
+		4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemDetailViewController.h; sourceTree = "<group>"; };
+		4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOItemDetailViewController.m; sourceTree = "<group>"; };
+		4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedViewController.h; sourceTree = "<group>"; };
+		4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedViewController.m; sourceTree = "<group>"; };
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
-		4D8928A11974801900AD8A28 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		4D8928A31974809200AD8A28 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		4D8928A71974813300AD8A28 /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
-		4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedNavigationController.swift; sourceTree = "<group>"; };
-		4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewController.swift; sourceTree = "<group>"; };
+		4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUpdatesViewController.h; sourceTree = "<group>"; };
+		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -276,24 +298,15 @@
 		4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesController.m; sourceTree = "<group>"; };
 		4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOChartsViewController.h; sourceTree = "<group>"; };
 		4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOChartsViewController.m; sourceTree = "<group>"; };
-		4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerTestDataSource.swift; sourceTree = "<group>"; };
-		4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerDataSource.swift; sourceTree = "<group>"; };
-		4DCE1F8619B0349300B7673C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweaksTestDataSource.swift; sourceTree = "<group>"; };
-		4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesTestDataSource.swift; sourceTree = "<group>"; };
-		4DDAD9831994817D00918424 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedBannerController.swift; sourceTree = "<group>"; };
-		4DDAD9871994971C00918424 /* IMOItemDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMOItemDataSource.swift; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
 		4DDFAC5F19762C860094FB8D /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
 		4DDFAC6019762C860094FB8D /* libPods-TSMessages.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TSMessages.a"; path = "Pods/build/Debug-iphoneos/libPods-TSMessages.a"; sourceTree = "<group>"; };
 		4DDFAC6619762E650094FB8D /* iMods-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iMods-Bridging-Header.h"; sourceTree = "<group>"; };
-		4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAssetsResolver.swift; sourceTree = "<group>"; };
-		4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAssetsTestResolver.swift; sourceTree = "<group>"; };
-		4DF721E31979CE880011B91C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		9015AF55E8614A20A367229A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B6343D3166694159A75FBE1B /* Pods-iMods UI Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.xcconfig"; path = "Pods/Pods-iMods UI Tests.xcconfig"; sourceTree = "<group>"; };
+		F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iMods UI Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +326,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4D29D0F619D314BA004DCE49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -326,6 +347,7 @@
 				4DDFAC5F19762C860094FB8D /* libPods-ReactiveCocoa.a */,
 				4DDFAC6019762C860094FB8D /* libPods-TSMessages.a */,
 				0B3C95FDF7B146ABBF782234 /* libPods.a */,
+				F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -360,9 +382,11 @@
 			children = (
 				284CBBB41946F35A006539A3 /* iMods */,
 				284CBBC91946F35A006539A3 /* iModsTests */,
+				4D29D0FA19D314BA004DCE49 /* iMods UI Tests */,
 				284CBBB31946F35A006539A3 /* Products */,
 				9015AF55E8614A20A367229A /* Pods.xcconfig */,
 				237E9CEAFDC54C2EA68D6159 /* Frameworks */,
+				B6343D3166694159A75FBE1B /* Pods-iMods UI Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -371,6 +395,7 @@
 			children = (
 				284CBBB21946F35A006539A3 /* iMods.app */,
 				284CBBC61946F35A006539A3 /* iModsTests.xctest */,
+				4D29D0F919D314BA004DCE49 /* iMods UI Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,23 +474,56 @@
 			name = PackageManager;
 			sourceTree = "<group>";
 		};
+		4D29D0E819D267CC004DCE49 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		4D29D0FA19D314BA004DCE49 /* iMods UI Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */,
+				4D29D0FB19D314BA004DCE49 /* Supporting Files */,
+			);
+			path = "iMods UI Tests";
+			sourceTree = "<group>";
+		};
+		4D29D0FB19D314BA004DCE49 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4D29D0FC19D314BA004DCE49 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D89289E19747FBD00AD8A28 /* FeaturedViewController.swift */,
-				4D8928A11974801900AD8A28 /* CategoriesViewController.swift */,
-				4D8928A31974809200AD8A28 /* SearchViewController.swift */,
-				4D8928A71974813300AD8A28 /* UpdatesViewController.swift */,
-				4D8928D619748CF000AD8A28 /* FeaturedNavigationController.swift */,
-				4D8928D819748DE300AD8A28 /* FeaturedTableViewController.swift */,
-				4DF721E31979CE880011B91C /* ItemDetailViewController.swift */,
-				4DDAD9831994817D00918424 /* ProfileViewController.swift */,
-				4DDAD98519948E0A00918424 /* FeaturedBannerController.swift */,
-				4DCE1F8619B0349300B7673C /* LoginViewController.swift */,
 				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
 				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
 				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
 				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
+				4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */,
+				4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */,
+				4D29D10419D342E6004DCE49 /* IMOCategoriesDetailTableViewController.h */,
+				4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */,
+				4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */,
+				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
+				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
+				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
+				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
+				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
+				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
+				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
+				4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */,
+				4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */,
+				4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */,
+				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
+				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
+				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -531,6 +589,7 @@
 		4D8928FF19749E0500AD8A28 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D29D0E819D267CC004DCE49 /* Data */,
 				4D89290219749F1000AD8A28 /* Storyboards */,
 				4D8928BF19748AC400AD8A28 /* Fonts */,
 				284CBBC01946F35A006539A3 /* Images.xcassets */,
@@ -541,13 +600,9 @@
 		4D89290019749EF700AD8A28 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4DDAD97F199464BA00918424 /* TweaksTestDataSource.swift */,
-				4DDAD981199464CE00918424 /* ThemesTestDataSource.swift */,
-				4DDAD9871994971C00918424 /* IMOItemDataSource.swift */,
-				4DBECE13199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift */,
-				4DBECE15199DB41700ED2F0C /* BannerDataSource.swift */,
-				4DE74A47199FF8AE00E6963F /* ItemPackageAssetsResolver.swift */,
-				4DE74A49199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift */,
+				4D29D0EF19D29190004DCE49 /* IMOItemDataSource.h */,
+				4D29D0F219D29747004DCE49 /* TweaksDataSource.h */,
+				4D29D0F319D29747004DCE49 /* TweaksDataSource.m */,
 			);
 			name = Helpers;
 			path = Classes/Helpers;
@@ -593,7 +648,7 @@
 				E572A205119B4446BCA8A9D3 /* Copy Pods Resources */,
 				2845F30319952DB200D88EB8 /* ShellScript */,
 				281788D219B04D980003C1A3 /* ShellScript */,
-				28ADB62C19D0BD950084DA1B /* ShellScript */,
+				286C098C19E39990000997B9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -637,6 +692,26 @@
 			productReference = 284CBBC61946F35A006539A3 /* iModsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4D29D0F819D314BA004DCE49 /* iMods UI Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D29D10119D314BA004DCE49 /* Build configuration list for PBXNativeTarget "iMods UI Tests" */;
+			buildPhases = (
+				73552F14525748B7BBF756E5 /* Check Pods Manifest.lock */,
+				4D29D0F519D314BA004DCE49 /* Sources */,
+				4D29D0F619D314BA004DCE49 /* Frameworks */,
+				4D29D0F719D314BA004DCE49 /* Resources */,
+				630EADD6C2D941318BFD925B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D29D10019D314BA004DCE49 /* PBXTargetDependency */,
+			);
+			name = "iMods UI Tests";
+			productName = "iMods UI Tests";
+			productReference = 4D29D0F919D314BA004DCE49 /* iMods UI Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -650,6 +725,10 @@
 						CreatedOnToolsVersion = 6.0;
 					};
 					284CBBC51946F35A006539A3 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 284CBBB11946F35A006539A3;
+					};
+					4D29D0F819D314BA004DCE49 = {
 						CreatedOnToolsVersion = 6.0;
 						TestTargetID = 284CBBB11946F35A006539A3;
 					};
@@ -670,6 +749,7 @@
 			targets = (
 				284CBBB11946F35A006539A3 /* iMods */,
 				284CBBC51946F35A006539A3 /* iModsTests */,
+				4D29D0F819D314BA004DCE49 /* iMods UI Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -695,6 +775,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		284CBBC41946F35A006539A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D29D0F719D314BA004DCE49 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -760,7 +847,7 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\n# This was taken from variations from:\n# http://davedelong.com/blog/2009/04/15/incrementing-build-numbers-xcode\n\nbuildPlist=\"${PRODUCT_NAME}/Info.plist\"\n# Get the existing buildVersion and buildNumber values from the buildPlist\nbuildVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBuildVersion\" $buildPlist)\nbuildMajorVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleMajorVersion\" $buildPlist)\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBuildNumber\" $buildPlist)\nbuildDate=$(date \"+%Y%m%d.%H%M%S\")\n\n# Increment the buildNumber\nbuildNumber=$(($buildNumber + 1))\n\n# Set the version numbers in the buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildNumber $buildNumber\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $buildDate\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildMajorVersion.$buildVersion.$buildNumber\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $buildMajorVersion.$buildVersion\" $buildPlist\n/usr/libexec/PlistBuddy -c \"Set :CFBundleLongVersionString $buildMajorVersion.$buildVersion.$buildNumber.$buildDate\" $buildPlist\n";
 		};
-		28ADB62C19D0BD950084DA1B /* ShellScript */ = {
+		286C098C19E39990000997B9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -772,6 +859,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+		};
+		630EADD6C2D941318BFD925B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-iMods UI Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73552F14525748B7BBF756E5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		E47592018C144B82A1821253 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -810,49 +927,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */,
 				284E113D19D0101F000B513A /* AppDelegate.m in Sources */,
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
-				4D8928A41974809200AD8A28 /* SearchViewController.swift in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
-				4D8928D719748CF000AD8A28 /* FeaturedNavigationController.swift in Sources */,
-				4DBECE16199DB41700ED2F0C /* BannerDataSource.swift in Sources */,
 				285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */,
+				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
+				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
-				4DDAD9881994971C00918424 /* IMOItemDataSource.swift in Sources */,
-				4DDAD9841994817D00918424 /* ProfileViewController.swift in Sources */,
-				4DDAD982199464CE00918424 /* ThemesTestDataSource.swift in Sources */,
+				4D29D10619D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m in Sources */,
 				2833494619AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
 				2830E8A11978C46E008E42ED /* IMODevice.m in Sources */,
-				4DDAD98619948E0A00918424 /* FeaturedBannerController.swift in Sources */,
 				2833493C19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
-				4D8928D919748DE300AD8A28 /* FeaturedTableViewController.swift in Sources */,
 				2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */,
+				4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */,
 				284F988E19898AB00008DD90 /* IMOConstants.m in Sources */,
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */,
+				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
-				4D8928A81974813300AD8A28 /* UpdatesViewController.swift in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
-				4D8928A21974801900AD8A28 /* CategoriesViewController.swift in Sources */,
-				4DCE1F8719B0349300B7673C /* LoginViewController.swift in Sources */,
-				4DE74A48199FF8AE00E6963F /* ItemPackageAssetsResolver.swift in Sources */,
-				4D89289F19747FBD00AD8A28 /* FeaturedViewController.swift in Sources */,
+				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
-				4DDAD980199464BA00918424 /* TweaksTestDataSource.swift in Sources */,
-				4DF721E41979CE880011B91C /* ItemDetailViewController.swift in Sources */,
+				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
-				4DE74A4A199FFB9B00E6963F /* ItemPackageAssetsTestResolver.swift in Sources */,
+				4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */,
+				4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */,
 				2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
 				4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */,
 				2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
-				4DBECE14199DB3C800ED2F0C /* FeaturedBannerTestDataSource.swift in Sources */,
 				2826720119D0123B0063CF94 /* main.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 			);
@@ -886,6 +997,14 @@
 				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
 				289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				284F988F19898AB00008DD90 /* IMOConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D29D0F519D314BA004DCE49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,6 +1081,11 @@
 			target = 284CBBB11946F35A006539A3 /* iMods */;
 			targetProxy = 28D9461F19804B1A00DF7ADC /* PBXContainerItemProxy */;
 		};
+		4D29D10019D314BA004DCE49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 284CBBB11946F35A006539A3 /* iMods */;
+			targetProxy = 4D29D0FF19D314BA004DCE49 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1011,7 +1135,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1049,7 +1173,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1164,6 +1288,42 @@
 			};
 			name = Release;
 		};
+		4D29D10219D314BA004DCE49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6343D3166694159A75FBE1B /* Pods-iMods UI Tests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "iMods UI Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
+			};
+			name = Debug;
+		};
+		4D29D10319D314BA004DCE49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6343D3166694159A75FBE1B /* Pods-iMods UI Tests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "iMods UI Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1174,7 +1334,7 @@
 				284CBBCF1946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		284CBBD01946F35A006539A3 /* Build configuration list for PBXNativeTarget "iMods" */ = {
 			isa = XCConfigurationList;
@@ -1183,7 +1343,7 @@
 				284CBBD21946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		284CBBD31946F35A006539A3 /* Build configuration list for PBXNativeTarget "iModsTests" */ = {
 			isa = XCConfigurationList;
@@ -1192,9 +1352,31 @@
 				284CBBD51946F35A006539A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		4D29D10119D314BA004DCE49 /* Build configuration list for PBXNativeTarget "iMods UI Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D29D10219D314BA004DCE49 /* Debug */,
+				4D29D10319D314BA004DCE49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */,
+			);
+			currentVersion = 4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */;
+			path = iMods.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 284CBBAA1946F35A006539A3 /* Project object */;
 }

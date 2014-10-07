@@ -8,6 +8,7 @@
 
 #import "IMOItemManager.h"
 #import "IMOSessionManager.h"
+#import "IMOCategoryManager.h"
 
 @implementation IMOItemManager
 
@@ -40,6 +41,13 @@ static IMOSessionManager* sessionManager = nil;
 - (PMKPromise*) fetchItemByName:(NSString *)pkg_name {
     NSParameterAssert(pkg_name);
     return [sessionManager getJSON:@"item/pkg" urlParameters:@[pkg_name] parameters:nil];
+}
+
+- (PMKPromise*) fetchItemsByCategory:(NSString *)category_name {
+    NSParameterAssert(category_name);
+    return [sessionManager getJSON:@"item/cat"
+                     urlParameters:@[category_name]
+                        parameters:nil];
 }
 
 - (PMKPromise*) fetchItemPreviewAssets:(NSInteger)pkg_id dstPath:(NSString *)dstPath {

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:iMods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4D29D0F819D314BA004DCE49"
+               BuildableName = "iMods UI Tests.xctest"
+               BlueprintName = "iMods UI Tests"
+               ReferencedContainer = "container:iMods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -35,6 +49,16 @@
                BlueprintIdentifier = "284CBBC51946F35A006539A3"
                BuildableName = "iModsTests.xctest"
                BlueprintName = "iModsTests"
+               ReferencedContainer = "container:iMods.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4D29D0F819D314BA004DCE49"
+               BuildableName = "iMods UI Tests.xctest"
+               BlueprintName = "iMods UI Tests"
                ReferencedContainer = "container:iMods.xcodeproj">
             </BuildableReference>
          </TestableReference>

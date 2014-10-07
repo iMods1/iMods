@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
+#import "Classes/AppDelegate/AppDelegate.h"
+
 #import "Classes/Models/IMOUser.h"
 #import "Classes/Models/IMOCategory.h"
 #import "Classes/Models/IMODevice.h"
@@ -20,3 +22,6 @@
 #import "Classes/SessionManagers/IMOSessionManager.h"
 #import "Classes/SessionManagers/IMOCategoryManager.h"
 #import "Classes/SessionManagers/IMOUserManager.h"
+
+#import "Classes/Helpers/IMOItemDataSource.h"
+#import "Classes/Controllers/IMOItemDetailViewController.h"

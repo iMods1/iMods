@@ -7,9 +7,10 @@
 //
 
 #import "IMOConstants.h"
-
+/*
 #ifdef DEBUG
-NSString * const BASE_API_ENDPOINT = @"http://192.168.96.1:8000/api";
+NSString * const BASE_API_ENDPOINT = @"http://localhost:8000";
 #else
-NSString * const BASE_API_ENDPOINT = @"https://imods.wunderkind.us/api";
-#endif
+*/
+NSString * const BASE_API_ENDPOINT = @"https://imods.wunderkind.us";
+/*#endif*/
