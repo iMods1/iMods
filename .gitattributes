@@ -1,2 +1,2 @@
-*.pbxproj -crlf merge=mergebox
+*.pbxproj -crlf merge=union
 iMods/Info.plist merge=ours
