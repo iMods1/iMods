@@ -341,6 +341,10 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
     std::vector<PackageDepTuple> group;
     std::vector<std::vector<PackageDepTuple>> result;
     
+    if (depString.empty()) {
+        return result;
+    }
+    
     std::string targetPkg;
     std::string targetVer;
     PackageVersionOp targetOp = VER_ANY;
@@ -1259,10 +1263,6 @@ bool DependencySolver::resolveSingleDep(Step& step) {
     if (iter == m_visited.end()) {
         m_visited.insert(targetPkgName);
     } else {
-        return true;
-    }
-    if (!step.parent) {
-        // We don't need to process children, because all children were added to m_unprocessedSteps
         return true;
     }
     // Check if the target version will break anything
