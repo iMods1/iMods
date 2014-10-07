@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "IMOConstants.h"
+#import "Stripe.h"
+
+NSString * const StripePublishableKey = @"pk_test_3Qq0B7VdKihml3YpFwOidV5P";
+
 
 @interface AppDelegate ()
 
@@ -43,6 +47,8 @@ static BOOL isRunningTests(void) {
         return YES;
     }
     self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [BASE_API_ENDPOINT stringByAppendingString: @"/api/"]]];
+    
+    [Stripe setDefaultPublishableKey:StripePublishableKey];
     
     return YES;
 }

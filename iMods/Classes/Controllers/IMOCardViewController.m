@@ -7,13 +7,15 @@
 //
 
 #import "IMOCardViewController.h"
+#import <PaymentKit/PTKView.h>
 
-@interface IMOCardViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *cardNumberField;
-@property (weak, nonatomic) IBOutlet UITextField *expDateField;
-@property (weak, nonatomic) IBOutlet UITextField *cvcField;
+@interface IMOCardViewController ()<PTKViewDelegate>
+@property (weak, nonatomic) PTKView *paymentView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) PTKCard *card;
 
-- (IBAction)payButtonTapped:(UIButton *)sender;
+- (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
+- (IBAction)submitButtonTapped:(id)sender;
 @end
 
 @implementation IMOCardViewController
@@ -21,6 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Add PTKView
+    
+    PTKView *view = [[PTKView alloc] initWithFrame:CGRectMake(15,20,290,55)];
+    self.paymentView = view;
+    self.paymentView.delegate = self;
+    [self.view addSubview:self.paymentView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +47,13 @@
 }
 */
 
-- (IBAction)payButtonTapped:(UIButton *)sender {
+- (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
+    self.submitButton.enabled = YES;
+    self.card = card;
 }
+
+- (IBAction)submitButtonTapped:(id)sender {
+    [self.delegate cardControllerDidFinish: self withCard: self.card];
+}
+
 @end

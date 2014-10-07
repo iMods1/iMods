@@ -49,22 +49,24 @@ static IMOUserManager* currentUser = nil;
     .then(^(OVCResponse* response, NSError* error){
         if(error){
             NSLog(@"Error occurred when adding billing info");
-            return;
+            @throw error.localizedDescription;
         }
         IMOBillingInfo* billingInfo = response.result;
         if (!billingInfo) {
             NSLog(@"Error occurred when converting response result to billing info.");
-            return;
+            @throw @"Unable to parse billing info";
         }
         IMOBillingInfo* newBilling = [[IMOBillingInfo alloc] init];
         [newBilling mergeValuesForKeysFromModel:billing];
         [newBilling updateFromModel:billingInfo];
-        [newBilling maskCreditCardInfo];
+        // I need access to the credit card info - what does masking this on the device accomplish?
+        // [newBilling maskCreditCardInfo];
         if (self.billingMethods != nil) {
             [self.billingMethods addObject:newBilling];
         }else{
             self.billingMethods = [NSMutableArray arrayWithObject:newBilling];
         }
+        return newBilling;
         
         // TODO: Verify credit card
     });
@@ -81,7 +83,8 @@ static IMOUserManager* currentUser = nil;
             return;
         }
         if (newBillingInfo.paymentType == CreditCard) {
-            [newBillingInfo maskCreditCardInfo];
+            // Again, removing credit card masking on device, to prevent bugs
+            //[newBillingInfo maskCreditCardInfo];
         }
         // IMOBillingInfo.isEqual: is overrided, it only compares bid
         NSUInteger index = -1;

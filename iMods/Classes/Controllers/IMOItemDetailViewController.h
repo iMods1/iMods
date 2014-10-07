@@ -21,4 +21,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IMOItem *item;
 - (IBAction)didTapInstallButton:(UIButton *)sender;
+- (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender;
 @end
