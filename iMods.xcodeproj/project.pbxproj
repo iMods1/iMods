@@ -85,6 +85,8 @@
 		4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */; };
 		4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */; };
 		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
+		4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */; };
+		4DCFBBF119E67D3600A36D63 /* IMOProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -302,6 +304,10 @@
 		4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOCategoriesController.m; sourceTree = "<group>"; };
 		4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOChartsViewController.h; sourceTree = "<group>"; };
 		4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOChartsViewController.m; sourceTree = "<group>"; };
+		4DCFBBEC19E6718000A36D63 /* IMORegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMORegistrationViewController.h; sourceTree = "<group>"; };
+		4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMORegistrationViewController.m; sourceTree = "<group>"; };
+		4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOProfileSettingsViewController.h; sourceTree = "<group>"; };
+		4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOProfileSettingsViewController.m; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
@@ -530,6 +536,10 @@
 				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
 				4D8A3B6319E1B99A007172A6 /* IMOCardViewController.h */,
 				4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */,
+				4DCFBBEC19E6718000A36D63 /* IMORegistrationViewController.h */,
+				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
+				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
+				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -864,7 +874,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# /opt/iOSOpenDev/bin/iosod --xcbp";
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
 		};
 		630EADD6C2D941318BFD925B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -961,10 +971,12 @@
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */,
+				4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */,
 				4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */,
 				2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
+				4DCFBBF119E67D3600A36D63 /* IMOProfileSettingsViewController.m in Sources */,
 				4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
 				4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */,
