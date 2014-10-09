@@ -10,6 +10,6 @@
 #import "IMOLoginViewController.h"
 
 
-@interface IMOTabBarController : UITabBarController <IMOLoginViewDelegate>
+@interface IMOTabBarController : UITabBarController <IMOLoginDelegate>
 - (IBAction)unwindToTabBarController:(UIStoryboardSegue *)sender;
 @end

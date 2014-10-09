@@ -36,6 +36,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"Current Login Delegate: %@", self.delegate);
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -52,7 +56,7 @@
         [textField resignFirstResponder];
         [self.passwordField becomeFirstResponder];
     }
-    return false;
+    return YES;
 }
 
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMOLoginViewController.h"
 
-@interface IMOProfileSettingsViewController : UIViewController
+@interface IMOProfileSettingsViewController : UIViewController <IMOLoginDelegate>
 
 @end

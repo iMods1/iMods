@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ageTextField;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)registerButtonTapped:(id)sender;
 - (IBAction)didTapOutsideTextFields:(id)sender;
@@ -53,11 +54,41 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    // TODO: unstub
+    
+    if (textField == self.userNameField) {
+        [textField resignFirstResponder];
+        [self.fullNameField becomeFirstResponder];
+    } else if (textField == self.fullNameField) {
+        [textField resignFirstResponder];
+        [self.ageTextField becomeFirstResponder];
+    } else if (textField == self.ageTextField) {
+        [textField resignFirstResponder];
+        [self.emailTextField becomeFirstResponder];
+    } else if (textField == self.emailTextField) {
+        [textField resignFirstResponder];
+        [self.passwordTextField becomeFirstResponder];
+    } else if (textField == self.passwordTextField) {
+        [textField resignFirstResponder];
+        [self.passwordConfirmationTextField becomeFirstResponder];
+    } else {
+        [self.view endEditing:YES];
+        [textField resignFirstResponder];
+    }
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if ((textField == self.passwordTextField) || (textField == self.passwordConfirmationTextField)) {
+        CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y - 150.0);
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ((textField == self.passwordTextField) || (textField == self.passwordConfirmationTextField)) {
+        [self.scrollView setContentOffset:CGPointZero animated:YES];
+    }
+}
 
 - (IBAction)registerButtonTapped:(id)sender {
     UIColor *errorRed = [UIColor colorWithRed:1.0 green:0.8 blue:0.8 alpha:1.0];
