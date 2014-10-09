@@ -54,7 +54,7 @@ static IMOUser* currentUser = nil;
                                 };
     if(self.userLoggedIn){
         NSLog(@"User already logged in, return.");
-        return nil;
+        return [self refreshUserProfile];
     }
     
     return [sessionManager postJSON:@"user/login" data:postData]
