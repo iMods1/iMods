@@ -11,6 +11,7 @@ pod 'PRHTask@aufflick'
 pod 'UICKeyChainStore'
 pod 'Stripe'
 pod 'PaymentKit', :git => 'https://github.com/stripe/PaymentKit.git'
+pod 'DACircularProgress', '~> 2.2.0'
 
 target 'iMods UI Tests', :exclusive => true do
     pod 'KIF', '~> 3.0'
