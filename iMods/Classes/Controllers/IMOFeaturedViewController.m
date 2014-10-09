@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *themesButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweaksButton;
+@property (weak, nonatomic) IBOutlet UIImageView *bannerImage;
 
 @property (strong, nonatomic) NSArray *items;
 @property (strong, nonatomic) IMOItemManager *manager;
