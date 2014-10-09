@@ -17,9 +17,10 @@ NSString * const StripePublishableKey = @"pk_test_4ZdjKL2iALVVPu62VM8BbbAE";
 
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) NSString *documentsDirectoryPath;
+@property (assign, nonatomic) BOOL shouldUseCoreData;
 
 - (NSURL *)applicationDocumentsDirectory;
-- (NSURL *)applicationStoresDirectory;
 - (NSURL *)applicationIncompatibleStoresDirectory;
 
 - (NSString *)nameForIncompatibleStore;
@@ -164,31 +165,25 @@ static BOOL isRunningTests(void) {
 }
 
 - (NSURL *)applicationDocumentsDirectory {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains: NSUserDomainMask] lastObject];
-}
-
-- (NSURL *)applicationStoresDirectory {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *applicationApplicationSupportDirectory = [[fm URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
-    NSURL *URL = [applicationApplicationSupportDirectory URLByAppendingPathComponent:@"Stores"];
+#if TARGET_IPHONE_SIMULATOR
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-    if (![fm fileExistsAtPath:[URL path]]) {
-        NSError *error = nil;
-        [fm createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:&error];
-        
-        if (error) {
-            NSLog(@"Unable to create directory for data stores.");
-            
-            return nil;
-        }
-    }
+    NSString *docPath = [documentPaths objectAtIndex:0];
     
-    return URL;
+    NSURL *storeURL = [NSURL fileURLWithPath: docPath];
+#else
+    // jailbroken path - /var/mobile/Library/iMods/
+    NSString *docPath = self.documentsDirectoryPath;
+    
+    NSURL *storeURL = [NSURL fileURLWithPath: docPath];
+#endif
+    
+    return storeURL;
 }
 
 - (NSURL *)applicationIncompatibleStoresDirectory {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *URL = [[self applicationStoresDirectory] URLByAppendingPathComponent:@"Incompatible"];
+    NSURL *URL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Incompatible"];
     
     if (![fm fileExistsAtPath:[URL path]]) {
         NSError *error = nil;
@@ -213,6 +208,25 @@ static BOOL isRunningTests(void) {
     [dateFormatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     
     return [NSString stringWithFormat:@"%@.sqlite", [dateFormatter stringFromDate:[NSDate date]]];
+}
+
+- (NSString *)documentsDirectoryPath {
+    NSString *documentPath =@"/var/mobile/Library/iMods";
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+    {
+        NSError *error;
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error: &error];
+        if (error) {
+            NSLog(@"Error creating Sqlite persistent store.");
+            self.shouldUseCoreData = NO;
+        }
+    }
+    
+    return documentPath;
 }
 
 @end
