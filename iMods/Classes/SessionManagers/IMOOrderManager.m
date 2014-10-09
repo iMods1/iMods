@@ -37,7 +37,6 @@ static IMOUserManager* currentUser = nil;
         return nil;
     }
     NSDictionary* data = [MTLJSONAdapter JSONDictionaryFromModel:newOrder];
-    // TODO: Redirect to payment gateway and finish payment.
     return [sessionManager postJSON:@"order/add" data:data]
     .then(^(OVCResponse* response, NSError* error){
         if(error){
@@ -61,8 +60,37 @@ static IMOUserManager* currentUser = nil;
 }
 
 - (PMKPromise *) placeNewOrder:(IMOOrder *)newOrder withToken:(NSString *)token {
-    // TODO: Finish stubbed method
-    return [PMKPromise new];
+    if(!newOrder){
+        NSLog(@"'nil' new order received. Return.");
+        return nil;
+    }
+    if(!currentUser.userLoggedIn){
+        NSLog(@"User not logged in when placing new order.");
+        return nil;
+    }
+    NSDictionary* data = [MTLJSONAdapter JSONDictionaryFromModel:newOrder];
+    return [sessionManager postJSON:@"order/add" data:data]
+    .then(^(OVCResponse* response, NSError* error){
+        if(error){
+            @throw error.localizedDescription;
+        }
+        IMOOrder* order = response.result;
+        IMOOrder* serverNewOrder = [[IMOOrder alloc] init];
+        [serverNewOrder mergeValuesForKeysFromModel:newOrder];
+        [serverNewOrder updateFromModel:order];
+        if(![order isKindOfClass:IMOOrder.class]){
+            NSLog(@"Errored when placing new order");
+            @throw @"Error placing new order";
+        }
+        if(self.orders) {
+            [self.orders addObject:serverNewOrder];
+        }else{
+            self.orders = [NSMutableArray arrayWithObject:serverNewOrder];
+        }
+
+        return [sessionManager postJSON:@"order/stripe_purchase" urlParameters:@[@(serverNewOrder.oid)] data:@{@"token": token}];
+    });
+
 }
 
 - (PMKPromise*) cancelOrder:(IMOOrder *)order {

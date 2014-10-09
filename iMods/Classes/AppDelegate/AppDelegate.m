@@ -10,7 +10,7 @@
 #import "IMOConstants.h"
 #import "Stripe.h"
 
-NSString * const StripePublishableKey = @"pk_test_3Qq0B7VdKihml3YpFwOidV5P";
+NSString * const StripePublishableKey = @"pk_test_4ZdjKL2iALVVPu62VM8BbbAE";
 
 
 @interface AppDelegate ()
