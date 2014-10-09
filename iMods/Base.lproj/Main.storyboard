@@ -87,7 +87,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1624" y="403"/>
+            <point key="canvasLocation" x="1624" y="-279"/>
         </scene>
         <!--iMods-->
         <scene sceneID="yl2-sM-qoP">
@@ -199,7 +199,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </objects>
-            <point key="canvasLocation" x="2718" y="1156"/>
+            <point key="canvasLocation" x="2584" y="1156"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1gw-3k-akj">
@@ -382,13 +382,6 @@
                                     <action selector="tweaksButtonWasTapped:" destination="FXf-RH-8ZG" eventType="touchUpInside" id="SaH-kv-U55"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" id="0XE-ck-fEa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="pfa-6j-OUT" kind="embed" identifier="featured_banner_embed" id="y3V-5G-Zei"/>
-                                </connections>
-                            </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0iA-CU-Ynl">
                                 <rect key="frame" x="-1" y="189" width="321" height="317"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -405,6 +398,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yzA-lq-IwQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -427,6 +424,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bannerImage" destination="yzA-lq-IwQ" id="bja-Pg-vW8"/>
                         <outlet property="tableView" destination="0iA-CU-Ynl" id="SZw-CG-WYN"/>
                         <outlet property="themesButton" destination="k1Y-K5-6X8" id="kzB-Od-cCu"/>
                         <outlet property="tweaksButton" destination="qYu-KK-EUD" id="zI1-rV-xlX"/>
@@ -435,56 +433,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TNX-Vd-3Ek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2584" y="403"/>
-        </scene>
-        <!--Featured Banner Controller-->
-        <scene sceneID="SpA-Pp-NpA">
-            <objects>
-                <viewController id="pfa-6j-OUT" customClass="IMOFeaturedBannerController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4Uo-TA-yLV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imods-assets-featured-banner" id="Oqn-Ji-aMQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.99 $" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aKC-Kn-AMk">
-                                <rect key="frame" x="22" y="30" width="48" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kelydo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VTv-Fv-Mvs">
-                                <rect key="frame" x="22" y="69" width="62" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS 7" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aGO-tu-3d2">
-                                <rect key="frame" x="23" y="91" width="37" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aye-bG-SyL">
-                                <rect key="frame" x="249" y="30" width="51" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.80000001192092896" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JtB-qd-IzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3148" y="114.5"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="c9D-jX-JLI">
@@ -561,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-bb-DXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3148" y="605"/>
+            <point key="canvasLocation" x="3142" y="403"/>
         </scene>
         <!--Categories Controller-->
         <scene sceneID="eQU-VR-A5d">
@@ -700,7 +648,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqN-U6-sxm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3610" y="605"/>
+            <point key="canvasLocation" x="3602" y="403"/>
         </scene>
         <!--Featured-->
         <scene sceneID="RCo-dt-eAr">
@@ -744,7 +692,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoY-0M-V6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2118" y="1904"/>
+            <point key="canvasLocation" x="2118" y="1912"/>
         </scene>
         <!--Updates View Controller-->
         <scene sceneID="CRL-U9-JMG">
@@ -818,7 +766,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDi-G0-5Ys" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="1904"/>
+            <point key="canvasLocation" x="2584" y="1912"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SSP-md-n4H">
@@ -841,7 +789,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iln-VO-hlk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2220" y="1156"/>
+            <point key="canvasLocation" x="2118" y="1156"/>
         </scene>
     </scenes>
     <resources>
@@ -852,7 +800,6 @@
         <image name="iMods_Updates_0002s_0000_BG" width="320" height="568"/>
         <image name="imods-assets-categories-icon" width="23" height="21"/>
         <image name="imods-assets-chart-icon-selected" width="31" height="27"/>
-        <image name="imods-assets-featured-banner" width="320" height="158"/>
         <image name="imods-assets-featured-icon-deselected" width="28" height="26"/>
         <image name="imods-assets-featured-tab-background" width="160" height="56"/>
         <image name="imods-assets-featured-tab-button-selected" width="160" height="56"/>
@@ -894,7 +841,7 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tEk-R1-nSP"/>
+        <segue reference="VdQ-U4-lWc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

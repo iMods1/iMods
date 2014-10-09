@@ -864,7 +864,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+			shellScript = "# /opt/iOSOpenDev/bin/iosod --xcbp";
 		};
 		630EADD6C2D941318BFD925B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
