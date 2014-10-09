@@ -11,12 +11,12 @@
 
 @class IMOLoginViewController;
 
-@protocol IMOLoginViewDelegate <NSObject>
+@protocol IMOLoginDelegate <NSObject>
 - (void)loginViewControllerDidFinishLogin:(IMOLoginViewController *)lvc;
 @end
 
 @interface IMOLoginViewController : UIViewController <UITextFieldDelegate, IMORegistrationDelegate>
-@property (weak, nonatomic) id<IMOLoginViewDelegate>delegate;
+@property (weak, nonatomic) id<IMOLoginDelegate>delegate;
 
 - (void)registrationDidFinish:(IMORegistrationViewController *)sender withEmail:(NSString *)email withPassword:(NSString *)password;
 
