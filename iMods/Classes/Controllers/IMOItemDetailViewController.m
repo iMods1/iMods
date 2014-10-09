@@ -210,28 +210,16 @@
 }
 
 - (void)checkPurchaseStatus {
+
     NSNumber *itemId = [self.item valueForKey:@"iid"];
-    [self.orderManager refreshOrders].then(^(NSArray *orders) {
-        NSMutableArray *filteredOrders = [NSMutableArray array];
-        for (IMOOrder *order in orders) {
-            if (order.item_id == itemId.integerValue) {
-                [filteredOrders addObject: order];
-            }
-        }
-        
-        NSLog(@"Filtered orders: %@", filteredOrders);
-        self.isPurchased = ([filteredOrders count] > 0);
-    });
-    /*
-     
-     // TODO: fix fetchorderbyuseritem
+
     [self.orderManager fetchOrderByUserItem: (NSUInteger)itemId.integerValue].then(^(OVCResponse *response, NSError *error) {
         NSLog(@"Returned responses: %@", response);
         self.isPurchased = ([response.result count] > 0);
     }).catch(^(NSError *error) {
         NSLog(@"No order found for current user for item: %@", self.item);
         self.isPurchased = NO;
-    });*/
+    });
 }
 
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withCard:(PTKCard *)card {
@@ -359,9 +347,7 @@
         NSLog(@"Error creating order: %@", error.localizedDescription);
         return nil;
     } else {
-        return [self.orderManager placeNewOrder: order].then(^{
-            // TODO: Send token to backend server to make purchase
-        });
+        return [self.orderManager placeNewOrder: order withToken: token.tokenId];
     }
 }
 
