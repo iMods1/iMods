@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
@@ -13,7 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" id="HXq-22-Tna">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" id="HXq-22-Tna">
                                 <rect key="frame" x="26" y="231" width="268" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,7 +48,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerButtonWasTapped:" destination="NBX-nP-4aF" eventType="touchUpInside" id="Lxk-CU-4yg"/>
+                                    <segue destination="685-Kz-4Iu" kind="modal" identifier="login_register_modal" id="UjY-3m-spT"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="imods-assets-logo-large" id="qKV-C0-65A">
@@ -59,8 +58,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pXw-oh-Phs">
                                 <rect key="frame" x="26" y="194" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -72,10 +71,10 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="emailField" destination="HXq-22-Tna" id="Cfr-YE-E9J"/>
                         <outlet property="errorLabel" destination="pXw-oh-Phs" id="v41-ms-9bQ"/>
                         <outlet property="passwordField" destination="OgZ-Vb-xPc" id="vcG-jw-RrS"/>
                         <outlet property="tapRecognizer" destination="RfZ-vH-WYM" id="aOb-3p-wJt"/>
-                        <outlet property="userNameField" destination="HXq-22-Tna" id="4sx-SM-dCc"/>
                         <segue destination="QfL-fn-5HY" kind="unwind" identifier="login_exit" unwindAction="unwindToTabBarController:" id="JUe-N4-dOL"/>
                     </connections>
                 </viewController>
@@ -88,6 +87,108 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1624" y="-279"/>
+        </scene>
+        <!--Registration-->
+        <scene sceneID="v7U-fo-n5x">
+            <objects>
+                <viewController title="Registration" id="685-Kz-4Iu" customClass="IMORegistrationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7aw-3m-GOq">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="imods-assets-logo-large" id="Sce-EO-AcT">
+                                <rect key="frame" x="121" y="25" width="78" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" id="p4p-qk-TpD">
+                                <rect key="frame" x="26" y="252" width="268" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" id="SNC-lJ-aU9">
+                                <rect key="frame" x="26" y="301" width="268" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password Confirmation" textAlignment="center" minimumFontSize="17" id="dwi-f6-liD">
+                                <rect key="frame" x="26" y="350" width="268" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="center" minimumFontSize="17" id="v2b-nf-J4L">
+                                <rect key="frame" x="26" y="154" width="268" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" textAlignment="center" minimumFontSize="17" id="mHU-sl-Iqb">
+                                <rect key="frame" x="26" y="203" width="268" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" id="7Vq-bn-eaV">
+                                <rect key="frame" x="26" y="105" width="268" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Jo-I3-3hy">
+                                <rect key="frame" x="26" y="422" width="268" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <state key="normal" backgroundImage="imods-assets-register-button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerButtonTapped:" destination="685-Kz-4Iu" eventType="touchUpInside" id="E7D-Tq-JXe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DDi-l6-0rP">
+                                <rect key="frame" x="136" y="483" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="TAF-AW-TBU" kind="unwind" unwindAction="unwindToLogin:" id="Z4l-C1-0p4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="vhI-vc-8Mj" appends="YES" id="uFJ-IJ-efH"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="5bd-4q-icE"/>
+                    <connections>
+                        <outlet property="ageTextField" destination="mHU-sl-Iqb" id="f4W-1l-qLn"/>
+                        <outlet property="emailTextField" destination="p4p-qk-TpD" id="8Bl-zc-AhW"/>
+                        <outlet property="fullNameField" destination="v2b-nf-J4L" id="ery-Vr-xaC"/>
+                        <outlet property="passwordConfirmationTextField" destination="dwi-f6-liD" id="ygi-zI-gcN"/>
+                        <outlet property="passwordTextField" destination="SNC-lJ-aU9" id="swo-On-Qn7"/>
+                        <outlet property="userNameField" destination="7Vq-bn-eaV" id="Q1r-32-Um0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOE-Dj-zNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TAF-AW-TBU" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="vhI-vc-8Mj">
+                    <connections>
+                        <action selector="didTapOutsideTextFields:" destination="685-Kz-4Iu" id="bGX-uP-XKw"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2008" y="-279"/>
         </scene>
         <!--iMods-->
         <scene sceneID="yl2-sM-qoP">
@@ -338,7 +439,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="bzY-AV-96a"/>
+                    <navigationItem key="navigationItem" title="Profile" id="bzY-AV-96a">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="gJe-WA-bMv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZFD-Ec-5Dq">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eFY-ff-r0T" kind="push" id="XV4-lE-UGx"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -351,6 +465,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2584" y="-279"/>
+        </scene>
+        <!--Profile Settings View Controller-->
+        <scene sceneID="3HI-nf-x2E">
+            <objects>
+                <viewController id="eFY-ff-r0T" customClass="IMOProfileSettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oxc-zF-UaZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fhQ-tX-3Lk">
+                                <rect key="frame" x="132" y="244" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonTapped:" destination="eFY-ff-r0T" eventType="touchUpInside" id="aH1-Vv-Jfi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aNR-nN-g0d"/>
+                    <connections>
+                        <segue destination="ezd-kv-EDN" kind="unwind" identifier="settings_tab_bar_unwind" unwindAction="unwindToLogin:" id="RjW-8V-zGG"/>
+                        <segue destination="NBX-nP-4aF" kind="modal" identifier="settings_login_modal" id="PSt-SB-aiM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Pp-SC-k9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ezd-kv-EDN" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3040" y="-279"/>
         </scene>
         <!--Featured-->
         <scene sceneID="aWc-4F-evb">
@@ -398,7 +544,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yzA-lq-IwQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imods-assets-featured-banner" id="yzA-lq-IwQ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -619,7 +765,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3142" y="-315"/>
+            <point key="canvasLocation" x="2584" y="-975"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="iUo-E8-7XE">
@@ -731,7 +877,7 @@
                                     <action selector="uninstallButtonWasTapped:" destination="Vvo-xf-nJ2" eventType="touchUpInside" id="P0q-94-JXc"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iMods_Updates_0000s_0000s_0001s_0000_error-128" id="6TM-oR-uig">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="imods-assets-warning-icon" id="6TM-oR-uig">
                                 <rect key="frame" x="57" y="79" width="25" height="22"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
@@ -794,12 +940,12 @@
     </scenes>
     <resources>
         <image name="Image" width="106" height="106"/>
-        <image name="iMods_Updates_0000s_0000s_0001s_0000_error-128" width="25" height="22"/>
         <image name="iMods_Updates_0000s_0006s_0001s_0000_Updates" width="75" height="17"/>
         <image name="iMods_Updates_0001s_0004s_0000_Layer-27" width="20" height="23"/>
         <image name="iMods_Updates_0002s_0000_BG" width="320" height="568"/>
         <image name="imods-assets-categories-icon" width="23" height="21"/>
         <image name="imods-assets-chart-icon-selected" width="31" height="27"/>
+        <image name="imods-assets-featured-banner" width="320" height="158"/>
         <image name="imods-assets-featured-icon-deselected" width="28" height="26"/>
         <image name="imods-assets-featured-tab-background" width="160" height="56"/>
         <image name="imods-assets-featured-tab-button-selected" width="160" height="56"/>
@@ -816,6 +962,7 @@
         <image name="imods-assets-tweaks-icon" width="31" height="31"/>
         <image name="imods-assets-update-icon-selected" width="28" height="28"/>
         <image name="imods-assets-user-icon" width="20" height="24"/>
+        <image name="imods-assets-warning-icon" width="25" height="22"/>
         <image name="imods-assets-wishlist-icon" width="21" height="21"/>
         <image name="login-account-imods_0000s_0000_about-128" width="27" height="26"/>
         <image name="login-account-imods_0000s_0001_Chat-with-us" width="50" height="7"/>
@@ -841,6 +988,7 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="PSt-SB-aiM"/>
         <segue reference="VdQ-U4-lWc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

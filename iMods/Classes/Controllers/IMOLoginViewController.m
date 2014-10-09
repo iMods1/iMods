@@ -13,12 +13,11 @@
 @interface IMOLoginViewController ()
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapRecognizer;
-@property (weak, nonatomic) IBOutlet UITextField *userNameField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 
 - (IBAction)loginButtonWasTapped:(UIButton *)sender;
-- (IBAction)registerButtonWasTapped:(UIButton *)sender;
 - (IBAction)didTapOutsideTextFields:(UITapGestureRecognizer *)sender;
 
 @end
@@ -56,28 +55,23 @@
     return false;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"login_register_modal"]) {
+        ((IMORegistrationViewController *)segue.destinationViewController).delegate = self;
+    }
 }
-*/
+
 
 - (IBAction)loginButtonWasTapped:(UIButton *)sender {
-    
-    // Don't require login on debug
-    
-#ifdef DEBUG
-    [self.delegate loginViewControllerDidFinishLogin: self];
-#endif
-    
-    // TODO: Store/retrieve login credentials from Key Chain
-    
+
     IMOUserManager *manager = [IMOUserManager sharedUserManager];
-    [manager userLogin:self.userNameField.text
+    [manager userLogin:self.emailField.text
              password:self.passwordField.text].then(^(IMOUser *user){
         
         [UICKeyChainStore setString: user.email forKey: @"email"];
@@ -88,17 +82,19 @@
     });
 }
 
-- (IBAction)registerButtonWasTapped:(UIButton *)sender {
-    UIAlertController *alert = [UIAlertController
-                                alertControllerWithTitle:@"Not Implemented"
-                                message:@"Registering is not implemented! Sorry!"
-                                preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 - (IBAction)didTapOutsideTextFields:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
 }
+
+- (void)registrationDidFinish:(IMORegistrationViewController *)sender withEmail:(NSString *)email withPassword:(NSString *)password {
+    self.emailField.text = email;
+    self.passwordField.text = password;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)unwindToLogin:(UIStoryboardSegue *)sender {
+    // Stub
+}
+
 @end

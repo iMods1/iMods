@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMORegistrationViewController.h"
 
 @class IMOLoginViewController;
 
@@ -14,6 +15,10 @@
 - (void)loginViewControllerDidFinishLogin:(IMOLoginViewController *)lvc;
 @end
 
-@interface IMOLoginViewController : UIViewController <UITextFieldDelegate>
+@interface IMOLoginViewController : UIViewController <UITextFieldDelegate, IMORegistrationDelegate>
 @property (weak, nonatomic) id<IMOLoginViewDelegate>delegate;
+
+- (void)registrationDidFinish:(IMORegistrationViewController *)sender withEmail:(NSString *)email withPassword:(NSString *)password;
+
+- (IBAction)unwindToLogin:(UIStoryboardSegue *)sender;
 @end
