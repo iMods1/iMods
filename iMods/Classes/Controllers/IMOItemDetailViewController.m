@@ -351,6 +351,22 @@
     }
 }
 
+#pragma mark - IMOMockInstallationDelegate
+
+- (PRHTask *)taskForMockInstallation:(IMOMockInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
+    // TODO: Generate PRHTask from package manager
+    // For now, using dummy task
+    return [PRHTask taskWithProgramName:@"bash" arguments:@"-c", @"sleep 3; echo \"Step 1\";sleep 3;echo \"Step 2\";sleep 3;echo \"Done\"", nil];
+}
+
+- (void)installationDidDismiss:(IMOMockInstallationViewController *)installationViewController {
+    
+}
+
+- (void)installationDidFinish:(IMOMockInstallationViewController *)installationViewController {
+    
+}
+
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender {
     // stub
 }

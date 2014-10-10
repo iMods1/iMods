@@ -19,6 +19,6 @@
 
 @interface IMORegistrationViewController : UIViewController <UITextFieldDelegate>
 
-@property (weak, nonatomic) id<IMORegistrationDelegate> delegate;
 
+@property (weak, nonatomic) id<IMORegistrationDelegate> delegate;
 @end
