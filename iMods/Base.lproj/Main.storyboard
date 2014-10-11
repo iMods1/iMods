@@ -817,7 +817,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Ocr-mb-MnS" customClass="DACircularProgressView">
-                                <rect key="frame" x="0.0" y="98" width="320" height="382"/>
+                                <rect key="frame" x="33" y="161" width="254" height="244"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -837,12 +837,21 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3Rb-51-6Eq" appends="YES" id="KeQ-C3-0UQ"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="progressView" destination="Ocr-mb-MnS" id="vbU-IN-ZnZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9L-ky-Meo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3Rb-51-6Eq">
+                    <connections>
+                        <action selector="didTapOnView:" destination="2N3-oc-eFA" id="MGn-lZ-4qf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4072" y="403"/>
         </scene>

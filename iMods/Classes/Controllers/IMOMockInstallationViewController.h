@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
-#import "PRHTask.h"
+#import "IMOTask.h"
 
 @protocol IMOMockInstallationDelegate;
 
 @interface IMOMockInstallationViewController : UIViewController
 @property (weak, nonatomic) IBOutlet DACircularProgressView *progressView;
 @property (weak, nonatomic) id<IMOMockInstallationDelegate> delegate;
+@property (strong, nonatomic) IMOTask *task;
 @end
 
 @protocol IMOMockInstallationDelegate <NSObject>
-- (PRHTask *)taskForMockInstallation:(IMOMockInstallationViewController *)installationViewController withOptions: (NSDictionary *)options;
+- (IMOTask *)taskForMockInstallation:(IMOMockInstallationViewController *)installationViewController withOptions: (NSDictionary *)options;
 - (void)installationDidFinish:(IMOMockInstallationViewController *)installationViewController;
 - (void)installationDidDismiss:(IMOMockInstallationViewController *)installationViewController;
 @end

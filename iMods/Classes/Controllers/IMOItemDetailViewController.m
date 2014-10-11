@@ -17,8 +17,9 @@
 #import "IMOOrderManager.h"
 #import "IMOOrder.h"
 #import "IMOCardViewController.h"
+#import "IMOMockInstallationViewController.h"
 
-@interface IMOItemDetailViewController ()<IMOCardDelegate>
+@interface IMOItemDetailViewController ()<IMOCardDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObject *managedItem;
 @property (strong, nonatomic) NSEntityDescription *entity;
@@ -114,6 +115,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"item_detail_card_modal"]) {
         ((IMOCardViewController *)segue.destinationViewController).delegate = self;
+    } else if ([segue.identifier isEqualToString:@"item_detail_installation_modal"]) {
+        ((IMOMockInstallationViewController *)segue.destinationViewController).delegate = self;
     }
 }
 
@@ -126,31 +129,7 @@
             return;
         } else {
             // Handle tap on Install button.
-            
-            // TODO: Use package manager to handle actual item installation
-            
-            self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
-            [self.managedItem setValue:[self.item valueForKey: @"pkg_name"] forKey: @"name"];
-            [self.managedItem setValue:[self.item valueForKey: @"iid"] forKey: @"id"];
-            [self.managedItem setValue:[self.item valueForKey: @"pkg_version"] forKey: @"version"];
-            
-            NSError *error = nil;
-            [self.managedObjectContext save: &error];
-            
-            if (error) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Application Error" message: @"There was a problem with the application." preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction: action];
-                [self presentViewController:alert animated:YES completion:nil];
-            } else {
-                self.installButton.enabled = NO;
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Installed" message:@"The item was installed." preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction: action];
-                [self presentViewController:alert animated:YES completion:^{
-                    self.isInstalled = YES;
-                }];
-            }
+            [self performSegueWithIdentifier:@"item_detail_installation_modal" sender:self];
         }
     } else {
         // Handle tap on "Purchase" button
@@ -353,18 +332,48 @@
 
 #pragma mark - IMOMockInstallationDelegate
 
-- (PRHTask *)taskForMockInstallation:(IMOMockInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
-    // TODO: Generate PRHTask from package manager
+- (IMOTask *)taskForMockInstallation:(IMOMockInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
+    // TODO: Generate IMOTask from package manager
     // For now, using dummy task
-    return [PRHTask taskWithProgramName:@"bash" arguments:@"-c", @"sleep 3; echo \"Step 1\";sleep 3;echo \"Step 2\";sleep 3;echo \"Done\"", nil];
+    IMOTask *task = [[IMOTask alloc] init];
+    task.launchPath = @"/bin/bash";
+    task.arguments = @[@"-c", @"sleep 3; echo \"Step 1\";sleep 3;echo \"Step 2\";sleep 3;echo \"Done\""];
+    return task;
 }
 
 - (void)installationDidDismiss:(IMOMockInstallationViewController *)installationViewController {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)installationDidFinish:(IMOMockInstallationViewController *)installationViewController {
-    
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
+        [self.managedItem setValue:[self.item valueForKey: @"pkg_name"] forKey: @"name"];
+        [self.managedItem setValue:[self.item valueForKey: @"iid"] forKey: @"id"];
+        [self.managedItem setValue:[self.item valueForKey: @"pkg_version"] forKey: @"version"];
+        
+        NSError *error = nil;
+        [self.managedObjectContext save: &error];
+        
+        if (error) {
+            if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+                // iOS 8
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Application Error" message: @"There was a problem with the application." preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction: action];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                // iOS 7.1  or lower
+            }
+        } else {
+            [self checkInstallStatus];
+        }
+    }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // TODO: Unstub
 }
 
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender {
