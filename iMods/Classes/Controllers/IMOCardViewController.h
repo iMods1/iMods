@@ -20,5 +20,6 @@
 @protocol IMOCardDelegate
 
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withCard:(PTKCard *)card;
+- (void)cardControllerDidCancel:(IMOCardViewController *)cardController;
 
 @end
