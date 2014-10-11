@@ -165,19 +165,20 @@ static BOOL isRunningTests(void) {
 }
 
 - (NSURL *)applicationDocumentsDirectory {
-#if TARGET_IPHONE_SIMULATOR
-    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *docPath = [documentPaths objectAtIndex:0];
-    
-    NSURL *storeURL = [NSURL fileURLWithPath: docPath];
-#else
-    // jailbroken path - /var/mobile/Library/iMods/
-    NSString *docPath = self.documentsDirectoryPath;
-    
-    NSURL *storeURL = [NSURL fileURLWithPath: docPath];
-#endif
-    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    if (![[NSFileManager defaultManager] fileExistsAtPath: path]) {
+        // Create the directory on a jailbroken phone
+        NSError *error;
+        [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error: &error];
+        if (error) {
+            NSLog(@"Error creating document directory path: %@", error.localizedDescription);
+            self.shouldUseCoreData = NO;
+        }
+    }
+    NSURL *storeURL = [NSURL fileURLWithPath:path];
     return storeURL;
 }
 
@@ -190,7 +191,7 @@ static BOOL isRunningTests(void) {
         [fm createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:&error];
         
         if (error) {
-            NSLog(@"Unable to create directory for corrupt data stores.");
+            NSLog(@"Unable to create directory for corrupt data stores: %@", error.localizedDescription);
             
             return nil;
         }
@@ -209,24 +210,4 @@ static BOOL isRunningTests(void) {
     
     return [NSString stringWithFormat:@"%@.sqlite", [dateFormatter stringFromDate:[NSDate date]]];
 }
-
-- (NSString *)documentsDirectoryPath {
-    NSString *documentPath =@"/var/mobile/Library/iMods";
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
-    {
-        NSError *error;
-        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
-                                  withIntermediateDirectories:NO
-                                                   attributes:nil
-                                                        error: &error];
-        if (error) {
-            NSLog(@"Error creating Sqlite persistent store.");
-            self.shouldUseCoreData = NO;
-        }
-    }
-    
-    return documentPath;
-}
-
 @end

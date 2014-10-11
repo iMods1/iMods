@@ -87,6 +87,7 @@
 		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
 		4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */; };
 		4DCFBBF119E67D3600A36D63 /* IMOProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */; };
+		4DCFBBF719E6FE1400A36D63 /* IMOMockInstallationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF619E6FE1400A36D63 /* IMOMockInstallationViewController.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -308,6 +309,8 @@
 		4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMORegistrationViewController.m; sourceTree = "<group>"; };
 		4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOProfileSettingsViewController.h; sourceTree = "<group>"; };
 		4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOProfileSettingsViewController.m; sourceTree = "<group>"; };
+		4DCFBBF519E6FE1400A36D63 /* IMOMockInstallationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOMockInstallationViewController.h; sourceTree = "<group>"; };
+		4DCFBBF619E6FE1400A36D63 /* IMOMockInstallationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOMockInstallationViewController.m; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
 				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
 				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
+				4DCFBBF519E6FE1400A36D63 /* IMOMockInstallationViewController.h */,
+				4DCFBBF619E6FE1400A36D63 /* IMOMockInstallationViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -739,6 +744,7 @@
 				TargetAttributes = {
 					284CBBB11946F35A006539A3 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 8KUXPM883J;
 					};
 					284CBBC51946F35A006539A3 = {
 						CreatedOnToolsVersion = 6.0;
@@ -966,6 +972,7 @@
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */,
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
+				4DCFBBF719E6FE1400A36D63 /* IMOMockInstallationViewController.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
@@ -1223,7 +1230,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone;
+				iOSOpenDevDevice = 10.24.231.151;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
@@ -1240,7 +1247,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iMods/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1255,7 +1262,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone;
+				iOSOpenDevDevice = 10.24.231.151;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;

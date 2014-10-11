@@ -199,7 +199,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2008" y="-279"/>
+            <point key="canvasLocation" x="2118" y="-279"/>
         </scene>
         <!--iMods-->
         <scene sceneID="yl2-sM-qoP">
@@ -507,7 +507,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pp-SC-k9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ezd-kv-EDN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3040" y="-279"/>
+            <point key="canvasLocation" x="2584" y="-999"/>
         </scene>
         <!--Featured-->
         <scene sceneID="aWc-4F-evb">
@@ -662,6 +662,7 @@
                         <outlet property="titleLabel" destination="h5b-fU-AcB" id="Qo9-tq-Aco"/>
                         <outlet property="versionLabel" destination="9wF-AX-myF" id="1YJ-41-4iF"/>
                         <segue destination="9sT-yx-CwZ" kind="modal" identifier="item_detail_card_modal" id="dFw-nh-O5U"/>
+                        <segue destination="2N3-oc-eFA" kind="modal" identifier="item_detail_installation_modal" id="wAm-YW-gPY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-bb-DXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -709,7 +710,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FjQ-Z1-qeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3157" y="1490"/>
+            <point key="canvasLocation" x="3142" y="1156"/>
         </scene>
         <!--Categories Detail Table View Controller-->
         <scene sceneID="YhM-2g-QVM">
@@ -739,7 +740,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2u-pa-0od" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3540" y="1490"/>
+            <point key="canvasLocation" x="3608" y="1156"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="0QE-QZ-fmj">
@@ -776,7 +777,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2584" y="-975"/>
+            <point key="canvasLocation" x="3142" y="-279"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="iUo-E8-7XE">
@@ -806,6 +807,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqN-U6-sxm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3602" y="403"/>
+        </scene>
+        <!--Mock Installation View Controller-->
+        <scene sceneID="QzT-Vu-pwD">
+            <objects>
+                <viewController id="2N3-oc-eFA" customClass="IMOMockInstallationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GPa-OO-Keq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="Ocr-mb-MnS" customClass="DACircularProgressView">
+                                <rect key="frame" x="33" y="161" width="254" height="244"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INSTALLING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="azM-Mf-IVZ">
+                                <rect key="frame" x="94" y="37" width="141" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to dismiss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xl3-QV-PFD">
+                                <rect key="frame" x="114" y="527" width="95" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3Rb-51-6Eq" appends="YES" id="KeQ-C3-0UQ"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="progressView" destination="Ocr-mb-MnS" id="vbU-IN-ZnZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n9L-ky-Meo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3Rb-51-6Eq">
+                    <connections>
+                        <action selector="didTapOnView:" destination="2N3-oc-eFA" id="MGn-lZ-4qf"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="4072" y="403"/>
         </scene>
         <!--Featured-->
         <scene sceneID="RCo-dt-eAr">
@@ -999,8 +1047,8 @@
         </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="5kM-yA-tf0"/>
         <segue reference="PSt-SB-aiM"/>
-        <segue reference="VdQ-U4-lWc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

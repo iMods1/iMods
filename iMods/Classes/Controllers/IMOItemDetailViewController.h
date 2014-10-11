@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMOMockInstallationViewController.h"
 
 @class IMOItem;
 
-@interface IMOItemDetailViewController : UIViewController
+@interface IMOItemDetailViewController : UIViewController <IMOMockInstallationDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
