@@ -15,6 +15,7 @@
 @property (strong, nonatomic) PTKCard *card;
 
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
+- (IBAction)cancelButtonTapped:(id)sender;
 - (IBAction)submitButtonTapped:(id)sender;
 @end
 
@@ -50,6 +51,10 @@
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid {
     self.submitButton.enabled = YES;
     self.card = card;
+}
+
+- (IBAction)cancelButtonTapped:(id)sender {
+    [self.delegate cardControllerDidCancel: self];
 }
 
 - (IBAction)submitButtonTapped:(id)sender {

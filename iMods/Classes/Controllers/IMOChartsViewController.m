@@ -26,7 +26,10 @@
 - (IBAction)topPaidButtonTapped:(UIButton *)sender;
 - (IBAction)topNewButtonTapped:(UIButton *)sender;
 - (void)loadDataForCategory:(NSString *)category;
+
 - (void)customizeNavigationBar;
+- (void)resetNavigationBar;
+
 - (NSString *)categoryForSelectedIndex;
 @end
 
@@ -52,10 +55,16 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"imods-assets-featured-tableview-background"]];
     
     self.tableView.backgroundView = imageView;
-    
-    [self customizeNavigationBar];
-    
+
     [self loadDataForCategory: category];
+}
+
+- (void)viewWDidAppear:(BOOL)animated {
+    [self customizeNavigationBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self resetNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,11 +73,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
@@ -166,6 +170,10 @@
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
+}
+
+- (void)resetNavigationBar {
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (NSString *)categoryForSelectedIndex {

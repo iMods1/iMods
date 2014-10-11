@@ -35,6 +35,7 @@
 - (void)createPurchaseFromCard:(PTKCard *)card;
 - (void)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo;
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withCard:(PTKCard *)card;
+- (void)cardControllerDidCancel:(IMOCardViewController *)cardController;
 
 - (PMKPromise *)billingInfo:(NSDictionary *)dict withCard:(PTKCard *)card;
 - (PMKPromise *)order:(NSDictionary *)dict withBillingInfo:(IMOBillingInfo *)billingInfo
@@ -205,6 +206,10 @@
     [self dismissViewControllerAnimated: YES completion: ^{
         [self createPurchaseFromCard: card];
     }];
+}
+
+- (void)cardControllerDidCancel:(IMOCardViewController *)cardController {
+    [self dismissViewControllerAnimated: YES completion: nil];
 }
 
 - (void)createPurchaseFromCard:(PTKCard *) card {
