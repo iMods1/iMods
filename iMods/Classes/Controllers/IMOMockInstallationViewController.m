@@ -114,8 +114,14 @@
         self.timer = nil;
 #if TARGET_IPHONE_SIMULATOR
         // FIX: This is not how it should work, temporary logic for demo
-        [self.progressView setProgress:1.0f animated:YES];
-        [self.delegate installationDidFinish:self];
+        __weak IMOMockInstallationViewController *weakSelf = self;
+        [self.progressView setProgress: 1.0 animated:YES];
+        double delayInSeconds = 1.0f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            //code to be executed on the main queue after delay
+            [weakSelf.delegate installationDidFinish:weakSelf];
+        });
 #elif TARGET_OS_IPHONE
 #else
 #endif
