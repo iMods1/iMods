@@ -12,7 +12,10 @@
 
 @interface IMOBillingInfoManager : NSObject
 
-@property (retain) NSMutableArray* billingMethods;
+@property (strong, nonatomic) NSMutableArray* billingMethods;
+@property (weak, nonatomic) IMOBillingInfo *defaultBillingInfo;
+
++ (IMOBillingInfoManager *) sharedBillingInfoManager;
 
 - (PMKPromise*) addNewBillingMethod:(IMOBillingInfo*)billingInfo;
 - (PMKPromise*) updateBillingMethod:(IMOBillingInfo*)newBillingInfo;
