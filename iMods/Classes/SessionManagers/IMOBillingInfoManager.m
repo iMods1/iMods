@@ -12,6 +12,9 @@
 
 @implementation IMOBillingInfoManager
 
+@synthesize selectedBillingMethod = _selectedBillingMethod;
+@synthesize isBillingMethodSelected = _isBillingMethodSelected;
+
 static IMOSessionManager* sessionManager = nil;
 static IMOUserManager* currentUser = nil;
 
@@ -20,6 +23,7 @@ static IMOUserManager* currentUser = nil;
     if (self) {
         sessionManager = [IMOSessionManager sharedSessionManager];
         currentUser = [IMOUserManager sharedUserManager];
+        self.isBillingMethodSelected = NO;
     }
     return self;
 }

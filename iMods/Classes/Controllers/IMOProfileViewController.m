@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSManagedObject *managedItem;
 
 - (void)setupLabels;
+- (IBAction)walletButtonTapped:(id)sender;
 
 @end
 
@@ -95,6 +96,10 @@
         }
         // TODO: Get profile picture from assets server
     }
+}
+
+- (IBAction)walletButtonTapped:(id)sender {
+    [self performSegueWithIdentifier:@"profile_wallet_push" sender:self];
 }
 
 @end

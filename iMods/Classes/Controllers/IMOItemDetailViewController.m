@@ -10,16 +10,13 @@
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 #import <Stripe/Stripe.h>
-#import "IMOUserManager.h"
-#import "IMOItem.h"
-#import "IMOBillingInfoManager.h"
-#import "IMOBillingInfo.h"
+#import "IMOSessionManager.h"
 #import "IMOOrderManager.h"
 #import "IMOOrder.h"
 #import "IMOCardViewController.h"
-#import "IMOMockInstallationViewController.h"
+#import "IMOInstallationViewController.h"
 
-@interface IMOItemDetailViewController ()<IMOCardDelegate, UIAlertViewDelegate>
+@interface IMOItemDetailViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObject *managedItem;
 @property (strong, nonatomic) NSEntityDescription *entity;
@@ -33,13 +30,13 @@
 - (void)checkInstallStatus;
 - (void)checkPurchaseStatus;
 - (void)createPurchaseFromCard:(PTKCard *)card;
-- (void)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo;
+- (PMKPromise *)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo;
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withCard:(PTKCard *)card;
 - (void)cardControllerDidCancel:(IMOCardViewController *)cardController;
 
 - (PMKPromise *)billingInfo:(NSDictionary *)dict withCard:(PTKCard *)card;
-- (PMKPromise *)order:(NSDictionary *)dict withBillingInfo:(IMOBillingInfo *)billingInfo
-          withToken:(STPToken *)token;
+- (PMKPromise *)order:(NSDictionary *)dict withBillingInfo:(IMOBillingInfo *) billingInfo;
+- (PMKPromise *)order:(NSDictionary *)dict withBillingInfo:(IMOBillingInfo *)billingInfo withToken:(STPToken *)token;
 
 @end
 
@@ -90,8 +87,9 @@
     
     
     // Set Billing and Order managers
+    IMOSessionManager *manager = [IMOSessionManager sharedSessionManager];
     self.orderManager = [[IMOOrderManager alloc] init];
-    self.billingManager = [[IMOBillingInfoManager alloc] init];
+    self.billingManager = manager.billingManager;
     
     // Set up Core Data objects
     self.managedObjectContext = [((AppDelegate *)[[UIApplication sharedApplication] delegate]) managedObjectContext];
@@ -114,10 +112,8 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"item_detail_card_modal"]) {
-        ((IMOCardViewController *)segue.destinationViewController).delegate = self;
-    } else if ([segue.identifier isEqualToString:@"item_detail_installation_modal"]) {
-        ((IMOMockInstallationViewController *)segue.destinationViewController).delegate = self;
+    if ([segue.identifier isEqualToString:@"item_detail_installation_modal"]) {
+        ((IMOInstallationViewController *)segue.destinationViewController).delegate = self;
     }
 }
 
@@ -136,18 +132,23 @@
         // Handle tap on "Purchase" button
         [self.billingManager refreshBillingMethods].then(^{
             NSLog(@"Current billing method count: %lu", (unsigned long)[self.billingManager billingMethods].count);
-            if ([self.billingManager billingMethods].count <= 0) {
-                [self performSegueWithIdentifier:@"item_detail_card_modal" sender:self];
+            BOOL shouldSegueToWallet = (self.billingManager.billingMethods.count <= 0) || !self.billingManager.isBillingMethodSelected;
+            
+            NSLog(@"Current status of billingManager.isBillingMethodSelected: %d", self.billingManager.isBillingMethodSelected);
+            if (shouldSegueToWallet) {
+                [self performSegueWithIdentifier:@"item_detail_wallet_push" sender:self];
             } else {
-                /*
-                // TODO: Select billing method, make purchase from billing method
-                // TODO: Make better. Currently, just chooses the first
-                IMOBillingInfo *billingInfo = [self.billingManager billingMethods][0];
+                IMOBillingInfo *billingInfo = self.billingManager.billingMethods[self.billingManager.selectedBillingMethod];
                 NSLog(@"Selected billing method: %@", billingInfo);
-                [self createPurchaseFromBillingInfo: billingInfo];
-                */
-                // TODO: Fix problem where billing info data is null
-                [self performSegueWithIdentifier:@"item_detail_card_modal" sender:self];
+                __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                activityIndicator.center = self.view.center;
+                [self.view addSubview:activityIndicator];
+                [activityIndicator startAnimating];
+                
+                [self createPurchaseFromBillingInfo: billingInfo].then(^{
+                    [activityIndicator stopAnimating];
+                    [activityIndicator removeFromSuperview];
+                });
             }
         });
     }
@@ -240,7 +241,7 @@
     }
 }
 
-- (void)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo {
+- (PMKPromise *)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo {
     NSDictionary *orderDict = @{
                                 @"item_id": [self.item valueForKey: @"iid"],
                                 @"pkg_name": [self.item valueForKey: @"pkg_name"],
@@ -251,35 +252,12 @@
                                 };
     
     
-   
-    STPCard *card = [[STPCard alloc] init];
-    
-    NSLog(@"creditCardNumber: %@", billingInfo.creditcardNumber);
-    NSLog(@"creditCardExpiration: %@", billingInfo.creditcardExpiration);
-    NSLog(@"creditCardCVV : %@", billingInfo.creditcardCVV);
-    card.number = billingInfo.creditcardNumber;
-
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:billingInfo.creditcardExpiration];
-    NSInteger month = [components month];
-    NSInteger year = [components year];
-
-    card.expMonth = month;
-    card.expYear = year;
-    card.cvc = billingInfo.creditcardCVV;
-    NSLog(@"Card: %@", card);
-    [Stripe createTokenWithCard:card completion:^(STPToken *token, NSError *error) {
-        if (error) {
-            NSLog(@"There was an error creating the Stripe Token: %@", error.localizedDescription);
-            // TODO: Notify user of error
-        } else {
-            [self order:orderDict withBillingInfo:billingInfo withToken:token].then(^{
-                self.isPurchased = YES;
-            }).catch(^(NSError *error) {
-                // TODO: Notify user
-                NSLog(@"Error with backend %@", error.localizedDescription);
-            });
-        }
-    }];
+    return [self order:orderDict withBillingInfo:billingInfo].then(^{
+        self.isPurchased = YES;
+    }).catch(^(NSError *error) {
+        // TODO: Notify user
+        NSLog(@"Error with backend %@", error.localizedDescription);
+    });
 }
 
 
@@ -313,6 +291,26 @@
     }
 }
 
+- (PMKPromise *)order:(NSDictionary *)dict withBillingInfo:(IMOBillingInfo *)billingInfo {
+    NSDictionary *billingInfoDict = @{
+                                      @"billing_id": @(billingInfo.bid),
+                                      @"billingInfo": billingInfo
+                                      };
+    NSMutableDictionary *mutableDict = [dict mutableCopy];
+    
+    [mutableDict addEntriesFromDictionary:billingInfoDict];
+    
+    NSError *error = nil;
+    IMOOrder *order = [[IMOOrder alloc] initWithDictionary:mutableDict error:&error];
+    
+    if (error) {
+        NSLog(@"Error creating order: %@", error.localizedDescription);
+        return nil;
+    } else {
+        return [self.orderManager placeNewOrder:order];
+    }
+}
+
 - (PMKPromise *)order:(NSDictionary *)dict withBillingInfo:(IMOBillingInfo *)billingInfo withToken:(STPToken *)token {
     
     NSDictionary *billingInfoDict = @{
@@ -337,7 +335,7 @@
 
 #pragma mark - IMOMockInstallationDelegate
 
-- (IMOTask *)taskForMockInstallation:(IMOMockInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
+- (IMOTask *)taskForMockInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
     // TODO: Generate IMOTask from package manager
     // For now, using dummy task
     IMOTask *task = [[IMOTask alloc] init];
@@ -346,11 +344,11 @@
     return task;
 }
 
-- (void)installationDidDismiss:(IMOMockInstallationViewController *)installationViewController {
+- (void)installationDidDismiss:(IMOInstallationViewController *)installationViewController {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)installationDidFinish:(IMOMockInstallationViewController *)installationViewController {
+- (void)installationDidFinish:(IMOInstallationViewController *)installationViewController {
     [self dismissViewControllerAnimated:YES completion:^{
         self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
         [self.managedItem setValue:[self.item valueForKey: @"pkg_name"] forKey: @"name"];

@@ -37,11 +37,22 @@
     if (!manager.userLoggedIn) {
         NSLog(@"User not logged in");
         if (email && password) {
+            [self.view setUserInteractionEnabled:NO];
+            __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            indicator.center = self.view.center;
+            [self.view addSubview:indicator];
+            [indicator startAnimating];
             [manager userLogin: email password: password].then(^(IMOUser *user) {
                 NSLog(@"User: %@ successfully logged in", user);
+                [indicator stopAnimating];
+                [indicator removeFromSuperview];
+                [self.view setUserInteractionEnabled:YES];
             }).catch(^(NSError *error) {
                 NSLog(@"Login error: %@", error.localizedDescription);
                 
+                [indicator stopAnimating];
+                [indicator removeFromSuperview];
+                [self.view setUserInteractionEnabled:YES];
                 // Send user to the login view controller
                 [self presentLoginViewController: YES];
             });

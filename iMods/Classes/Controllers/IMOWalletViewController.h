@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMOCardViewController.h"
 
-@interface IMOWalletViewController : UIViewController
+@interface IMOWalletViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, IMOCardDelegate>
 
 @end

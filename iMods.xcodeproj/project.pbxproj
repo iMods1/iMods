@@ -72,6 +72,7 @@
 		4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */; };
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
+		4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6044E819F86CD500D82152 /* IMOWalletViewController.m */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -87,7 +88,7 @@
 		4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */; };
 		4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */; };
 		4DCFBBF119E67D3600A36D63 /* IMOProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */; };
-		4DCFBBF719E6FE1400A36D63 /* IMOMockInstallationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF619E6FE1400A36D63 /* IMOMockInstallationViewController.m */; };
+		4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -288,6 +289,8 @@
 		4D3A7F771991D0940024AB2B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOUpdatesViewController.h; sourceTree = "<group>"; };
 		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
+		4D6044E719F86CD500D82152 /* IMOWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOWalletViewController.h; sourceTree = "<group>"; };
+		4D6044E819F86CD500D82152 /* IMOWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOWalletViewController.m; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -309,8 +312,8 @@
 		4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMORegistrationViewController.m; sourceTree = "<group>"; };
 		4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOProfileSettingsViewController.h; sourceTree = "<group>"; };
 		4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOProfileSettingsViewController.m; sourceTree = "<group>"; };
-		4DCFBBF519E6FE1400A36D63 /* IMOMockInstallationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOMockInstallationViewController.h; sourceTree = "<group>"; };
-		4DCFBBF619E6FE1400A36D63 /* IMOMockInstallationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOMockInstallationViewController.m; sourceTree = "<group>"; };
+		4DCFBBF519E6FE1400A36D63 /* IMOInstallationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOInstallationViewController.h; sourceTree = "<group>"; };
+		4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOInstallationViewController.m; sourceTree = "<group>"; };
 		4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-HexColors.a"; path = "Pods/build/Debug-iphoneos/libPods-HexColors.a"; sourceTree = "<group>"; };
 		4DDFAC5E19762C860094FB8D /* libPods-Mantle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Mantle.a"; path = "Pods/build/Debug-iphoneos/libPods-Mantle.a"; sourceTree = "<group>"; };
@@ -543,8 +546,10 @@
 				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
 				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
 				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
-				4DCFBBF519E6FE1400A36D63 /* IMOMockInstallationViewController.h */,
-				4DCFBBF619E6FE1400A36D63 /* IMOMockInstallationViewController.m */,
+				4DCFBBF519E6FE1400A36D63 /* IMOInstallationViewController.h */,
+				4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */,
+				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
+				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -954,6 +959,7 @@
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
+				4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */,
@@ -972,7 +978,7 @@
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */,
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
-				4DCFBBF719E6FE1400A36D63 /* IMOMockInstallationViewController.m in Sources */,
+				4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
@@ -1213,9 +1219,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iMods/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1245,8 +1251,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iMods/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

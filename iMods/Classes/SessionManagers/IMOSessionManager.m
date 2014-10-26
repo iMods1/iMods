@@ -55,6 +55,7 @@ static IMOSessionManager* sessionManager = nil;
     static dispatch_once_t onceToken = 0;
     dispatch_once(&onceToken, ^{
         sessionManager = [[IMOSessionManager alloc] init:baseURL];
+        [sessionManager initManagers];
     });
     return sessionManager;
 }

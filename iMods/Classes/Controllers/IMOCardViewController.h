@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <PaymentKit/PTKCard.h>
+#import "IMOBillingInfo.h"
 
 @protocol IMOCardDelegate;
 
-@interface IMOCardViewController : UIViewController
+@interface IMOCardViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) id<IMOCardDelegate> delegate;
 
@@ -21,5 +22,6 @@
 
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withCard:(PTKCard *)card;
 - (void)cardControllerDidCancel:(IMOCardViewController *)cardController;
+- (void)cardControllerDidFinish:(IMOCardViewController *)cardController withBillingInfo:(IMOBillingInfo *)info;
 
 @end
