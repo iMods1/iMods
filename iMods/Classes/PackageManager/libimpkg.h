@@ -76,6 +76,28 @@ size_t calcInstalledSize(TagFile& localCache);
 
 size_t calcDownloadSize(TagFile& remoteIndex, const std::vector<TagSection>& toInstallPackages);
 
+#pragma mark Helpers
+class VersionStringCompareLess {
+public:
+    bool operator()(const std::string& v1, const std::string& v2) const {
+        return pkgVersionCmp(v1, v2) < 0;
+    }
+};
+
+class VersionStringCompareGreater {
+public:
+    bool operator()(const std::string& v1, const std::string& v2) const {
+        return pkgVersionCmp(v1, v2) > 0;
+    }
+};
+
+class VersionStringCompareEqual {
+public:
+    bool operator()(const std::string& v1, const std::string& v2) const {
+        return pkgVersionCmp(v1, v2) == 0;
+    }
+};
+
 #pragma mark -
 
 /* Each TagSection represents a section in an index file.
@@ -244,7 +266,7 @@ private:
     
     const Version* m_curVersion;
     
-    std::map<std::string, Version> m_versions;
+    std::map<std::string, Version, VersionStringCompareGreater> m_versions;
     
 };
 
@@ -281,15 +303,15 @@ public:
     void setDebFilePath(const std::string& path);
     
     // Compare versions
-    bool operator<(const Version& version);
+    bool operator<(const Version& version) const;
     
-    bool operator>(const Version& version);
+    bool operator>(const Version& version) const;
     
-    bool operator<=(const Version& version);
+    bool operator<=(const Version& version) const;
     
-    bool operator>=(const Version& version);
+    bool operator>=(const Version& version) const;
     
-    bool operator==(const Version& version);
+    bool operator==(const Version& version) const;
     
     friend std::ostream& operator<<(std::ostream& out, const Version& version) {
         out << version.packageName() << " " << version.version();
@@ -310,7 +332,10 @@ class PackageCache {
 public:
     PackageCache(TagFile& cacheFile);
     PackageCache(const std::string& filename);
+    PackageCache();
     ~PackageCache();
+    
+    void initWithTagFile(TagFile& cacheFile);
     
     void addPackage(const Package& package);
     
@@ -322,6 +347,8 @@ public:
     
     const Package* package(const std::string& pkgName) const;
     
+    const Version* version(const std::string& pkgname, const std::string& ver) const;
+    
     const Version* findFirstVersionOfDeps(const std::vector<PackageDepTuple>& deps) const;
     
     const std::map<std::string, Package>& allPackages() const;
@@ -330,8 +357,6 @@ private:
     
     PackageCache(const PackageCache&) {}
     PackageCache& operator=(const PackageCache&) { return *this;}
-    
-    void initWithTagFile(TagFile& cacheFile);
     
     std::map<std::string, Package> m_packages;
 };
@@ -342,22 +367,28 @@ class DependencySolver {
     
 public:
     
-    DependencySolver(const PackageCache& cache, const PackageIndex& index,
+    DependencySolver(const std::string& indexFile, const std::string& controlFile,
                      const DepVector& unresolvedDeps);
     
-    DependencySolver(const PackageCache& cache, const PackageIndex& index);
+    DependencySolver(const std::string& indexFile, const std::string& controlFile);
 
     void initUnresolvedDeps(const DepVector& unresolvedDeps);
     
     DepVector getUpdates() const;
     
-    DepVector findSolution();
-    
     bool calcDep(std::vector<const Version*>& out_targetDeps, DepVector& out_brokenDeps);
     
 private:
+
+    struct Step;
+    
+#pragma mark -
     
     typedef std::pair<std::string, std::pair<const Version*, PackageDepTuple>> RevDepMapEntry;
+    typedef std::unique_ptr<Step> StepPtr;
+    typedef StepPtr& StepPtrRef;
+    
+#pragma mark -
     
     // NOTE: We use 'Step' structure here, which is similar to what aptitude used,
     // so we can extend it to a better algorithm in the future.
@@ -366,9 +397,13 @@ private:
         Step* parent;
         
         // 'children' stores all steps of the dependencies of current version
-        std::vector<Step> children;
+        std::vector<Step*> children;
         
         int level;
+        
+        bool fulfilled;
+        
+        bool skip;
         
         // The current package needs to be resolved
         const Package* curPackage;
@@ -377,7 +412,7 @@ private:
         const Version* srcVersion;
         
         //  The current selected version, it's also the resolved version after all dependencies are fulfilled
-        const Version* targetVersion;
+        const Version * targetVersion() const;
         
         PackageDepTuple targetDep;
         
@@ -385,12 +420,11 @@ private:
         
         std::vector<const Version*> versions;
         
-        Step(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent=nullptr, const Version* srcVersion=nullptr, const Version* targetVersion=nullptr);
-        Step(const Step && other);
-        Step(const Step & other);
+        Step(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent=nullptr, const Version* srcVersion=nullptr, int targetVersionIndex=0);
+        Step(Step && other);
         Step();
         
-        Step& operator=(const Step& other);
+        Step& operator=(Step&& other);
         
         friend std::ostream& operator<<(std::ostream& out, const Step& step) {
             out << std::endl;
@@ -404,20 +438,27 @@ private:
             }
             return out;
         }
+        
+    private:
+        Step& operator=(const Step& other);
+        Step(const Step & other);
     };
     
-    void addSuccessors(Step& step);
+#pragma mark -
+    
+    void addSuccessors(Step* step);
     
     void processSteps();
     
-    void processNextVersion(Step& step);
+    void processNextVersion(Step* step);
     
-    Step& newStep(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent=nullptr, const Version* srcVer=nullptr);
+    StepPtrRef newStep(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent=nullptr, const Version* srcVer=nullptr);
     
-    bool resolveSingleDep(Step& step);
+    bool resolveSingleDep(Step* step);
     
     std::vector<std::pair<const Version*, PackageDepTuple>> checkConflicts(const Version* targetVersion);
     
+    void initIndex(const std::string& indexFile, const std::string& controlFile);
     void initRevDepMap();
     
     void clearContainers();
@@ -428,16 +469,14 @@ private:
     
     // The actual dependency graph
     // A "target package name" to "source step" mapping
-    std::unordered_map<std::string, Step> m_steps;
+    std::unordered_map<std::string, StepPtr> m_steps;
     
     std::queue<Step*> m_unprocessedSteps;
     
     // Reverse dependencies map, <target package name, <source version, target dependency>>
     std::unordered_multimap<std::string, std::pair<const Version*, PackageDepTuple>> m_cacheRevDepMap;
     
-    const PackageCache& m_cache;
-    
-    const PackageIndex& m_index;
+    PackageIndex m_index;
     
     DepVector m_unresolvedDeps;
 

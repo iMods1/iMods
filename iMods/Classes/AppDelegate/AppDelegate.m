@@ -31,9 +31,9 @@ NSString * const StripePublishableKey = @"pk_test_4ZdjKL2iALVVPu62VM8BbbAE";
 
 @synthesize managedObjectContext = _managedObjectContext;
 
-static BOOL isRunningTests(void) __attribute__((const));
+BOOL isRunningTests(void) __attribute__((const));
 
-static BOOL isRunningTests(void) {
+BOOL isRunningTests(void) {
     NSDictionary* environment = [[NSProcessInfo processInfo] environment];
     NSString* injectBundle = environment[@"XCInjectBundle"];
     NSLog(@"Path extension: %@", [injectBundle pathExtension]);
@@ -44,9 +44,12 @@ static BOOL isRunningTests(void) {
 {
     // Override point for customization after application launch.
     if (isRunningTests()) {
+        NSLog(@"Running tests...");
         self.sharedSessionManager = nil;
+        self->_isRunningTest = YES;
         return YES;
     }
+    self->_isRunningTest = NO;
     self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [BASE_API_ENDPOINT stringByAppendingString: @"/api/"]]];
     
     [Stripe setDefaultPublishableKey:StripePublishableKey];

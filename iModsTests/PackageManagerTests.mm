@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#include <iostream>
 #include "libimpkg.h"
 
 // Functions in libimpkg.cpp
@@ -68,12 +69,9 @@ Pre-Depends: dpkg (>= 1.14.25-8)\n\
 Description: pretty much just run-parts. yep? run-parts\n\
 Name: Debian Utilities\n\
 \n\
+# Testing packages\n\
 Package: a\n\
 Version: v1\n\
-\n\
-Package: b\n\
-Version: v2\n\
-\n\
 ";
 
 static std::string testIndexFile =
@@ -131,6 +129,10 @@ Package: a\n\
 Version: v1\n\
 Depends: \n\
 \n\
+Package: a\n\
+Version: v2\n\
+Depends: \n\
+\n\
 Package: b\n\
 Version: v2\n\
 Depends: a (>= v1)\n\
@@ -143,6 +145,13 @@ Package: c\n\
 Version: v1\n\
 Depends: a (>= v1), b (>= v2)\n\
 \n\
+Package: d\n\
+Version: v1\n\
+Depends: a (>= v1), c (>= v1)\n\
+\n\
+Package: e\n\
+Version: v1\n\
+Depends: d (>= v1)\n\
 ";
 
 - (void)setUp {
@@ -286,22 +295,41 @@ Depends: a (>= v1), b (>= v2)\n\
 }
 
 - (void)testDependencyCalculator {
-    TagFile cacheFile(testCacheFilePath);
-    TagFile indexFile(testIndexFilePath);
-    PackageCache cache(cacheFile);
-    PackageIndex index(indexFile);
-    index.markInstalled(cacheFile);
-    std::vector<std::string> deps = {"a", "b"};
+    std::vector<std::string> deps = {"e"};
     DepVector depV;
     for(auto dep:deps){
         depV.push_back(parseDepString(dep)[0][0]);
     }
-    DependencySolver solver(cache, index, depV);
+    DependencySolver solver(testIndexFilePath, testCacheFilePath, depV);
     std::vector<const Version*> versions;
     DepVector brokenDeps;
     XCTAssert(solver.calcDep(versions, brokenDeps));
     XCTAssert(versions.size() > 0);
+    std::cout << "Resolved deps:" << std::endl;
+    for(auto ver:versions) {
+        std::cout << *ver << std::endl;
+    }
     XCTAssert(brokenDeps.empty());
+    
+    // Check updates
+    auto updates = solver.getUpdates();
+    XCTAssert(!updates.empty());
+    XCTAssert(depTuplePackageName(updates[0]) == "a");
+    std::cout << "Updates: " << std::endl;
+    for(auto dep:updates){
+        std::cout << dep << std::endl;
+    }
+    // Calculate dependencies for updates
+    solver.initUnresolvedDeps(updates);
+    versions.clear();
+    brokenDeps.clear();
+    XCTAssert(solver.calcDep(versions, brokenDeps));
+    XCTAssert(!versions.empty());
+    
+    std::cout << "Resolved updates:" << std::endl;
+    for(auto ver:versions) {
+        std::cout << *ver << std::endl;
+    }
 }
 
 - (void)testPerformanceExample {

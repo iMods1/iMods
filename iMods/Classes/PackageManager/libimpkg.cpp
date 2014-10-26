@@ -837,23 +837,23 @@ std::string Version::version() const {
     return "";
 }
 
-bool Version::operator<(const Version& version) {
+bool Version::operator<(const Version& version) const {
     return pkgVersionCmp(this->version(), version.version()) < 0;
 }
 
-bool Version::operator>(const Version& version) {
+bool Version::operator>(const Version& version) const {
     return pkgVersionCmp(this->version(), version.version()) > 0;
 }
 
-bool Version::operator<=(const Version& version) {
+bool Version::operator<=(const Version& version) const {
     return pkgVersionCmp(this->version(), version.version()) <= 0;
 }
 
-bool Version::operator>=(const Version& version) {
+bool Version::operator>=(const Version& version) const {
     return pkgVersionCmp(this->version(), version.version()) >= 0;
 }
 
-bool Version::operator==(const Version& version) {
+bool Version::operator==(const Version& version) const {
     return pkgVersionCmp(this->version(), version.version()) == 0;
 }
 
@@ -1028,6 +1028,10 @@ PackageCache::PackageCache(const std::string& filename) {
     initWithTagFile(tagFile);
 }
 
+PackageCache::PackageCache() {
+    
+}
+
 void PackageCache::initWithTagFile(TagFile& cacheFile) {
     cacheFile.rewind();
     do {
@@ -1093,6 +1097,15 @@ const Package* PackageCache::package(const std::string& pkgName) const {
     return nullptr;
 }
 
+const Version* PackageCache::version(const std::string& pkgName, const std::string& ver) const {
+    auto pkg = m_packages.find(pkgName);
+    if (pkg == m_packages.end()) {
+        return nullptr;
+    }
+    auto v = pkg->second.version(ver);
+    return v;
+}
+
 const Version* PackageCache::findFirstVersionOfDeps(const std::vector<PackageDepTuple>& deps) const {
     const Version* ver = nullptr;
     std::find_first_of(m_packages.begin(),
@@ -1112,21 +1125,17 @@ const Version* PackageCache::findFirstVersionOfDeps(const std::vector<PackageDep
 
 #pragma mark -
 
-DependencySolver::Step::Step(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent, const Version* srcVersion, const Version* targetVersion)
+DependencySolver::Step::Step(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent, const Version* srcVersion, int targetVersionIndex)
 :curPackage(curPackage),
  srcVersion(srcVersion),
- targetVersion(targetVersion),
  parent(parent),
- curVerIndex(0),
+ curVerIndex(targetVersionIndex),
  level(0),
+ fulfilled(false),
+ skip(false),
  targetDep(targetDep)
 {
     assert(curPackage);
-    if (parent) {
-        srcVersion = parent->srcVersion;
-        level = parent->level + 1;
-        parent->children.push_back(std::move(*this));
-    }
     
     // Get all possible versions
     for(auto& ver:curPackage->ver_list()) {
@@ -1136,65 +1145,103 @@ DependencySolver::Step::Step(const Package* curPackage, const PackageDepTuple& t
     }
 }
 
-DependencySolver::Step::Step(const Step && other) {
-    parent = other.parent;
-    children = std::move(other.children);
-    level = other.level;
-    curPackage = other.curPackage;
-    srcVersion = other.srcVersion;
-    targetVersion = other.targetVersion;
-    targetDep = std::move(other.targetDep);
-    curVerIndex = other.curVerIndex;
-    versions = std::move(other.versions);
+DependencySolver::Step::Step(Step && other)
+:curPackage(other.curPackage),
+ srcVersion(other.srcVersion),
+ parent(other.parent),
+ curVerIndex(other.curVerIndex),
+ level(other.level),
+ fulfilled(other.fulfilled),
+ skip(other.skip),
+ targetDep(other.targetDep),
+ children(std::move(other.children)),
+ versions(std::move(other.versions))
+{
+    other.curPackage = nullptr;
+    other.srcVersion = nullptr;
+    other.parent = nullptr;
+    other.curVerIndex = 0;
+    other.level = 0;
+    other.fulfilled = false;
+    other.skip = false;
 }
 
 DependencySolver::Step::Step(const Step& other) {
-    *this = other;
+    // A Step should not be copied at anytime
 }
 
 DependencySolver::Step::Step()
 :curPackage(nullptr),
  srcVersion(nullptr),
- targetVersion(nullptr),
  parent(nullptr),
  curVerIndex(0),
  level(0),
+ fulfilled(false),
+ skip(false),
  targetDep()
 {
 }
 
-DependencySolver::Step& DependencySolver::Step::operator=(const Step& other) {
-    parent = other.parent;
-    children = other.children;
-    level = other.level;
+const Version* DependencySolver::Step::targetVersion() const {
+    assert(curVerIndex >= 0);
+    return versions[curVerIndex];
+}
+
+DependencySolver::Step& DependencySolver::Step::operator=(DependencySolver::Step&& other) {
     curPackage = other.curPackage;
     srcVersion = other.srcVersion;
-    targetVersion = other.targetVersion;
-    targetDep = other.targetDep;
+    parent = other.parent;
     curVerIndex = other.curVerIndex;
-    versions = other.versions;
+    level = other.level;
+    fulfilled = other.fulfilled;
+    skip = other.skip;
+    targetDep = other.targetDep;
+    versions = std::move(other.versions);
+    children = std::move(other.children);
+    
+    other.curPackage = nullptr;
+    other.srcVersion = nullptr;
+    other.parent = nullptr;
+    other.curVerIndex = 0;
+    other.level = 0;
+    other.fulfilled = false;
+    other.skip = false;
+    return *this;
+}
+
+DependencySolver::Step& DependencySolver::Step::operator=(const Step& other) {
     return *this;
 }
 
 #pragma mark -
 
-DependencySolver::DependencySolver(const PackageCache& cache, const PackageIndex& index,
+DependencySolver::DependencySolver(const std::string& indexFile, const std::string& controlFile,
                                    const DepVector& unresolvedDeps)
-:m_cache(cache), m_index(index), m_unresolvedDeps(unresolvedDeps)
+:m_unresolvedDeps(unresolvedDeps)
 {
+    // Init index
+    initIndex(indexFile, controlFile);
     // Init reverse dependencies map
     initRevDepMap();
 }
 
-DependencySolver::DependencySolver(const PackageCache& cache, const PackageIndex& index)
-:m_cache(cache), m_index(index)
+DependencySolver::DependencySolver(const std::string& indexFile, const std::string& controlFile)
 {
+    // Init index
+    initIndex(indexFile, controlFile);
     // Init reverse dependencies map
     initRevDepMap();
+}
+
+void DependencySolver::initIndex(const std::string& indexFile, const std::string& controlFile) {
+    TagFile cache(controlFile);
+    TagFile index(indexFile);
+    m_index.initWithTagFile(index);
+    m_index.markInstalled(cache);
 }
 
 void DependencySolver::initUnresolvedDeps(const DepVector& unresolvedDeps) {
-    if (!unresolvedDeps.empty()) {
+    if (unresolvedDeps.empty()) {
         return;
     }
 
@@ -1211,12 +1258,17 @@ void DependencySolver::initRevDepMap() {
     auto pkgMap = m_index.allPackages();
     for(auto pkg: pkgMap) {
         auto ver = pkg.second.curVersion();
+        // Skip not installed packages, because we only check conflicts on installed packages
         if(!ver) continue;
+        
         auto depList = ver->dep_list();
         for(auto& depChoiceList: depList) {
+            // Check each dependency and add installed dependencies as reverse dependencies
             for(auto& dep:depChoiceList) {
-                auto targetPkg = m_cache.package(depTuplePackageName(dep));
-                if(targetPkg){
+                // Get dependency package
+                auto targetPkg = m_index.package(depTuplePackageName(dep));
+                // Check if the dependency is installed, if it is, add an entry to the reverse dependency table
+                if(targetPkg && targetPkg->curVersion()){
                     auto revDepEntry = make_revDepEntry(targetPkg->name(), ver, dep);
                     m_cacheRevDepMap.insert(std::move(revDepEntry));
                 }
@@ -1247,17 +1299,28 @@ std::vector<std::pair<const Version*, PackageDepTuple>> DependencySolver::checkC
     return brokenVers;
 }
 
-DependencySolver::Step& DependencySolver::newStep(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent, const Version* srcVer) {
-    Step step(curPackage, targetDep, parent, srcVer);
-    if (!parent) {
-        m_steps.insert(std::make_pair(curPackage->name(), std::move(step)));
+DependencySolver::StepPtrRef DependencySolver::newStep(const Package* curPackage, const PackageDepTuple& targetDep, Step* parent, const Version* srcVer) {
+    
+    if(m_steps.find(curPackage->name()) != m_steps.end()) {
         return m_steps[curPackage->name()];
     }
-    return parent->children.back();
+    
+    StepPtr step(new Step(curPackage, targetDep, parent, srcVer));
+    
+    // Add current step as a child to parent's children list
+    if (parent) {
+        step->srcVersion = parent->srcVersion;
+        step->level = parent->level + 1;
+        m_steps[curPackage->name()] = std::move(step);
+        parent->children.push_back(step.get());
+    } else {
+        m_steps.insert(std::move(std::make_pair(curPackage->name(), std::move(step))));
+    }
+    return m_steps[curPackage->name()];
 }
 
-bool DependencySolver::resolveSingleDep(Step& step) {
-    auto targetPkgName = step.curPackage->name();
+bool DependencySolver::resolveSingleDep(Step* step) {
+    auto targetPkgName = step->curPackage->name();
     auto iter = m_visited.find(targetPkgName);
     // Mark visited
     if (iter == m_visited.end()) {
@@ -1266,72 +1329,96 @@ bool DependencySolver::resolveSingleDep(Step& step) {
         return true;
     }
     // Check if the target version will break anything
-    auto installed = m_cache.package(step.curPackage->name());
-    if (installed) {
+    auto installed = step->curPackage;
+    if (installed && installed->curVersion()) {
         // Check if it will break the original installation
-        auto vers = checkConflicts(step.targetVersion);
+        auto vers = checkConflicts(step->targetVersion());
         if (!vers.empty()) {
             // Add broken packages to steps queue and m_unresolvedDeps
             for(auto ver:vers) {
-                auto pkg = m_cache.package(ver.first->packageName());
-                auto &nstep = newStep(pkg, ver.second, &step, step.targetVersion);
+                auto pkg = m_index.package(ver.first->packageName());
+                if(!pkg) {
+                    std::cerr << "Fatal: package " << ver.first->packageName() <<
+                    " cannot be found in the package index." << std::endl;
+                    exit(1);
+                }
+                Step* nstep;
+                auto iterStep = m_steps.find(pkg->name());
+                if (iterStep != m_steps.end()) {
+                    nstep = iterStep->second.get();
+                } else {
+                    nstep = newStep(pkg, ver.second, step, step->targetVersion()).get();
+                }
+                // Reset the set as not fulfilled
+                step->fulfilled = false;
+                step->skip = false;
                 addSuccessors(nstep);
-                m_unprocessedSteps.push(&nstep);
+                m_unprocessedSteps.push(nstep);
             }
-        } // if !vers.empty
+        } else {
+            // Target version is installed
+            
+            // Check if it's an update
+            if(*(step->targetVersion()) > *(installed->curVersion())) {
+                step->fulfilled = false;
+                step->skip = false;
+            } else {
+                step->fulfilled = true;
+                step->skip = true;
+            }
+            return true;
+        }
     }// if installed
     
     // Check if it's in the index
     // Process dependencies
-    for(auto& depList:step.targetVersion->dep_list()) {
+    for(auto& depList:step->targetVersion()->dep_list()) {
         for(auto& dep:depList) {
-            if (m_visited.find(depTuplePackageName(dep))!=m_visited.end()) {
+            if (m_visited.find(depTuplePackageName(dep)) != m_visited.end()) {
                 continue;
             }
-            auto ver = m_cache.findFirstVersionOfDeps({dep});
             const Package* pkg = nullptr;
-            if (!ver) {
-                ver = m_index.findFirstVersionOfDeps({dep});
-                pkg = m_index.package(ver->packageName());
-            } else {
-                pkg = m_cache.package(ver->packageName());
+            pkg = m_index.package(depTuplePackageName(dep));
+            // Check if the dependency is already installed and the installed version satisfies the dependency
+            if (pkg->curVersion() && pkg->curVersion()->checkDep(dep)) {
+                continue;
             }
-            if (!ver) {
-                m_brokenDeps.push_back(dep);
-                return false;
-            }
-            auto &nstep = newStep(pkg, dep, &step, step.targetVersion);
-            addSuccessors(nstep);
-            m_unprocessedSteps.push(&nstep);
+            auto &nstep = newStep(pkg, dep, step, step->targetVersion());
+            addSuccessors(nstep.get());
+            m_unprocessedSteps.push(nstep.get());
         }
     }
     return true;
 }
 
-void DependencySolver::processNextVersion(Step& step) {
-    step.curVerIndex += 1;
+void DependencySolver::processNextVersion(Step* step) {
+    step->curVerIndex += 1;
     addSuccessors(step);
 }
 
-void DependencySolver::addSuccessors(Step& step) {
-    if (step.curVerIndex >= step.versions.size()) {
-        std::cerr << "Versions of step " << step.curPackage->name() << " exausted." << std::endl;
+void DependencySolver::addSuccessors(Step* step) {
+    if (step->curVerIndex >= step->versions.size()) {
+        std::cerr << "Versions of step " << step->curPackage->name() << " exausted." << std::endl;
         return;
     }
     
-    step.targetVersion = step.versions[step.curVerIndex];
-    
     // Clean children, because we are processing a new target version
-    step.children.clear();
-    for (auto &depList:step.targetVersion->dep_list()){
+    step->children.clear();
+    for (auto &depList:step->targetVersion()->dep_list()){
         for(auto &dep: depList) {
             auto pkg = m_index.package(depTuplePackageName(dep));
             if (!pkg) {
                 m_brokenDeps.push_back(dep);
                 break;
             }
-            auto &nstep = newStep(pkg, dep, &step);
-            m_unprocessedSteps.push(&nstep);
+            Step *nstep = nullptr;
+            auto iterStep = m_steps.find(pkg->name());
+            if (iterStep == m_steps.end()) {
+                nstep = newStep(pkg, dep, step, step->targetVersion()).get();
+            } else {
+                nstep = iterStep->second.get();
+            }
+            m_unprocessedSteps.push(nstep);
         }
     }
 }
@@ -1339,11 +1426,11 @@ void DependencySolver::addSuccessors(Step& step) {
 void DependencySolver::processSteps() {
     while (!m_unprocessedSteps.empty()) {
         auto step = m_unprocessedSteps.front();
-        if(!resolveSingleDep(*step)) {
+        if(!resolveSingleDep(step)) {
             // Check reasons
             if (step->curVerIndex < step->versions.size()) {
                 // Try next version
-                processNextVersion(*step);
+                processNextVersion(step);
                 continue;
             }
             if (step->level >= MaxDependencyResolveDepth) {
@@ -1384,9 +1471,9 @@ bool DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepV
             std::cerr << "Unable to find package '" << depTuplePackageName(*dep) << "'" << std::endl;
             return false;
         }
-        auto &step = newStep(pkg, *dep);
-        addSuccessors(step);
-        m_unprocessedSteps.push(&step);
+        StepPtrRef step = newStep(pkg, *dep);
+        addSuccessors(step.get());
+        m_unprocessedSteps.push(step.get());
         dep = m_unresolvedDeps.erase(dep);
     }
     // Process all unprocessed steps and unresolved dependencies
@@ -1395,7 +1482,9 @@ bool DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepV
     // If there are no unresolved dependencies, then we found a solution
     if (m_unprocessedSteps.empty() && m_unresolvedDeps.empty() && m_brokenDeps.empty()) {
         for(auto& step: m_steps) {
-            out_targetDeps.push_back(step.second.targetVersion);
+            if (!step.second->skip) {
+                out_targetDeps.push_back(step.second->targetVersion());
+            }
         }
         return true;
     }
@@ -1407,4 +1496,17 @@ bool DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepV
     
     std::cerr << "Shouldn't happen: non-empty m_unprocessedSteps or m_unresolvedDeps" << std::endl;
     return false;
+}
+
+DepVector DependencySolver::getUpdates() const {
+    DepVector result;
+    for(auto& pkg:m_index.allPackages()) {
+        if(!pkg.second.curVersion()) continue;
+        
+        PackageDepTuple dep = std::make_tuple(pkg.second.name(), VER_GT, pkg.second.curVersion()->version());
+        if (m_index.findFirstVersionOfDeps({dep})) {
+            result.push_back(std::move(dep));
+        }
+    }
+    return result;
 }

@@ -10,6 +10,7 @@
 #import "IMOItemManager.h"
 #import "IMOItem.h"
 #import "IMOItemDetailViewController.h"
+#import "AppDelegate.h"
 #import <Overcoat/OVCResponse.h>
 
 @interface IMOFeaturedViewController ()
@@ -95,6 +96,11 @@
 }
 
 - (void)setItemsForCategory:(NSString *)category {
+    // Don't send request if running tests
+    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.isRunningTest) {
+        return;
+    }
     [self.manager fetchItemsByCategory: category].then(^(OVCResponse *response) {
         NSLog(@"Result %@", response.result);
         if ([response.result isKindOfClass: [NSArray class]]) {
