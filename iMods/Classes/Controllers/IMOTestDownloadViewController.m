@@ -12,11 +12,16 @@
 #import "IMOItemmanager.h"
 
 @interface IMOTestDownloadViewController ()
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UILabel *downloadDetailsLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *assetsProgressView;
+@property (weak, nonatomic) IBOutlet UIProgressView *packageProgressView;
+@property (weak, nonatomic) IBOutlet UILabel *assetsDownloadDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *packageDownloadDetailsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *screenshotImageView;
 
 
-- (IBAction)testButtonClicked:(id)sender;
+- (IBAction)testAssetButtonClicked:(id)sender;
+- (IBAction)testPackageButtonClicked:(id)sender;
 
 @end
 
@@ -42,32 +47,58 @@
 }
 */
 
-- (IBAction)testButtonClicked:(id)sender {
+- (IBAction)testAssetButtonClicked:(id)sender {
     IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
     
-    [self.progressView setProgress:0.25 animated:YES];
+    [self.assetsProgressView setProgress:0.25 animated:YES];
     
     IMOItemManager *itemManager = [[IMOItemManager alloc] init];
     [itemManager fetchItemByID: 1].then( ^(OVCResponse *response, NSError *error) {
         if (!error) {
-            [self.progressView setProgress:0.5 animated:YES];
+            [self.assetsProgressView setProgress:0.5 animated:YES];
             IMOItem *item = [response valueForKey:@"result"];
-            [downloadManager downloadURL:Deb item:item].then(^(OVCResponse *response, NSError *error) {
-                [self.progressView setProgress:0.8 animated:YES];
-                NSDictionary *result = [response valueForKey:@"result"];
-                NSDictionary *itemDetails = [[result valueForKey:@"items"] firstObject];
-                NSString *detailsString = [NSString stringWithFormat:@"Name: %@, DebURL: %@", [itemDetails valueForKey:@"pkg_name" ], [itemDetails valueForKey:@"deb_url"]];
-                self.downloadDetailsLabel.text = detailsString;
-                [self.progressView setProgress:1.0 animated:YES];
+            [downloadManager download:Assets item:item].then(^(NSDictionary *results) {
+                [self.assetsProgressView setProgress:1.0 animated:YES];
+                UIImage *icon = [UIImage imageWithData:[results valueForKey:@"icon"]];
+                self.iconImageView.image = icon;
+                UIImage *screenshot = [UIImage imageWithData:[results valueForKey:@"screenshot"]];
+                self.screenshotImageView.image = screenshot;
+                self.assetsDownloadDetailsLabel.text = @"Downloaded Successfully!";
             }).catch(^(NSError *error) {
-                self.downloadDetailsLabel.text = error.localizedDescription;
-                [self.progressView setProgress:1.0 animated:YES];
+                self.assetsDownloadDetailsLabel.text = error.localizedDescription;
+                [self.assetsProgressView setProgress:1.0 animated:YES];
             });
         } else {
-            self.downloadDetailsLabel.text = error.localizedDescription;
-            [self.progressView setProgress:1.0 animated:YES];
+            self.assetsDownloadDetailsLabel.text = error.localizedDescription;
+            [self.assetsProgressView setProgress:1.0 animated:YES];
         }
     });
     
+}
+
+- (IBAction)testPackageButtonClicked:(id)sender {
+    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+    
+    [self.packageProgressView setProgress:0.25 animated:YES];
+    
+    IMOItemManager *itemManager = [[IMOItemManager alloc] init];
+    [itemManager fetchItemByID: 10].then( ^(OVCResponse *response, NSError *error) {
+        if (!error) {
+            [self.packageProgressView setProgress:0.5 animated:YES];
+            IMOItem *item = [response valueForKey:@"result"];
+            [downloadManager download:Deb item:item].then(^(NSData *data) {
+                [self.packageProgressView setProgress:1.0 animated:YES];
+                self.packageDownloadDetailsLabel.text = [data description];
+                
+            }).catch(^(NSError *error) {
+                self.packageDownloadDetailsLabel.text = error.localizedDescription;
+                [self.packageProgressView setProgress:1.0 animated:YES];
+            });
+        } else {
+            self.packageDownloadDetailsLabel.text = error.localizedDescription;
+            [self.packageProgressView setProgress:1.0 animated:YES];
+        }
+    });
+
 }
 @end

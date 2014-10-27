@@ -49,6 +49,8 @@ static IMODownloadManager *downloadManager = nil;
         case All:
             downloadType = @"all";
             break;
+        default:
+            break;
     }
     NSDictionary *paramsDict = @{
                                  @"item_ids": @[@(item.item_id)],
@@ -61,14 +63,36 @@ static IMODownloadManager *downloadManager = nil;
     switch (type) {
         case Deb:
             return [self downloadURL:type item:item].then(^(OVCResponse *response, NSError *error) {
-                NSString *urlString = [[[[response valueForKey: @"result"] valueForKey: @"items"] firstObject] valueForKey: @"deb_url"];
+                NSString *urlString = [[[response valueForKey: @"result"]  valueForKey: @"deb_url"] firstObject];
+                __block NSString *nameString = [[[[response valueForKey:@"result"]  valueForKey: @"pkg_name"] firstObject] stringByAppendingString: @".deb"];
+                NSLog(@"nameString: %@", nameString);
                 NSURL *url = [[NSURL alloc] initWithString:urlString];
-                return [NSURLConnection promise:[NSURLRequest requestWithURL: url]];
+                return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
+                    NSURL *filePath = [[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]]URLByAppendingPathComponent:nameString];
+                    [data writeToURL:filePath atomically:YES];
+                    return data;
+                });
             });
             break;
+        case Assets:
+            return [self downloadURL:type item:item].then(^(OVCResponse *response, NSError *error) {
+                NSDictionary *result = [[response valueForKey:@"result"] firstObject];
+                NSDictionary *assetDetails = [result valueForKey:@"assets"];
+                
+                NSURL *iconURL = [NSURL URLWithString: [[[assetDetails valueForKey: @"icons"] firstObject] valueForKey: @"url"]];
+                PMKPromise *iconPromise = [NSURLConnection promise: [NSURLRequest requestWithURL:iconURL ]];
+                NSURL *screenshotURL = [NSURL URLWithString: [[[assetDetails valueForKey:@"screenshots"] firstObject] valueForKey:@"url"]];
+                PMKPromise *screenshotPromise = [NSURLConnection promise:[NSURLRequest requestWithURL: screenshotURL]];
+                return [PMKPromise when:@{ @"icon": iconPromise, @"screenshot": screenshotPromise}];
+            });
+            break;
+        case All:
+            // TODO: Handle all download correctly
+            return [PMKPromise new];
+            break;
         default:
-            // TODO: Handle assets and all download correctly
-            return [self downloadURL:type item:item];
+            // TODO: Unstub
+            return [PMKPromise new];
             break;
     }
 }
