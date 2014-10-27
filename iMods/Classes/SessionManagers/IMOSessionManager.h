@@ -15,6 +15,7 @@
 #import "IMOOrderManager.h"
 #import "IMOItemManager.h"
 #import "IMOBillingInfoManager.h"
+#import "IMODownloadManager.h"
 
 @class IMOCategoryManager;
 
@@ -34,6 +35,7 @@ typedef void(^IMORequestCallback)(OVCResponse* result, NSError* error);
 @property (readonly) IMOCategoryManager* categoryManager;
 @property (readonly) IMOItemManager* itemManager;
 @property (readonly) IMOOrderManager* orderManager;
+@property (readonly) IMODownloadManager* downloadManager;
 
 - (PMKPromise*) postJSON:(NSString*)url data:(NSDictionary*)data;
 - (PMKPromise*) postJSON:(NSString*)url urlParameters:(NSArray*)urlParameters data:(NSDictionary*)data;
