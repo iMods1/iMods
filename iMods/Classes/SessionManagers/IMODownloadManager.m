@@ -68,8 +68,8 @@ static IMODownloadManager *downloadManager = nil;
                 NSLog(@"nameString: %@", nameString);
                 NSURL *url = [[NSURL alloc] initWithString:urlString];
                 return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
-                    NSURL *filePath = [[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]]URLByAppendingPathComponent:nameString];
-                    [data writeToURL:filePath atomically:YES];
+                    NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: nameString];
+                    [data writeToFile:filePath atomically:YES];
                     return data;
                 });
             });
