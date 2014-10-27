@@ -54,7 +54,7 @@ static IMODownloadManager *downloadManager = nil;
                                  @"item_ids": @[@(item.item_id)],
                                  @"type": downloadType
                                  };
-    return [self.sessionManager getJSON:@"package/get" parameters:paramsDict];
+    return [self.sessionManager postJSON:@"package/get" data:paramsDict];
 }
 
 - (PMKPromise *)download:(IMODownloadType)type item:(IMOItem *)item {

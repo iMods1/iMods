@@ -90,6 +90,7 @@
 		4DCFBBF119E67D3600A36D63 /* IMOProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */; };
 		4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */; };
 		4DE71ADC19FE9E3A002CA0A7 /* IMODownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */; };
+		4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -323,6 +324,8 @@
 		4DDFAC6619762E650094FB8D /* iMods-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iMods-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DE71ADA19FE9E3A002CA0A7 /* IMODownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODownloadManager.h; path = Classes/SessionManagers/IMODownloadManager.h; sourceTree = "<group>"; };
 		4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODownloadManager.m; path = Classes/SessionManagers/IMODownloadManager.m; sourceTree = "<group>"; };
+		4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTestDownloadViewController.h; sourceTree = "<group>"; };
+		4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOTestDownloadViewController.m; sourceTree = "<group>"; };
 		9015AF55E8614A20A367229A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B6343D3166694159A75FBE1B /* Pods-iMods UI Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.xcconfig"; path = "Pods/Pods-iMods UI Tests.xcconfig"; sourceTree = "<group>"; };
 		F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iMods UI Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -555,6 +558,8 @@
 				4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */,
 				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
 				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
+				4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */,
+				4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -983,6 +988,7 @@
 				2833494019AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */,
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
+				4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */,
 				4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,

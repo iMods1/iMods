@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Overcoat/OVCResponse.h>
 #import <PromiseKit/Promise.h>
+#import "IMOItem.h"
 
 typedef enum {
     Deb,
