@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
-#import "IMOMockInstallationViewController.h"
+#import "IMOInstallationViewController.h"
 #import "IMOTask.h"
 #ifdef __APPLE__
 #include "TargetConditionals.h"
 #endif
 
-@interface IMOMockInstallationViewController ()
+@interface IMOInstallationViewController ()
 @property (strong, nonatomic) NSPipe *pipe;
 @property (strong, nonatomic) NSFileHandle *handle;
 @property (strong, nonatomic) NSTimer *timer;
@@ -24,7 +24,7 @@
 - (IBAction)didTapOnView:(id)sender;
 @end
 
-@implementation IMOMockInstallationViewController
+@implementation IMOInstallationViewController
 
 @synthesize progressView = _progressView;
 
@@ -114,7 +114,7 @@
         self.timer = nil;
 #if TARGET_IPHONE_SIMULATOR
         // FIX: This is not how it should work, temporary logic for demo
-        __weak IMOMockInstallationViewController *weakSelf = self;
+        __weak IMOInstallationViewController *weakSelf = self;
         [self.progressView setProgress: 1.0 animated:YES];
         double delayInSeconds = 1.0f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
