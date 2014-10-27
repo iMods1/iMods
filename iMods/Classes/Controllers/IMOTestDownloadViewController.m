@@ -59,6 +59,9 @@
                 NSString *detailsString = [NSString stringWithFormat:@"Name: %@, DebURL: %@", [itemDetails valueForKey:@"pkg_name" ], [itemDetails valueForKey:@"deb_url"]];
                 self.downloadDetailsLabel.text = detailsString;
                 [self.progressView setProgress:1.0 animated:YES];
+            }).catch(^(NSError *error) {
+                self.downloadDetailsLabel.text = error.localizedDescription;
+                [self.progressView setProgress:1.0 animated:YES];
             });
         } else {
             self.downloadDetailsLabel.text = error.localizedDescription;
