@@ -11,6 +11,10 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "imods-assets-mojo-icon.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
