@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IMOItem.h"
 #import "IMOTask.h"
 #import "IMODPKGManager.h"
 
@@ -16,15 +17,13 @@
 
 + (IMOPackageManager*) sharedPackageManager;
 
-- (BOOL) openCache:(NSString*) path;
+- (PMKPromise*) installPackage:(IMOItem*) pkg_path;
 
-- (BOOL) openIndex:(NSString*) path;
+- (PMKPromise*) removePackage:(IMOItem*) pkg_name;
 
-- (PMKPromise*) installPackage:(NSString*) pkg_path;
+- (PMKPromise*) cleanPackage:(IMOItem*) pkg_name;
 
-- (PMKPromise*) removePackage:(NSString*) pkg_name;
-
-- (PMKPromise*) cleanPackage:(NSString*) pkg_name;
+- (PMKPromise*) checkUpdates;
 
 - (void) respring;
 

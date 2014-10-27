@@ -10,7 +10,7 @@
 #import "IMOItem.h"
 #include "libimpkg.h"
 
-@implementation IMOPackageManager
+@implementation IMOPackageManager;
 
 static IMOPackageManager* sharedIMOPackageManager = nil;
 
@@ -46,10 +46,18 @@ NSArray* tweakArray;
     return promise;
 }
 
-- (PMKPromise*) installPackage:(NSString *)pkg_name{
+- (PMKPromise*) installPackage:(IMOItem*)pkg {
     PMKPromise* promise = [PMKPromise new:^(PMKPromiseFulfiller fulfill, PMKPromiseRejecter reject) {
     }];
     return promise;
+}
+
+- (PMKPromise*) cleanPackage:(IMOItem *)pkg {
+    return [self.dpkgManager cleanPackage:pkg.pkg_name];
+}
+
+- (PMKPromise*) removePackage:(IMOItem*)pkg {
+    return [self.dpkgManager removePackage:pkg.pkg_name];
 }
 
 - (PMKPromise*) checkUpdates {
@@ -57,14 +65,6 @@ NSArray* tweakArray;
         
     }];
     return promise;
-}
-
-- (PMKPromise*) removePackage:(NSString *)pkg_name {
-    return [self.dpkgManager removePackage:pkg_name];
-}
-
-- (PMKPromise*) cleanPackage:(NSString *)pkg_name {
-    return [self.dpkgManager cleanPackage:pkg_name];
 }
 
 - (BOOL) isSBTargeted {
@@ -143,13 +143,6 @@ NSArray* tweakArray;
 // Return a list of item IDs
 - (NSArray*) listInstalledPackages {
     NSMutableArray* result = [[NSMutableArray alloc] init];
-    for(auto& pkg: packageCache->allPackages()) {
-        auto& verList = pkg.second.ver_list();
-        for(auto ver: verList) {
-            [result addObject:@(ver->itemID())];
-        }
-        
-    }
     return result;
 }
 

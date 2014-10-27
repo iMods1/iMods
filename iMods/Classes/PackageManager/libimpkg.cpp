@@ -762,6 +762,11 @@ std::vector<TagSection> TagFile::filter(const FilterConditions& conds) {
 Version::Version(const TagSection& ctrlFile): m_section(ctrlFile) {
     // Build dep list
     m_depList = std::move(parseDepString(depString()));
+    // Get deb file path
+    std::string debFilePath;
+    if(m_section.tag("debpath", debFilePath)) {
+        m_debFilePath = debFilePath;
+    }
 }
 
 Version::Version(const Version& other) {
