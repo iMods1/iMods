@@ -380,7 +380,7 @@
 
 #pragma mark - IMOMockInstallationDelegate
 
-- (IMOTask *)taskForMockInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
+- (IMOTask *)taskForInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
     // TODO: Generate IMOTask from package manager
     // For now, using dummy task
     IMOTask *task = [[IMOTask alloc] init];
