@@ -15,6 +15,7 @@
 #import "IMOOrder.h"
 #import "IMOCardViewController.h"
 #import "IMOInstallationViewController.h"
+#import "IMODownloadManager.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -54,6 +55,8 @@
     if (isPurchased) {
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
+        self.priceLabel.hidden = YES;
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         if (self.isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -62,8 +65,13 @@
     } else {
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
+            self.priceLabel.hidden = YES;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+            self.priceLabel.hidden = NO;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -74,6 +82,8 @@
     if (self.isPurchased) {
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
+        self.priceLabel.hidden = YES;
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         if (isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -82,8 +92,12 @@
     } else {
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
+            self.priceLabel.hidden = YES;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+            self.priceLabel.hidden = NO;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -93,8 +107,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
+
     // Set Billing and Order managers
     IMOSessionManager *manager = [IMOSessionManager sharedSessionManager];
     self.orderManager = [[IMOOrderManager alloc] init];
@@ -104,7 +117,7 @@
     self.managedObjectContext = [((AppDelegate *)[[UIApplication sharedApplication] delegate]) managedObjectContext];
     self.entity = [NSEntityDescription entityForName:@"IMOInstalledItem" inManagedObjectContext:self.managedObjectContext];
     
-    self.isFree = ([self.item valueForKey: @"price"] <= 0);
+    self.isFree = (self.item.price <= 0);
     
     [self setupItemLabels];
 
@@ -113,6 +126,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self setupInstallButton];
+    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
+        self.imageView.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
+    });
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,15 +188,20 @@
 }
 
 - (void) setupItemLabels {
-    self.titleLabel.text = [self.item valueForKey: @"display_name"];
-    self.versionLabel.text = [self.item valueForKey: @"pkg_version"];
+    self.titleLabel.text = self.item.display_name;
+    self.versionLabel.text = self.item.pkg_version;
     if (self.isFree) {
         self.priceLabel.text = @"Free";
     } else {
-        self.priceLabel.text = [NSString stringWithFormat: @"$%@", [self.item valueForKey: @"price"]];
+        self.priceLabel.text = [NSString stringWithFormat: @"$%.2f", self.item.price];
     }
-    self.summaryLabel.text = [self.item valueForKey: @"summary"];
-    self.detailsLabel.text = [self.item valueForKey: @"desc"];
+    
+    NSString *detailsString = [self.item.summary stringByAppendingString: @"\n\n"];
+    if (self.item.desc) {
+        // Add to details string if desc is not nil
+        [detailsString stringByAppendingString:self.item.desc];
+    }
+    self.detailsLabel.text = detailsString;
 }
 
 - (void)setupInstallButton {
@@ -189,8 +212,8 @@
 - (void)checkInstallStatus {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = self.entity;
-    NSLog(@"Item ID: %@", [self.item valueForKey: @"iid"]);
-    request.predicate = [NSPredicate predicateWithFormat:@"id == %@", [self.item valueForKey: @"iid"]];
+    NSLog(@"Item ID: %ld", (long)self.item.item_id);
+    request.predicate = [NSPredicate predicateWithFormat:@"id == %ld", (long)self.item.item_id];
     
     NSError *error = nil;
     NSArray *result = [self.managedObjectContext executeFetchRequest:request error: &error];
@@ -211,9 +234,9 @@
 
 - (void)checkPurchaseStatus {
 
-    NSNumber *itemId = [self.item valueForKey:@"iid"];
+    NSUInteger itemId = self.item.item_id;
 
-    [self.orderManager fetchOrderByUserItem: (NSUInteger)itemId.integerValue].then(^(OVCResponse *response, NSError *error) {
+    [self.orderManager fetchOrderByUserItem: itemId].then(^(OVCResponse *response, NSError *error) {
         NSLog(@"Returned responses: %@", response);
         self.isPurchased = ([response.result count] > 0);
     }).catch(^(NSError *error) {
@@ -262,10 +285,10 @@
 
 - (PMKPromise *)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo {
     NSDictionary *orderDict = @{
-                                @"item_id": [self.item valueForKey: @"iid"],
-                                @"pkg_name": [self.item valueForKey: @"pkg_name"],
-                                @"totalPrice": [self.item valueForKey: @"price"],
-                                @"totalCharged": [self.item valueForKey: @"price"],
+                                @"item_id": @(self.item.item_id),
+                                @"pkg_name": self.item.pkg_name,
+                                @"totalPrice": @(self.item.price),
+                                @"totalCharged": @(self.item.price),
                                 @"quantity": @(1),
                                 @"orderDate": [NSDate date]
                                 };
@@ -281,8 +304,8 @@
 
 - (PMKPromise *)createFreePurchase {
     NSDictionary *orderDict = @{
-                                @"item_id": [self.item valueForKey: @"iid"],
-                                @"pkg_name": [self.item valueForKey: @"pkg_name"],
+                                @"item_id": @(self.item.item_id),
+                                @"pkg_name": self.item.pkg_name,
                                 @"totalPrice": @(0),
                                 @"totalCharged": @(0),
                                 @"quantity": @(1),
@@ -378,7 +401,7 @@
     }
 }
 
-#pragma mark - IMOMockInstallationDelegate
+#pragma mark - IMOInstallationDelegate
 
 - (IMOTask *)taskForInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
     // TODO: Generate IMOTask from package manager
@@ -396,9 +419,9 @@
 - (void)installationDidFinish:(IMOInstallationViewController *)installationViewController {
     [self dismissViewControllerAnimated:YES completion:^{
         self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
-        [self.managedItem setValue:[self.item valueForKey: @"pkg_name"] forKey: @"name"];
-        [self.managedItem setValue:[self.item valueForKey: @"iid"] forKey: @"id"];
-        [self.managedItem setValue:[self.item valueForKey: @"pkg_version"] forKey: @"version"];
+        [self.managedItem setValue:self.item.pkg_name forKey: @"name"];
+        [self.managedItem setValue:@(self.item.item_id) forKey: @"id"];
+        [self.managedItem setValue:self.item.pkg_version forKey: @"version"];
         
         NSError *error = nil;
         [self.managedObjectContext save: &error];

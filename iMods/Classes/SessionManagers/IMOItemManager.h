@@ -20,11 +20,4 @@
 - (PMKPromise*) fetchItemByName:(NSString*) pkg_name;
 - (PMKPromise*) fetchItemsByCategory:(NSString*) category_name;
 
-// TODO: fetchItemPreviewAssets should return something that can be directly used by controllers and views.
-/* Fetch and store preview assets of an item.
- * @param pkg_id Package ID
- * @param dstPath destination path of stored assets, should be the path to a local folder. *Optional*
- */
-- (PMKPromise*) fetchItemPreviewAssets:(NSInteger)pkg_id dstPath:(NSString*)dstPath;
-
 @end
