@@ -27,11 +27,11 @@
 
     self.manager = [[IMOItemManager alloc] init];
     
-    [self.manager fetchItemsByCategory: self.category].then(^(OVCResponse * response) {
-        if ([response.result isKindOfClass: [NSArray class]]) {
-            self.items = response.result;
+    [self.manager fetchItemsByCategory: self.category].then(^(NSArray *result) {
+        if ([result isKindOfClass: [NSArray class]]) {
+            self.items = result;
         } else {
-            self.items = [NSArray arrayWithObject: response.result];
+            self.items = [NSArray arrayWithObject: result];
         }
     }).catch(^(NSError *error) {
         NSLog(@"Problem with HTTP request: %@", [error localizedDescription]);
