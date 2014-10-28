@@ -283,8 +283,8 @@
     NSDictionary *orderDict = @{
                                 @"item_id": [self.item valueForKey: @"iid"],
                                 @"pkg_name": [self.item valueForKey: @"pkg_name"],
-                                @"totalPrice": [self.item valueForKey: @"price"],
-                                @"totalCharged": [self.item valueForKey: @"price"],
+                                @"totalPrice": @(0),
+                                @"totalCharged": @(0),
                                 @"quantity": @(1),
                                 @"orderDate": [NSDate date]
                                 };
