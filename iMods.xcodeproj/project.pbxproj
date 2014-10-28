@@ -59,6 +59,8 @@
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		28CD191B1A001EA700992D22 /* zipstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28CD19191A001EA700992D22 /* zipstream.cpp */; };
+		28CD191C1A001EA700992D22 /* zipstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28CD19191A001EA700992D22 /* zipstream.cpp */; };
 		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
 		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
 		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
@@ -265,6 +267,8 @@
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		28CD19191A001EA700992D22 /* zipstream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = zipstream.cpp; path = Classes/PackageManager/zipstream.cpp; sourceTree = "<group>"; };
+		28CD191A1A001EA700992D22 /* zipstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = zipstream.hpp; path = Classes/PackageManager/zipstream.hpp; sourceTree = "<group>"; };
 		4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOLoginViewController.h; sourceTree = "<group>"; };
 		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
 		4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTabBarController.h; sourceTree = "<group>"; };
@@ -486,6 +490,8 @@
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
+				28CD19191A001EA700992D22 /* zipstream.cpp */,
+				28CD191A1A001EA700992D22 /* zipstream.hpp */,
 				282DECAA19D180960093348D /* libimpkg.cpp */,
 				282DECAB19D180960093348D /* libimpkg.h */,
 				281788CE19B0150A0003C1A3 /* IMOTask.h */,
@@ -975,6 +981,7 @@
 				4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */,
+				28CD191B1A001EA700992D22 /* zipstream.cpp in Sources */,
 				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
 				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
@@ -1024,6 +1031,7 @@
 				2830E8A61978C808008E42ED /* IMOItem.m in Sources */,
 				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
 				28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */,
+				28CD191C1A001EA700992D22 /* zipstream.cpp in Sources */,
 				281788D119B0150A0003C1A3 /* IMOTask.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */,
@@ -1235,7 +1243,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brittany Charles (46W5N4Z8XW)";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1268,7 +1275,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
