@@ -15,6 +15,7 @@
 #import "IMOOrder.h"
 #import "IMOCardViewController.h"
 #import "IMOInstallationViewController.h"
+#import "IMODownloadManager.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -54,6 +55,8 @@
     if (isPurchased) {
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
+        self.priceLabel.hidden = YES;
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         if (self.isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -62,8 +65,13 @@
     } else {
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
+            self.priceLabel.hidden = YES;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+            self.priceLabel.hidden = NO;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -74,6 +82,8 @@
     if (self.isPurchased) {
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
+        self.priceLabel.hidden = YES;
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         if (isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -82,8 +92,12 @@
     } else {
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
+            self.priceLabel.hidden = YES;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+            self.priceLabel.hidden = NO;
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -93,8 +107,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
+
     // Set Billing and Order managers
     IMOSessionManager *manager = [IMOSessionManager sharedSessionManager];
     self.orderManager = [[IMOOrderManager alloc] init];
@@ -113,6 +126,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self setupInstallButton];
+    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
+        self.imageView.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
+    });
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -177,8 +195,13 @@
     } else {
         self.priceLabel.text = [NSString stringWithFormat: @"$%@", [self.item valueForKey: @"price"]];
     }
-    self.summaryLabel.text = [self.item valueForKey: @"summary"];
-    self.detailsLabel.text = [self.item valueForKey: @"desc"];
+    
+    NSString *detailsString = [[self.item valueForKey: @"summary"] stringByAppendingString: @"\n\n"];
+    if ([self.item valueForKey:@"desc"]) {
+        // Add to details string if desc is not nil
+        [detailsString stringByAppendingString:[self.item valueForKey:@"desc"]];
+    }
+    self.detailsLabel.text = detailsString;
 }
 
 - (void)setupInstallButton {
