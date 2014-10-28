@@ -1,5 +1,5 @@
 //
-//  IMOMockInstallationViewController.h
+//  IMOInstallationViewController.h
 //  iMods
 //
 //  Created by Brendon Roberto on 10/9/14.
