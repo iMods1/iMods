@@ -19,7 +19,7 @@
 @end
 
 @protocol IMOInstallationDelegate <NSObject>
-- (IMOTask *)taskForMockInstallation:(IMOInstallationViewController *)installationViewController withOptions: (NSDictionary *)options;
+- (IMOTask *)taskForInstallation:(IMOInstallationViewController *)installationViewController withOptions: (NSDictionary *)options;
 - (void)installationDidFinish:(IMOInstallationViewController *)installationViewController;
 - (void)installationDidDismiss:(IMOInstallationViewController *)installationViewController;
 @end

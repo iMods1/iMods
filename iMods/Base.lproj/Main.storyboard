@@ -664,11 +664,11 @@
             <objects>
                 <viewController title="Your Wallet" id="L0q-mP-zcY" customClass="IMOWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dwA-g4-2Y2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" id="nmy-hc-BwL">
-                                <rect key="frame" x="16" y="69" width="288" height="266"/>
+                                <rect key="frame" x="16" y="69" width="288" height="217"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1404,9 +1404,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o8O-OQ-8vm"/>
         <segue reference="PSt-SB-aiM"/>
-        <segue reference="tEk-R1-nSP"/>
+        <segue reference="5kM-yA-tf0"/>
+        <segue reference="ukT-Qe-1cO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

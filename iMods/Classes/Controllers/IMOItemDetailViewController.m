@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSEntityDescription *entity;
 @property (assign, nonatomic) BOOL isPurchased;
 @property (assign, nonatomic) BOOL isInstalled;
+@property (assign, nonatomic) BOOL isFree;
 @property (strong, nonatomic) IMOOrderManager *orderManager;
 @property (strong, nonatomic) IMOBillingInfoManager *billingManager;
 
@@ -31,6 +32,7 @@
 - (void)checkPurchaseStatus;
 - (void)createPurchaseFromCard:(PTKCard *)card;
 - (PMKPromise *)createPurchaseFromBillingInfo:(IMOBillingInfo *)billingInfo;
+- (PMKPromise *)createFreePurchase;
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withCard:(PTKCard *)card;
 - (void)cardControllerDidCancel:(IMOCardViewController *)cardController;
 
@@ -44,6 +46,8 @@
 
 @synthesize item = _item;
 @synthesize isPurchased = _isPurchased;
+@synthesize isInstalled = _isInstalled;
+@synthesize isFree = _isFree;
 
 - (void)setIsPurchased:(BOOL)isPurchased {
     _isPurchased = isPurchased;
@@ -56,13 +60,15 @@
         }
         self.installButton.enabled = !self.isInstalled;
     } else {
-        [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+        if (self.isFree) {
+            [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
+        } else {
+            [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+        }
         self.installButton.enabled = YES;
     }
-
 }
 
-@synthesize isInstalled = _isInstalled;
 - (void)setIsInstalled:(BOOL)isInstalled {
     _isInstalled = isInstalled;
     if (self.isPurchased) {
@@ -74,10 +80,13 @@
         }
         self.installButton.enabled = !self.isInstalled;
     } else {
-        [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+        if (self.isFree) {
+            [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
+        } else {
+            [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
+        }
         self.installButton.enabled = YES;
     }
-
 }
 
 
@@ -94,6 +103,8 @@
     // Set up Core Data objects
     self.managedObjectContext = [((AppDelegate *)[[UIApplication sharedApplication] delegate]) managedObjectContext];
     self.entity = [NSEntityDescription entityForName:@"IMOInstalledItem" inManagedObjectContext:self.managedObjectContext];
+    
+    self.isFree = ([self.item valueForKey: @"price"] <= 0);
     
     [self setupItemLabels];
 
@@ -129,35 +140,43 @@
             [self performSegueWithIdentifier:@"item_detail_installation_modal" sender:self];
         }
     } else {
-        // Handle tap on "Purchase" button
-        [self.billingManager refreshBillingMethods].then(^{
-            NSLog(@"Current billing method count: %lu", (unsigned long)[self.billingManager billingMethods].count);
-            BOOL shouldSegueToWallet = (self.billingManager.billingMethods.count <= 0) || !self.billingManager.isBillingMethodSelected;
-            
-            NSLog(@"Current status of billingManager.isBillingMethodSelected: %d", self.billingManager.isBillingMethodSelected);
-            if (shouldSegueToWallet) {
-                [self performSegueWithIdentifier:@"item_detail_wallet_push" sender:self];
-            } else {
-                IMOBillingInfo *billingInfo = self.billingManager.billingMethods[self.billingManager.selectedBillingMethod];
-                NSLog(@"Selected billing method: %@", billingInfo);
-                __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-                activityIndicator.center = self.view.center;
-                [self.view addSubview:activityIndicator];
-                [activityIndicator startAnimating];
+        // Handle tap on "Buy/Free" button
+        if (self.isFree) {
+            [self createFreePurchase];
+        } else {
+            [self.billingManager refreshBillingMethods].then(^{
+                NSLog(@"Current billing method count: %lu", (unsigned long)[self.billingManager billingMethods].count);
+                BOOL shouldSegueToWallet = (self.billingManager.billingMethods.count <= 0) || !self.billingManager.isBillingMethodSelected;
                 
-                [self createPurchaseFromBillingInfo: billingInfo].then(^{
-                    [activityIndicator stopAnimating];
-                    [activityIndicator removeFromSuperview];
-                });
-            }
-        });
+                NSLog(@"Current status of billingManager.isBillingMethodSelected: %d", self.billingManager.isBillingMethodSelected);
+                if (shouldSegueToWallet) {
+                    [self performSegueWithIdentifier:@"item_detail_wallet_push" sender:self];
+                } else {
+                    IMOBillingInfo *billingInfo = self.billingManager.billingMethods[self.billingManager.selectedBillingMethod];
+                    NSLog(@"Selected billing method: %@", billingInfo);
+                    __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    activityIndicator.center = self.view.center;
+                    [self.view addSubview:activityIndicator];
+                    [activityIndicator startAnimating];
+                    
+                    [self createPurchaseFromBillingInfo: billingInfo].then(^{
+                        [activityIndicator stopAnimating];
+                        [activityIndicator removeFromSuperview];
+                    });
+                }
+            });
+        }
     }
 }
 
 - (void) setupItemLabels {
     self.titleLabel.text = [self.item valueForKey: @"display_name"];
     self.versionLabel.text = [self.item valueForKey: @"pkg_version"];
-    self.priceLabel.text = [NSString stringWithFormat: @"$%@", [self.item valueForKey: @"price"]];
+    if (self.isFree) {
+        self.priceLabel.text = @"Free";
+    } else {
+        self.priceLabel.text = [NSString stringWithFormat: @"$%@", [self.item valueForKey: @"price"]];
+    }
     self.summaryLabel.text = [self.item valueForKey: @"summary"];
     self.detailsLabel.text = [self.item valueForKey: @"desc"];
 }
@@ -260,6 +279,32 @@
     });
 }
 
+- (PMKPromise *)createFreePurchase {
+    NSDictionary *orderDict = @{
+                                @"item_id": [self.item valueForKey: @"iid"],
+                                @"pkg_name": [self.item valueForKey: @"pkg_name"],
+                                @"totalPrice": @(0),
+                                @"totalCharged": @(0),
+                                @"quantity": @(1),
+                                @"orderDate": [NSDate date]
+                                };
+    
+    NSError *error = nil;
+    
+    IMOOrder *order = [[IMOOrder alloc] initWithDictionary:orderDict error:&error];
+    
+    if (error) {
+        NSLog(@"Error creating free order: %@", error.localizedDescription);
+        return nil;
+    } else {
+        return [self.orderManager placeNewOrder:order].then(^{
+            self.isPurchased = YES;
+        }).catch(^{
+            NSLog(@"Error with backend %@", error.localizedDescription);
+        });
+    }
+}
+
 
 - (PMKPromise *)billingInfo:(NSDictionary *)dict withCard:(PTKCard *)card {
     
@@ -335,7 +380,7 @@
 
 #pragma mark - IMOMockInstallationDelegate
 
-- (IMOTask *)taskForMockInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
+- (IMOTask *)taskForInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
     // TODO: Generate IMOTask from package manager
     // For now, using dummy task
     IMOTask *task = [[IMOTask alloc] init];

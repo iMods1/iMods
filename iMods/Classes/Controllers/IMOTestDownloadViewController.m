@@ -53,7 +53,7 @@
     [self.assetsProgressView setProgress:0.25 animated:YES];
     
     IMOItemManager *itemManager = [[IMOItemManager alloc] init];
-    [itemManager fetchItemByID: 1].then( ^(OVCResponse *response, NSError *error) {
+    [itemManager fetchItemByID: 10].then( ^(OVCResponse *response, NSError *error) {
         if (!error) {
             [self.assetsProgressView setProgress:0.5 animated:YES];
             IMOItem *item = [response valueForKey:@"result"];
