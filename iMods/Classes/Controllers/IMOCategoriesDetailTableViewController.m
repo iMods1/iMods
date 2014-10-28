@@ -9,6 +9,7 @@
 #import "IMOCategoriesDetailTableViewController.h"
 #import "IMOItem.h"
 #import "IMOItemManager.h"
+#import "IMOItemDetailViewController.h"
 #import <Overcoat/OVCResponse.h>
 
 @interface IMOCategoriesDetailTableViewController ()
@@ -69,7 +70,7 @@
     NSDictionary *item = [self.items objectAtIndex: indexPath.row];
     
     // Configure the cell...
-    cell.textLabel.text = [item objectForKey:@"pkg_name"];
+    cell.textLabel.text = [item valueForKey:@"pkg_name"];
     
     return cell;
 }
@@ -109,14 +110,18 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString: @"categories_detail_item_detail_push"]) {
+        IMOItemDetailViewController *controller = [segue destinationViewController];
+        controller.item = self.items[[self.tableView indexPathForSelectedRow].row];
+    }
 }
-*/
+
 
 @end
