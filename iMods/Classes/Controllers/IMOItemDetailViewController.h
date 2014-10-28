@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "IMOInstallationViewController.h"
-#import <AccordionView.h>
 
 @class IMOItem;
 
