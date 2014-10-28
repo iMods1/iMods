@@ -364,7 +364,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSV-TY-2dM">
-                                <rect key="frame" x="29" y="198" width="256" height="22"/>
+                                <rect key="frame" x="32" y="198" width="256" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -377,8 +377,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Image" id="hWN-G9-hM1" customClass="RFGravatarImageView">
-                                <rect key="frame" x="107" y="83" width="106" height="106"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" id="hWN-G9-hM1" customClass="RFGravatarImageView">
+                                <rect key="frame" x="111" y="83" width="98" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need some help?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QC5-Ql-OXC">
@@ -1428,7 +1428,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="106" height="106"/>
         <image name="iMods_Updates_0002s_0000_BG" width="320" height="568"/>
         <image name="imods-assets-categories-icon" width="23" height="21"/>
         <image name="imods-assets-chart-icon-selected" width="31" height="27"/>

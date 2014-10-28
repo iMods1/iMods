@@ -97,7 +97,6 @@
         } else {
             self.installedItemsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[result count]];
         }
-        // TODO: Get profile picture from assets server
     }
 }
 
@@ -106,6 +105,8 @@
     self.profilePictureImageView.email = manager.userProfile.email;
     self.profilePictureImageView.placeholder = [UIImage imageNamed:@"imods-logo"];
     [self.profilePictureImageView loadGravatar];
+    self.profilePictureImageView.layer.cornerRadius = self.profilePictureImageView.frame.size.width / 2;
+    self.profilePictureImageView.layer.masksToBounds = YES;
 }
 
 - (IBAction)walletButtonTapped:(id)sender {
