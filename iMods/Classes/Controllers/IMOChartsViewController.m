@@ -86,11 +86,11 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    NSDictionary *item = [self.items objectAtIndex: indexPath.row];
+    IMOItem *item = [self.items objectAtIndex: indexPath.row];
     
     
     // TODO: Other cell setup
-    cell.textLabel.text = [item objectForKey: @"display_name"];
+    cell.textLabel.text = item.display_name;
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
@@ -151,12 +151,8 @@
 }
 
 - (void)loadDataForCategory:(NSString *)category {
-    [self.manager fetchItemsByCategory: category].then(^(OVCResponse *response) {
-        if ([response.result isKindOfClass: [NSArray class]]) {
-            self.items = response.result;
-        } else {
-            self.items = [NSArray arrayWithObject:response.result];
-        }
+    [self.manager fetchItemsByCategory: category].then(^(NSArray *result) {
+        self.items = result;
     }).catch(^(NSError *error) {
         NSLog(@"Problem with HTTP request: %@", [error localizedDescription]);
         self.items = @[];
