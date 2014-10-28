@@ -10,17 +10,19 @@
 #import "IMOUserManager.h"
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
+#import <RFGravatarImageView.h>
 
 @interface IMOProfileViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *installedItemsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wishlistItemsLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
+@property (weak, nonatomic) IBOutlet RFGravatarImageView *profilePictureImageView;
 
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObject *managedItem;
 
 - (void)setupLabels;
+- (void)setupProfilePicture;
 - (IBAction)walletButtonTapped:(id)sender;
 
 @end
@@ -42,6 +44,7 @@
     self.tabBarController.tabBar.hidden = YES;
     
     [self setupLabels];
+    [self setupProfilePicture];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -96,6 +99,13 @@
         }
         // TODO: Get profile picture from assets server
     }
+}
+
+- (void)setupProfilePicture {
+    IMOUserManager *manager = [IMOUserManager sharedUserManager];
+    self.profilePictureImageView.email = manager.userProfile.email;
+    self.profilePictureImageView.placeholder = [UIImage imageNamed:@"imods-logo"];
+    [self.profilePictureImageView loadGravatar];
 }
 
 - (IBAction)walletButtonTapped:(id)sender {
