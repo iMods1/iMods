@@ -1,5 +1,5 @@
 //
-//  IMOMockInstallationViewController.m
+//  IMOInstallationViewController.m
 //  iMods
 //
 //  Created by Brendon Roberto on 10/9/14.
@@ -74,7 +74,7 @@
     // Don't launch task on simulator
     return;
 #elif TARGET_OS_IPHONE
-    __weak IMOMockInstallationViewController *weakSelf = self;
+    __weak IMOInstallationViewController *weakSelf = self;
     [IMOTask launchTask:@"/bin/bash" arguments:@[@"-c", @"sleep 3; echo \"Step 1\";sleep 3;echo \"Step 2\";sleep 3;echo \"Done\""]].then(^{
         [self.progressView setProgress: 1.0 animated:YES];
         double delayInSeconds = 1.0f;
