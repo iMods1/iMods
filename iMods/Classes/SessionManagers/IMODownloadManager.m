@@ -53,7 +53,7 @@ static IMODownloadManager *downloadManager = nil;
             break;
     }
     NSDictionary *paramsDict = @{
-                                 @"item_ids": @[@(item.item_id)],
+                                 @"item_ids": @[[item valueForKey:@"item_id"]],
                                  @"type": downloadType
                                  };
     return [self.sessionManager postJSON:@"package/get" data:paramsDict];

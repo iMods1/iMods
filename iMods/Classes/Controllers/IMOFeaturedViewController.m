@@ -53,8 +53,8 @@
     // Configure cell
     NSDictionary *item = [self.items objectAtIndex: indexPath.row];
     NSLog(@"Item at row %ld: %@", (long)indexPath.row, item);
-    cell.textLabel.text = [item objectForKey:@"display_name"];
-    cell.detailTextLabel.text = [item objectForKey:@"summary"];
+    cell.textLabel.text = [item valueForKey:@"display_name"];
+    cell.detailTextLabel.text = [item valueForKey:@"summary"];
     cell.backgroundColor = [UIColor clearColor];
     
     // TODO: Add price badge, add image downloaded from assets server
@@ -101,12 +101,12 @@
     if (delegate.isRunningTest) {
         return;
     }
-    [self.manager fetchItemsByCategory: category].then(^(OVCResponse *response) {
-        NSLog(@"Result %@", response.result);
-        if ([response.result isKindOfClass: [NSArray class]]) {
-            self.items = response.result;
+    [self.manager fetchItemsByCategory: category].then(^(NSArray *result) {
+        NSLog(@"Result %@", result);
+        if ([result isKindOfClass: [NSArray class]]) {
+            self.items = result;
         } else {
-            self.items = [NSArray arrayWithObject:response.result];
+            self.items = [NSArray arrayWithObject:result];
         }
     }).catch(^(NSError *error) {
         NSLog(@"Problem with HTTP request: %@", [error localizedDescription]);
