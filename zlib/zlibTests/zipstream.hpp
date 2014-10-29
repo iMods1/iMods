@@ -61,7 +61,7 @@ public:
     typedef std::basic_streambuf<Elem, Tr> basic_basestreambuf;
 	typedef std::basic_ostream<Elem, Tr>& ostream_reference;
     typedef typename std::basic_streambuf<Elem, Tr>::int_type int_type;
-    typedef typename std::basic_streambuf<Elem, Tr>::char_type char_type;
+    typedef typename std::basic_streambuf<Elem, Tr>::Traits::char_type char_type;
     typedef ElemA char_allocator_type;
 	typedef ByteT byte_type;
     typedef ByteAT byte_allocator_type;
@@ -132,7 +132,7 @@ public:
 	typedef std::basic_istream<Elem, Tr>& istream_reference;
     typedef std::basic_streambuf<Elem, Tr> basic_basestreambuf;
     typedef typename std::basic_streambuf<Elem, Tr>::int_type int_type;
-    typedef typename std::basic_streambuf<Elem, Tr>::char_type char_type;
+    typedef typename std::basic_streambuf<Elem, Tr>::Traits::char_type char_type;
     typedef ElemA char_allocator_type;
 	typedef ByteT byte_type;
     typedef ByteAT byte_allocator_type;
@@ -217,7 +217,7 @@ public:
 		)
 		: m_buf(ostream_,level_,strategy_,window_size_,memory_level_,buffer_size_)
 	{
-		this->init(&m_buf );
+		init(&m_buf );
 	};
 	
 	/// returns the underlying zip ostream object
@@ -267,7 +267,7 @@ public:
 		)
 		: m_buf(ostream_,window_size_, read_buffer_size_, input_buffer_size_)
 	{
-		this->init(&m_buf );
+		init(&m_buf );
 	};
 	
 	/// returns the underlying unzip istream object
@@ -323,7 +323,7 @@ public:
 	typedef basic_zip_ostreambase<
         Elem,Tr,ElemA,ByteT,ByteAT> zip_ostreambase_type;
     typedef typename std::basic_ostream<Elem, Tr>::int_type int_type;
-    typedef typename std::basic_ostream<Elem, Tr>::char_type char_type;
+    typedef typename std::basic_ostream<Elem, Tr>::Traits::char_type char_type;
 	typedef std::basic_ostream<Elem,Tr> ostream_type;
 	typedef std::basic_ostream<Elem, Tr>& ostream_reference;
 
@@ -375,8 +375,8 @@ public:
 	/// flush inner buffer and zipper buffer
 	basic_zip_ostream<Elem,Tr>& zflush()	
 	{	
-        this->flush();
-        this->rdbuf()->flush();
+        std::basic_ostream<Elem, Tr>::flush();
+        std::basic_ostream<Elem, Tr>::rdbuf()->flush();
         return *this;
 	};
 
@@ -443,7 +443,7 @@ public:
 		m_gzip_crc(0),
 		m_gzip_data_size(0)
 	{
- 	      if (this->rdbuf()->get_zerr()==Z_OK)
+ 	      if (istream_type::rdbuf()->get_zerr()==Z_OK)
 			  check_header();
 	};
 

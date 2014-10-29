@@ -210,7 +210,7 @@ public:
     std::vector<TagSection> filter(const FilterConditions& conds);
     
 private:
-    void parseSections(std::ifstream& stream);
+    void parseSections(std::istream& stream);
     std::vector<TagSection> m_sections;
     int m_cur;
 };

@@ -15,6 +15,8 @@
 		2821439D19B01322004AB17D /* IMODPKGManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2821439C19B01322004AB17D /* IMODPKGManager.m */; };
 		2821439E19B01322004AB17D /* IMODPKGManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2821439C19B01322004AB17D /* IMODPKGManager.m */; };
 		2826720119D0123B0063CF94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2826720019D0123B0063CF94 /* main.m */; };
+		282B436A1A00552C007F3C78 /* zip_stream_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 282B43671A00552C007F3C78 /* zip_stream_test.cpp */; };
+		282B436B1A00552C007F3C78 /* zlibTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 282B43691A00552C007F3C78 /* zlibTests.mm */; };
 		2830E8901978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8911978A5BE008E42ED /* IMOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E88F1978A5BE008E42ED /* IMOUser.m */; };
 		2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830E8981978BBAC008E42ED /* IMOBillingInfo.m */; };
@@ -52,6 +54,12 @@
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 282DECAA19D180960093348D /* libimpkg.cpp */; };
 		285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285791F419D4ADE20052A3EF /* PackageManagerTests.mm */; };
+		28841C601A0030400054AB0A /* zipstream.hh in Sources */ = {isa = PBXBuildFile; fileRef = 28841C5E1A0030400054AB0A /* zipstream.hh */; };
+		28841C611A0030400054AB0A /* zipstream.hh in Sources */ = {isa = PBXBuildFile; fileRef = 28841C5E1A0030400054AB0A /* zipstream.hh */; };
+		28841C6D1A0032440054AB0A /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28841C681A0032090054AB0A /* libzlib.a */; };
+		28841C6E1A00324D0054AB0A /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28841C681A0032090054AB0A /* libzlib.a */; };
+		28841CAE1A0035F40054AB0A /* zlib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28841CAC1A0035F40054AB0A /* zlib.h */; };
+		28841CAF1A0035F40054AB0A /* zutil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28841CAD1A0035F40054AB0A /* zutil.h */; };
 		289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
 		289C58FE1994C33900AD0F5D /* IMOResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C58FC1994C33900AD0F5D /* IMOResponse.m */; };
 		289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.mm */; };
@@ -59,8 +67,6 @@
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
-		28CD191B1A001EA700992D22 /* zipstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28CD19191A001EA700992D22 /* zipstream.cpp */; };
-		28CD191C1A001EA700992D22 /* zipstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28CD19191A001EA700992D22 /* zipstream.cpp */; };
 		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
 		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
 		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
@@ -175,6 +181,34 @@
 			remoteGlobalIDString = 284CBBB11946F35A006539A3;
 			remoteInfo = iMods;
 		};
+		28841C671A0032090054AB0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28841C621A0032090054AB0A /* zlib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 280BFA561A002A3D007E5677;
+			remoteInfo = zlib;
+		};
+		28841C691A0032090054AB0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28841C621A0032090054AB0A /* zlib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 280BFA611A002A3D007E5677;
+			remoteInfo = zlibTests;
+		};
+		28841C6B1A00322E0054AB0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28841C621A0032090054AB0A /* zlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 280BFA551A002A3D007E5677;
+			remoteInfo = zlib;
+		};
+		28841C6F1A0032530054AB0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28841C621A0032090054AB0A /* zlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 280BFA551A002A3D007E5677;
+			remoteInfo = zlib;
+		};
 		289C58FF1994F3B900AD0F5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 284CBBAA1946F35A006539A3 /* Project object */;
@@ -205,6 +239,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		28841CAB1A0035600054AB0A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				28841CAE1A0035F40054AB0A /* zlib.h in CopyFiles */,
+				28841CAF1A0035F40054AB0A /* zutil.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0B3C95FDF7B146ABBF782234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		28052DB319A2BF370080DBEA /* iModsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iModsTests.m; sourceTree = "<group>"; };
@@ -215,6 +263,9 @@
 		2821439B19B01322004AB17D /* IMODPKGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODPKGManager.h; path = Classes/PackageManager/IMODPKGManager.h; sourceTree = "<group>"; };
 		2821439C19B01322004AB17D /* IMODPKGManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODPKGManager.m; path = Classes/PackageManager/IMODPKGManager.m; sourceTree = "<group>"; };
 		2826720019D0123B0063CF94 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		282B43671A00552C007F3C78 /* zip_stream_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_stream_test.cpp; sourceTree = "<group>"; };
+		282B43681A00552C007F3C78 /* zip_stream_test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = zip_stream_test.hpp; sourceTree = "<group>"; };
+		282B43691A00552C007F3C78 /* zlibTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = zlibTests.mm; sourceTree = "<group>"; };
 		282DECAA19D180960093348D /* libimpkg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libimpkg.cpp; path = Classes/PackageManager/libimpkg.cpp; sourceTree = "<group>"; };
 		282DECAB19D180960093348D /* libimpkg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libimpkg.h; path = Classes/PackageManager/libimpkg.h; sourceTree = "<group>"; };
 		2830E88F1978A5BE008E42ED /* IMOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUser.m; sourceTree = "<group>"; };
@@ -259,6 +310,12 @@
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
 		285791F419D4ADE20052A3EF /* PackageManagerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PackageManagerTests.mm; sourceTree = "<group>"; };
+		28841C5C1A002C540054AB0A /* libzlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlib.a; path = "zlib/build/Debug-iphoneos/libzlib.a"; sourceTree = "<group>"; };
+		28841C5E1A0030400054AB0A /* zipstream.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = zipstream.hh; path = Classes/PackageManager/zipstream.hh; sourceTree = "<group>"; };
+		28841C5F1A0030400054AB0A /* zipstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = zipstream.hpp; path = Classes/PackageManager/zipstream.hpp; sourceTree = "<group>"; };
+		28841C621A0032090054AB0A /* zlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = zlib.xcodeproj; path = zlib/zlib.xcodeproj; sourceTree = "<group>"; };
+		28841CAC1A0035F40054AB0A /* zlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zlib.h; path = ../zlib/src/zlib.h; sourceTree = "<group>"; };
+		28841CAD1A0035F40054AB0A /* zutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = zutil.h; path = ../zlib/src/zutil.h; sourceTree = "<group>"; };
 		289C58FB1994C33900AD0F5D /* IMOResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOResponse.h; path = Classes/NetworkManager/IMOResponse.h; sourceTree = "<group>"; };
 		289C58FC1994C33900AD0F5D /* IMOResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOResponse.m; path = Classes/NetworkManager/IMOResponse.m; sourceTree = "<group>"; };
 		289F003C198985410032B0C8 /* IMOPackageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOPackageManager.h; path = Classes/PackageManager/IMOPackageManager.h; sourceTree = "<group>"; };
@@ -267,8 +324,6 @@
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
-		28CD19191A001EA700992D22 /* zipstream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = zipstream.cpp; path = Classes/PackageManager/zipstream.cpp; sourceTree = "<group>"; };
-		28CD191A1A001EA700992D22 /* zipstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = zipstream.hpp; path = Classes/PackageManager/zipstream.hpp; sourceTree = "<group>"; };
 		4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOLoginViewController.h; sourceTree = "<group>"; };
 		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
 		4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTabBarController.h; sourceTree = "<group>"; };
@@ -340,6 +395,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28841C6D1A0032440054AB0A /* libzlib.a in Frameworks */,
 				4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +404,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28841C6E1A00324D0054AB0A /* libzlib.a in Frameworks */,
 				C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +423,7 @@
 		237E9CEAFDC54C2EA68D6159 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28841C5C1A002C540054AB0A /* libzlib.a */,
 				4D3A7F771991D0940024AB2B /* libPods.a */,
 				4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */,
 				4DDFAC5D19762C860094FB8D /* libPods-HexColors.a */,
@@ -408,6 +466,7 @@
 		284CBBA91946F35A006539A3 = {
 			isa = PBXGroup;
 			children = (
+				28841C621A0032090054AB0A /* zlib.xcodeproj */,
 				284CBBB41946F35A006539A3 /* iMods */,
 				284CBBC91946F35A006539A3 /* iModsTests */,
 				4D29D0FA19D314BA004DCE49 /* iMods UI Tests */,
@@ -450,6 +509,9 @@
 		284CBBC91946F35A006539A3 /* iModsTests */ = {
 			isa = PBXGroup;
 			children = (
+				282B43671A00552C007F3C78 /* zip_stream_test.cpp */,
+				282B43681A00552C007F3C78 /* zip_stream_test.hpp */,
+				282B43691A00552C007F3C78 /* zlibTests.mm */,
 				285791F419D4ADE20052A3EF /* PackageManagerTests.mm */,
 				28052DB319A2BF370080DBEA /* iModsTests.m */,
 				284CBBCA1946F35A006539A3 /* Supporting Files */,
@@ -463,6 +525,15 @@
 				284CBBCB1946F35A006539A3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28841C631A0032090054AB0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28841C681A0032090054AB0A /* libzlib.a */,
+				28841C6A1A0032090054AB0A /* zlibTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		289F004219898A3E0032B0C8 /* Constants */ = {
@@ -490,8 +561,10 @@
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
-				28CD19191A001EA700992D22 /* zipstream.cpp */,
-				28CD191A1A001EA700992D22 /* zipstream.hpp */,
+				28841CAC1A0035F40054AB0A /* zlib.h */,
+				28841CAD1A0035F40054AB0A /* zutil.h */,
+				28841C5E1A0030400054AB0A /* zipstream.hh */,
+				28841C5F1A0030400054AB0A /* zipstream.hpp */,
 				282DECAA19D180960093348D /* libimpkg.cpp */,
 				282DECAB19D180960093348D /* libimpkg.h */,
 				281788CE19B0150A0003C1A3 /* IMOTask.h */,
@@ -683,6 +756,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 284CBBD01946F35A006539A3 /* Build configuration list for PBXNativeTarget "iMods" */;
 			buildPhases = (
+				28841CAB1A0035600054AB0A /* CopyFiles */,
 				14A4749C871041BCA8228C30 /* Check Pods Manifest.lock */,
 				284CBBAE1946F35A006539A3 /* Sources */,
 				284CBBAF1946F35A006539A3 /* Frameworks */,
@@ -695,6 +769,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				28841C6C1A00322E0054AB0A /* PBXTargetDependency */,
 			);
 			name = iMods;
 			productName = iMods;
@@ -714,6 +789,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				28841C701A0032530054AB0A /* PBXTargetDependency */,
 				284CBBC81946F35A006539A3 /* PBXTargetDependency */,
 				2857089F1978F44800C7F37B /* PBXTargetDependency */,
 				28D9462019804B1A00DF7ADC /* PBXTargetDependency */,
@@ -788,6 +864,12 @@
 			mainGroup = 284CBBA91946F35A006539A3;
 			productRefGroup = 284CBBB31946F35A006539A3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 28841C631A0032090054AB0A /* Products */;
+					ProjectRef = 28841C621A0032090054AB0A /* zlib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				284CBBB11946F35A006539A3 /* iMods */,
@@ -796,6 +878,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		28841C681A0032090054AB0A /* libzlib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libzlib.a;
+			remoteRef = 28841C671A0032090054AB0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28841C6A1A0032090054AB0A /* zlibTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = zlibTests.xctest;
+			remoteRef = 28841C691A0032090054AB0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		284CBBB01946F35A006539A3 /* Resources */ = {
@@ -981,7 +1080,7 @@
 				4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */,
 				28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
 				285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */,
-				28CD191B1A001EA700992D22 /* zipstream.cpp in Sources */,
+				28841C601A0030400054AB0A /* zipstream.hh in Sources */,
 				4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */,
 				4D399ADF19D4A016003CFC25 /* IMOFeaturedViewController.m in Sources */,
 				281788D019B0150A0003C1A3 /* IMOTask.m in Sources */,
@@ -1026,12 +1125,13 @@
 			files = (
 				2821439E19B01322004AB17D /* IMODPKGManager.m in Sources */,
 				2833494719AA8EFA00DDB922 /* IMODeviceManager.m in Sources */,
+				282B436B1A00552C007F3C78 /* zlibTests.mm in Sources */,
 				2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				2833493F19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2830E8A61978C808008E42ED /* IMOItem.m in Sources */,
 				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
 				28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */,
-				28CD191C1A001EA700992D22 /* zipstream.cpp in Sources */,
+				28841C611A0030400054AB0A /* zipstream.hh in Sources */,
 				281788D119B0150A0003C1A3 /* IMOTask.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */,
@@ -1043,6 +1143,7 @@
 				28052DB419A2BF370080DBEA /* iModsTests.m in Sources */,
 				2833494119AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
+				282B436A1A00552C007F3C78 /* zip_stream_test.cpp in Sources */,
 				2833494919AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
 				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
 				2833494519AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
@@ -1118,6 +1219,16 @@
 			target = 284CBBB11946F35A006539A3 /* iMods */;
 			targetProxy = 2857089E1978F44800C7F37B /* PBXContainerItemProxy */;
 		};
+		28841C6C1A00322E0054AB0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = zlib;
+			targetProxy = 28841C6B1A00322E0054AB0A /* PBXContainerItemProxy */;
+		};
+		28841C701A0032530054AB0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = zlib;
+			targetProxy = 28841C6F1A0032530054AB0A /* PBXContainerItemProxy */;
+		};
 		289C59001994F3B900AD0F5D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 284CBBB11946F35A006539A3 /* iMods */;
@@ -1187,7 +1298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1225,7 +1336,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1242,12 +1353,33 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brittany Charles (46W5N4Z8XW)";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/ChuzzleKit\"",
+					"\"${PODS_ROOT}/Headers/DACircularProgress\"",
+					"\"${PODS_ROOT}/Headers/HexColors\"",
+					"\"${PODS_ROOT}/Headers/KIF\"",
+					"\"${PODS_ROOT}/Headers/Mantle\"",
+					"\"${PODS_ROOT}/Headers/OMGHTTPURLRQ\"",
+					"\"${PODS_ROOT}/Headers/Overcoat\"",
+					"\"${PODS_ROOT}/Headers/PRHTask@aufflick\"",
+					"\"${PODS_ROOT}/Headers/PaymentKit\"",
+					"\"${PODS_ROOT}/Headers/PromiseKit\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/Stripe\"",
+					"\"${PODS_ROOT}/Headers/TSMessages\"",
+					"\"${PODS_ROOT}/Headers/UICKeyChainStore\"",
+					"${SOURCE_ROOT}/include",
+				);
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/zlib/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1274,12 +1406,33 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/ChuzzleKit\"",
+					"\"${PODS_ROOT}/Headers/DACircularProgress\"",
+					"\"${PODS_ROOT}/Headers/HexColors\"",
+					"\"${PODS_ROOT}/Headers/KIF\"",
+					"\"${PODS_ROOT}/Headers/Mantle\"",
+					"\"${PODS_ROOT}/Headers/OMGHTTPURLRQ\"",
+					"\"${PODS_ROOT}/Headers/Overcoat\"",
+					"\"${PODS_ROOT}/Headers/PRHTask@aufflick\"",
+					"\"${PODS_ROOT}/Headers/PaymentKit\"",
+					"\"${PODS_ROOT}/Headers/PromiseKit\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
+					"\"${PODS_ROOT}/Headers/Stripe\"",
+					"\"${PODS_ROOT}/Headers/TSMessages\"",
+					"\"${PODS_ROOT}/Headers/UICKeyChainStore\"",
+					"${SOURCE_ROOT}/include",
+				);
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/zlib/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

@@ -97,4 +97,23 @@ static IMODownloadManager *downloadManager = nil;
     }
 }
 
+- (PMKPromise*)downloadIndex {
+    return [self.sessionManager getJSON:@"package/index" parameters:nil]
+    .then(^id(OVCResponse *response, NSError *error){
+        if (error) {
+            NSLog(@"Failed to download index file: %@", error.localizedDescription);
+            return nil;
+        }
+        
+        NSString* urlString = [response valueForKey:@"url"];
+        NSLog(@"Index file received '%@'", urlString);
+        NSURL* url = [[NSURL alloc] initWithString:urlString];
+        return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
+            NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: @"Packages.gz"];
+            [data writeToFile:filePath atomically:YES];
+            return filePath;
+        });
+    });
+}
+
 @end

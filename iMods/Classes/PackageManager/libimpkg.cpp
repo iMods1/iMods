@@ -16,6 +16,7 @@
 #include <functional>
 #include <unordered_map>
 #include <cassert>
+#include "zipstream.hpp"
 
 #pragma mark -
 
@@ -411,20 +412,20 @@ class TagParser {
     
 public:
     
-    TagParser(std::ifstream& tagfile);
+    TagParser(std::istream& tagfile);
     
     bool nextSection(TagSection& section);
 
 private:
     
     bool nextTag(std::string& tag, std::string& value);
-    std::ifstream& m_tagFile;
+    std::istream& m_tagFile;
     size_t m_bufPtr;
 };
 
 #pragma mark -
 
-TagParser::TagParser(std::ifstream& tagfile):m_tagFile(tagfile), m_bufPtr(0) {
+TagParser::TagParser(std::istream& tagfile):m_tagFile(tagfile), m_bufPtr(0) {
     
 }
 
@@ -694,8 +695,9 @@ TagFile::~TagFile() {
 
 bool TagFile::open(const std::string& filename) {
     if (!filename.empty()) {
-        std::ifstream stream(filename);
-        if (!stream.is_open()) {
+        std::ifstream fstream(filename);
+        zlib_stream::zip_istream stream(fstream);
+        if (!fstream.is_open()) {
             std::cerr << "Failed to open file for parsing: '" << filename << "'" << std::endl;
             return false;
         }
@@ -725,7 +727,7 @@ bool TagFile::tag(const std::string& tagname, std::string& out_tagvalue) {
     return section().tag(tagname, out_tagvalue);
 }
 
-void TagFile::parseSections(std::ifstream& stream) {
+void TagFile::parseSections(std::istream& stream) {
     TagParser parser(stream);
     TagSection sec;
     while (parser.nextSection(sec)) {

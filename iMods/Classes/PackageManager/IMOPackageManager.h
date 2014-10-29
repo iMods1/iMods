@@ -14,6 +14,9 @@
 @interface IMOPackageManager : NSObject
 
 @property (readonly) IMODPKGManager* dpkgManager;
+@property (readonly) NSString* indexFilePath;
+@property (readonly) NSString* controlFilePath;
+@property (readonly, assign) BOOL locked;
 
 + (IMOPackageManager*) sharedPackageManager;
 
