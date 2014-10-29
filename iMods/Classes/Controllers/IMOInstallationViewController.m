@@ -13,6 +13,7 @@
 #endif
 
 @interface IMOInstallationViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) NSPipe *pipe;
 @property (strong, nonatomic) NSFileHandle *handle;
 @property (strong, nonatomic) NSTimer *timer;

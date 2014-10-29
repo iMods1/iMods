@@ -1245,7 +1245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Ocr-mb-MnS" customClass="DACircularProgressView">
-                                <rect key="frame" x="33" y="161" width="254" height="244"/>
+                                <rect key="frame" x="60" y="90" width="208" height="199"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -1263,6 +1263,14 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="Qw8-kk-7iy">
+                                <rect key="frame" x="40" y="312" width="240" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2196078598" green="0.54509806630000002" blue="0.62745100259999997" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="10"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                         <gestureRecognizers/>
@@ -1272,6 +1280,7 @@
                     </view>
                     <connections>
                         <outlet property="progressView" destination="Ocr-mb-MnS" id="vbU-IN-ZnZ"/>
+                        <outlet property="textView" destination="Qw8-kk-7iy" id="GSK-1B-KAc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9L-ky-Meo" userLabel="First Responder" sceneMemberID="firstResponder"/>
