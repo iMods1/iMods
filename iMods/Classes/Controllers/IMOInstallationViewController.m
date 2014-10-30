@@ -37,7 +37,7 @@
     // Do any additional setup after loading the view.
     
     // Create timer for progress
-    self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.5f target: self selector:@selector(advanceProgressView) userInfo:nil repeats: YES];
+    // self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.5f target: self selector:@selector(advanceProgressView) userInfo:nil repeats: YES];
     
     // Create a new NSPipe for taskOutput.
     self.pipe = [NSPipe pipe];
@@ -97,33 +97,32 @@
 //        NSLog(@"Error with task: %@", error.localizedDescription);
 //    });
     [self appendTextToTextView:@"Initializing..."];
-    PMKPromise* promise = [PMKPromise new:^void(PMKPromiseFulfiller fulfiller, PMKPromiseRejecter rejecter) {
-        IMODownloadManager *dlManager = [IMODownloadManager sharedDownloadManager];
-        IMOItemDetailViewController* itemController = (IMOItemDetailViewController*)(self.delegate);
-        [self appendTextToTextView:@"Downloading package file..."];
-        PMKPromise* dlPromise = [dlManager download:Deb item:itemController.item]
-        .then(^(NSString* debFile){
-            IMODPKGManager* dpkg = [[IMODPKGManager alloc] init];
-            PMKPromise* debPromise = [dpkg installDEB:debFile];
-            PRHTerminationBlock finished = ^(PRHTask* task) {
-                [self appendTextToTextView:task.outputStringFromStandardOutputUTF8];
-                [self appendTextToTextView:task.errorOutputStringFromStandardErrorUTF8];
-            };
-            debPromise.then(^(IMOTask* task){
-                task.successfulTerminationBlock = finished;
-                task.abnormalTerminationBlock = finished;
-                [self appendTextToTextView:@"Installing..."];
-                [task launch];
-                fulfiller(@"Finished");
-            });
-            [PMKPromise until:^(){return debPromise;} catch:nil];
+    [self.progressView setProgress:0.1 animated:YES];
+    IMODownloadManager *dlManager = [IMODownloadManager sharedDownloadManager];
+    IMOItemDetailViewController* itemController = (IMOItemDetailViewController*)(self.delegate);
+    [self appendTextToTextView:@"Downloading package file..."];
+    [self.progressView setProgress:0.3 animated:YES];
+    [dlManager download:Deb item:itemController.item].then(^(NSString* debFile){
+        [self appendTextToTextView: [NSString stringWithFormat:@"Download finished.\nStarting dpkg installation for %@", debFile]];
+        [self.progressView setProgress: 0.6 animated:YES];
+        IMODPKGManager* dpkg = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
+        [dpkg installDEB:debFile].then(^(IMOTask* task){
+            NSLog(@"Task: %@", task);
+            [self appendTextToTextView:task.outputStringFromStandardOutputUTF8];
+            [self appendTextToTextView:task.errorOutputStringFromStandardErrorUTF8];
+            [self appendTextToTextView:@"dpkg installation exited."];
+        }).catch(^(NSError *error){
+            [self appendTextToTextView: [NSString stringWithFormat: @"Error: %@", error.localizedDescription]];
         });
-        [PMKPromise until:^(){return dlPromise;} catch:nil];
-    }];
-    promise.finally(^(){
-        [self appendTextToTextView:@".Done"];
+    }).finally(^{
+        [self appendTextToTextView:@"Done."];
+        [self.progressView setProgress:1.0 animated:YES];
+        double delayInSeconds = 2.0f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self.delegate installationDidFinish:self];
+        });
     });
-    [PMKPromise until:^(){return promise;} catch:^(){}];
 #else
 #endif
 
