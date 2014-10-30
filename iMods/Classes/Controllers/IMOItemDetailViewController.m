@@ -16,6 +16,7 @@
 #import "IMOCardViewController.h"
 #import "IMOInstallationViewController.h"
 #import "IMODownloadManager.h"
+#import "IMOPackageManager.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -26,6 +27,7 @@
 @property (assign, nonatomic) BOOL isFree;
 @property (strong, nonatomic) IMOOrderManager *orderManager;
 @property (strong, nonatomic) IMOBillingInfoManager *billingManager;
+@property (strong, nonatomic) IMOPackageManager* packageManager;
 
 - (void)setupItemLabels;
 - (void)setupInstallButton;
@@ -49,6 +51,15 @@
 @synthesize isPurchased = _isPurchased;
 @synthesize isInstalled = _isInstalled;
 @synthesize isFree = _isFree;
+
+- (void)errorAlert:(NSString*)title message:(NSString*)message {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+    [alert show];
+}
 
 - (void)setIsPurchased:(BOOL)isPurchased {
     _isPurchased = isPurchased;
@@ -113,6 +124,9 @@
     self.orderManager = [[IMOOrderManager alloc] init];
     self.billingManager = manager.billingManager;
     
+    IMOPackageManager *packageManager = [IMOPackageManager sharedPackageManager];
+    self.packageManager = packageManager;
+    
     // Set up Core Data objects
     self.managedObjectContext = [((AppDelegate *)[[UIApplication sharedApplication] delegate]) managedObjectContext];
     self.entity = [NSEntityDescription entityForName:@"IMOInstalledItem" inManagedObjectContext:self.managedObjectContext];
@@ -149,6 +163,9 @@
 #pragma mark - Misc
 
 - (IBAction)didTapInstallButton:(UIButton *)sender {
+#if TARGET_IPHONE_SIMULATOR
+    [self errorAlert:@"Simulator" message:@"Cannot install in simulator"];
+#else
     if (self.isPurchased) {
         if (self.isInstalled) {
             // Bail - this case should never be reached
@@ -185,6 +202,7 @@
             });
         }
     }
+#endif
 }
 
 - (void) setupItemLabels {
@@ -318,6 +336,7 @@
     
     if (error) {
         NSLog(@"Error creating free order: %@", error.localizedDescription);
+        [self errorAlert:@"Error" message:@"Error creating order"];
         return nil;
     } else {
         return [self.orderManager placeNewOrder:order].then(^{

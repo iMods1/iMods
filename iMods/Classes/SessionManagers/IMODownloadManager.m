@@ -70,7 +70,7 @@ static IMODownloadManager *downloadManager = nil;
                 return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
                     NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: nameString];
                     [data writeToFile:filePath atomically:YES];
-                    return data;
+                    return filePath;
                 });
             });
             break;
