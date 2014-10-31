@@ -52,7 +52,7 @@
     
     // Configure cell
     NSDictionary *item = [self.items objectAtIndex: indexPath.row];
-    NSLog(@"Item at row %ld: %@", (long)indexPath.row, item);
+//    NSLog(@"Item at row %ld: %@", (long)indexPath.row, item);
     cell.textLabel.text = [item valueForKey:@"display_name"];
     cell.detailTextLabel.text = [item valueForKey:@"summary"];
     cell.backgroundColor = [UIColor clearColor];
@@ -102,7 +102,7 @@
         return;
     }
     [self.manager fetchItemsByCategory: category].then(^(NSArray *result) {
-        NSLog(@"Result %@", result);
+//        NSLog(@"Result %@", result);
         if ([result isKindOfClass: [NSArray class]]) {
             self.items = result;
         } else {

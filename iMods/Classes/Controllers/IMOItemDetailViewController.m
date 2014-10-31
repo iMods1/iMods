@@ -180,15 +180,15 @@
             [self createFreePurchase];
         } else {
             [self.billingManager refreshBillingMethods].then(^{
-                NSLog(@"Current billing method count: %lu", (unsigned long)[self.billingManager billingMethods].count);
+//                NSLog(@"Current billing method count: %lu", (unsigned long)[self.billingManager billingMethods].count);
                 BOOL shouldSegueToWallet = (self.billingManager.billingMethods.count <= 0) || !self.billingManager.isBillingMethodSelected;
                 
-                NSLog(@"Current status of billingManager.isBillingMethodSelected: %d", self.billingManager.isBillingMethodSelected);
+//                NSLog(@"Current status of billingManager.isBillingMethodSelected: %d", self.billingManager.isBillingMethodSelected);
                 if (shouldSegueToWallet) {
                     [self performSegueWithIdentifier:@"item_detail_wallet_push" sender:self];
                 } else {
                     IMOBillingInfo *billingInfo = self.billingManager.billingMethods[self.billingManager.selectedBillingMethod];
-                    NSLog(@"Selected billing method: %@", billingInfo);
+//                    NSLog(@"Selected billing method: %@", billingInfo);
                     __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
                     activityIndicator.center = self.view.center;
                     [self.view addSubview:activityIndicator];
@@ -230,7 +230,7 @@
 - (void)checkInstallStatus {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     request.entity = self.entity;
-    NSLog(@"Item ID: %ld", (long)self.item.item_id);
+//    NSLog(@"Item ID: %ld", (long)self.item.item_id);
     request.predicate = [NSPredicate predicateWithFormat:@"id == %ld", (long)self.item.item_id];
     
     NSError *error = nil;
@@ -240,7 +240,7 @@
         NSLog(@"Unable to execute fetch request.");
         NSLog(@"%@, %@", error, error.localizedDescription);
     } else {
-        NSLog(@"Fetched result: %@", result);
+//        NSLog(@"Fetched result: %@", result);
         if (!([result count] == 0)) {
             self.managedItem = result[0];
             self.isInstalled = YES;
@@ -255,7 +255,7 @@
     NSUInteger itemId = self.item.item_id;
 
     [self.orderManager fetchOrderByUserItem: itemId].then(^(OVCResponse *response, NSError *error) {
-        NSLog(@"Returned responses: %@", response);
+//        NSLog(@"Returned responses: %@", response);
         self.isPurchased = ([response.result count] > 0);
     }).catch(^(NSError *error) {
         NSLog(@"No order found for current user for item: %@", self.item);
@@ -292,7 +292,7 @@
                                           };
         
         [self billingInfo:billingInfoDict withCard:card].then(^(IMOBillingInfo *response) {
-            NSLog(@"Result from billingInfo:withCard: %@", response);
+//            NSLog(@"Result from billingInfo:withCard: %@", response);
             [self createPurchaseFromBillingInfo: response];
         }).catch(^(NSError *error) {
             NSLog(@"Error creating billing info.");
@@ -365,7 +365,7 @@
     
     [mutableDict addEntriesFromDictionary: cardDict];
     
-    NSLog(@"Billing Info Dictionary: %@", mutableDict);
+//    NSLog(@"Billing Info Dictionary: %@", mutableDict);
     
     NSError *error = nil;
     IMOBillingInfo *billingInfo = [[IMOBillingInfo alloc] initWithDictionary: mutableDict error: &error];

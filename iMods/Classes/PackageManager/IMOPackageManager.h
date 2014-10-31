@@ -10,6 +10,7 @@
 #import "IMOItem.h"
 #import "IMOTask.h"
 #import "IMODPKGManager.h"
+#import "IMODownloadManager.h"
 
 @interface IMOPackageManager : NSObject
 
@@ -20,13 +21,19 @@
 
 + (IMOPackageManager*) sharedPackageManager;
 
+- (BOOL) lockDPKG;
+
+- (BOOL) unlockDPKG;
+
+- (PMKPromise*) fetchIndexFile;
+
 - (PMKPromise*) installPackage:(IMOItem*) pkg_path;
 
 - (PMKPromise*) removePackage:(IMOItem*) pkg_name;
 
 - (PMKPromise*) cleanPackage:(IMOItem*) pkg_name;
 
-- (PMKPromise*) checkUpdates;
+- (PMKPromise*) checkUpdates:(BOOL)install;
 
 - (void) respring;
 

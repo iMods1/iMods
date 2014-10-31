@@ -39,6 +39,16 @@ NSArray* tweakArray;
     return self;
 }
 
+- (BOOL)lockDPKG {
+    // TODO: Lock dpkg
+    return YES;
+}
+
+- (BOOL) unlockDPKG {
+    // TODO: Unlock dpkg
+    return YES;
+}
+
 - (PMKPromise*) fetchIndexFile {
     return [[IMODownloadManager sharedDownloadManager] downloadIndex]
     .then(^(NSString* filePath) {
