@@ -7,24 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IMOItem.h"
 #import "IMOTask.h"
 #import "IMODPKGManager.h"
+#import "IMODownloadManager.h"
 
 @interface IMOPackageManager : NSObject
 
 @property (readonly) IMODPKGManager* dpkgManager;
+@property (readonly) NSString* indexFilePath;
+@property (readonly) NSString* controlFilePath;
+@property (readonly, assign) BOOL locked;
 
 + (IMOPackageManager*) sharedPackageManager;
 
-- (BOOL) openCache:(NSString*) path;
+- (BOOL) lockDPKG;
 
-- (BOOL) openIndex:(NSString*) path;
+- (BOOL) unlockDPKG;
 
-- (PMKPromise*) installPackage:(NSString*) pkg_path;
+- (PMKPromise*) fetchIndexFile;
 
-- (PMKPromise*) removePackage:(NSString*) pkg_name;
+- (PMKPromise*) installPackage:(IMOItem*) pkg_path;
 
-- (PMKPromise*) cleanPackage:(NSString*) pkg_name;
+- (PMKPromise*) removePackage:(IMOItem*) pkg_name;
+
+- (PMKPromise*) cleanPackage:(IMOItem*) pkg_name;
+
+- (PMKPromise*) checkUpdates:(BOOL)install;
 
 - (void) respring;
 

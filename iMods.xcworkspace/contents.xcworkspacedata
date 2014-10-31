@@ -5,6 +5,9 @@
       location = "group:iMods.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:zlib/zlib.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

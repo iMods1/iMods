@@ -9,6 +9,7 @@
 #import "IMOTabBarController.h"
 #import "IMOUserManager.h"
 #import "UICKeyChainStore.h"
+#import "AppDelegate.h"
 
 @interface IMOTabBarController ()
 - (void)presentLoginViewController:(BOOL)animated;
@@ -33,6 +34,11 @@
     NSString *password = [UICKeyChainStore stringForKey: @"password"];
     
     NSLog(@"User login status: %d", manager.userLoggedIn);
+    
+    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.isRunningTest) {
+        return;
+    }
     
     if (!manager.userLoggedIn) {
         NSLog(@"User not logged in");

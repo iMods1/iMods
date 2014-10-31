@@ -10,6 +10,7 @@
 #import "IMOItemManager.h"
 #import "IMOItem.h"
 #import "IMOItemDetailViewController.h"
+#import "AppDelegate.h"
 #import <Overcoat/OVCResponse.h>
 
 @interface IMOFeaturedViewController ()
@@ -51,7 +52,7 @@
     
     // Configure cell
     NSDictionary *item = [self.items objectAtIndex: indexPath.row];
-    NSLog(@"Item at row %ld: %@", (long)indexPath.row, item);
+//    NSLog(@"Item at row %ld: %@", (long)indexPath.row, item);
     cell.textLabel.text = [item valueForKey:@"display_name"];
     cell.detailTextLabel.text = [item valueForKey:@"summary"];
     cell.backgroundColor = [UIColor clearColor];
@@ -95,8 +96,13 @@
 }
 
 - (void)setItemsForCategory:(NSString *)category {
+    // Don't send request if running tests
+    AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.isRunningTest) {
+        return;
+    }
     [self.manager fetchItemsByCategory: category].then(^(NSArray *result) {
-        NSLog(@"Result %@", result);
+//        NSLog(@"Result %@", result);
         if ([result isKindOfClass: [NSArray class]]) {
             self.items = result;
         } else {

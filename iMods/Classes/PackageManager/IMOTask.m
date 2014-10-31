@@ -20,6 +20,8 @@
         [task setLaunchPath:path];
         [task setArguments:arguments];
         [task setEnvironment:nil];
+        task.accumulatesStandardError = YES;
+        task.accumulatesStandardOutput = YES;
         [task setSuccessfulTerminationBlock:^(PRHTask* task){
             fulfill(task);
         }];

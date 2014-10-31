@@ -14,6 +14,7 @@
 typedef enum {
     Deb,
     Assets,
+    Index,
     All
 } IMODownloadType;
 
@@ -23,5 +24,6 @@ typedef enum {
 
 - (PMKPromise *)downloadURL:(IMODownloadType)type item:(IMOItem *)item;
 - (PMKPromise *)download:(IMODownloadType)type item:(IMOItem *)item;
+- (PMKPromise *)downloadIndex;
 
 @end

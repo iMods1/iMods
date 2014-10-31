@@ -7,15 +7,14 @@
 //
 
 #import "IMOPackageManager.h"
+#import "IMODownloadManager.h"
 #import "IMOItem.h"
+#include <iostream>
 #include "libimpkg.h"
 
-@implementation IMOPackageManager
+@implementation IMOPackageManager;
 
 static IMOPackageManager* sharedIMOPackageManager = nil;
-
-PackageCache* packageCache;
-PackageCache* packageIndex;
 
 // A (package_name, tweak_plist) mapping
 // The plist file is located at <substrate root dir>/DynamicLibraries/{name}.plist
@@ -34,63 +33,136 @@ NSArray* tweakArray;
     self = [super init];
     if (self) {
         self->_dpkgManager = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
+        self->_locked = false;
+        self->_controlFilePath = @"/var/lib/dpkg/status";
     }
     return self;
 }
 
-- (BOOL) openCache:(NSString*) path {
-    packageCache = new PackageCache([path UTF8String]);
-    return packageCache != nullptr;
-}
-
-- (BOOL) openIndex:(NSString*) path {
-    packageIndex = new PackageCache([path UTF8String]);
-    return packageIndex != nullptr;
-}
-
-- (BOOL) synchronizeIndex {
-    // TODO: Add index file to download queue
+- (BOOL)lockDPKG {
+    // TODO: Lock dpkg
     return YES;
 }
 
-- (PMKPromise*) installPackage:(NSString *)pkg_name{
-    PMKPromise* promise = [PMKPromise new:^(PMKPromiseFulfiller fulfill, PMKPromiseRejecter reject) {
-        // Check if it's in the index
-        auto pkg = packageCache->package([pkg_name UTF8String]);
-        if (pkg != nullptr) {
-            reject([NSError errorWithDomain:@"IMOPackageAlreadyInstalled" code:0 userInfo:nil]);
-            return;
-        }
-        
-        auto targetPkg = packageIndex->package([pkg_name UTF8String]);
-        
-        if (targetPkg == nullptr) {
-            reject([NSError errorWithDomain:@"IMOPackageNotFound" code:0 userInfo:nil]);
-            return;
-        }
-        
-        std::vector<const Package*> dependencies;
-//        bool resolved = calcDep(*packageCache, *packageIndex, {targetPkg}, dependencies);
-        
-//        if (!resolved) {
-//            reject([NSError errorWithDomain:@"IMOCannotResolveDependencies" code:0 userInfo:nil]);
-//            return;
-//        }
-//        
-//        if (dependencies.empty()) {
-//            reject([NSError errorWithDomain:@"IMOZeroDependencies" code:0 userInfo:nil]);
-//        }
-        // TODO: Send request for package download
-    }];
-    return promise;
+- (BOOL) unlockDPKG {
+    // TODO: Unlock dpkg
+    return YES;
 }
 
-- (PMKPromise*) removePackage:(NSString *)pkg_name {
-    return [self.dpkgManager removePackage:pkg_name];
+- (PMKPromise*) fetchIndexFile {
+    return [[IMODownloadManager sharedDownloadManager] downloadIndex]
+    .then(^(NSString* filePath) {
+        self->_indexFilePath = filePath;
+        return filePath;
+    });
 }
 
-- (PMKPromise*) cleanPackage:(NSString *)pkg_name {
-    return [self.dpkgManager cleanPackage:pkg_name];
+- (PMKPromise*) installPackage:(IMOItem*)pkg {
+    return [self fetchIndexFile]
+    .then(^id(NSString* indexFile) {
+        @synchronized(@(self.locked)) {
+            if (self->_locked) {
+                NSLog(@"Package manager is currently locked, please wait for it to finish.");
+                return nil;
+            }
+            
+            self->_locked = true;
+            auto dep = std::make_tuple([pkg.pkg_name UTF8String], VER_ANY, "");
+            DepVector deps = {dep};
+            DependencySolver solver([indexFile UTF8String], [self.controlFilePath UTF8String], deps);
+            
+            // Calculate dependencies
+            DepVector brokenDeps;
+            std::vector<const Version*> resolvedVers;
+            solver.calcDep(resolvedVers, brokenDeps);
+            
+            if (!brokenDeps.empty()) {
+                for(auto d: brokenDeps) {
+                    NSLog(@"Package '%s' cannot be resolved", depTuplePackageName(d).c_str());
+                }
+                self->_locked = false;
+                return nil;
+            }
+            
+            // Build download queue
+            NSMutableArray* dlQueue;
+            IMODownloadManager* dlManager = [IMODownloadManager sharedDownloadManager];
+            for(auto ver: resolvedVers) {
+                NSDictionary* itemDict = @{
+                                           @"iid": @(ver->itemID()),
+                                           @"pkg_name": @(ver->packageName().c_str())
+                                           };
+                NSError* error = nil;
+                IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&error];
+                if (error || !item) {
+                    std::cerr << "Failed to create IMOItem for version '" << *ver << "'" << std::endl;
+                    self->_locked = false;
+                    return nil;
+                }
+                [dlQueue addObject:[dlManager download:Deb item:item]];
+            }
+            // Install deb files using dpkg
+            return [PMKPromise when:dlQueue]
+            .then(^(NSArray* files) {
+                [[self dpkgManager] installDEBs:files];
+                self->_locked = false;
+                return true;
+            });
+        }
+    });
+}
+
+- (PMKPromise*) cleanPackage:(IMOItem *)pkg {
+    return [self.dpkgManager cleanPackage:pkg.pkg_name];
+}
+
+- (PMKPromise*) removePackage:(IMOItem*)pkg {
+    return [self.dpkgManager removePackage:pkg.pkg_name];
+}
+
+// Return NSArray of updated IMOItem's
+- (PMKPromise*) checkUpdates:(BOOL)install {
+    return [self fetchIndexFile].then(^id(NSString* indexFile){
+        @synchronized(@(self.locked)) {
+            if (self->_locked) {
+                NSLog(@"Package manager is currently locked, please wait for it to finish.");
+                return nil;
+            }
+            
+            self->_locked = true;
+            DependencySolver solver([indexFile UTF8String], [self.controlFilePath UTF8String]);
+            
+            DepVector updates;
+            std::vector<const Version*> resolvedVers;
+            // Get updates if there's any
+            updates = std::move(solver.getUpdates());
+            
+            // Array of updated IMOItem's
+            NSMutableArray* updatedItems;
+            
+            if (updates.empty()) {
+                self->_locked = false;
+                return updatedItems;
+            }
+            
+            for(auto dep: updates) {
+                NSString* pkg_name = [[NSString alloc] initWithUTF8String:depTuplePackageName(dep).c_str()];
+                NSDictionary* itemDict = @{
+                                           @"pkg_name": pkg_name
+                                           };
+                NSError* error = nil;
+                IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&error];
+                if (error || !item) {
+                    std::cerr << "Failed to create IMOItem for package '" << pkg_name << "'" << std::endl;
+                    self->_locked = false;
+                    return nil;
+                }
+                [updatedItems addObject:item];
+            }
+            self->_locked = false;
+            return [NSArray arrayWithArray:updatedItems];
+        }
+    });
 }
 
 - (BOOL) isSBTargeted {
@@ -169,13 +241,6 @@ NSArray* tweakArray;
 // Return a list of item IDs
 - (NSArray*) listInstalledPackages {
     NSMutableArray* result = [[NSMutableArray alloc] init];
-    for(auto& pkg: packageCache->allPackages()) {
-        auto& verList = pkg.second.ver_list();
-        for(auto ver: verList) {
-            [result addObject:@(ver->itemID())];
-        }
-        
-    }
     return result;
 }
 
