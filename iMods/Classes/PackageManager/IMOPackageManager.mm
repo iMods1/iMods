@@ -12,6 +12,12 @@
 #include <iostream>
 #include "libimpkg.h"
 
+@interface IMOPackageManager ()
+
+@property (readonly, assign) BOOL locked;
+
+@end
+
 @implementation IMOPackageManager;
 
 static IMOPackageManager* sharedIMOPackageManager = nil;
@@ -20,6 +26,10 @@ static IMOPackageManager* sharedIMOPackageManager = nil;
 // The plist file is located at <substrate root dir>/DynamicLibraries/{name}.plist
 // For mobilesubstrate the root dir would be ' /Library/MobileSubstrate'
 NSArray* tweakArray;
+
+NSFileHandle* logWriter;
+NSFileHandle* errWriter;
+
 
 + (IMOPackageManager*) sharedPackageManager {
     static dispatch_once_t onceToken;
@@ -33,21 +43,45 @@ NSArray* tweakArray;
     self = [super init];
     if (self) {
         self->_dpkgManager = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
-        self->_locked = false;
-        self->_controlFilePath = @"/var/lib/dpkg/status";
+        self.dpkgManager.controlFilePath = @"/var/lib/dpkg/status";
+        self.dpkgManager.lockFilePath = @"/var/lib/dpkg/lock";
+        self->_taskStderrPipe = [[NSPipe alloc] init];
+        self->_taskStdoutPipe = [[NSPipe alloc] init];
+        logWriter = [self.taskStdoutPipe fileHandleForWriting];
+        errWriter = [self.taskStderrPipe fileHandleForWriting];
     }
     return self;
 }
 
+#pragma mark -
+
 - (BOOL)lockDPKG {
-    // TODO: Lock dpkg
-    return YES;
+    return [self.dpkgManager lock];
 }
 
 - (BOOL) unlockDPKG {
-    // TODO: Unlock dpkg
-    return YES;
+    return [self.dpkgManager unlock];
 }
+
+#pragma mark -
+
+- (void)writeLog:(NSString*)format, ... {
+    va_list vl;
+    va_start(vl, format);
+    NSString* formatted = [[NSString alloc] initWithFormat:format arguments:vl];
+    va_end(vl);
+    [logWriter writeData:[[formatted stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
+- (void)writeErr:(NSString*)format, ... {
+    va_list vl;
+    va_start(vl, format);
+    NSString* formatted = [[NSString alloc] initWithFormat:format arguments:vl];
+    va_end(vl);
+    [errWriter writeData:[[formatted stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
+#pragma mark -
 
 - (PMKPromise*) fetchIndexFile {
     return [[IMODownloadManager sharedDownloadManager] downloadIndex]
@@ -57,67 +91,148 @@ NSArray* tweakArray;
     });
 }
 
-- (PMKPromise*) installPackage:(IMOItem*)pkg {
+- (PMKPromise*) installPackage:(IMOItem*)pkg progressCallback:(void(^)(float progress))progressCallback {
+    [self writeLog:@"Synchronizing package index..."];
+    progressCallback(0.1);
     return [self fetchIndexFile]
-    .then(^id(NSString* indexFile) {
-        @synchronized(@(self.locked)) {
-            if (self->_locked) {
-                NSLog(@"Package manager is currently locked, please wait for it to finish.");
-                return nil;
-            }
-            
-            self->_locked = true;
-            auto dep = std::make_tuple([pkg.pkg_name UTF8String], VER_ANY, "");
-            DepVector deps = {dep};
-            DependencySolver solver([indexFile UTF8String], [self.controlFilePath UTF8String], deps);
-            
-            // Calculate dependencies
-            DepVector brokenDeps;
-            std::vector<const Version*> resolvedVers;
-            solver.calcDep(resolvedVers, brokenDeps);
-            
-            if (!brokenDeps.empty()) {
-                for(auto d: brokenDeps) {
-                    NSLog(@"Package '%s' cannot be resolved", depTuplePackageName(d).c_str());
-                }
-                self->_locked = false;
-                return nil;
-            }
-            
-            // Build download queue
-            NSMutableArray* dlQueue;
-            IMODownloadManager* dlManager = [IMODownloadManager sharedDownloadManager];
-            for(auto ver: resolvedVers) {
-                NSDictionary* itemDict = @{
-                                           @"iid": @(ver->itemID()),
-                                           @"pkg_name": @(ver->packageName().c_str())
-                                           };
-                NSError* error = nil;
-                IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&error];
-                if (error || !item) {
-                    std::cerr << "Failed to create IMOItem for version '" << *ver << "'" << std::endl;
-                    self->_locked = false;
-                    return nil;
-                }
-                [dlQueue addObject:[dlManager download:Deb item:item]];
-            }
-            // Install deb files using dpkg
-            return [PMKPromise when:dlQueue]
-            .then(^(NSArray* files) {
-                [[self dpkgManager] installDEBs:files];
-                self->_locked = false;
-                return true;
-            });
+    .then(^BOOL(NSString* indexFile) {
+        if(indexFile == nil) {
+            [self writeErr:@"Failed to download index file."];
+            return NO;
         }
+        
+        if (self->_locked) {
+            [self writeLog:@"Package manager is currently locked, please wait for it to finish."];
+            return NO;
+        }
+        
+        self->_locked = true;
+        auto dep = std::make_tuple([pkg.pkg_name UTF8String], VER_ANY, "");
+        
+        progressCallback(0.3);
+        
+        DepVector deps = {dep};
+        DependencySolver solver([indexFile UTF8String], [self.dpkgManager.controlFilePath UTF8String], deps);
+        
+        [self writeLog:@"Analyzing package dependecy..."];
+        
+        // Calculate dependencies
+        DepVector brokenDeps;
+        std::vector<const Version*> resolvedVers;
+        solver.calcDep(resolvedVers, brokenDeps);
+        
+        if (!brokenDeps.empty()) {
+            [self writeLog:@"Following dependencies cannot be resolved"];
+            for(auto d: brokenDeps) {
+                [self writeLog:@"%s", depTuplePackageName(d).c_str()];
+            }
+            self->_locked = false;
+            return NO;
+        }
+        
+        if(resolvedVers.empty()) {
+            [self writeLog:@"All packages are already installed."];
+            self->_locked = false;
+            return YES;
+        }
+        
+        // Download each package and install
+        IMODownloadManager* dlManager = [IMODownloadManager sharedDownloadManager];
+        __block BOOL break_installation = NO;
+        for(auto ver: resolvedVers) {
+            NSDictionary* itemDict = @{
+                                       @"iid": @(ver->itemID()),
+                                       @"pkg_name": @(ver->packageName().c_str())
+                                       };
+            NSError* error = nil;
+            IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&error];
+            if (error || !item) {
+                [self writeErr:@"Failed to create IMOItem for version", ver->version().c_str()];
+                self->_locked = false;
+                return NO;
+            }
+            
+            progressCallback(0.4);
+            // Download and install
+            PMKPromise* dlPromise = [dlManager download:Deb item:item];
+            [self writeLog:@"Downloading package '%@'...", item.pkg_name];
+            dlPromise.then(^(NSString* debFilePath){
+                [self writeLog:@"Download completed."];
+                
+                progressCallback(0.7);
+                // TODO: Verify deb file
+                IMOTask* installTask = [self.dpkgManager installDEB:debFilePath];
+                // Install deb
+                [self writeLog:@"Installing package..."];
+                installTask.successfulTerminationBlock = ^(PRHTask* task) {
+                    [self writeLog:task.outputStringFromStandardOutputUTF8];
+                    [self writeLog:@"Package installed successfully."];
+                    progressCallback(1.0);
+                // TODO: Verify deb file
+                };
+                installTask.abnormalTerminationBlock = ^(PRHTask* task) {
+                    [self writeErr:task.errorOutputStringFromStandardErrorUTF8];
+                    [self writeErr:@"Failed to install package '%s'.", item.pkg_name];
+                    break_installation = YES;
+                };
+                [installTask launch];
+            })
+            .finally(^{
+                self->_locked = false;
+            });
+            [PMKPromise when:dlPromise];
+        }
+        return !break_installation;
     });
 }
 
-- (PMKPromise*) cleanPackage:(IMOItem *)pkg {
-    return [self.dpkgManager cleanPackage:pkg.pkg_name];
+- (PMKPromise*) cleanPackage:(NSString*)pkg_name {
+    PMKPromise* promise = [PMKPromise new:^(PMKPromiseFulfiller fulfiller, PMKPromiseRejecter reject){
+        IMOTask* task = [self.dpkgManager cleanPackage:pkg_name];
+        task.abnormalTerminationBlock = ^(PRHTask* task) {
+            NSDictionary* errorInfo = @{
+                                        @"task": task,
+                                        @"terminateStatus": @(task.terminationStatus),
+                                        @"path": task.launchPath,
+                                        @"arguments": task.arguments,
+                                        @"stdout": task.outputStringFromStandardOutputUTF8,
+                                        @"stderr": task.errorOutputStringFromStandardErrorUTF8
+                                        };
+            reject([NSError errorWithDomain:@"IMOTaskExitedAbnormally"
+                                       code:task.terminationStatus
+                                   userInfo:errorInfo]);
+            return;
+        };
+        task.successfulTerminationBlock = ^(PRHTask* task) {
+            fulfiller(task);
+        };
+        [task launch];
+    }];
+    return promise;
 }
 
-- (PMKPromise*) removePackage:(IMOItem*)pkg {
-    return [self.dpkgManager removePackage:pkg.pkg_name];
+- (PMKPromise*) removePackage:(NSString*)pkg_name {
+    PMKPromise* promise = [PMKPromise new:^(PMKPromiseFulfiller fulfiller, PMKPromiseRejecter reject){
+        IMOTask* task = [self.dpkgManager removePackage:pkg_name];
+        task.abnormalTerminationBlock = ^(PRHTask* task) {
+            NSDictionary* errorInfo = @{
+                                        @"task": task,
+                                        @"terminateStatus": @(task.terminationStatus),
+                                        @"path": task.launchPath,
+                                        @"arguments": task.arguments,
+                                        @"stdout": task.outputStringFromStandardOutputUTF8,
+                                        @"stderr": task.errorOutputStringFromStandardErrorUTF8
+                                        };
+            reject([NSError errorWithDomain:@"IMOTaskExitedAbnormally"
+                                       code:task.terminationStatus
+                                   userInfo:errorInfo]);
+        };
+        task.successfulTerminationBlock = ^(PRHTask* task) {
+            fulfiller(task);
+        };
+        [task launch];
+    }];
+    return promise;
 }
 
 // Return NSArray of updated IMOItem's
@@ -130,7 +245,7 @@ NSArray* tweakArray;
             }
             
             self->_locked = true;
-            DependencySolver solver([indexFile UTF8String], [self.controlFilePath UTF8String]);
+            DependencySolver solver([indexFile UTF8String], [self.dpkgManager.controlFilePath UTF8String]);
             
             DepVector updates;
             std::vector<const Version*> resolvedVers;

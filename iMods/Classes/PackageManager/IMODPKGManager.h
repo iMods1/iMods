@@ -13,6 +13,8 @@
 @interface IMODPKGManager : NSObject
 
 @property (strong, nonatomic, readonly) NSString* dpkgPath;
+@property NSString* controlFilePath;
+@property NSString* lockFilePath;
 @property NSString* dpkgVersion;
 
 
@@ -20,18 +22,22 @@
 
 - (instancetype) initWithDPKGPath:(NSString*)dpkgPath;
 
-- (PMKPromise*) installDEB:(NSString*)debPath;
+- (IMOTask*) installDEB:(NSString*)debPath;
 
-- (PMKPromise*) installDEBs:(NSArray*)debPaths;
+- (IMOTask*) installDEBs:(NSArray*)debPaths;
 
-- (PMKPromise*) removePackage:(NSString*)pkg_name;
+- (IMOTask*) removePackage:(NSString*)pkg_name;
 
-- (PMKPromise*) cleanPackage:(NSString*)pkg_name;
+- (IMOTask*) cleanPackage:(NSString*)pkg_name;
 
-- (PMKPromise*) extractDEBInfoAsString:(NSString*)debPath;
+- (IMOTask*) extractDEBInfoAsString:(NSString*)debPath;
 
-- (PMKPromise*) listDEBFiles:(NSString*)debPath;
+- (BOOL) lock;
 
-- (PMKPromise*) listInstalledDEBs;
+- (BOOL) unlock;
+
+- (IMOTask*) listDEBFiles:(NSString*)debPath;
+
+- (IMOTask*) listInstalledDEBs;
 
 @end

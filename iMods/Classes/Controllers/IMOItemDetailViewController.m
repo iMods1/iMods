@@ -422,43 +422,29 @@
 
 #pragma mark - IMOInstallationDelegate
 
-- (IMOTask *)taskForInstallation:(IMOInstallationViewController *)installationViewController withOptions:(NSDictionary *)options {
-    // TODO: Generate IMOTask from package manager
-    // For now, using dummy task
-    IMOTask *task = [[IMOTask alloc] init];
-    task.launchPath = @"/bin/bash";
-    task.arguments = @[@"-c", @"sleep 3; echo \"Step 1\";sleep 3;echo \"Step 2\";sleep 3;echo \"Done\""];
-    return task;
-}
-
-- (void)installationDidDismiss:(IMOInstallationViewController *)installationViewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)installationDidFinish:(IMOInstallationViewController *)installationViewController {
-    [self dismissViewControllerAnimated:YES completion:^{
-        self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
-        [self.managedItem setValue:self.item.pkg_name forKey: @"name"];
-        [self.managedItem setValue:@(self.item.item_id) forKey: @"id"];
-        [self.managedItem setValue:self.item.pkg_version forKey: @"version"];
-        
-        NSError *error = nil;
-        [self.managedObjectContext save: &error];
-        
-        if (error) {
-            if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
-                // iOS 8
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Application Error" message: @"There was a problem with the application." preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction: action];
-                [self presentViewController:alert animated:YES completion:nil];
-            } else {
-                // iOS 7.1  or lower
-            }
+    self.managedItem = [[NSManagedObject alloc] initWithEntity: self.entity insertIntoManagedObjectContext: self.managedObjectContext];
+    [self.managedItem setValue:self.item.display_name forKey: @"name"];
+    [self.managedItem setValue:self.item.pkg_name forKey:@"pkg_name"];
+    [self.managedItem setValue:@(self.item.item_id) forKey: @"id"];
+    [self.managedItem setValue:self.item.pkg_version forKey: @"version"];
+    
+    NSError *error = nil;
+    [self.managedObjectContext save: &error];
+    
+    if (error) {
+        if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+            // iOS 8
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Application Error" message: @"There was a problem with the application." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction: action];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
-            [self checkInstallStatus];
+            // iOS 7.1  or lower
         }
-    }];
+    } else {
+        [self checkInstallStatus];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

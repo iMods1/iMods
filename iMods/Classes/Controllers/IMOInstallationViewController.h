@@ -9,17 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
 #import "IMOTask.h"
+#import "IMOItem.h"
+
+enum IMOInstallationFinishStatus {
+    FinishedSuccessfully = 0x1,
+    FinishedWithError = 0x2,
+    Running = 0x4,
+    Unknown = 0xFFFF
+};
 
 @protocol IMOInstallationDelegate;
 
 @interface IMOInstallationViewController : UIViewController
 @property (weak, nonatomic) IBOutlet DACircularProgressView *progressView;
 @property (weak, nonatomic) id<IMOInstallationDelegate> delegate;
-@property (strong, nonatomic) IMOTask *task;
+@property (assign, nonatomic) enum IMOInstallationFinishStatus status;
 @end
 
 @protocol IMOInstallationDelegate <NSObject>
-- (IMOTask *)taskForInstallation:(IMOInstallationViewController *)installationViewController withOptions: (NSDictionary *)options;
 - (void)installationDidFinish:(IMOInstallationViewController *)installationViewController;
-- (void)installationDidDismiss:(IMOInstallationViewController *)installationViewController;
+- (IMOItem*) item;
 @end

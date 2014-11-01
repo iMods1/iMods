@@ -9,6 +9,7 @@
 #import "IMOUpdatesViewController.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
+#import "IMOSessionManager.h"
 
 @interface IMOUpdatesViewController ()
 @property (strong, nonatomic) NSMutableArray *installedItems;
@@ -20,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *updateButton;
 @property (weak, nonatomic) IBOutlet UIButton *uninstallButton;
+
+@property (weak) IMOSessionManager* sessionManager;
 
 - (IBAction)updateButtonWasTapped:(UIButton *)sender;
 - (IBAction)uninstallButtonWasTapped:(UIButton *)sender;
@@ -40,6 +43,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.sessionManager = [IMOSessionManager sharedSessionManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -98,16 +103,23 @@
         NSLog(@"Current installed items: %@", self.installedItems);
         NSManagedObject *item = self.installedItems[indexPath.row];
         
-        // Delete object from both in-memory array and persistent store
-        [self.installedItems removeObject: item];
-        [self.managedObjectContext deleteObject: item];
-        NSError *error = nil;
-        [self.managedObjectContext save: &error];
-        if (error) {
-            NSLog(@"Couldn't save: %@", error.localizedDescription);
-        }
-        [tableView endEditing:YES];
-        [tableView reloadData];
+        NSString* pkg_name = [item valueForKey:@"pkg_name"];
+        [self.sessionManager.packageManager removePackage:pkg_name]
+        .then(^{
+            // Delete object from both in-memory array and persistent store
+            [self.installedItems removeObject: item];
+            [self.managedObjectContext deleteObject: item];
+            NSError *error = nil;
+            [self.managedObjectContext save: &error];
+            if (error) {
+                NSLog(@"Couldn't save: %@", error.localizedDescription);
+            }
+            [tableView endEditing:YES];
+            [tableView reloadData];
+        })
+        .catch(^(NSError* error){
+            
+        });
     }
 }
 

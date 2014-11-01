@@ -17,6 +17,7 @@
 
 @interface IMOInstallationViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel* dismissLabel;
 @property (strong, nonatomic) NSPipe *pipe;
 @property (strong, nonatomic) NSFileHandle *handle;
 @property (strong, nonatomic) NSTimer *timer;
@@ -53,6 +54,10 @@ IMOSessionManager* sessionManager;
     self.textView.editable = NO;
 }
 
+- (void)updateDismissLabelVisibility {
+    [self.dismissLabel setHidden:(self.status & Running)];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -63,6 +68,28 @@ IMOSessionManager* sessionManager;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)redirectPipeContentToTextView:(NSPipe*)pipe {
+    NSFileHandle* pipeReadHandle = [pipe fileHandleForReading];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(redirectNotificationHandler:)
+                                                 name:NSFileHandleReadCompletionNotification
+                                               object:pipeReadHandle];
+    [pipeReadHandle readInBackgroundAndNotify];
+}
+
+- (void)redirectNotificationHandler:(NSNotification*)notification {
+    NSData* data = [notification.userInfo objectForKey:NSFileHandleNotificationDataItem];
+    NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self appendTextToTextView:str];
+    [notification.object readInBackgroundAndNotify];
+}
+
+- (void)removePipeRedirct:(NSPipe*)pipe {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSFileHandleReadCompletionNotification
+                                                  object:[pipe fileHandleForReading]];
 }
 
 /*
@@ -77,7 +104,12 @@ IMOSessionManager* sessionManager;
 
 - (void) appendTextToTextView:(NSString*) text {
     NSString* str = [self.textView.text stringByAppendingString:text];
-    self.textView.text = [str stringByAppendingString:@"\n"];
+    self.textView.text = str;
+    NSRange range;
+    range.location = [self.textView.text length] - 1;
+    range.length = 0;
+    // Scroll visible area to the end of the output
+    [self.textView scrollRangeToVisible:range];
 }
 
 - (void)launchTaskWithOptions:(NSDictionary *)options {
@@ -88,44 +120,46 @@ IMOSessionManager* sessionManager;
     // Don't launch task on simulator
     return;
 #elif TARGET_OS_IPHONE
-    [self appendTextToTextView:@"Initializing..."];
-    [self.progressView setProgress:0.1 animated:YES];
+    self.textView.text = @"";
+    self.status = Running;
+    [self updateDismissLabelVisibility];
+    [self appendTextToTextView:@"Initializing...\n"];
     // Try lock dpkg
     BOOL locked = [sessionManager.packageManager lockDPKG];
     if (!locked) {
-        [self appendTextToTextView:@"Unable to lock dpkg, it's probably used by another app, such as Cydia."];
+        [self appendTextToTextView:@"Unable to lock dpkg, it's probably used by another app, such as Cydia.\n"];
+        self.status = FinishedWithError;
+        [self updateDismissLabelVisibility];
         return;
     }
     
-    IMODownloadManager *dlManager = [IMODownloadManager sharedDownloadManager];
-    IMOItemDetailViewController* itemController = (IMOItemDetailViewController*)(self.delegate);
+    // Setup pipes
+    [self redirectPipeContentToTextView:sessionManager.packageManager.taskStdoutPipe];
+    [self redirectPipeContentToTextView:sessionManager.packageManager.taskStderrPipe];
     
-    [self appendTextToTextView:@"Downloading package file..."];
-    [self.progressView setProgress:0.3 animated:YES];
-    [dlManager download:Deb item:itemController.item].then(^(NSString* debFile){
-        [self appendTextToTextView: [NSString stringWithFormat:@"Download finished.\nStarting dpkg installation for %@", debFile]];
-        [self.progressView setProgress: 0.6 animated:YES];
-        IMODPKGManager* dpkg = [[IMODPKGManager alloc] initWithDPKGPath:@"/usr/bin/dpkg"];
-        [dpkg installDEB:debFile].then(^(IMOTask* task){
-            NSLog(@"Task: %@", task);
-            [self appendTextToTextView:task.outputStringFromStandardOutputUTF8];
-            [self appendTextToTextView:task.errorOutputStringFromStandardErrorUTF8];
-            [self appendTextToTextView:@"dpkg installation exited."];
-            [self appendTextToTextView:@"Done."];
-            [self.progressView setProgress:1.0 animated:YES];
-            double delayInSeconds = 2.0f;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self.delegate installationDidFinish:self];
-            });
-        }).catch(^(NSError *error){
-            NSDictionary* info = error.userInfo;
-            [self appendTextToTextView: [info valueForKey:@"stdout"]];
-            [self appendTextToTextView: [info valueForKey:@"stderr"]];
-            [self appendTextToTextView: [NSString stringWithFormat: @"Error: %@", error.localizedDescription]];
-            [self.progressView setProgress:0.0 animated:YES];
-        });
+    PMKPromise* installation =
+    [sessionManager.packageManager installPackage:[self.delegate item]
+                                 progressCallback:^(float progress){
+                                    [self.progressView setProgress:progress animated:YES];
+                                }];
+    installation.then(^(BOOL successful){
+        if (successful) {
+            self.status = FinishedSuccessfully;
+        } else {
+            self.status = FinishedWithError;
+        }
     }).finally(^{
+        NSLog(@"Unregister pipe notifications");
+        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
+        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
+        
+        [self updateDismissLabelVisibility];
+        if (self.status == FinishedSuccessfully) {
+            [self appendTextToTextView:@".Done\n"];
+            [self.delegate installationDidFinish:self];
+        } else {
+            [self appendTextToTextView:@"Package manager exited with error.\n"];
+        }
     });
 #else
 #endif
@@ -170,7 +204,10 @@ IMOSessionManager* sessionManager;
 }
 
 - (IBAction)didTapOnView:(id)sender {
-    [self.delegate installationDidDismiss:self];
+    if (self.status != Running) {
+        [sessionManager.packageManager unlockDPKG];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end
