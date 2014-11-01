@@ -54,6 +54,8 @@
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 282DECAA19D180960093348D /* libimpkg.cpp */; };
 		285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285791F419D4ADE20052A3EF /* PackageManagerTests.mm */; };
+		28718C3B1A03E3F300A54301 /* Packages.gz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3A1A03E3F300A54301 /* Packages.gz */; };
+		28718C3E1A03F62000A54301 /* status in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3D1A03F62000A54301 /* status */; };
 		28841C601A0030400054AB0A /* zipstream.hh in Sources */ = {isa = PBXBuildFile; fileRef = 28841C5E1A0030400054AB0A /* zipstream.hh */; };
 		28841C611A0030400054AB0A /* zipstream.hh in Sources */ = {isa = PBXBuildFile; fileRef = 28841C5E1A0030400054AB0A /* zipstream.hh */; };
 		28841C6D1A0032440054AB0A /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28841C681A0032090054AB0A /* libzlib.a */; };
@@ -240,6 +242,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		28718C391A03E3A300A54301 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /tmp;
+			dstSubfolderSpec = 0;
+			files = (
+				28718C3E1A03F62000A54301 /* status in CopyFiles */,
+				28718C3B1A03E3F300A54301 /* Packages.gz in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		28841CAB1A0035600054AB0A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,6 +323,8 @@
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
 		285791F419D4ADE20052A3EF /* PackageManagerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PackageManagerTests.mm; sourceTree = "<group>"; };
+		28718C3A1A03E3F300A54301 /* Packages.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = Packages.gz; path = TestFiles/Packages.gz; sourceTree = "<group>"; };
+		28718C3D1A03F62000A54301 /* status */ = {isa = PBXFileReference; lastKnownFileType = text; name = status; path = TestFiles/status; sourceTree = "<group>"; };
 		28841C5C1A002C540054AB0A /* libzlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlib.a; path = "zlib/build/Debug-iphoneos/libzlib.a"; sourceTree = "<group>"; };
 		28841C5E1A0030400054AB0A /* zipstream.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = zipstream.hh; path = Classes/PackageManager/zipstream.hh; sourceTree = "<group>"; };
 		28841C5F1A0030400054AB0A /* zipstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = zipstream.hpp; path = Classes/PackageManager/zipstream.hpp; sourceTree = "<group>"; };
@@ -509,6 +524,7 @@
 		284CBBC91946F35A006539A3 /* iModsTests */ = {
 			isa = PBXGroup;
 			children = (
+				28718C3C1A03E40900A54301 /* TestData */,
 				282B43671A00552C007F3C78 /* zip_stream_test.cpp */,
 				282B43681A00552C007F3C78 /* zip_stream_test.hpp */,
 				282B43691A00552C007F3C78 /* zlibTests.mm */,
@@ -525,6 +541,15 @@
 				284CBBCB1946F35A006539A3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28718C3C1A03E40900A54301 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				28718C3D1A03F62000A54301 /* status */,
+				28718C3A1A03E3F300A54301 /* Packages.gz */,
+			);
+			name = TestData;
 			sourceTree = "<group>";
 		};
 		28841C631A0032090054AB0A /* Products */ = {
@@ -786,6 +811,7 @@
 				284CBBC31946F35A006539A3 /* Frameworks */,
 				284CBBC41946F35A006539A3 /* Resources */,
 				E47592018C144B82A1821253 /* Copy Pods Resources */,
+				28718C391A03E3A300A54301 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1013,7 +1039,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/bash -x";
+			shellPath = /bin/bash;
 			shellScript = "#!/bin/bash\ntarget=$PWD/$PROJECT_NAME/Package/DEBIAN/postinst\nrm $target\ncp $PWD/Scripts/postinst.template $target\nperl -p -i -e \"s,<ProjectName>,$PROJECT_NAME,g\" $target\nchmod 0555 $target";
 		};
 		630EADD6C2D941318BFD925B /* Copy Pods Resources */ = {
@@ -1402,11 +1428,11 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone;
+				iOSOpenDevDevice = myiphone.local;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
-				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevRespringOnInstall = NO;
 				iOSOpenDevUsePackageVersionPList = NO;
 			};
 			name = Debug;
@@ -1455,11 +1481,11 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone;
+				iOSOpenDevDevice = myiphone.local;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
-				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevRespringOnInstall = NO;
 				iOSOpenDevUsePackageVersionPList = NO;
 			};
 			name = Release;
