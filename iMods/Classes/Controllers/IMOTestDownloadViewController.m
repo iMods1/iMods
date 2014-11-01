@@ -16,12 +16,14 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *packageProgressView;
 @property (weak, nonatomic) IBOutlet UILabel *assetsDownloadDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *packageDownloadDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *indexDownloadDetailsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *screenshotImageView;
 
 
 - (IBAction)testAssetButtonClicked:(id)sender;
 - (IBAction)testPackageButtonClicked:(id)sender;
+- (IBAction)testIndexButtonClicked:(id)sender;
 
 @end
 
@@ -92,6 +94,17 @@
         NSLog(@"Error with fetch: %@", error.localizedDescription);
         self.packageDownloadDetailsLabel.text = error.localizedDescription;
         [self.packageProgressView setProgress:1.0 animated:YES];
+    });
+}
+
+- (IBAction)testIndexButtonClicked:(id)sender {
+    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+    
+    [self.packageProgressView setProgress:0.25 animated:YES];
+    
+    [downloadManager downloadIndex]
+    .then(^(NSString* filePath){
+        self.indexDownloadDetailsLabel.text = filePath;
     });
 }
 @end
