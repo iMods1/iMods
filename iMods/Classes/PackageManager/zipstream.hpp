@@ -341,7 +341,7 @@ public:
 	 */
 	basic_zip_ostream( 
 		ostream_reference ostream_, 
-        int open_mode = std::ios::out, 
+        int open_mode = std::ios::out,
 		bool is_gzip_ = false,
 		size_t level_ = Z_DEFAULT_COMPRESSION,
 		EStrategy strategy_ = DefaultStrategy,
@@ -366,6 +366,7 @@ public:
 	};
 	~basic_zip_ostream()
 	{
+        zflush();
 		if (m_is_gzip)
 			add_footer();
 	}

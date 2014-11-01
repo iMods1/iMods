@@ -17,7 +17,8 @@
 #include <queue>
 #include <fstream>
 #include <map>
-#include <ostream>
+#include <iostream>
+#include <sstream>
 
 #pragma mark Forward Declarations
 
@@ -40,6 +41,27 @@ enum PackageVersionOp {
     VER_ANY = 0xFF
 };
 
+enum PackageMark {
+    MK_UNKNOWN,
+    MK_INSTALL,
+    MK_REMOVE,
+    MK_PURGE,
+    MK_HOLD
+};
+
+enum PackageState {
+    ST_NOT_INSTALLED,
+    ST_INSTALLED,
+    ST_CONFIGS,
+    ST_UNPACKED,
+    ST_FAILED_CFG,
+    ST_HALF_INST,
+    ST_HALF_CFG,
+    ST_WAIT,
+    ST_PEND,
+    ST_UNKNOWN
+};
+
 #pragma mark typedef
 
 typedef std::pair<std::string, std::string> TagField;
@@ -51,6 +73,8 @@ typedef std::tuple<std::string, PackageVersionOp, std::string> PackageDepTuple;
 typedef std::vector<PackageDepTuple> DepVector;
 
 typedef PackageCache PackageIndex;
+
+typedef std::tuple<PackageMark, std::string, PackageState> PackageStatus;
 
 #pragma mark Constants
 
@@ -123,6 +147,13 @@ public:
     
     TagSection& operator << (const TagField& field);
     
+    friend std::ostream& operator<<(std::ostream& out, const TagSection& section) {
+        for(auto kv: section.m_mapping) {
+            out << kv.first << ": " << kv.second << std::endl;
+        }
+        return out;
+    }
+    
     const std::string& operator [] (const std::string& tagname);
     
     size_t fieldCount() const;
@@ -186,12 +217,12 @@ private:
 class TagFile {
     
 public:
-    TagFile(const std::string& filename=std::string());
+    TagFile(const std::string& filename=std::string(), bool zfile=true);
     
     ~TagFile();
     
     // open a tag file
-    bool open(const std::string& filename);
+    bool open(const std::string& filename, bool zfile);
     
     // return current section
     const TagSection& section() const;
@@ -223,11 +254,11 @@ public:
     
     Package();
     
-    Package(const std::string& pkgName, TagFile& ctrlFile, bool installed=false);
+    Package(const std::string& pkgName, TagFile& ctrlFile);
     
-    Package(const std::string& pkgName, const std::vector<TagSection>& sections, bool installed=false);
+    Package(const std::string& pkgName, const std::vector<TagSection>& sections);
     
-    Package(const std::string& pkgName, bool installed=false);
+    Package(const std::string& pkgName);
     
     Package(const Package& other);
 
@@ -258,9 +289,9 @@ public:
     
 private:
     
-    void initWithTagFile(const std::string& pkgName, TagFile& ctrlFile, bool installed);
+    void initWithTagFile(const std::string& pkgName, TagFile& ctrlFile);
     
-    void initWithSections(const std::vector<TagSection>& sections, bool installed);
+    void initWithSections(const std::vector<TagSection>& sections);
     
     std::string m_pkgName;
     
@@ -286,7 +317,17 @@ public:
     
     std::string packageName() const;
     
+    PackageStatus status() const;
+    
+    std::string statusStr() const;
+    
     std::string version() const;
+    
+    PackageMark mark() const;
+    
+    PackageState state() const;
+    
+    bool isInstalled() const;
     
     std::string depString () const;
 
@@ -320,9 +361,13 @@ public:
     
 private:
     
+    PackageStatus parseStatusString(const std::string& str) const;
+    
     std::vector<std::vector<PackageDepTuple>> m_depList;
     
     std::string m_debFilePath;
+    
+    PackageStatus m_status;
     
     TagSection m_section;
 };
@@ -477,6 +522,8 @@ private:
     std::unordered_multimap<std::string, std::pair<const Version*, PackageDepTuple>> m_cacheRevDepMap;
     
     PackageIndex m_index;
+    
+    PackageCache m_cache;
     
     DepVector m_unresolvedDeps;
 
