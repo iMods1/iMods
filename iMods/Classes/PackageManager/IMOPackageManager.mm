@@ -7,7 +7,6 @@
 //
 
 #import "IMOPackageManager.h"
-#import "IMODownloadManager.h"
 #import "IMOItem.h"
 #include <iostream>
 #include "libimpkg.h"
@@ -95,15 +94,18 @@ NSFileHandle* errWriter;
     [self writeLog:@"Synchronizing package index..."];
     progressCallback(0.1);
     return [self fetchIndexFile]
-    .then(^BOOL(NSString* indexFile) {
+    .then(^(NSString* indexFile) {
+        __block NSError* error = nil;
         if(indexFile == nil) {
             [self writeErr:@"Failed to download index file."];
-            return NO;
+            error = [NSError errorWithDomain:@"FailedDownloadIndex" code:1 userInfo:nil];
+            return error;
         }
         
         if (self->_locked) {
             [self writeLog:@"Package manager is currently locked, please wait for it to finish."];
-            return NO;
+            error = [NSError errorWithDomain:@"PackageManagerLocked" code:2 userInfo:nil];
+            return error;
         }
         
         self->_locked = true;
@@ -119,43 +121,44 @@ NSFileHandle* errWriter;
         // Calculate dependencies
         DepVector brokenDeps;
         std::vector<const Version*> resolvedVers;
-        solver.calcDep(resolvedVers, brokenDeps);
+        bool solved = solver.calcDep(resolvedVers, brokenDeps);
         
         if (!brokenDeps.empty()) {
             [self writeLog:@"Following dependencies cannot be resolved"];
             for(auto d: brokenDeps) {
                 [self writeLog:@"%s", depTuplePackageName(d).c_str()];
             }
-            self->_locked = false;
-            return NO;
         }
         
-        if(resolvedVers.empty()) {
-            [self writeLog:@"All packages are already installed."];
+        if(!solved || resolvedVers.empty()) {
             self->_locked = false;
-            return YES;
+            error = [NSError errorWithDomain:@"UnsolvedDependencies" code:3 userInfo:nil];
+            return error;
         }
+        
+        [self writeLog:@"1"];
         
         // Download each package and install
         IMODownloadManager* dlManager = [IMODownloadManager sharedDownloadManager];
-        __block BOOL break_installation = NO;
         for(auto ver: resolvedVers) {
+            [self writeLog:@"2"];
             NSDictionary* itemDict = @{
                                        @"iid": @(ver->itemID()),
                                        @"pkg_name": @(ver->packageName().c_str())
                                        };
-            NSError* error = nil;
-            IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&error];
-            if (error || !item) {
+            NSError* item_error = nil;
+            IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&item_error];
+            if (item_error || !item) {
                 [self writeErr:@"Failed to create IMOItem for version", ver->version().c_str()];
                 self->_locked = false;
-                return NO;
+                return item_error;
             }
+            [self writeLog:@"3"];
             
             progressCallback(0.4);
             // Download and install
-            PMKPromise* dlPromise = [dlManager download:Deb item:item];
             [self writeLog:@"Downloading package '%@'...", item.pkg_name];
+            PMKPromise* dlPromise = [dlManager download:Deb item:item];
             dlPromise.then(^(NSString* debFilePath){
                 [self writeLog:@"Download completed."];
                 
@@ -173,16 +176,19 @@ NSFileHandle* errWriter;
                 installTask.abnormalTerminationBlock = ^(PRHTask* task) {
                     [self writeErr:task.errorOutputStringFromStandardErrorUTF8];
                     [self writeErr:@"Failed to install package '%s'.", item.pkg_name];
-                    break_installation = YES;
+                    error = [NSError errorWithDomain:@"FailedInstallPackage" code:5 userInfo:nil];
                 };
                 [installTask launch];
             })
             .finally(^{
-                self->_locked = false;
+                [self writeLog:@"4"];
             });
-            [PMKPromise when:dlPromise];
+            [self writeLog:@"5"];
+            [PMKPromise until:^(){return dlPromise;} catch:nil];
         }
-        return !break_installation;
+        [self writeLog:@"6"];
+        self->_locked = false;
+        return error;
     });
 }
 

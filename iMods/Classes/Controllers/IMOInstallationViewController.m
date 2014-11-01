@@ -137,17 +137,15 @@ IMOSessionManager* sessionManager;
     [self redirectPipeContentToTextView:sessionManager.packageManager.taskStdoutPipe];
     [self redirectPipeContentToTextView:sessionManager.packageManager.taskStderrPipe];
     
-    PMKPromise* installation =
     [sessionManager.packageManager installPackage:[self.delegate item]
                                  progressCallback:^(float progress){
                                     [self.progressView setProgress:progress animated:YES];
-                                }];
-    installation.then(^(BOOL successful){
-        if (successful) {
-            self.status = FinishedSuccessfully;
-        } else {
-            self.status = FinishedWithError;
-        }
+                                }]
+    .catch(^(NSError* error) {
+        self.status = FinishedWithError;
+    })
+    .then(^{
+        self.status = FinishedSuccessfully;
     }).finally(^{
         NSLog(@"Unregister pipe notifications");
         [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];

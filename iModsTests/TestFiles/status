@@ -157,6 +157,21 @@ Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
 
+Package: imodstestpackage
+Status: deinstall ok config-files
+Priority: optional
+Maintainer: Ryan Feng
+Architecture: all
+Version: 0.1
+Config-Version: 0.1
+Depends: firmware (>= 7.0)
+Conffiles:
+ /var/tmp/imods_test_package.conf ca6a25c924cc2cab11a99f6427fae4ba
+Description: Test package
+ This script provides an easy way of creating backups
+ .
+ Creating backups is now more fun than ever!
+
 Package: gsc.main-screen-scale
 Essential: yes
 Status: install ok installed
@@ -192,6 +207,22 @@ Architecture: iphoneos-arm
 Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
+
+Package: com.saurik.substrate.safemode
+Status: install ok installed
+Priority: optional
+Section: Tweaks
+Installed-Size: 88
+Maintainer: Jay Freeman (saurik) <saurik@saurik.com>
+Architecture: iphoneos-arm
+Version: 0.9.4000
+Replaces: safe-mode-fixer-ios7
+Depends: mobilesubstrate (>= 0.9.3367+38)
+Conflicts: safe-mode-fixer-ios7
+Description: safe mode safety extension (safe)
+Author: Jay Freeman (saurik) <saurik@saurik.com>
+Name: Substrate Safe Mode
+Depiction: http://cydia.saurik.com/info/com.saurik.substrate.safemode/
 
 Package: gsc.required-battery-level-for-software-update
 Essential: yes
@@ -488,7 +519,7 @@ Section: Utilities
 Installed-Size: 172
 Maintainer: Jay Freeman (saurik) <saurik@saurik.com>
 Architecture: iphoneos-arm
-Version: 1.1.8
+Version: 1.1.9
 Depends: coreutils-bin
 Description: UIKit/GraphicsServices command line access
 Name: UIKit Tools
@@ -769,6 +800,22 @@ Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
 
+Package: preferenceloader
+Status: install ok installed
+Section: System
+Installed-Size: 244
+Maintainer: Dustin Howett <dustin@howett.net>
+Architecture: iphoneos-arm
+Version: 2.2.2
+Depends: mobilesubstrate
+Description: load preferences in style
+Name: PreferenceLoader
+Author: Dustin Howett <dustin@howett.net>
+dev: dustinhowett
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=preferenceloader2Data
+Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=preferenceloader2Data
+Tag: role::hacker, purpose::library
+
 Package: gsc.any-telephony
 Essential: yes
 Status: install ok installed
@@ -987,10 +1034,10 @@ Package: cydia
 Status: install ok installed
 Priority: required
 Section: Packaging
-Installed-Size: 3888
+Installed-Size: 3880
 Maintainer: Jay Freeman (saurik) <saurik@saurik.com>
 Architecture: iphoneos-arm
-Version: 1.1.14
+Version: 1.1.15
 Replaces: bigboss, bigbossbetarepo, com.sosiphone.addcydia, cydia-sources, ispazio.net, modmyifone, saurik, ste, yellowsn0w.com, zodttd
 Provides: bigbossbetarepo, cydia-sources
 Depends: apr-lib, apt7-lib, apt7-key, cydia-lproj (>= 1.1.10), darwintools, debianutils, org.thebigboss.repo.icons, pcre, sed, shell-cmds, system-cmds, uikittools (>= 1.1.4)
@@ -1034,6 +1081,23 @@ Architecture: iphoneos-arm
 Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
+
+Package: com.rpetrich.rocketbootstrap
+Status: install ok installed
+Section: Tweaks
+Installed-Size: 256
+Maintainer: BigBoss <bigboss@thebigboss.org>
+Architecture: iphoneos-arm
+Version: 1.0.2
+Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 3.0)
+Description: mach lookup support library for iOS 7
+Name: RocketBootstrap
+Depiction: http://rpetri.ch/cydia/rocketbootstrap/
+Homepage: http://rpetri.ch/cydia/rocketbootstrap/
+Author: Ryan Petrich <rpetrich+rocketbootstrap@gmail.com>
+Sponsor: thebigboss.org <http://thebigboss.org>
+dev: rpetrich
+Tag: purpose::extension, role::developer
 
 Package: gsc.battery-is-charging
 Essential: yes
@@ -1167,6 +1231,23 @@ Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
 
+Package: isklikas.notescreator
+Status: deinstall ok config-files
+Priority: optional
+Section: System
+Architecture: iphoneos-arm
+Version: 1.3
+Config-Version: 1.3
+Depends: firmware (>= 6.0), mobilesubstrate, libactivator
+Description: Fully compatible with iPhone and iPad, 64 bit  or not (and probably iOS 6 devices as well). Finally, you are now able to create Notes, from anywhere on iOS, with the power of Activator! Credits to our designer, iFasman7, for designing the iPad version. Code by @isklikas. Credit goes as well to Alan Yip (@cctweak) for the basic Notes code.
+Name: notesCreator
+Build-Depends: preferenceloader
+Author: JGTweaks
+dev: JGTweaks
+Homepage: 
+Depiction: 
+Icon: file:///Library/PreferenceLoader/Preferences/noteCreator/Note@2x.png
+
 Package: gsc.voip
 Essential: yes
 Status: install ok installed
@@ -1224,6 +1305,25 @@ Architecture: iphoneos-arm
 Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
+
+Package: com.a3tweaks.flipswitch
+Status: install ok installed
+Section: System
+Installed-Size: 2560
+Architecture: iphoneos-arm
+Version: 1.0.5
+Replaces: com.jerryen.rotationlockflipswitch
+Provides: com.jerryen.rotationlockflipswitch
+Depends: mobilesubstrate (>= 0.9.5001), com.rpetrich.rocketbootstrap (>= 1.0.2) | firmware (<< 7.0)
+Conflicts: com.rpetrich.donotdisturbtoggle (<= 1.0-1), com.jerryen.rotationlockflipswitch
+Description: Centralized toggle system for iOS
+Name: Flipswitch
+Homepage: http://rpetri.ch/cydia/flipswitch/
+Depiction: http://rpetri.ch/cydia/flipswitch/
+Author: rpetrich & A3Tweaks <rpetrich+flipswitch@gmail.com>
+Tag: purpose::extension, role::developer
+Icon: file:///Applications/Preferences.app/icon-table.png
+dev: flipswitch
 
 Package: gsc.homescreen-wallpaper
 Essential: yes

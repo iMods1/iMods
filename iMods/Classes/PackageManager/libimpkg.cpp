@@ -278,7 +278,7 @@ parse_begin:
     
     // Remove leading spaces
     while (!sstream.eof() && isspace(sstream.peek())) {
-        sstream.get();
+        char ch = sstream.get();
     }
     if (sstream.eof()) {
         return std::make_pair(TK_EOF, "");
@@ -329,10 +329,13 @@ parse_begin:
     }
     
     // Get the entire token
-    nch = sstream.get();
-    while (!sstream.eof() && tkPred(nch)) {
+    while (true) {
+        nch = sstream.peek();
+        if (sstream.eof() || !tkPred(nch)) {
+            break;
+        }
         token += nch;
-        nch = sstream.get();
+        sstream.get();
     }
     return std::make_pair(tk_type, token);
 }

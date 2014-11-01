@@ -247,6 +247,11 @@ Depends: d (>= v1)\n\
     XCTAssert(dep[0][1] == std::make_tuple("coreutils", VER_LE, "5.0"));
     XCTAssert(dep[1].size() == 1);
     XCTAssert(dep[1][0] == std::make_tuple("debianutils", VER_EQ, "3.0a"));
+    dep = parseDepString("firmware (>= 7.0), mobilesubstrate, libactivator");
+    XCTAssert(dep.size() == 3);
+    XCTAssert(dep[0].size() == 1);
+    XCTAssert(dep[1].size() == 1);
+    XCTAssert(dep[2].size() == 1);
 }
 
 - (void)testPackage {
@@ -347,20 +352,21 @@ Depends: d (>= v1)\n\
     versions.clear();
     brokenDeps.clear();
     depV.clear();
-    depV.push_back(parseDepString("iModsTestPackage")[0][0]);
+    depV.push_back(parseDepString("isklikas.notesCreator")[0][0]);
     DependencySolver solver2("/tmp/Packages.gz", "/tmp/status", depV);
     bool solved = solver2.calcDep(versions, brokenDeps);
     std::cout << "Broken packages:" << std::endl;
     for(auto dep:brokenDeps) {
         std::cout << depTuplePackageName(dep) << std::endl;
     }
-    XCTAssert(solved);
-    XCTAssert(versions.size() > 0);
+    XCTAssert(!solved);
+    XCTAssert(versions.size() == 0);
     std::cout << "Resolved deps:" << std::endl;
     for(auto ver:versions) {
         std::cout << *ver << std::endl;
     }
-    XCTAssert(brokenDeps.empty());
+    XCTAssert(!brokenDeps.empty());
+    XCTAssert(brokenDeps.size() == 2);
     
     std::cout << "Resolved updates:" << std::endl;
     for(auto ver:versions) {
