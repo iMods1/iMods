@@ -877,6 +877,10 @@ std::string Version::statusStr() const {
     return "";
 }
 
+void Version::setStatusStr(const std::string& sts) {
+    m_status = parseStatusString(sts);
+}
+
 PackageStatus Version::parseStatusString(const std::string& str) const {
     if(str.empty()) {
         return std::make_tuple(MK_UNKNOWN, "", ST_UNKNOWN);
@@ -1113,6 +1117,13 @@ void Package::addVersion(const Version& version) {
     }
 }
 
+void Package::updateVersionStatusStr(const std::string& verStr, const std::string& status) {
+    auto itVer = m_versions.find(verStr);
+    if (itVer != m_versions.end()) {
+        itVer->second.setStatusStr(status);
+    }
+}
+
 const Version* Package::checkDep(const PackageDepTuple& dep) const {
     if(std::get<0>(dep) != name()) {
         return nullptr;
@@ -1155,9 +1166,6 @@ void PackageCache::initWithTagFile(TagFile& cacheFile) {
         std::string pkgName;
         sec.tag("package", pkgName);
         std::transform(pkgName.begin(), pkgName.end(), pkgName.begin(), ::tolower);
-        if(pkgName == "mobilesubstrate") {
-            std::cout << "Found " << pkgName << std::endl;
-        }
         if (m_packages.find(pkgName) == m_packages.end()) {
             Package pkg(pkgName);
             m_packages[pkgName] = std::move(pkg);
@@ -1179,16 +1187,14 @@ void PackageCache::markInstalled(TagFile& tagFile) {
         std::string pkgName;
         sec.tag("package", pkgName);
         std::transform(pkgName.begin(), pkgName.end(), pkgName.begin(), ::tolower);
-        std::cout << "Checking package " << pkgName << std::endl;
         auto pkg = m_packages.find(pkgName);
         if (pkg != m_packages.end()) {
             std::string verStr;
             sec.tag("version", verStr);
+            std::string status;
+            sec.tag("status", status);
             pkg->second.setCurVersion(verStr);
-            std::cout << "Mark installed " << pkgName << " " << verStr << std::endl;
-            if (!pkg->second.curVersion()) {
-                std::cout << "Cannot find version " << verStr << " for package " << pkgName << " but it's installed" << std::endl;
-            }
+            pkg->second.updateVersionStatusStr(verStr, status);
         }
     } while(tagFile.nextSection());
 }
@@ -1461,7 +1467,7 @@ bool DependencySolver::resolveSingleDep(Step* step) {
     }
     // Check if the target version will break anything
     auto installed = step->curPackage;
-    if (installed && installed->curVersion()) {
+    if (installed && installed->curVersion() && installed->curVersion()->isInstalled()) {
         // Check if it will break the original installation
         auto vers = checkConflicts(step->targetVersion());
         if (!vers.empty()) {

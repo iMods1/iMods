@@ -279,6 +279,8 @@ public:
     
     void addVersion(const Version& version);
     
+    void updateVersionStatusStr(const std::string& verStr, const std::string& status);
+        
     const Version* version(const std::string& version)const;
     
     size_t versionCount() const;
@@ -320,6 +322,8 @@ public:
     PackageStatus status() const;
     
     std::string statusStr() const;
+    
+    void setStatusStr(const std::string& sts);
     
     std::string version() const;
     
