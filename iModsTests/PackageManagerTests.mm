@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include "IMODownloadManager.h"
 #include "libimpkg.h"
+#include "zipstream.hpp"
 
 // Functions in libimpkg.cpp
 extern std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depString);
@@ -27,6 +29,13 @@ static std::string testIndexFilePath = "/tmp/imods_test_indexfile";
 
 static std::string testCacheFile =
 "\
+Package: dummy\n\
+Version: v1\n\
+Description: line1\n\
+ line 2\n\
+ .\n\
+ line 4\n\
+\n\
 Package: coreutils\n\
 Status: install ok installed\n\
 Priority: standard\n\
@@ -156,15 +165,18 @@ Depends: d (>= v1)\n\
 
 - (void)setUp {
     [super setUp];
-    std::ofstream tmpTagFile(testCacheFilePath);
+    std::ofstream tmpTagFile(testCacheFilePath, std::ios::out | std::ios::binary);
     tmpTagFile << testCacheFile;
-    std::ofstream tmpIndexFile(testIndexFilePath);
-    tmpIndexFile << testIndexFile;
+    
+    std::ofstream tmpIndexFile(testIndexFilePath, std::ios::out | std::ios::binary);
+    zlib_stream::zip_ostream zout2(tmpIndexFile, true);
+    zout2 << testIndexFile;
 }
 
 - (void)tearDown {
     // Remove tmp files
-    unlink(testCacheFilePath.c_str());
+//    unlink(testCacheFilePath.c_str());
+//    unlink(testIndexFilePath.c_str());
     [super tearDown];
 }
 
@@ -191,9 +203,17 @@ Depends: d (>= v1)\n\
 }
 
 - (void)testCacheFile {
-    TagFile tagFile(testCacheFilePath);
+    TagFile tagFile(testCacheFilePath, false);
     auto sec = tagFile.section();
     std::string value;
+    sec.tag("description", value);
+    std::cout << "description: " << value << std::endl;
+    XCTAssert(sec.tag("package", value));
+    XCTAssert(value == "dummy");
+    XCTAssert(sec.tag("version", value));
+    XCTAssert(value == "v1");
+    XCTAssert(tagFile.nextSection());
+    sec = tagFile.section();
     XCTAssert(sec.tag("package", value));
     XCTAssert(value == "coreutils");
     XCTAssert(sec.tag("version", value));
@@ -242,10 +262,15 @@ Depends: d (>= v1)\n\
     XCTAssert(dep[0][1] == std::make_tuple("coreutils", VER_LE, "5.0"));
     XCTAssert(dep[1].size() == 1);
     XCTAssert(dep[1][0] == std::make_tuple("debianutils", VER_EQ, "3.0a"));
+    dep = parseDepString("firmware (>= 7.0), mobilesubstrate, libactivator");
+    XCTAssert(dep.size() == 3);
+    XCTAssert(dep[0].size() == 1);
+    XCTAssert(dep[1].size() == 1);
+    XCTAssert(dep[2].size() == 1);
 }
 
 - (void)testPackage {
-    TagFile tagFile(testCacheFilePath);
+    TagFile tagFile(testCacheFilePath, false);
     Package coreutils("coreutils", tagFile);
     XCTAssert(coreutils.versionCount() == 1);
     XCTAssert(coreutils.checkDep(std::make_tuple("coreutils", VER_LT, "8.13")));
@@ -262,7 +287,7 @@ Depends: d (>= v1)\n\
 }
 
 - (void)testPackageCache {
-    TagFile tagFile(testCacheFilePath);
+    TagFile tagFile(testCacheFilePath, false);
     PackageCache cache(tagFile);
     auto coreutils = cache.package("coreutils");
     XCTAssert(coreutils != nullptr);
@@ -291,7 +316,15 @@ Depends: d (>= v1)\n\
     XCTAssert(python->checkDep(std::make_tuple("python", VER_GT, "2.6")));
     auto verList = python->ver_list();
     XCTAssert(verList.size() == 1);
-    
+   
+    NSString* filePath = @"/tmp/Packages.gz";
+    XCTAssert(filePath != nil);
+    XCTAssert([filePath length] > 0);
+    TagFile indexTag([filePath UTF8String]);
+    PackageCache index2(indexTag);
+    for(auto pkg: index2.allPackages()) {
+        std::cout << pkg.first << std::endl;
+    }
 }
 
 - (void)testDependencyCalculator {
@@ -303,7 +336,7 @@ Depends: d (>= v1)\n\
     DependencySolver solver(testIndexFilePath, testCacheFilePath, depV);
     std::vector<const Version*> versions;
     DepVector brokenDeps;
-    XCTAssert(solver.calcDep(versions, brokenDeps));
+    XCTAssert(solver.calcDep(versions, brokenDeps) == 0);
     XCTAssert(versions.size() > 0);
     std::cout << "Resolved deps:" << std::endl;
     for(auto ver:versions) {
@@ -323,12 +356,38 @@ Depends: d (>= v1)\n\
     solver.initUnresolvedDeps(updates);
     versions.clear();
     brokenDeps.clear();
-    XCTAssert(solver.calcDep(versions, brokenDeps));
+    XCTAssert(solver.calcDep(versions, brokenDeps) == 0);
     XCTAssert(!versions.empty());
     
     std::cout << "Resolved updates:" << std::endl;
     for(auto ver:versions) {
         std::cout << *ver << std::endl;
+    }
+    // Test using real data
+    versions.clear();
+    brokenDeps.clear();
+    depV.clear();
+    auto dep = std::make_tuple("isklikas.notesCreator", VER_ANY, "");
+    DependencySolver solver2("/tmp/Packages.gz", "/tmp/status", {dep});
+    bool solved = solver2.calcDep(versions, brokenDeps);
+    std::cout << "Broken packages:" << std::endl;
+    for(auto dep:brokenDeps) {
+        std::cout << depTuplePackageName(dep) << std::endl;
+    }
+    XCTAssert(solved == 0);
+    XCTAssert(versions.size() > 0);
+    std::cout << "Resolved deps:" << std::endl;
+    for(auto ver:versions) {
+        std::cout << *ver << std::endl;
+    }
+    XCTAssert(brokenDeps.empty());
+    XCTAssert(brokenDeps.size() == 0);
+    
+    updates.clear();
+    updates = solver2.getUpdates();
+    std::cout << "Resolved updates:" << std::endl;
+    for(auto up:updates) {
+        std::cout << up << std::endl;
     }
 }
 

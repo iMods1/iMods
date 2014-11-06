@@ -14,6 +14,8 @@
 @interface IMOTask: PRHTask
 
 -(id) init;
+-(instancetype) initWithLaunchPath:(NSString*)path arguments:(NSArray*)arguments;
+
 +(PMKPromise*) launchTask:(NSString*)path arguments:(NSArray*)arguments;
 +(PMKPromise*) launchTaskWithEnvironment:(NSString*)path arguments:(NSArray*)arguments environment:(NSDictionary*)environment;
 

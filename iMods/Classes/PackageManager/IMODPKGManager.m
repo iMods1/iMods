@@ -22,37 +22,57 @@
 
 #pragma mark -
 
-- (PMKPromise*) installDEB:(NSString *)debPath {
-    return [IMOTask launchTask:self.dpkgPath arguments:@[@"-i", debPath]];
+- (IMOTask*) installDEB:(NSString *)debPath {
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:@[@"-i", debPath]];
 }
 
-- (PMKPromise*) installDEBs:(NSArray *)debPaths {
+- (IMOTask*) installDEBs:(NSArray *)debPaths {
     NSArray* debs = @[@"-i"];
     NSArray* arguments = [debs arrayByAddingObjectsFromArray:debPaths];
-    return [IMOTask launchTask:self.dpkgPath arguments:arguments];
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:arguments];
 }
 
 
-- (PMKPromise*) removePackage:(NSString *)pkg_name {
-    return [IMOTask launchTask:self.dpkgPath arguments:@[@"-r", pkg_name]];
+- (IMOTask*) removePackage:(NSString *)pkg_name {
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:@[@"-r", pkg_name]];
 }
 
-- (PMKPromise*) cleanPackage:(NSString *)pkg_name {
-    return [IMOTask launchTask:self.dpkgPath arguments:@[@"-P", pkg_name]];
+- (IMOTask*) cleanPackage:(NSString *)pkg_name {
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:@[@"-P", pkg_name]];
 }
 
 #pragma mark -
 
-- (PMKPromise*) extractDEBInfoAsString:(NSString *)debPath {
-    return [IMOTask launchTask:self.dpkgPath arguments:@[@"-I", debPath]];
+- (IMOTask*) extractDEBInfoAsString:(NSString *)debPath {
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:@[@"-I", debPath]];
 }
 
-- (PMKPromise*) listDEBFiles:(NSString *)debPath {
-    return [IMOTask launchTask:self.dpkgPath arguments:@[@"-c", debPath]];
+- (IMOTask*) listDEBFiles:(NSString *)debPath {
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:@[@"-c", debPath]];
 }
 
-- (PMKPromise*) listInstalledDEBs {
-    return [IMOTask launchTask:self.dpkgPath arguments:@[@"-l"]];
+- (IMOTask*) listInstalledDEBs {
+    return [[IMOTask alloc] initWithLaunchPath:self.dpkgPath arguments:@[@"-l"]];
+}
+
+- (BOOL) lock {
+    if([[NSFileManager defaultManager] fileExistsAtPath:self.lockFilePath]) {
+        NSError* error;
+        [[NSFileManager defaultManager] removeItemAtPath:self.lockFilePath error:&error];
+    }
+    NSString* lockFileContent = @"dpkg is being used by iMods\n";
+    [[NSFileManager defaultManager] createFileAtPath:self.lockFilePath
+                                            contents:[lockFileContent dataUsingEncoding:NSUTF8StringEncoding]
+                                          attributes:nil];
+    return YES;
+}
+
+- (BOOL) unlock {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.lockFilePath]) {
+        return NO;
+    }
+    NSError* error = nil;
+    return [[NSFileManager defaultManager] removeItemAtPath:self.lockFilePath error:&error];
 }
 
 @end

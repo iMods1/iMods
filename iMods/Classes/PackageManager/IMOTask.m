@@ -10,6 +10,18 @@
 
 @implementation IMOTask
 
+- (instancetype) initWithLaunchPath:(NSString *)path arguments:(NSArray *)arguments {
+    self = [super init];
+    if (self) {
+        [self setLaunchPath:path];
+        [self setArguments:arguments];
+        [self setEnvironment:nil];
+        self.accumulatesStandardError = YES;
+        self.accumulatesStandardOutput = YES;
+    }
+    return self;
+}
+
 + (PMKPromise*) launchTask:(NSString *)path arguments:(NSArray *)arguments {
     return [IMOTask launchTaskWithEnvironment:path arguments:arguments environment:nil];
 }
@@ -19,7 +31,7 @@
         IMOTask* task = [[IMOTask alloc] init];
         [task setLaunchPath:path];
         [task setArguments:arguments];
-        [task setEnvironment:nil];
+        [task setEnvironment:environment];
         task.accumulatesStandardError = YES;
         task.accumulatesStandardOutput = YES;
         [task setSuccessfulTerminationBlock:^(PRHTask* task){

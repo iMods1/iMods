@@ -67,7 +67,8 @@ static IMODownloadManager *downloadManager = nil;
                 __block NSString *nameString = [[[[response valueForKey:@"result"]  valueForKey: @"pkg_name"] firstObject] stringByAppendingString: @".deb"];
                 NSLog(@"nameString: %@", nameString);
                 NSURL *url = [[NSURL alloc] initWithString:urlString];
-                return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
+                return [NSURLConnection promise:[NSURLRequest requestWithURL: url]]
+                .then(^(NSData *data) {
                     NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: nameString];
                     [data writeToFile:filePath atomically:YES];
                     return filePath;
@@ -98,22 +99,24 @@ static IMODownloadManager *downloadManager = nil;
 }
 
 - (PMKPromise*)downloadIndex {
-    return [self.sessionManager getJSON:@"package/index" parameters:nil]
+    PMKPromise* promise = [self.sessionManager getJSON:@"package/index" parameters:nil]
     .then(^id(OVCResponse *response, NSError *error){
         if (error) {
             NSLog(@"Failed to download index file: %@", error.localizedDescription);
             return nil;
         }
         
-        NSString* urlString = [response valueForKey:@"url"];
-        NSLog(@"Index file received '%@'", urlString);
+        NSDictionary* result = [response valueForKey:@"result"];
+        NSString* urlString = [result valueForKey:@"url"];
         NSURL* url = [[NSURL alloc] initWithString:urlString];
         return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
             NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: @"Packages.gz"];
+            NSLog(@"Downloaded index file path: %@", filePath);
             [data writeToFile:filePath atomically:YES];
             return filePath;
         });
     });
+    return promise;
 }
 
 @end

@@ -828,31 +828,22 @@ IMOOrderManager* orderManager = nil;
     NSString* installedFilePath = @"/var/tmp/imods_test_packge_file";
     NSString* installedConfFilePath = @"/var/tmp/imods_test_package.conf";
     NSString* pkg_name = @"iModsTestPackage";
-    [self.dpkgManager installDEB:debPath]
-    .then(^(IMOTask* task){
-        XCTAssert([fileManager fileExistsAtPath: installedFilePath]);
-        XCTAssert([fileManager fileExistsAtPath: installedConfFilePath]);
-    });
+    IMOTask* task = [self.dpkgManager installDEB:debPath];
+    XCTAssert([fileManager fileExistsAtPath: installedFilePath]);
+    XCTAssert([fileManager fileExistsAtPath: installedConfFilePath]);
     
-    [self.dpkgManager listInstalledDEBs]
-    .then(^(IMOTask* task){
-        NSString* output = [task outputStringFromStandardOutputUTF8];
-        XCTAssert(output.length > 0);
-        NSRange range = [output rangeOfString:pkg_name];
-        XCTAssert(range.location != NSNotFound);
-    });
+    task = [self.dpkgManager listInstalledDEBs];
+    NSString* output = [task outputStringFromStandardOutputUTF8];
+    XCTAssert(output.length > 0);
+    NSRange range = [output rangeOfString:pkg_name];
+    XCTAssert(range.location != NSNotFound);
     
-    [self.dpkgManager removePackage:pkg_name]
-    .then(^(IMOTask* task){
-        XCTAssert(![fileManager fileExistsAtPath:installedFilePath]);
-    });
+    task = [self.dpkgManager removePackage:pkg_name];
+    XCTAssert(![fileManager fileExistsAtPath:installedFilePath]);
     
-    [self.dpkgManager cleanPackage:pkg_name]
-    .then(^(IMOTask* task){
-        XCTAssert(![fileManager fileExistsAtPath:installedConfFilePath]);
-    });
+    task = [self.dpkgManager cleanPackage:pkg_name];
+    XCTAssert(![fileManager fileExistsAtPath:installedConfFilePath]);
     
-    [self waitFor:0.1];
 }
 
 - (void) testDownloadPackage {
