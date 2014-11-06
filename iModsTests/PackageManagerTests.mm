@@ -336,7 +336,7 @@ Depends: d (>= v1)\n\
     DependencySolver solver(testIndexFilePath, testCacheFilePath, depV);
     std::vector<const Version*> versions;
     DepVector brokenDeps;
-    XCTAssert(solver.calcDep(versions, brokenDeps));
+    XCTAssert(solver.calcDep(versions, brokenDeps) == 0);
     XCTAssert(versions.size() > 0);
     std::cout << "Resolved deps:" << std::endl;
     for(auto ver:versions) {
@@ -356,7 +356,7 @@ Depends: d (>= v1)\n\
     solver.initUnresolvedDeps(updates);
     versions.clear();
     brokenDeps.clear();
-    XCTAssert(solver.calcDep(versions, brokenDeps));
+    XCTAssert(solver.calcDep(versions, brokenDeps) == 0);
     XCTAssert(!versions.empty());
     
     std::cout << "Resolved updates:" << std::endl;
@@ -367,14 +367,14 @@ Depends: d (>= v1)\n\
     versions.clear();
     brokenDeps.clear();
     depV.clear();
-    depV.push_back(parseDepString("isklikas.notesCreator")[0][0]);
-    DependencySolver solver2("/tmp/Packages.gz", "/tmp/status", depV);
+    auto dep = std::make_tuple("isklikas.notesCreator", VER_ANY, "");
+    DependencySolver solver2("/tmp/Packages.gz", "/tmp/status", {dep});
     bool solved = solver2.calcDep(versions, brokenDeps);
     std::cout << "Broken packages:" << std::endl;
     for(auto dep:brokenDeps) {
         std::cout << depTuplePackageName(dep) << std::endl;
     }
-    XCTAssert(solved);
+    XCTAssert(solved == 0);
     XCTAssert(versions.size() > 0);
     std::cout << "Resolved deps:" << std::endl;
     for(auto ver:versions) {
@@ -383,9 +383,11 @@ Depends: d (>= v1)\n\
     XCTAssert(brokenDeps.empty());
     XCTAssert(brokenDeps.size() == 0);
     
+    updates.clear();
+    updates = solver2.getUpdates();
     std::cout << "Resolved updates:" << std::endl;
-    for(auto ver:versions) {
-        std::cout << *ver << std::endl;
+    for(auto up:updates) {
+        std::cout << up << std::endl;
     }
 }
 

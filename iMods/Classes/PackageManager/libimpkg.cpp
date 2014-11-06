@@ -799,6 +799,11 @@ Version::Version(const TagSection& ctrlFile): m_section(ctrlFile) {
         m_debFilePath = debFilePath;
     }
     
+    std::string conflictsStr;
+    if(m_section.tag("conflicts", conflictsStr)) {
+        m_conflictPackages = parseConflicts(conflictsStr);
+    }
+    
     m_status = parseStatusString(statusStr());
 }
 
@@ -823,7 +828,10 @@ uint64_t Version::itemID() const {
 
 bool Version::checkDep(const PackageDepTuple& dep) const {
     //std::cout << packageName() << std::endl;
-    if (std::get<0>(dep) != packageName()) {
+    std::string pkgName = std::get<0>(dep);
+    std::transform(pkgName.begin(), pkgName.end(), pkgName.begin(), ::tolower);
+    
+    if (pkgName != packageName()) {
         return false;
     }
     
@@ -867,6 +875,10 @@ std::string Version::depString() const {
         return dep;
     }
     return "";
+}
+
+const DepVector& Version::conflicts() const {
+    return m_conflictPackages;
 }
 
 std::string Version::statusStr() const {
@@ -926,6 +938,17 @@ PackageStatus Version::parseStatusString(const std::string& str) const {
     }
     
     return std::make_tuple(mark, "ok", state);
+}
+
+DepVector Version::parseConflicts(const std::string& str) const {
+    DepVector res;
+    auto deps = parseDepString(str);
+    for(auto& dep: deps) {
+        if (!dep.empty()) {
+            res.push_back(dep[0]);
+        }
+    }
+    return res;
 }
 
 PackageStatus Version::status() const {
@@ -1171,7 +1194,7 @@ void PackageCache::initWithTagFile(TagFile& cacheFile) {
             m_packages[pkgName] = std::move(pkg);
         }
         Version ver(sec);
-        m_packages[pkgName].addVersion(std::move(sec));
+        m_packages[pkgName].addVersion(ver);
     } while(cacheFile.nextSection());
 }
 
@@ -1226,7 +1249,9 @@ const std::map<std::string, Package>& PackageCache::allPackages() const {
 }
 
 const Package* PackageCache::package(const std::string& pkgName) const {
-    auto pkg = m_packages.find(pkgName);
+    std::string _pkgName = pkgName;
+    std::transform(_pkgName.begin(), _pkgName.end(), _pkgName.begin(), ::tolower);
+    auto pkg = m_packages.find(_pkgName);
     if (pkg != m_packages.end()) {
         return &(pkg->second);
     }
@@ -1234,7 +1259,9 @@ const Package* PackageCache::package(const std::string& pkgName) const {
 }
 
 const Version* PackageCache::version(const std::string& pkgName, const std::string& ver) const {
-    auto pkg = m_packages.find(pkgName);
+    std::string _pkgName = pkgName;
+    std::transform(_pkgName.begin(), _pkgName.end(), _pkgName.begin(), ::tolower);
+    auto pkg = m_packages.find(_pkgName);
     if (pkg == m_packages.end()) {
         return nullptr;
     }
@@ -1433,6 +1460,18 @@ std::vector<std::pair<const Version*, PackageDepTuple>> DependencySolver::checkC
             brokenVers.push_back(std::make_pair(rev->second.first, requiredDep));
         }
     }
+    auto conflictDeps = targetVersion->conflicts();
+    // TODO: Check if installed version is in conflict with target version
+//    for(auto& pkg:m_cache.allPackages()) {
+//        if (!pkg.second.curVersion() || !pkg.second.curVersion()->isInstalled()) {
+//            continue;
+//        }
+//        auto& conflicts = pkg.second.curVersion()->conflicts();
+//        for(auto con:conflicts) {
+//            targetVersion->checkDep(con);
+//            brokenVers.push_back(std::make_pair(pkg.second.curVersion());
+//        }
+//    }
     return brokenVers;
 }
 
@@ -1465,36 +1504,36 @@ bool DependencySolver::resolveSingleDep(Step* step) {
     } else {
         return true;
     }
-    // Check if the target version will break anything
+    // Check if a version is already installed
     auto installed = step->curPackage;
+    auto vers = checkConflicts(step->targetVersion());
+    if (!vers.empty()) {
+        // Add broken packages to steps queue and m_unresolvedDeps
+        for(auto ver:vers) {
+            auto pkg = m_index.package(ver.first->packageName());
+            if(!pkg) {
+                std::cerr << "Fatal: package " << ver.first->packageName() <<
+                " cannot be found in the package index." << std::endl;
+                exit(1);
+            }
+            Step* nstep;
+            auto iterStep = m_steps.find(pkg->name());
+            if (iterStep != m_steps.end()) {
+                nstep = iterStep->second.get();
+            } else {
+                nstep = newStep(pkg, ver.second, step, step->targetVersion()).get();
+            }
+            // Reset the set as not fulfilled
+            step->fulfilled = false;
+            step->skip = false;
+            addSuccessors(nstep);
+            m_unprocessedSteps.push(nstep);
+        }
+    }
+    
     if (installed && installed->curVersion() && installed->curVersion()->isInstalled()) {
         // Check if it will break the original installation
-        auto vers = checkConflicts(step->targetVersion());
-        if (!vers.empty()) {
-            // Add broken packages to steps queue and m_unresolvedDeps
-            for(auto ver:vers) {
-                auto pkg = m_index.package(ver.first->packageName());
-                if(!pkg) {
-                    std::cerr << "Fatal: package " << ver.first->packageName() <<
-                    " cannot be found in the package index." << std::endl;
-                    exit(1);
-                }
-                Step* nstep;
-                auto iterStep = m_steps.find(pkg->name());
-                if (iterStep != m_steps.end()) {
-                    nstep = iterStep->second.get();
-                } else {
-                    nstep = newStep(pkg, ver.second, step, step->targetVersion()).get();
-                }
-                // Reset the set as not fulfilled
-                step->fulfilled = false;
-                step->skip = false;
-                addSuccessors(nstep);
-                m_unprocessedSteps.push(nstep);
-            }
-        } else {
-            // Target version is installed
-            
+        if (vers.empty()){
             // Check if it's an update
             if(*(step->targetVersion()) > *(installed->curVersion())) {
                 step->fulfilled = false;
@@ -1606,11 +1645,11 @@ void DependencySolver::clearContainers() {
     m_resolvedDeps = std::move(std::vector<const Version*>());
 }
 
-bool DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepVector& out_brokenDeps) {
+int DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepVector& out_brokenDeps) {
     if (m_unresolvedDeps.empty()) {
         std::cerr << "No unresolved dependencies, calcDep() does nothing" << std::endl;
         // Nothing to do, the system remains consistant, so the dependencies are all fulfilled.
-        return true;
+        return ERR_SOLVER_EMPTY_TARGET_DEP;
     }
     // NOTE: Users need to call initUnresolvedDeps() before calling this method
     // Clear previous result for a new start
@@ -1621,7 +1660,7 @@ bool DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepV
         auto pkg = m_index.package(depTuplePackageName(*dep));
         if (!pkg) {
             std::cerr << "Unable to find package '" << depTuplePackageName(*dep) << "'" << std::endl;
-            return false;
+            return ERR_SOLVER_PACKAGE_NOT_FOUND;
         }
         StepPtrRef step = newStep(pkg, *dep);
         addSuccessors(step.get());
@@ -1638,17 +1677,17 @@ bool DependencySolver::calcDep(std::vector<const Version*>& out_targetDeps, DepV
                 out_targetDeps.push_back(step.second->targetVersion());
             }
         }
-        return true;
+        return 0; // No error
     }
     
     if (!m_brokenDeps.empty()) {
         out_brokenDeps.assign(m_brokenDeps.begin(), m_brokenDeps.end());
         std::cerr << "Found broken packages" << std::endl;
-        return false;
+        return ERR_SOLVER_BROKEN_PACKAGES;
     }
     
     std::cerr << "Shouldn't happen: non-empty m_unprocessedSteps or m_unresolvedDeps" << std::endl;
-    return false;
+    return ERR_SOLVER_UNKNOWN;
 }
 
 DepVector DependencySolver::getUpdates() const {

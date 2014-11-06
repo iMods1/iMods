@@ -62,6 +62,15 @@ enum PackageState {
     ST_UNKNOWN
 };
 
+#pragma mark Error code
+
+enum DependencySolverError {
+    ERR_SOLVER_EMPTY_TARGET_DEP = 1,
+    ERR_SOLVER_PACKAGE_NOT_FOUND,
+    ERR_SOLVER_BROKEN_PACKAGES,
+    ERR_SOLVER_UNKNOWN
+};
+
 #pragma mark typedef
 
 typedef std::pair<std::string, std::string> TagField;
@@ -334,6 +343,8 @@ public:
     bool isInstalled() const;
     
     std::string depString () const;
+    
+    const DepVector& conflicts() const;
 
     std::string sha1Checksum() const;
     
@@ -366,12 +377,15 @@ public:
 private:
     
     PackageStatus parseStatusString(const std::string& str) const;
+    DepVector parseConflicts(const std::string& str) const;
     
     std::vector<std::vector<PackageDepTuple>> m_depList;
     
     std::string m_debFilePath;
     
     PackageStatus m_status;
+    
+    DepVector m_conflictPackages;
     
     TagSection m_section;
 };
@@ -425,7 +439,8 @@ public:
     
     DepVector getUpdates() const;
     
-    bool calcDep(std::vector<const Version*>& out_targetDeps, DepVector& out_brokenDeps);
+    // Returns 0 if succeed, otherwise returns error code
+    int calcDep(std::vector<const Version*>& out_targetDeps, DepVector& out_brokenDeps);
     
 private:
 

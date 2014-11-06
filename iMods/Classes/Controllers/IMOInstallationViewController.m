@@ -162,6 +162,8 @@ IMOSessionManager* sessionManager;
                                 }]
     .catch(^(NSError* error) {
         self.status = FinishedWithError;
+        [self appendTextToTextView:[NSString stringWithFormat:@"%@", error.localizedDescription]];
+        return error;
     })
     .then(^{
         self.status = FinishedSuccessfully;

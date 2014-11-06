@@ -110,6 +110,7 @@ NSFileHandle* errWriter;
         
         self->_locked = true;
         auto dep = std::make_tuple([pkg.pkg_name UTF8String], VER_ANY, "");
+        NSLog(@"Trying to install %@ ...", pkg.pkg_name);
         
         progressCallback(0.3);
         
@@ -121,18 +122,20 @@ NSFileHandle* errWriter;
         // Calculate dependencies
         DepVector brokenDeps;
         std::vector<const Version*> resolvedVers;
-        bool solved = solver.calcDep(resolvedVers, brokenDeps);
+        int errcode = solver.calcDep(resolvedVers, brokenDeps);
         
         if (!brokenDeps.empty()) {
             [self writeLog:@"Following dependencies cannot be resolved"];
             for(auto d: brokenDeps) {
                 [self writeLog:@"%s", depTuplePackageName(d).c_str()];
             }
+            error = [NSError errorWithDomain:@"BrokenPackages" code:errcode userInfo:nil];
+            return error;
         }
         
-        if(!solved || resolvedVers.empty()) {
+        if(errcode != 0) {
             self->_locked = false;
-            error = [NSError errorWithDomain:@"UnsolvedDependencies" code:3 userInfo:nil];
+            error = [NSError errorWithDomain:@"DependencySolverFailed" code:errcode userInfo:nil];
             return error;
         }
         
@@ -149,7 +152,7 @@ NSFileHandle* errWriter;
             NSError* item_error = nil;
             IMOItem* item = [MTLJSONAdapter modelOfClass:IMOItem.class fromJSONDictionary:itemDict error:&item_error];
             if (item_error || !item) {
-                [self writeErr:@"Failed to create IMOItem for version", ver->version().c_str()];
+                [self writeErr:@"Failed to create IMOItem model for version", ver->version().c_str()];
                 self->_locked = false;
                 return item_error;
             }
