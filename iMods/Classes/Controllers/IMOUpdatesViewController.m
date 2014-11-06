@@ -100,7 +100,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSLog(@"Current installed items: %@", self.installedItems);
         NSManagedObject *item = self.installedItems[indexPath.row];
         
         NSString* pkg_name = [item valueForKey:@"pkg_name"];
@@ -118,7 +117,13 @@
             [tableView reloadData];
         })
         .catch(^(NSError* error){
-            
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error.userInfo valueForKey:@"stderr"]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            NSLog(@"Unable to remove package '%@': %@", error.localizedDescription, [error.userInfo valueForKey:@"stderr"]);
         });
     }
 }

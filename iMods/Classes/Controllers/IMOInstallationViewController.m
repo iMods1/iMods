@@ -86,6 +86,25 @@ IMOSessionManager* sessionManager;
     [notification.object readInBackgroundAndNotify];
 }
 
+- (void)redirectRemainingContentToTextView:(NSPipe*)pipe {
+    NSFileHandle* pipeReadHandle = [pipe fileHandleForReading];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(redirectEndNotificationHandler:)
+                                                 name:NSFileHandleReadToEndOfFileCompletionNotification
+                                               object:pipeReadHandle];
+    [pipeReadHandle readToEndOfFileInBackgroundAndNotify];
+}
+
+- (void)redirectEndNotificationHandler:(NSNotification*)notification {
+    NSData* data = [notification.userInfo objectForKey:NSFileHandleNotificationDataItem];
+    NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self appendTextToTextView:str];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSFileHandleReadToEndOfFileCompletionNotification
+                                                  object:notification.object];
+    
+}
+
 - (void)removePipeRedirct:(NSPipe*)pipe {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSFileHandleReadCompletionNotification
@@ -148,9 +167,10 @@ IMOSessionManager* sessionManager;
         self.status = FinishedSuccessfully;
     }).finally(^{
         NSLog(@"Unregister pipe notifications");
-        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
-        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
-        
+//        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
+//        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
+//        [self redirectRemainingContentToTextView:sessionManager.packageManager.taskStdoutPipe];
+//        [self redirectRemainingContentToTextView:sessionManager.packageManager.taskStderrPipe];
         [self updateDismissLabelVisibility];
         if (self.status == FinishedSuccessfully) {
             [self appendTextToTextView:@".Done\n"];

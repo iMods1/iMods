@@ -67,7 +67,8 @@ static IMODownloadManager *downloadManager = nil;
                 __block NSString *nameString = [[[[response valueForKey:@"result"]  valueForKey: @"pkg_name"] firstObject] stringByAppendingString: @".deb"];
                 NSLog(@"nameString: %@", nameString);
                 NSURL *url = [[NSURL alloc] initWithString:urlString];
-                return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
+                return [NSURLConnection promise:[NSURLRequest requestWithURL: url]]
+                .then(^(NSData *data) {
                     NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: nameString];
                     [data writeToFile:filePath atomically:YES];
                     return filePath;

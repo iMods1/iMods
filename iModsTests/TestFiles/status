@@ -172,6 +172,22 @@ Description: Test package
  .
  Creating backups is now more fun than ever!
 
+Package: mobilesubstrate
+Status: install ok installed
+Priority: optional
+Section: System
+Maintainer: Jay Freeman (saurik) <saurik@saurik.com>
+Architecture: iphoneos-arm
+Version: 0.9.5016
+Depends: com.saurik.substrate.safemode
+Pre-Depends: dpkg (>= 1.14.25-8)
+Breaks: uikittools (<< 1.1.1), com.mywi4 (<= 5.03.2), com.phoenix.pandoracontrols (<= 1.1.0-1), com.intelliborn.intelliscreenx (<= 1.0.110), com.evad3rs.evasi0n7 (<< 0.2)
+Conflicts: me.devbug.msreloadfix, com.r3pwn.startsubstrate, com.ragemasta.bootstrap
+Description: powerful code insertion platform
+Name: Cydia Substrate
+Author: Jay Freeman (saurik) <saurik@saurik.com>
+Depiction: http://cydia.saurik.com/info/mobilesubstrate/
+
 Package: gsc.main-screen-scale
 Essential: yes
 Status: install ok installed
@@ -234,6 +250,25 @@ Architecture: iphoneos-arm
 Version: 0.5
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
+
+Package: libactivator
+Status: install ok installed
+Priority: optional
+Section: System
+Installed-Size: 4060
+Maintainer: Ryan Petrich <rpetrich+activator@gmail.com>
+Architecture: iphoneos-arm
+Version: 1.9.1
+Replaces: com.booleanmagic.overboard (<= 1.1), com.ashman.lockinfo (<= 2.0.0-6), com.clezz.quickdo, com.clezz.quickdoipad, com.fuyuchi.missionboardpro (<= 1.3), com.clezz.qda, com.clezz.qdb, com.clezz.qdc, com.kindadev.nobetaalert
+Depends: mobilesubstrate (>= 0.9.5001), preferenceloader (>= 2.2.2), com.a3tweaks.flipswitch (>= 1.0.5), com.rpetrich.rocketbootstrap (>= 1.0.2) | firmware (<< 7.0)
+Conflicts: com.booleanmagic.overboard (<= 1.1), com.ashman.lockinfo (<= 2.0.0-6), sbsettings (<= 3.0.6), com.clezz.quickdo, com.clezz.quickdoipad, com.clezz.clezzqd, com.fuyuchi.missionboardpro (<= 1.3), com.clezz.qda, com.clezz.qdb, com.clezz.qdc, com.kindadev.nobetaalert, libhide (<< 2.4.1)
+Description: Centralized gestures, button and shortcut management for iOS
+Name: Activator
+Homepage: http://rpetri.ch/cydia/activator/
+Depiction: http://rpetri.ch/cydia/activator/
+Author: Ryan Petrich <rpetrich+activator@gmail.com>
+Sponsor: thebigboss.org <http://thebigboss.org>
+dev: rpetrich
 
 Package: bzip2
 Status: install ok installed
@@ -1037,7 +1072,7 @@ Section: Packaging
 Installed-Size: 3880
 Maintainer: Jay Freeman (saurik) <saurik@saurik.com>
 Architecture: iphoneos-arm
-Version: 1.1.15
+Version: 1.1.16
 Replaces: bigboss, bigbossbetarepo, com.sosiphone.addcydia, cydia-sources, ispazio.net, modmyifone, saurik, ste, yellowsn0w.com, zodttd
 Provides: bigbossbetarepo, cydia-sources
 Depends: apr-lib, apt7-lib, apt7-key, cydia-lproj (>= 1.1.10), darwintools, debianutils, org.thebigboss.repo.icons, pcre, sed, shell-cmds, system-cmds, uikittools (>= 1.1.4)
@@ -1231,23 +1266,6 @@ Version: 1
 Description: virtual GraphicsServices dependency
 Tag: role::cydia
 
-Package: isklikas.notescreator
-Status: deinstall ok config-files
-Priority: optional
-Section: System
-Architecture: iphoneos-arm
-Version: 1.3
-Config-Version: 1.3
-Depends: firmware (>= 6.0), mobilesubstrate, libactivator
-Description: Fully compatible with iPhone and iPad, 64 bit  or not (and probably iOS 6 devices as well). Finally, you are now able to create Notes, from anywhere on iOS, with the power of Activator! Credits to our designer, iFasman7, for designing the iPad version. Code by @isklikas. Credit goes as well to Alan Yip (@cctweak) for the basic Notes code.
-Name: notesCreator
-Build-Depends: preferenceloader
-Author: JGTweaks
-dev: JGTweaks
-Homepage: 
-Depiction: 
-Icon: file:///Library/PreferenceLoader/Preferences/noteCreator/Note@2x.png
-
 Package: gsc.voip
 Essential: yes
 Status: install ok installed
@@ -1424,8 +1442,8 @@ Priority: optional
 Section: System
 Maintainer: Pangu <axe@pangu.io>
 Architecture: iphoneos-arm
-Version: 0.2
-Depends: coreutils-bin, firmware (>= 8.0), firmware (<= 8.1.2)
+Version: 0.4
+Depends: coreutils-bin, firmware (>= 8.0), firmware (<< 8.2)
 Description: untethered jailbreak based on pangu exploits
 Author: Pangu <axe@pangu.io>
 Name: Pangu 8.0-8.1.x Untether

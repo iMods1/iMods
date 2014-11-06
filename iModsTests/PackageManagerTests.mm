@@ -29,6 +29,13 @@ static std::string testIndexFilePath = "/tmp/imods_test_indexfile";
 
 static std::string testCacheFile =
 "\
+Package: dummy\n\
+Version: v1\n\
+Description: line1\n\
+ line 2\n\
+ .\n\
+ line 4\n\
+\n\
 Package: coreutils\n\
 Status: install ok installed\n\
 Priority: standard\n\
@@ -199,6 +206,14 @@ Depends: d (>= v1)\n\
     TagFile tagFile(testCacheFilePath, false);
     auto sec = tagFile.section();
     std::string value;
+    sec.tag("description", value);
+    std::cout << "description: " << value << std::endl;
+    XCTAssert(sec.tag("package", value));
+    XCTAssert(value == "dummy");
+    XCTAssert(sec.tag("version", value));
+    XCTAssert(value == "v1");
+    XCTAssert(tagFile.nextSection());
+    sec = tagFile.section();
     XCTAssert(sec.tag("package", value));
     XCTAssert(value == "coreutils");
     XCTAssert(sec.tag("version", value));
@@ -359,14 +374,14 @@ Depends: d (>= v1)\n\
     for(auto dep:brokenDeps) {
         std::cout << depTuplePackageName(dep) << std::endl;
     }
-    XCTAssert(!solved);
-    XCTAssert(versions.size() == 0);
+    XCTAssert(solved);
+    XCTAssert(versions.size() > 0);
     std::cout << "Resolved deps:" << std::endl;
     for(auto ver:versions) {
         std::cout << *ver << std::endl;
     }
-    XCTAssert(!brokenDeps.empty());
-    XCTAssert(brokenDeps.size() == 2);
+    XCTAssert(brokenDeps.empty());
+    XCTAssert(brokenDeps.size() == 0);
     
     std::cout << "Resolved updates:" << std::endl;
     for(auto ver:versions) {

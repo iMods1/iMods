@@ -383,6 +383,7 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
                 targetVer = token.second;
                 break;
             case TK_SEP:
+                std::transform(targetPkg.begin(), targetPkg.end(), targetPkg.begin(), ::tolower);
                 group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
                 result.push_back(std::move(group));
                 group.clear();
@@ -391,12 +392,14 @@ std::vector<std::vector<PackageDepTuple>> parseDepString(const std::string& depS
                 targetOp = VER_ANY;
                 break;
             case TK_OR:
+                std::transform(targetPkg.begin(), targetPkg.end(), targetPkg.begin(), ::tolower);
                 group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
                 targetPkg.clear();
                 targetVer.clear();
                 targetOp = VER_ANY;
                 break;
             case TK_EOF:
+                std::transform(targetPkg.begin(), targetPkg.end(), targetPkg.begin(), ::tolower);
                 group.push_back(std::make_tuple(targetPkg, targetOp, targetVer));
                 result.push_back(std::move(group));
                 parseDone = true;
@@ -456,6 +459,8 @@ bool TagParser::nextTag(std::string& tag, std::string& value) {
         }
         // Empty lines(including lines consist of whitespaces) separate sections
         if (leadingSpaceCount == linebuf.length()) {
+            tag = tagname;
+            value = tagvalue;
             return false;
         }
         // Ignore comments
@@ -466,9 +471,15 @@ bool TagParser::nextTag(std::string& tag, std::string& value) {
         } else if (std::isspace(linebuf[0])) {
             // A continuation line
             tagvalue += linebuf.substr(1);
-            std::getline(m_tagFile, linebuf);
-            p = linebuf.begin();
-            continue;
+            if(' ' == m_tagFile.peek()) {
+                std::getline(m_tagFile, linebuf);
+                p = linebuf.begin();
+                continue;
+            } else {
+                tag = tagname;
+                value = tagvalue;
+                return true;
+            }
         }
         
         auto isNonControlChar = [](char ch) {
@@ -500,6 +511,11 @@ bool TagParser::nextTag(std::string& tag, std::string& value) {
             tagvalue = "";
         } else {
             tagvalue = token;
+        }
+        // Look at next char and see if it's a continuation line
+        if (' ' == m_tagFile.peek()) {
+            std::getline(m_tagFile, linebuf);
+            continue;
         }
     }
     tag = tagname;
@@ -839,6 +855,7 @@ bool Version::checkDep(const PackageDepTuple& dep) const {
 std::string Version::packageName() const {
     std::string name;
     if (m_section.tag("package", name)) {
+        std::transform(name.begin(), name.end(), name.begin(), ::tolower);
         return name;
     }
     return "";
@@ -1137,6 +1154,10 @@ void PackageCache::initWithTagFile(TagFile& cacheFile) {
         auto sec = cacheFile.section();
         std::string pkgName;
         sec.tag("package", pkgName);
+        std::transform(pkgName.begin(), pkgName.end(), pkgName.begin(), ::tolower);
+        if(pkgName == "mobilesubstrate") {
+            std::cout << "Found " << pkgName << std::endl;
+        }
         if (m_packages.find(pkgName) == m_packages.end()) {
             Package pkg(pkgName);
             m_packages[pkgName] = std::move(pkg);
@@ -1157,11 +1178,17 @@ void PackageCache::markInstalled(TagFile& tagFile) {
         auto sec = tagFile.section();
         std::string pkgName;
         sec.tag("package", pkgName);
+        std::transform(pkgName.begin(), pkgName.end(), pkgName.begin(), ::tolower);
+        std::cout << "Checking package " << pkgName << std::endl;
         auto pkg = m_packages.find(pkgName);
         if (pkg != m_packages.end()) {
             std::string verStr;
             sec.tag("version", verStr);
             pkg->second.setCurVersion(verStr);
+            std::cout << "Mark installed " << pkgName << " " << verStr << std::endl;
+            if (!pkg->second.curVersion()) {
+                std::cout << "Cannot find version " << verStr << " for package " << pkgName << " but it's installed" << std::endl;
+            }
         }
     } while(tagFile.nextSection());
 }

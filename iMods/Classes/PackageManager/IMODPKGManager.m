@@ -57,7 +57,8 @@
 
 - (BOOL) lock {
     if([[NSFileManager defaultManager] fileExistsAtPath:self.lockFilePath]) {
-        return NO;
+        NSError* error;
+        [[NSFileManager defaultManager] removeItemAtPath:self.lockFilePath error:&error];
     }
     NSString* lockFileContent = @"dpkg is being used by iMods\n";
     [[NSFileManager defaultManager] createFileAtPath:self.lockFilePath

@@ -94,7 +94,7 @@ NSFileHandle* errWriter;
     [self writeLog:@"Synchronizing package index..."];
     progressCallback(0.1);
     return [self fetchIndexFile]
-    .then(^(NSString* indexFile) {
+    .then(^id(NSString* indexFile) {
         __block NSError* error = nil;
         if(indexFile == nil) {
             [self writeErr:@"Failed to download index file."];
@@ -136,12 +136,12 @@ NSFileHandle* errWriter;
             return error;
         }
         
-        [self writeLog:@"1"];
-        
         // Download each package and install
         IMODownloadManager* dlManager = [IMODownloadManager sharedDownloadManager];
+        __block PMKPromise* installPromise = [PMKPromise new:^(PMKPromiseFulfiller fulfill, PMKPromiseRejecter reject){
+            fulfill(nil);
+        }];
         for(auto ver: resolvedVers) {
-            [self writeLog:@"2"];
             NSDictionary* itemDict = @{
                                        @"iid": @(ver->itemID()),
                                        @"pkg_name": @(ver->packageName().c_str())
@@ -153,42 +153,49 @@ NSFileHandle* errWriter;
                 self->_locked = false;
                 return item_error;
             }
-            [self writeLog:@"3"];
             
             progressCallback(0.4);
             // Download and install
             [self writeLog:@"Downloading package '%@'...", item.pkg_name];
-            PMKPromise* dlPromise = [dlManager download:Deb item:item];
-            dlPromise.then(^(NSString* debFilePath){
-                [self writeLog:@"Download completed."];
-                
-                progressCallback(0.7);
-                // TODO: Verify deb file
-                IMOTask* installTask = [self.dpkgManager installDEB:debFilePath];
-                // Install deb
-                [self writeLog:@"Installing package..."];
-                installTask.successfulTerminationBlock = ^(PRHTask* task) {
-                    [self writeLog:task.outputStringFromStandardOutputUTF8];
-                    [self writeLog:@"Package installed successfully."];
-                    progressCallback(1.0);
-                // TODO: Verify deb file
-                };
-                installTask.abnormalTerminationBlock = ^(PRHTask* task) {
-                    [self writeErr:task.errorOutputStringFromStandardErrorUTF8];
-                    [self writeErr:@"Failed to install package '%s'.", item.pkg_name];
-                    error = [NSError errorWithDomain:@"FailedInstallPackage" code:5 userInfo:nil];
-                };
-                [installTask launch];
-            })
-            .finally(^{
-                [self writeLog:@"4"];
+            installPromise = installPromise.then(^(){
+                PMKPromise* dlPromise = [dlManager download:Deb item:item]
+                .then(^id(NSString* debFilePath) {
+                    NSLog(@"Download completed.");
+                    [self writeLog:@"Download completed."];
+                    
+                    progressCallback(0.7);
+                    IMOTask* installTask = [self.dpkgManager installDEB:debFilePath];
+                    // Install deb
+                    NSLog(@"Installing package '%@'...", item.pkg_name);
+                    [self writeLog:@"Installing packag '%@'...", item.pkg_name];
+                    
+                    // Construct a new promise
+                    return [PMKPromise new:^(PMKPromiseFulfiller fulfiller, PMKPromiseRejecter rejecter) {
+                        installTask.successfulTerminationBlock = ^(PRHTask* task) {
+                            [self writeLog:task.outputStringFromStandardOutputUTF8];
+                            NSLog(@"Package '%@' installed successfully.", item.pkg_name);
+                            [self writeLog:@"Package '%@' installed successfully.", item.pkg_name];
+                            progressCallback(1.0);
+                            [self writeLog:@""];
+                            fulfiller(nil);
+                            // TODO: Verify deb checksum
+                        };
+                        installTask.abnormalTerminationBlock = ^(PRHTask* task) {
+                            [self writeErr:task.errorOutputStringFromStandardErrorUTF8];
+                            [self writeErr:@"Failed to install package '%@':", item.pkg_name];
+                            error = [NSError errorWithDomain:@"FailedInstallPackage" code:5 userInfo:nil];
+                            NSLog(@"Failed to install package '%@':\n%@", item.pkg_name, task.errorOutputStringFromStandardErrorUTF8);
+                            [self writeLog:@""];
+                            rejecter(error);
+                        };
+                        [installTask launch];
+                    }];
+                });
+                return dlPromise;
             });
-            [self writeLog:@"5"];
-            [PMKPromise until:^(){return dlPromise;} catch:nil];
         }
-        [self writeLog:@"6"];
         self->_locked = false;
-        return error;
+        return installPromise;
     });
 }
 
