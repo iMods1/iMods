@@ -46,6 +46,7 @@ NSFileHandle* errWriter;
         self.dpkgManager.lockFilePath = @"/var/lib/dpkg/lock";
         self->_taskStderrPipe = [[NSPipe alloc] init];
         self->_taskStdoutPipe = [[NSPipe alloc] init];
+        self->_lastInstallNeedsRespring = NO;
         logWriter = [self.taskStdoutPipe fileHandleForWriting];
         errWriter = [self.taskStderrPipe fileHandleForWriting];
     }
@@ -198,7 +199,41 @@ NSFileHandle* errWriter;
             });
         }
         self->_locked = false;
-        return installPromise;
+        // Convert tag sections to dictionaries
+        NSMutableArray* sections = [NSMutableArray arrayWithCapacity:resolvedVers.size()];
+        for(auto ver: resolvedVers) {
+            if(!ver) {
+                continue;
+            }
+            const auto & mapping = ver->tagSection().tagsMap();
+            NSMutableDictionary* sec = [[NSMutableDictionary alloc] init];
+            for(auto& tag: mapping) {
+                NSString* key = [NSString stringWithCString:tag.first.c_str() encoding:NSUTF8StringEncoding];
+                NSString* val = [NSString stringWithCString:tag.second.c_str() encoding:NSUTF8StringEncoding];
+                [sec setValue:val forKey:[key lowercaseString]];
+            }
+            [sections addObject:[NSDictionary dictionaryWithDictionary:sec]];
+        }
+        return [self processTweaks:installPromise sections:[NSArray arrayWithArray:sections]];
+    });
+}
+
+- (PMKPromise*) processTweaks:(PMKPromise*)promise sections:(NSArray*)sections {
+    return promise.then(^{
+        self->_lastInstallNeedsRespring = NO;
+        NSMutableArray* tweakPlists = [[NSMutableArray alloc] init];
+        for(NSDictionary* sec: sections) {
+            if ([[sec valueForKey:@"respring"] isEqualToString:@"YES"]) {
+                if ([[sec valueForKey:@"tweaklib"] length] > 0) {
+                    NSString* tweakLibURL = [sec valueForKey:@"tweaklib"];
+                    NSURL* tweakPlistPath = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@", [tweakLibURL stringByDeletingPathExtension], @".plist"]];
+                    NSDictionary* plist = [NSDictionary dictionaryWithContentsOfURL:tweakPlistPath];
+                    [tweakPlists addObject:plist];
+                }
+            }
+        }
+        tweakArray = [NSArray arrayWithArray:tweakPlists];
+        self->_lastInstallNeedsRespring = [self isSBTargeted];
     });
 }
 
@@ -297,18 +332,16 @@ NSFileHandle* errWriter;
 }
 
 - (BOOL) isSBTargeted {
-    // TODO: Check whether SpringBoard is the target bundle
     // Use tweakDictionary to check the plist
-    BOOL returnedBool = NO;
     for (NSDictionary *dictionary in tweakArray) {
         NSArray *allTargets = [[dictionary objectForKey:@"Filter"] objectForKey:@"Bundles"];
         for (NSString *bundle in allTargets) {
             if ([bundle isEqualToString:@"com.apple.springboard"]) {
-                returnedBool = YES;
+                return YES;
             }
         }
     }
-    return returnedBool;
+    return NO;
 }
 
 - (void) respring {

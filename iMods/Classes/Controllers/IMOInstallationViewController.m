@@ -168,9 +168,6 @@ IMOSessionManager* sessionManager;
     .then(^{
         self.status = FinishedSuccessfully;
     }).finally(^{
-        NSLog(@"Unregister pipe notifications");
-//        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
-//        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
 //        [self redirectRemainingContentToTextView:sessionManager.packageManager.taskStdoutPipe];
 //        [self redirectRemainingContentToTextView:sessionManager.packageManager.taskStderrPipe];
         [self updateDismissLabelVisibility];
@@ -226,6 +223,9 @@ IMOSessionManager* sessionManager;
 - (IBAction)didTapOnView:(id)sender {
     if (self.status != Running) {
         [sessionManager.packageManager unlockDPKG];
+        NSLog(@"Unregister pipe notifications");
+        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
+        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

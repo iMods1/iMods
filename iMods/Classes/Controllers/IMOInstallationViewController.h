@@ -20,7 +20,7 @@ enum IMOInstallationFinishStatus {
 
 @protocol IMOInstallationDelegate;
 
-@interface IMOInstallationViewController : UIViewController
+@interface IMOInstallationViewController : UIViewController <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet DACircularProgressView *progressView;
 @property (weak, nonatomic) id<IMOInstallationDelegate> delegate;
 @property (assign, nonatomic) enum IMOInstallationFinishStatus status;

@@ -18,6 +18,7 @@
 @property (readonly) NSString* indexFilePath;
 @property (readonly, strong) NSPipe* taskStdoutPipe;
 @property (readonly, strong) NSPipe* taskStderrPipe;
+@property (readonly, assign, nonatomic) BOOL lastInstallNeedsRespring;
 
 + (IMOPackageManager*) sharedPackageManager;
 

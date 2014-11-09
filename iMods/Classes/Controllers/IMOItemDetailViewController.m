@@ -445,11 +445,22 @@
     } else {
         [self checkInstallStatus];
     }
+    if (self.packageManager.lastInstallNeedsRespring) {
+        UIAlertView* respringAlert = [[UIAlertView alloc] initWithTitle:@"Respring needed"
+                                                                message:@"You installed new tweaks, do you want to respring now?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"OK", nil];
+        [respringAlert show];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // TODO: Unstub
+    // Handle respring
+    if (buttonIndex == [alertView firstOtherButtonIndex]) {
+        [self.packageManager respring];
+    }
 }
 
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender {
