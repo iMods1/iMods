@@ -157,6 +157,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"item_detail_installation_modal"]) {
         ((IMOInstallationViewController *)segue.destinationViewController).delegate = self;
+        if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) {
+            ((IMOInstallationViewController *)segue.destinationViewController).modalPresentationStyle = UIModalPresentationCurrentContext;
+        } else {
+            ((IMOInstallationViewController *)segue.destinationViewController).modalPresentationStyle = UIModalPresentationOverFullScreen;
+        }
+        ((IMOInstallationViewController *)segue.destinationViewController).modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     }
 }
 
@@ -164,7 +170,7 @@
 
 - (IBAction)didTapInstallButton:(UIButton *)sender {
 #if TARGET_IPHONE_SIMULATOR
-    [self errorAlert:@"Simulator" message:@"Cannot install in simulator"];
+    [self performSegueWithIdentifier:@"item_detail_installation_modal" sender:self];
 #else
     if (self.isPurchased) {
         if (self.isInstalled) {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DACircularProgressView.h"
+#import <MRProgress.h>
 #import "IMOTask.h"
 #import "IMOItem.h"
 
@@ -21,7 +21,7 @@ enum IMOInstallationFinishStatus {
 @protocol IMOInstallationDelegate;
 
 @interface IMOInstallationViewController : UIViewController <UIAlertViewDelegate>
-@property (weak, nonatomic) IBOutlet DACircularProgressView *progressView;
+@property (weak, nonatomic) IBOutlet MRCircularProgressView* progressView;
 @property (weak, nonatomic) id<IMOInstallationDelegate> delegate;
 @property (assign, nonatomic) enum IMOInstallationFinishStatus status;
 @end
