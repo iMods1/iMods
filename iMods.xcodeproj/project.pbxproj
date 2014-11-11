@@ -270,8 +270,8 @@
 		079663DE6DBC455CBC977C93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		0B3C95FDF7B146ABBF782234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		165CEE891F08D47FC3BF33D8 /* Pods-iMods UI Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMods UI Tests/Pods-iMods UI Tests.release.xcconfig"; sourceTree = "<group>"; };
-		266EBEEC4CBCBCABEAF62FBD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		18195AB9E0A9387B00D3B00A /* Pods-iMods UI Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMods UI Tests/Pods-iMods UI Tests.release.xcconfig"; sourceTree = "<group>"; };
+		266EBEEC4CBCBCABEAF62FBD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		28052DB319A2BF370080DBEA /* iModsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iModsTests.m; sourceTree = "<group>"; };
 		2805497C19895B7C0049D619 /* IMONetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkManager.h; path = Classes/NetworkManager/IMONetworkManager.h; sourceTree = "<group>"; };
 		2805497D19895B7C0049D619 /* IMONetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkManager.m; path = Classes/NetworkManager/IMONetworkManager.m; sourceTree = "<group>"; };
@@ -1416,7 +1416,6 @@
 		};
 		284CBBD11946F35A006539A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */;
 			baseConfigurationReference = B4A58CCA377D361502AE6A65 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1470,7 +1469,6 @@
 		};
 		284CBBD21946F35A006539A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 266EBEEC4CBCBCABEAF62FBD /* Pods.release.xcconfig */;
 			baseConfigurationReference = 079663DE6DBC455CBC977C93 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1524,7 +1522,6 @@
 		};
 		284CBBD41946F35A006539A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */;
 			baseConfigurationReference = B4A58CCA377D361502AE6A65 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
@@ -1549,7 +1546,6 @@
 		};
 		284CBBD51946F35A006539A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */;
 			baseConfigurationReference = 079663DE6DBC455CBC977C93 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
@@ -1569,7 +1565,6 @@
 		};
 		4D29D10219D314BA004DCE49 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B9E58B97DA33ADA1A2D7358 /* Pods-iMods UI Tests.debug.xcconfig */;
 			baseConfigurationReference = 808FCE9F8B2D12BE8027A4D0 /* Pods-iMods UI Tests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1593,7 +1588,6 @@
 		};
 		4D29D10319D314BA004DCE49 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 165CEE891F08D47FC3BF33D8 /* Pods-iMods UI Tests.release.xcconfig */;
 			baseConfigurationReference = 18195AB9E0A9387B00D3B00A /* Pods-iMods UI Tests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
