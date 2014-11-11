@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
@@ -668,11 +669,11 @@
             <objects>
                 <viewController title="Your Wallet" id="L0q-mP-zcY" customClass="IMOWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dwA-g4-2Y2">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" id="nmy-hc-BwL">
-                                <rect key="frame" x="16" y="69" width="288" height="266"/>
+                                <rect key="frame" x="16" y="69" width="288" height="217"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -960,7 +961,7 @@
                         <outlet property="priceLabel" destination="UZu-uC-VOV" id="x0z-GQ-ixL"/>
                         <outlet property="titleLabel" destination="h5b-fU-AcB" id="Qo9-tq-Aco"/>
                         <outlet property="versionLabel" destination="9wF-AX-myF" id="1YJ-41-4iF"/>
-                        <segue destination="2N3-oc-eFA" kind="modal" identifier="item_detail_installation_modal" id="wAm-YW-gPY"/>
+                        <segue destination="2N3-oc-eFA" kind="modal" identifier="item_detail_installation_modal" modalTransitionStyle="coverVertical" id="wAm-YW-gPY"/>
                         <segue destination="L0q-mP-zcY" kind="push" identifier="item_detail_wallet_push" id="ukT-Qe-1cO"/>
                     </connections>
                 </viewController>
@@ -1243,25 +1244,23 @@
         <!--Installation View Controller-->
         <scene sceneID="QzT-Vu-pwD">
             <objects>
-                <viewController id="2N3-oc-eFA" customClass="IMOInstallationViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="2N3-oc-eFA" customClass="IMOInstallationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GPa-OO-Keq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="Ocr-mb-MnS" customClass="DACircularProgressView">
-                                <rect key="frame" x="256" y="37" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INSTALLING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="azM-Mf-IVZ">
-                                <rect key="frame" x="94" y="37" width="141" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iNSTALLING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="azM-Mf-IVZ">
+                                <rect key="frame" x="0.0" y="41" width="320" height="35"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="Qw8-kk-7iy">
-                                <rect key="frame" x="16" y="93" width="288" height="426"/>
+                                <rect key="frame" x="16" y="71" width="288" height="426"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -1269,30 +1268,38 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to dismiss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xl3-QV-PFD">
-                                <rect key="frame" x="113" y="527" width="95" height="21"/>
+                            <view contentMode="scaleToFill" id="Ocr-mb-MnS" customClass="MRCircularProgressView">
+                                <rect key="frame" x="16" y="140" width="288" height="288"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C7d-aT-Veb">
+                                <rect key="frame" x="0.0" y="505" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tap here to dismiss">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapDismissButton:" destination="2N3-oc-eFA" eventType="touchUpInside" id="Bep-Oe-RCp"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                         <gestureRecognizers/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="3Rb-51-6Eq" appends="YES" id="KeQ-C3-0UQ"/>
+                            <outletCollection property="gestureRecognizers" destination="P7h-pD-cmu" appends="YES" id="Hpr-Vg-2i1"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="dismissLabel" destination="xl3-QV-PFD" id="Ie2-RT-k4T"/>
+                        <outlet property="installationLabel" destination="azM-Mf-IVZ" id="SzS-cI-B5K"/>
                         <outlet property="progressView" destination="Ocr-mb-MnS" id="vbU-IN-ZnZ"/>
                         <outlet property="textView" destination="Qw8-kk-7iy" id="GSK-1B-KAc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9L-ky-Meo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3Rb-51-6Eq">
+                <tapGestureRecognizer id="P7h-pD-cmu">
                     <connections>
-                        <action selector="didTapOnView:" destination="2N3-oc-eFA" id="MGn-lZ-4qf"/>
+                        <action selector="didTapOnView:" destination="2N3-oc-eFA" id="8ce-QB-ljJ"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1487,7 +1494,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="VdQ-U4-lWc"/>
-        <segue reference="o8O-OQ-8vm"/>
+        <segue reference="ukT-Qe-1cO"/>
         <segue reference="PSt-SB-aiM"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

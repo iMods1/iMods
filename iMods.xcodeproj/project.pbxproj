@@ -69,6 +69,9 @@
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
+		28DB8D6D1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
+		28DB8D6E1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
 		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
 		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
 		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
@@ -341,6 +344,8 @@
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HTMLColors.h"; path = "Classes/Extensions/UIColor+HTMLColors.h"; sourceTree = "<group>"; };
+		28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HTMLColors.m"; path = "Classes/Extensions/UIColor+HTMLColors.m"; sourceTree = "<group>"; };
 		2B9E58B97DA33ADA1A2D7358 /* Pods-iMods UI Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMods UI Tests/Pods-iMods UI Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOLoginViewController.h; sourceTree = "<group>"; };
 		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
@@ -595,6 +600,15 @@
 			name = NetworkManager;
 			sourceTree = "<group>";
 		};
+		28DB8D701A12A823002635EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */,
+				28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +739,7 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				28DB8D701A12A823002635EB /* Extensions */,
 				4DBABF1719C76B1000274A45 /* Views */,
 				28CF066A19895AF4003347BB /* NetworkManager */,
 				28EC28791980DF120086CE7A /* PackageManager */,
@@ -1167,6 +1182,7 @@
 				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				2826720119D0123B0063CF94 /* main.m in Sources */,
+				28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1197,6 +1213,7 @@
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				282B436A1A00552C007F3C78 /* zip_stream_test.cpp in Sources */,
 				2833494919AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
+				28DB8D6D1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
 				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
 				2833494519AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
@@ -1209,6 +1226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28DB8D6E1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
 				4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1426,7 +1444,7 @@
 					"${SOURCE_ROOT}/include",
 				);
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1479,7 +1497,7 @@
 					"${SOURCE_ROOT}/include",
 				);
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

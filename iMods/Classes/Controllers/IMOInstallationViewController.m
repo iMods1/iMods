@@ -11,16 +11,20 @@
 #import "IMOTask.h"
 #import "IMODownloadManager.h"
 #import "IMOSessionManager.h"
+#import "UIColor+HTMLColors.h"
+#import "FXBlurView.h"
 #ifdef __APPLE__
 #include "TargetConditionals.h"
 #endif
 
 @interface IMOInstallationViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UILabel* dismissLabel;
+@property (weak, nonatomic) IBOutlet UIButton* dismissButton;
+@property (weak, nonatomic) IBOutlet UILabel* installationLabel;
 @property (strong, nonatomic) NSPipe *pipe;
 @property (strong, nonatomic) NSFileHandle *handle;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) UITapGestureRecognizer* tapGestureRecognizer;
 
 - (void)launchTaskWithOptions:(NSDictionary *)options;
 - (void)handleTaskNotification:(NSNotification *)notification;
@@ -37,25 +41,55 @@ IMOSessionManager* sessionManager;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    sessionManager = [IMOSessionManager sharedSessionManager];
     
     // Create timer for progress
     // self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.5f target: self selector:@selector(advanceProgressView) userInfo:nil repeats: YES];
-    
-    sessionManager = [IMOSessionManager sharedSessionManager];
     
     // Create a new NSPipe for taskOutput.
     self.pipe = [NSPipe pipe];
     
     // Set up progressView traits
-    self.progressView.trackTintColor = [UIColor clearColor];
-    self.progressView.thicknessRatio = 0.1f;
-    self.progressView.progressTintColor = [UIColor colorWithRed:0.2 green:0.9 blue:0.5 alpha:1.0];
+    self.progressView.lineWidth = 10.0f;
+    UIImage* gradient = [UIImage imageNamed:@"gradientColor"];
+    UIColor* gradientColor = [UIColor colorWithPatternImage:gradient];
+    self.progressView.tintColor = gradientColor;
+//    self.progressView.tintColor = [UIColor colorWithRed:0.2 green:0.9 blue:0.5 alpha:1.0];
+    self.progressView.backgroundColor = [UIColor clearColor];
+    self.progressView.valueLabel.font = [self.progressView.valueLabel.font fontWithSize:35.0];
+    self.dismissButton.backgroundColor = [UIColor clearColor];
+    [self.dismissButton setTitleColor: [UIColor colorWithHexString:@"#9f9f9f"]
+                             forState:UIControlStateNormal];
+    self.dismissButton.tag = 0xFFEE; // A random tag to distinguish it from other views
+    self.installationLabel.backgroundColor = [UIColor clearColor];
+    [self.installationLabel setTextColor:gradientColor];
     self.textView.editable = NO;
+    self.textView.opaque = NO;
+    self.textView.backgroundColor = [UIColor clearColor];
+    [self.textView setHidden:YES];
+    
+    if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) {
+        // iOS 7 doesn't support UIVisualEffectView, here's a workaround
+        UIToolbar* blurView = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+        blurView.autoresizingMask = self.view.autoresizingMask;
+        self.view.opaque = NO;
+        self.view.backgroundColor = [UIColor clearColor];
+        [self.view insertSubview:blurView atIndex:0];
+    } else {
+//        FXBlurView* blurView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+        self.view.backgroundColor = [UIColor clearColor];
+        UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        UIVisualEffectView* blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//        blurView.backgroundColor = [[UIColor colorWithHexString:@"#e4e4e4"] colorWithAlphaComponent:0.7];
+        blurView.frame = self.view.frame;
+        blurView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.view insertSubview:blurView atIndex:0];
+    }
 }
 
 - (void)updateDismissLabelVisibility {
-    [self.dismissLabel setHidden:(self.status & Running)];
+    [self.dismissButton setHidden:self.status == Running];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -137,6 +171,10 @@ IMOSessionManager* sessionManager;
     
 #if TARGET_IPHONE_SIMULATOR
     // Don't launch task on simulator
+    self.status = FinishedSuccessfully;
+    [self.textView setText:@"oiasjdoiajdoaijdoiasdoaisdjaoasoidjaoidjoij\naosidjaidjaodjaodiasdoahidaosidha\nsajdoasidjaosijsoaidjasodjasd\noaisdjaosdjaoidjaosidjoasidoasidoiasdja\naosidjoasidoadjoasidjasiodjaosidjaosidjaoisdjoai\n"];
+    [self updateDismissLabelVisibility];
+    [self.progressView setProgress:0.79];
     return;
 #elif TARGET_OS_IPHONE
     self.textView.text = @"";
@@ -168,9 +206,6 @@ IMOSessionManager* sessionManager;
     .then(^{
         self.status = FinishedSuccessfully;
     }).finally(^{
-        NSLog(@"Unregister pipe notifications");
-//        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
-//        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
 //        [self redirectRemainingContentToTextView:sessionManager.packageManager.taskStdoutPipe];
 //        [self redirectRemainingContentToTextView:sessionManager.packageManager.taskStderrPipe];
         [self updateDismissLabelVisibility];
@@ -223,9 +258,17 @@ IMOSessionManager* sessionManager;
     }
 }
 
-- (IBAction)didTapOnView:(id)sender {
+- (IBAction)didTapOnView:(id)sender{
+    [self.textView setHidden:!self.textView.hidden];
+    [self.progressView setHidden:!self.progressView.hidden];
+}
+
+- (IBAction)didTapDismissButton:(id)sender {
     if (self.status != Running) {
         [sessionManager.packageManager unlockDPKG];
+        NSLog(@"Unregister pipe notifications");
+        [self removePipeRedirct:sessionManager.packageManager.taskStdoutPipe];
+        [self removePipeRedirct:sessionManager.packageManager.taskStderrPipe];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
