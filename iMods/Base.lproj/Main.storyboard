@@ -1268,14 +1268,9 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" id="Ocr-mb-MnS" customClass="MRCircularProgressView">
-                                <rect key="frame" x="16" y="140" width="288" height="288"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C7d-aT-Veb">
                                 <rect key="frame" x="0.0" y="505" width="320" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tap here to dismiss">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1284,6 +1279,11 @@
                                     <action selector="didTapDismissButton:" destination="2N3-oc-eFA" eventType="touchUpInside" id="Bep-Oe-RCp"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleAspectFill" id="Ocr-mb-MnS" customClass="MRCircularProgressView">
+                                <rect key="frame" x="55" y="183" width="210" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <gestureRecognizers/>
                         <connections>
