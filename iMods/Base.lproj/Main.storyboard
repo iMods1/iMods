@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -34,7 +34,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FSv-7f-e2t">
-                                <rect key="frame" x="26" y="367" width="268" height="46"/>
+                                <rect key="frame" x="26" y="355" width="268" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <state key="normal" backgroundImage="imods-assets-login-button">
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xcg-hI-wpz">
-                                <rect key="frame" x="26" y="421" width="268" height="46"/>
+                                <rect key="frame" x="26" y="404" width="268" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <state key="normal" backgroundImage="imods-assets-register-button">
@@ -66,6 +66,14 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0005s_0001_Lost-password-_" id="tFw-GJ-MbC">
+                                <rect key="frame" x="122" y="468" width="108" height="15"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="login-account-imods_0001s_0005s_0000_key-128" id="rx0-75-prj">
+                                <rect key="frame" x="101" y="469" width="14" height="13"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.91764712329999998" green="0.91764712329999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
                         <gestureRecognizers/>
@@ -1376,7 +1384,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qDl-05-yoM">
-                                <rect key="frame" x="194" y="13" width="31" height="33"/>
+                                <rect key="frame" x="233" y="30" width="21" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="imods-assets-trash-icon">
@@ -1388,9 +1396,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QhM-YI-H0o">
-                                <rect key="frame" x="94" y="16" width="29" height="31"/>
+                                <rect key="frame" x="67" y="30" width="25" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="imods-assets-updates-icon-deselected">
+                                <state key="normal" backgroundImage="imods-assets-warning-icon">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1398,14 +1406,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSJ-u3-pWt">
-                                <rect key="frame" x="84" y="48" width="49" height="21"/>
+                                <rect key="frame" x="55" y="51" width="49" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XrR-P8-l3h">
-                                <rect key="frame" x="192" y="48" width="40" height="21"/>
+                                <rect key="frame" x="225" y="51" width="40" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1471,8 +1479,8 @@
         <image name="imods-assets-trash-icon" width="20" height="23"/>
         <image name="imods-assets-tweaks-icon" width="31" height="31"/>
         <image name="imods-assets-update-icon-selected" width="28" height="28"/>
-        <image name="imods-assets-updates-icon-deselected" width="28" height="28"/>
         <image name="imods-assets-user-icon" width="20" height="24"/>
+        <image name="imods-assets-warning-icon" width="25" height="22"/>
         <image name="imods-assets-wishlist-icon" width="21" height="21"/>
         <image name="login-account-imods_0000s_0000_about-128" width="27" height="26"/>
         <image name="login-account-imods_0000s_0001_Chat-with-us" width="50" height="7"/>
@@ -1480,6 +1488,8 @@
         <image name="login-account-imods_0001s_0000_message-128" width="27" height="19"/>
         <image name="login-account-imods_0001s_0001_Email-Us" width="35" height="7"/>
         <image name="login-account-imods_0001s_0004_Ellipse-2" width="48" height="48"/>
+        <image name="login-account-imods_0001s_0005s_0000_key-128" width="14" height="13"/>
+        <image name="login-account-imods_0001s_0005s_0001_Lost-password-_" width="108" height="15"/>
         <image name="login-account-imods_0002_Share-iMods-with-the-world!" width="155" height="10"/>
         <image name="login-account-imods_0002s_0000_headset-128" width="27" height="27"/>
         <image name="login-account-imods_0002s_0001_Call-Us" width="28" height="7"/>
