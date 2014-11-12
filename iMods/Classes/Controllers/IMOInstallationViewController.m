@@ -50,12 +50,11 @@ IMOSessionManager* sessionManager;
     // Create a new NSPipe for taskOutput.
     self.pipe = [NSPipe pipe];
     
-    // Set up progressView traits
-    self.progressView.lineWidth = 10.0f;
     UIImage* gradient = [UIImage imageNamed:@"gradientColor"];
     UIColor* gradientColor = [UIColor colorWithPatternImage:gradient];
     self.progressView.tintColor = gradientColor;
-//    self.progressView.tintColor = [UIColor colorWithRed:0.2 green:0.9 blue:0.5 alpha:1.0];
+    // Set up progressView traits
+    self.progressView.lineWidth = 10.0f;
     self.progressView.backgroundColor = [UIColor clearColor];
     self.progressView.valueLabel.font = [self.progressView.valueLabel.font fontWithSize:35.0];
     self.dismissButton.backgroundColor = [UIColor clearColor];
