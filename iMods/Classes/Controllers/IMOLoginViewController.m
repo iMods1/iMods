@@ -9,6 +9,8 @@
 #import "IMOLoginViewController.h"
 #import "IMOUserManager.h"
 #import "UICKeyChainStore.h"
+#import "AppDelegate.h"
+#import "IMOResetPasswordViewController.h"
 
 @interface IMOLoginViewController ()
 
@@ -17,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *lostPasswordButton;
+@property  NSDictionary* resetPasswordData;
 
 - (IBAction)loginButtonWasTapped:(UIButton *)sender;
 - (IBAction)didTapOutsideTextFields:(UITapGestureRecognizer *)sender;
@@ -35,6 +38,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Setup reset password notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveResetPassword:)
+                                                 name:@"ResetPassword"
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,6 +78,11 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"login_register_modal"]) {
         ((IMORegistrationViewController *)segue.destinationViewController).delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"reset_password_modal"]) {
+        IMOResetPasswordViewController* vc = segue.destinationViewController;
+        [vc prepareToResetPasswordFor:[self.resetPasswordData valueForKey:@"email"]
+                                token:[self.resetPasswordData valueForKey:@"token"]];
     }
 }
 
@@ -112,6 +126,11 @@
     [alert show];
 }
 
+- (void) didReceiveResetPassword:(NSNotification*) notification {
+    self.resetPasswordData = notification.object;
+    [self performSegueWithIdentifier:@"reset_password_modal" sender:self];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 1 && buttonIndex == alertView.firstOtherButtonIndex) {
         // Check email field
@@ -126,12 +145,30 @@
             return;
         }
         
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Reset password"
-                                                        message:@"The reset password link has been sent to your email address."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        
+        IMOUserManager* userManager = [IMOUserManager sharedUserManager];
+        
+        [userManager userRequestResetPassword:email]
+        .catch(^(NSError* error){
+            NSString* msg = [NSString stringWithFormat:@"Error occurred during sending request: %@",
+                             error.localizedDescription];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:msg
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            // Propagate error
+            return error;
+        })
+        .then(^{
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Reset password"
+                                                            message:@"The reset password link has been sent to your email address."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        });
     }
 }
 @end
