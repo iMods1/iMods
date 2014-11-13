@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+@property (weak, nonatomic) IBOutlet UIButton *lostPasswordButton;
 
 - (IBAction)loginButtonWasTapped:(UIButton *)sender;
 - (IBAction)didTapOutsideTextFields:(UITapGestureRecognizer *)sender;
@@ -101,4 +102,36 @@
     // Stub
 }
 
+- (IBAction)didTapLostPasswordButton:(id)sender {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Reset password"
+                                                    message:@"Do you want to reset your password?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Reset", nil];
+    alert.tag = 1;
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 1 && buttonIndex == alertView.firstOtherButtonIndex) {
+        // Check email field
+        NSString* email = [self.emailField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([email length] <= 0) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Email"
+                                                            message:@"Email field cannot be empty."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Reset password"
+                                                        message:@"The reset password link has been sent to your email address."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
 @end
