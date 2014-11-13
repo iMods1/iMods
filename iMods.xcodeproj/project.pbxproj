@@ -106,6 +106,7 @@
 		4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */; };
 		4DE71ADC19FE9E3A002CA0A7 /* IMODownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */; };
 		4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */; };
+		4DF0A9011A14616600AFAF59 /* IMOItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -412,6 +413,8 @@
 		4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODownloadManager.m; path = Classes/SessionManagers/IMODownloadManager.m; sourceTree = "<group>"; };
 		4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTestDownloadViewController.h; sourceTree = "<group>"; };
 		4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOTestDownloadViewController.m; sourceTree = "<group>"; };
+		4DF0A8FF1A14616600AFAF59 /* IMOItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOItemTableViewCell.h; path = Classes/Views/IMOItemTableViewCell.h; sourceTree = "<group>"; };
+		4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOItemTableViewCell.m; path = Classes/Views/IMOItemTableViewCell.m; sourceTree = "<group>"; };
 		56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iMods UI Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -803,6 +806,8 @@
 		4DBABF1719C76B1000274A45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4DF0A8FF1A14616600AFAF59 /* IMOItemTableViewCell.h */,
+				4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1146,6 +1151,7 @@
 				284E113D19D0101F000B513A /* AppDelegate.m in Sources */,
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
+				4DF0A9011A14616600AFAF59 /* IMOItemTableViewCell.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
