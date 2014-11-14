@@ -133,6 +133,12 @@
     
     self.isFree = (self.item.price <= 0);
     
+    // Set up icon
+    self.itemIconImage.layer.masksToBounds = YES;
+    self.itemIconImage.layer.cornerRadius = self.itemIconImage.frame.size.width / 2.0;
+    self.itemIconImage.layer.borderWidth = 1.0f;
+    self.itemIconImage.layer.borderColor = [[UIColor grayColor] CGColor];
+
     [self setupItemLabels];
 
     [self setupInstallButton];
@@ -142,7 +148,7 @@
     [self setupInstallButton];
     IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
     [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
-        self.imageView.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
+        self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
     });
     
 }

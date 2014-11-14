@@ -7,6 +7,7 @@
 //
 
 #import "IMOTabBarController.h"
+#import "IMOResetPasswordViewController.h"
 #import "IMOUserManager.h"
 #import "UICKeyChainStore.h"
 #import "AppDelegate.h"
@@ -84,6 +85,7 @@
             lvc.delegate = self;
         }
     }
+    
 }
 
 #pragma mark - Misc

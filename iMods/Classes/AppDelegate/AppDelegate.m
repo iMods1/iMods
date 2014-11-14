@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "IMOConstants.h"
+#import "IMOLoginViewController.h"
+#import "IMOResetPasswordViewController.h"
 #import "Stripe.h"
 
 NSString * const StripePublishableKey = @"pk_test_4ZdjKL2iALVVPu62VM8BbbAE";
@@ -53,6 +55,11 @@ BOOL isRunningTests(void) {
     self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [BASE_API_ENDPOINT stringByAppendingString: @"/api/"]]];
     
     [Stripe setDefaultPublishableKey:StripePublishableKey];
+    
+    NSURL* handlelUrl = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    if (handlelUrl) {
+        [self application:application handleOpenURL:handlelUrl];
+    }
     
     return YES;
 }
@@ -213,4 +220,47 @@ BOOL isRunningTests(void) {
     
     return [NSString stringWithFormat:@"%@.sqlite", [dateFormatter stringFromDate:[NSDate date]]];
 }
+
+- (NSDictionary *)parseQueryString:(NSString *)query {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:6];
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *val = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [dict setObject:val forKey:key];
+    }
+    return dict;
+}
+
+- (BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSLog(@"url: %@", [url absoluteString]);
+    if (![url.scheme isEqualToString:@"imods"]) {
+        return NO;
+    }
+    NSLog(@"host: %@", url.host);
+    if([url.host isEqualToString:@"user"]) {
+        NSLog(@"path: %@", url.path);
+        if ([url.path isEqualToString:@"/reset_password"]) {
+            // Handle reset_password URL
+            NSDictionary* params = [self parseQueryString: url.query];
+            NSString* email = [params valueForKey:@"email"];
+            NSString* token = [params valueForKey:@"token"];
+            email = [email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            token = [token stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if ([email length] == 0 || [token length] == 0) {
+                return NO;
+            }
+            NSDictionary* data = @{
+                                   @"email": email,
+                                   @"token": token
+                                   };
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ResetPassword" object: data];
+        }
+    }
+    return NO;
+}
+
 @end
