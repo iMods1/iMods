@@ -40,6 +40,7 @@
         self.ratingControl.numberOfStar = 5;
         self.ratingControl.stepInterval = 1.0;
         self.ratingControl.markFont = [UIFont systemFontOfSize:9.0];
+        [self.ratingControl setUserInteractionEnabled:NO];
         [self insertSubview:self.ratingControl belowSubview:self.textLabel];
         
         self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 15, 250, 30)];
