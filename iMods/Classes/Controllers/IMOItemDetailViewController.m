@@ -136,8 +136,8 @@
     // Set up icon
     self.itemIconImage.layer.masksToBounds = YES;
     self.itemIconImage.layer.cornerRadius = self.itemIconImage.frame.size.width / 2.0;
-    self.itemIconImage.layer.borderWidth = 1.0f;
-    self.itemIconImage.layer.borderColor = [[UIColor grayColor] CGColor];
+//    self.itemIconImage.layer.borderWidth = 1.0f;
+//    self.itemIconImage.layer.borderColor = [[UIColor grayColor] CGColor];
 
     [self setupItemLabels];
 
@@ -477,6 +477,20 @@
 
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender {
     // stub
+}
+
+- (void)didTapBackButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)setUpNavigationBarItemsForCategory:(NSString*)categoryName icon:(UIImage*)categoryIcon {
+    
+    self.navigationItem.title = categoryName;
+    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 39, 39)];
+    [backButton setImage:categoryIcon forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(didTapBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backButtonItem];
 }
 
 @end

@@ -9,9 +9,26 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/NSValueTransformer+MTLPredefinedTransformerAdditions.h>
 #import <Mantle/MTLValueTransformer.h>
+#import <Mantle/NSDictionary+MTLManipulationAdditions.h>
 #import "IMOItem.h"
+#import "IMOReview.h"
 
 @implementation IMOItem
+
+- (instancetype) initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
+    NSArray* reviews = [dictionaryValue valueForKey:@"reviews"];
+    NSUInteger totalRating = 0;
+    for(IMOReview* rev in reviews) {
+        totalRating += rev.rating;
+    }
+    NSUInteger count = [reviews count] || 1;
+    float finalRating = (float)totalRating/count;
+    
+    NSMutableDictionary* defaults = [NSMutableDictionary dictionaryWithDictionary:
+                            @{ @"rating": @(finalRating)
+                               }];
+    return [super initWithDictionary:[defaults mtl_dictionaryByAddingEntriesFromDictionary:dictionaryValue] error:error];
+}
 
 + (NSDictionary *) JSONKeyPathsByPropertyKey {
     return @{
@@ -29,7 +46,8 @@
              @"desc": @"description",
              @"add_date": @"add_date",
              @"last_update_date": @"last_update_date",
-             @"reviews": @"reviews"
+             @"reviews": @"reviews",
+             @"rating": @"rating"
              };
 }
 

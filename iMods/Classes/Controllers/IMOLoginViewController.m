@@ -148,6 +148,15 @@
         
         IMOUserManager* userManager = [IMOUserManager sharedUserManager];
         
+        // Show indicator
+        __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        indicator.center = self.view.center;
+        
+        [self.view addSubview: indicator];
+        
+        [indicator startAnimating];
+        
         [userManager userRequestResetPassword:email]
         .catch(^(NSError* error){
             NSString* msg = [NSString stringWithFormat:@"Error occurred during sending request: %@",
@@ -168,6 +177,10 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
+        })
+        .finally(^{
+            [indicator stopAnimating];
+            [indicator removeFromSuperview];
         });
     }
 }

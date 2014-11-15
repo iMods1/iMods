@@ -47,6 +47,7 @@
 		2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
 		2844E9411A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */; };
 		2844E9421A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */; };
+		2844E94D1A16FA89009E6168 /* IMOCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2844E94C1A16FA89009E6168 /* IMOCategoryTableViewCell.m */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284E113D19D0101F000B513A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 284E113C19D0101F000B513A /* AppDelegate.m */; };
@@ -315,6 +316,8 @@
 		2833495019AA8F2500DDB922 /* IMOCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryManager.m; path = Classes/SessionManagers/IMOCategoryManager.m; sourceTree = "<group>"; };
 		2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOResetPasswordViewController.h; sourceTree = "<group>"; };
 		2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOResetPasswordViewController.m; sourceTree = "<group>"; };
+		2844E94B1A16FA89009E6168 /* IMOCategoryTabelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOCategoryTabelViewCell.h; path = Classes/Views/IMOCategoryTabelViewCell.h; sourceTree = "<group>"; };
+		2844E94C1A16FA89009E6168 /* IMOCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryTableViewCell.m; path = Classes/Views/IMOCategoryTableViewCell.m; sourceTree = "<group>"; };
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBBE1946F35A006539A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -663,42 +666,42 @@
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */,
-				2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */,
-				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
-				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
-				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
-				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
-				4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */,
-				4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */,
-				4D29D10419D342E6004DCE49 /* IMOCategoriesDetailTableViewController.h */,
-				4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */,
-				4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */,
-				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
-				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
-				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
-				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
-				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
-				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
-				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
-				4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */,
-				4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */,
-				4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */,
-				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
-				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
-				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
 				4D8A3B6319E1B99A007172A6 /* IMOCardViewController.h */,
 				4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */,
-				4DCFBBEC19E6718000A36D63 /* IMORegistrationViewController.h */,
-				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
-				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
-				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
+				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
+				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
+				4D29D10419D342E6004DCE49 /* IMOCategoriesDetailTableViewController.h */,
+				4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */,
+				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
+				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
+				4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */,
+				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
+				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
+				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
 				4DCFBBF519E6FE1400A36D63 /* IMOInstallationViewController.h */,
 				4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */,
-				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
-				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
+				4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */,
+				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
+				4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */,
+				4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */,
+				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
+				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
+				4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */,
+				4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */,
+				4DCFBBEC19E6718000A36D63 /* IMORegistrationViewController.h */,
+				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
+				2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */,
+				2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */,
+				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
+				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
+				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
+				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
 				4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */,
 				4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */,
+				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
+				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
+				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
+				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -806,6 +809,8 @@
 		4DBABF1719C76B1000274A45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2844E94B1A16FA89009E6168 /* IMOCategoryTabelViewCell.h */,
+				2844E94C1A16FA89009E6168 /* IMOCategoryTableViewCell.m */,
 				4DF0A8FF1A14616600AFAF59 /* IMOItemTableViewCell.h */,
 				4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */,
 			);
@@ -1178,6 +1183,7 @@
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
+				2844E94D1A16FA89009E6168 /* IMOCategoryTableViewCell.m in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */,
 				4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */,

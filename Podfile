@@ -16,6 +16,7 @@ pod 'DACircularProgress', '~> 2.2.0'
 pod 'RFGravatarImageView', '~> 1.0'
 pod 'FXBlurView', '~> 1.6.2'
 pod 'MRProgress'
+pod 'AXRatingView', '~> 0.9.7'
 
 target 'iMods UI Tests', :exclusive => true do
     pod 'KIF', '~> 3.0'

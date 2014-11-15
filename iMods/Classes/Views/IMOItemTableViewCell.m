@@ -8,6 +8,9 @@
 
 #import "IMOItemTableViewCell.h"
 #import "IMODownloadManager.h"
+#import "IMOReviewManager.h"
+#import "UIColor+HTMLColors.h"
+#import "AXRatingView.h"
 
 @interface IMOItemTableViewCell()
 
@@ -15,6 +18,7 @@
 @property (readwrite, strong, nonatomic) UILabel *detailTextLabel;
 @property (readwrite, strong, nonatomic) UIImageView *imageView;
 @property (assign, nonatomic) BOOL isImageSet;
+@property (readwrite, strong, nonatomic) AXRatingView* ratingControl;
 
 - (void)downloadIconImage:(IMOItem *)item;
 
@@ -31,6 +35,12 @@
         self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y, 250, 30)];
         self.textLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:14.0];
         [self addSubview:self.textLabel];
+        
+        self.ratingControl = [[AXRatingView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 180, self.bounds.origin.y+10, 50, 15)];
+        self.ratingControl.numberOfStar = 5;
+        self.ratingControl.stepInterval = 1.0;
+        self.ratingControl.markFont = [UIFont systemFontOfSize:9.0];
+        [self insertSubview:self.ratingControl belowSubview:self.textLabel];
         
         self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 15, 250, 30)];
         self.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:10.0];
@@ -60,6 +70,18 @@
     
     // Download image from item
     [self downloadIconImage:item];
+    
+    IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
+    [reviewManager getReviewsByItem:item]
+    .then(^(NSArray* reviews) {
+        NSUInteger totalRating = 0;
+        for(IMOReview* rev in reviews) {
+            totalRating += rev.rating;
+        }
+        NSUInteger count = [reviews count] || 1;
+        float finalRating = (float)totalRating/count;
+        self.ratingControl.value = finalRating;
+    });
     
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.text = item.display_name;
