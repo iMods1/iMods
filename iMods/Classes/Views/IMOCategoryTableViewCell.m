@@ -29,16 +29,16 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor clearColor];
-        self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 150, self.bounds.origin.y+10, 250, 30)];
-        self.textLabel.font = [UIFont fontWithName:@"" size:14.0];
-        self.textLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
+        self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 125, self.bounds.origin.y+10, 250, 30)];
+        self.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0];
+        self.textLabel.textColor = [UIColor colorWithHexString:@"6f6f6f"];
         [self addSubview:self.textLabel];
         
-        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 150, self.bounds.origin.y + 20, 250, 30)];
+        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 75, self.bounds.origin.y + 20, 250, 30)];
         self.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:10.0];
         [self addSubview: self.detailTextLabel];
         
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, self.bounds.origin.y + 7, 30, 30)];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 75, self.bounds.origin.y + 7, 30, 30)];
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         self.imageView.clipsToBounds = YES;
         self.imageView.image = nil;
