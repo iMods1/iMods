@@ -231,7 +231,7 @@
         // Add to details string if desc is not nil
         [detailsString stringByAppendingString:self.item.desc];
     }
-    self.detailsLabel.text = detailsString;
+    self.detailsTextView.text = detailsString;
 }
 
 - (void)setupInstallButton {

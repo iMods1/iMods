@@ -17,7 +17,6 @@
 @interface IMOCategoriesDetailTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (strong, nonatomic) IMOItemManager *manager;
 @property (weak, nonatomic) IBOutlet UIButton *sortByDateButton;
 @property (weak, nonatomic) IBOutlet UIButton *sortByRatingButton;
@@ -46,12 +45,12 @@
     blurView.frame = self.view.bounds;
     [self.view insertSubview:blurView atIndex:0];
     self.view.backgroundColor = [UIColor clearColor];
-    
-    [self.categoryIconButton setImage:self.categoryIcon forState:UIControlStateNormal];
-    self.categoryNameLabel.text = self.category;
-    self.categoryNameLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
-    self.sortByDateLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
-    self.sortByRatingLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
+    self.categoryIconButton.contentMode = UIViewContentModeScaleAspectFit;
+    self.categoryIconButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.categoryIconButton setImage:self.categoryIcon forState:UIControlStateNormal & UIControlStateHighlighted];
+    [self.categoryIconButton setTitle:[@"  " stringByAppendingString:self.category] forState:UIControlStateNormal];
+    //self.sortByDateLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
+    //self.sortByRatingLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
     
     [self.tableView registerClass:IMOItemTableViewCell.class forCellReuseIdentifier:@"Cell"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
