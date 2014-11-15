@@ -109,10 +109,6 @@
         IMOItemDetailViewController *controller = [segue destinationViewController];
         controller.item = self.items[[self.tableView indexPathForSelectedRow].row];
     }
-    if ([segue.identifier isEqualToString:@"categories_view_modal"]) {
-        IMOCategoriesController* controller = [segue destinationViewController];
-        
-    }
 }
 
 
@@ -184,6 +180,10 @@
 
 - (IBAction)unwindToCharts:(UIStoryboardSegue *)segue {
     
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"charts_item_detail_push" sender:self];
 }
 
 @end
