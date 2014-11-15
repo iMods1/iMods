@@ -22,4 +22,5 @@
 @property (strong, nonatomic) IMOItem *item;
 - (IBAction)didTapInstallButton:(UIButton *)sender;
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender;
+- (void)setUpNavigationBarItemsForCategory:(NSString*)categoryName icon:(UIImage*)categoryIcon;
 @end

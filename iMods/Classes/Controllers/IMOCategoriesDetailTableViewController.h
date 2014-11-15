@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IMOCategoriesDetailTableViewController : UITableViewController
+@interface IMOCategoriesDetailTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSArray *items;
 @property (strong, nonatomic) NSString *category;
+@property (strong, nonatomic) UIImage *categoryIcon;
+
 @end

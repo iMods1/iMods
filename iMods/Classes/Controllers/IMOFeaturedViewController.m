@@ -42,6 +42,7 @@
     [self.tableView registerClass:[IMOItemTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     [self setItemsForCategory: @"Themes"];
+    
 }
 
 #pragma mark - UITableViewDataSource

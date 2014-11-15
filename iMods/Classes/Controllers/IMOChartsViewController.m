@@ -8,6 +8,8 @@
 
 #import "IMOChartsViewController.h"
 #import "IMOItemDetailViewController.h"
+#import "IMOItemTableViewCell.h"
+#import "IMOCategoriesController.h"
 #import "IMOItem.h"
 #import "IMOItemManager.h"
 #import <Overcoat/OVCResponse.h>
@@ -53,6 +55,7 @@
     NSString *category = [self categoryForSelectedIndex];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"imods-assets-featured-tableview-background"]];
+    [self.tableView registerClass:IMOItemTableViewCell.class forCellReuseIdentifier:@"Cell"];
     
     self.tableView.backgroundView = imageView;
 
@@ -81,17 +84,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    IMOItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[IMOItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
     IMOItem *item = [self.items objectAtIndex: indexPath.row];
     
-    
-    // TODO: Other cell setup
-    cell.textLabel.text = item.display_name;
-    cell.backgroundColor = [UIColor clearColor];
+    [cell configureWithItem:item];
     
     return cell;
 }
@@ -108,6 +108,10 @@
         
         IMOItemDetailViewController *controller = [segue destinationViewController];
         controller.item = self.items[[self.tableView indexPathForSelectedRow].row];
+    }
+    if ([segue.identifier isEqualToString:@"categories_view_modal"]) {
+        IMOCategoriesController* controller = [segue destinationViewController];
+        
     }
 }
 
