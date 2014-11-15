@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 typedef void (^IMOAnimationBlock)(UIView *);
-NSString *const IMOAnimationDurationKey = @"IMOAnimationDurationKey";
-NSString *const IMOAnimationCurveKey = @"IMOAnimationTimingKey";
-NSString *const IMOAnimationDelayKey = @"IMOAnimationDelayKey";
-NSString *const IMOAnimationIDKey = @"IMOAnimationIDKey";
-NSString *const IMOAnimationContextKey = @"IMOAnimationContextKey";
+static NSString *const IMOAnimationDurationKey = @"IMOAnimationDurationKey";
+static NSString *const IMOAnimationCurveKey = @"IMOAnimationTimingKey";
+static NSString *const IMOAnimationDelayKey = @"IMOAnimationDelayKey";
+static NSString *const IMOAnimationIDKey = @"IMOAnimationIDKey";
+static NSString *const IMOAnimationContextKey = @"IMOAnimationContextKey";
 
 @interface UIView(IMOAnimation)
 - (void) animateWithBlock:(IMOAnimationBlock)block options:(NSDictionary *)options;

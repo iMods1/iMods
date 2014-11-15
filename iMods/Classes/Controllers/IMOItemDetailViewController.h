@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *installButton;
 @property (weak, nonatomic) IBOutlet UIImageView* itemIconImage;
-@property (weak, nonatomic) IBOutlet UILabel *detailsLabel;
+@property (weak, nonatomic) IBOutlet UITextView *detailsTextView;
 @property (strong, nonatomic) IMOItem *item;
 - (IBAction)didTapInstallButton:(UIButton *)sender;
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender;
