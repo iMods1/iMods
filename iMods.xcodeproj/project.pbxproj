@@ -89,6 +89,7 @@
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
 		4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6044E819F86CD500D82152 /* IMOWalletViewController.m */; };
+		4D7377701A17F2530083FD2F /* UIView+IMOAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D73776F1A17F2530083FD2F /* UIView+IMOAnimation.m */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -383,6 +384,8 @@
 		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
 		4D6044E719F86CD500D82152 /* IMOWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOWalletViewController.h; sourceTree = "<group>"; };
 		4D6044E819F86CD500D82152 /* IMOWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOWalletViewController.m; sourceTree = "<group>"; };
+		4D73776E1A17F2520083FD2F /* UIView+IMOAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IMOAnimation.h"; path = "Classes/Extensions/UIView+IMOAnimation.h"; sourceTree = "<group>"; };
+		4D73776F1A17F2530083FD2F /* UIView+IMOAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IMOAnimation.m"; path = "Classes/Extensions/UIView+IMOAnimation.m"; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -615,6 +618,8 @@
 			children = (
 				28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */,
 				28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */,
+				4D73776E1A17F2520083FD2F /* UIView+IMOAnimation.h */,
+				4D73776F1A17F2530083FD2F /* UIView+IMOAnimation.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1044,7 +1049,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"myiphone\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
+			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"192.168.1.142\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
 		};
 		2845F30319952DB200D88EB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1181,6 +1186,7 @@
 				4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */,
 				4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
+				4D7377701A17F2530083FD2F /* UIView+IMOAnimation.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
 				2844E94D1A16FA89009E6168 /* IMOCategoryTableViewCell.m in Sources */,
@@ -1480,7 +1486,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone.local;
+				iOSOpenDevDevice = 192.168.1.142;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
@@ -1533,7 +1539,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone.local;
+				iOSOpenDevDevice = 192.168.1.142;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
