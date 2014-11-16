@@ -96,6 +96,7 @@
 
 - (void)setItemsForCategory:(NSString *)category {
     // Don't send request if running tests
+    [self.tableView reloadData];
     AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
     if (delegate.isRunningTest) {
         return;
