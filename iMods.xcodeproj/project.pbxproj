@@ -1049,7 +1049,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"myiphone\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
+			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"192.168.1.142\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
 		};
 		2845F30319952DB200D88EB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1486,7 +1486,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone.local;
+				iOSOpenDevDevice = 192.168.1.142;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
@@ -1539,7 +1539,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = myiphone.local;
+				iOSOpenDevDevice = 192.168.1.142;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;

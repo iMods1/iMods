@@ -26,6 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.selectedItemIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 6)];
+    self.selectedItemIndicatorView.backgroundColor = [UIColor darkGrayColor];
+    self.selectedItemIndicatorView.layer.cornerRadius = 3;
+    [self.view addSubview:self.selectedItemIndicatorView];
+    
     [UITabBar appearance].selectedImageTintColor = [UIColor darkGrayColor];
 }
 
@@ -37,11 +42,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear: animated];
     
-    self.selectedItemIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 6)];
-    self.selectedItemIndicatorView.backgroundColor = [UIColor darkGrayColor];
     self.selectedItemIndicatorView.center = [self getSelectedIndicatorCenterPoint];
-    self.selectedItemIndicatorView.layer.cornerRadius = 3;
-    [self.view addSubview:self.selectedItemIndicatorView];
     [self.view bringSubviewToFront:self.selectedItemIndicatorView];
     
     IMOUserManager *manager = [IMOUserManager sharedUserManager];
@@ -58,7 +59,6 @@
     if (!manager.userLoggedIn) {
         NSLog(@"User not logged in");
         if (email && password) {
-            [self.view setUserInteractionEnabled:NO];
             __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             indicator.center = self.view.center;
             [self.view addSubview:indicator];
@@ -67,13 +67,11 @@
                 NSLog(@"User: %@ successfully logged in", user);
                 [indicator stopAnimating];
                 [indicator removeFromSuperview];
-                [self.view setUserInteractionEnabled:YES];
             }).catch(^(NSError *error) {
                 NSLog(@"Login error: %@", error.localizedDescription);
                 
                 [indicator stopAnimating];
                 [indicator removeFromSuperview];
-                [self.view setUserInteractionEnabled:YES];
                 // Send user to the login view controller
                 [self presentLoginViewController: YES];
             });
