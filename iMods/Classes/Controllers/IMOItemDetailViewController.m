@@ -16,6 +16,7 @@
 #import "IMOCardViewController.h"
 #import "IMOInstallationViewController.h"
 #import "IMODownloadManager.h"
+#import "IMOReviewManager.h"
 #import "IMOPackageManager.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
@@ -136,6 +137,8 @@
     // Set up icon
     self.itemIconImage.layer.masksToBounds = YES;
     self.itemIconImage.layer.cornerRadius = self.itemIconImage.frame.size.width / 2.0;
+    
+    self.ratingThankYou.hidden = YES;
     // Setup item details
     [self setupItem:self.item];
 }
@@ -151,6 +154,8 @@
     [self setupInstallButton];
     
     [self setupAssets];
+    
+    [self setupRating];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -271,6 +276,75 @@
             self.isInstalled = NO;
         }
     }
+}
+
+- (void) setupRating {
+    self.ratingView.numberOfStar = 5;
+    self.ratingView.stepInterval = 1.0;
+    self.ratingView.markFont = [UIFont systemFontOfSize:28.0];
+    IMOUserManager* userManager = [IMOSessionManager sharedSessionManager].userManager;
+    
+    __block BOOL alreadyRatedByCurrentUser = NO;
+    void (^updateRating)(NSArray* reviews) = ^(NSArray* reviews) {
+        NSUInteger totalRating = 0;
+        for(IMOReview* rev in reviews) {
+            totalRating += rev.rating;
+            if (rev.uid == userManager.userProfile.uid) {
+                alreadyRatedByCurrentUser = YES;
+            }
+        }
+        NSUInteger count = reviews.count;
+        if (count == 0) {
+            count = 1;
+        }
+        float finalRating = (float)totalRating/count;
+        self.ratingView.value = finalRating;
+        if (alreadyRatedByCurrentUser) {
+            [self.ratingView setUserInteractionEnabled:NO];
+            [self.tapToRateLabel setHidden:YES];
+        } else {
+            [self.tapToRateLabel setHidden:NO];
+            [self.ratingView addTarget:self action:@selector(ratingChanged:) forControlEvents:UIControlEventValueChanged];
+        }
+    };
+    
+    IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
+    [self.ratingView setUserInteractionEnabled:userManager.userLoggedIn];
+    [reviewManager getReviewsByItem:self.item].then(updateRating);
+}
+
+- (IBAction)ratingChanged:(id)sender {
+    IMOUserManager* userManager = [IMOSessionManager sharedSessionManager].userManager;
+    
+    if(!userManager.userLoggedIn) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login"
+                                                        message:@"Please login to rate this item."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
+    NSError* error = nil;
+    float rating = fmax(0.0, fmin(self.ratingView.value, 5.0));
+    NSDictionary* reviewDict = @{
+                                 @"uid":@(userManager.userProfile.uid),
+                                 @"iid":@(self.item.item_id),
+                                 @"rating":@(rating),
+                                 @"content":@"Review for item.",
+                                 @"title":@"Review for item."
+                                 };
+    IMOReview* review = [MTLJSONAdapter modelOfClass:IMOReview.class
+                                  fromJSONDictionary:reviewDict
+                                               error:&error];
+    [reviewManager addReviewForItem:self.item review:review]
+    .then(^(NSArray* reviews) {
+        self.ratingThankYou.hidden = NO;
+        [self.ratingView setUserInteractionEnabled:NO];
+        [self.tapToRateLabel setHidden:YES];
+    });
 }
 
 - (void)checkPurchaseStatus {

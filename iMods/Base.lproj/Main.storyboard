@@ -790,6 +790,10 @@
                                     <action selector="tweaksButtonWasTapped:" destination="FXf-RH-8ZG" eventType="touchUpInside" id="SaH-kv-U55"/>
                                 </connections>
                             </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="carouselimage" id="825-QJ-xdt">
+                                <rect key="frame" x="0.0" y="-6" width="320" height="169"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0iA-CU-Ynl">
                                 <rect key="frame" x="0.0" y="221" width="321" height="234"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -820,10 +824,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="carouselimage" id="825-QJ-xdt">
-                                <rect key="frame" x="0.0" y="-6" width="320" height="169"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -987,38 +987,15 @@
                                 <rect key="frame" x="127" y="358" width="67" height="12"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-text-thank-you" id="wBG-Kg-xu8">
-                                <rect key="frame" x="78" y="401" width="164" height="13"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-icon-star-blue" id="hB6-Xw-d1D">
-                                <rect key="frame" x="90" y="371" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-icon-star-blue" id="Z1N-I6-AP0">
-                                <rect key="frame" x="120" y="371" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-icon-star-blue" id="sFH-1c-2yj">
-                                <rect key="frame" x="150" y="371" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-icon-star-gray" id="TlY-jQ-Y5u">
-                                <rect key="frame" x="180" y="371" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-icon-star-gray" id="qaT-6P-2Ti">
-                                <rect key="frame" x="210" y="371" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sai-kg-G5x">
-                                <rect key="frame" x="1" y="346" width="320" height="92"/>
+                            <view contentMode="scaleToFill" id="bae-he-44D" customClass="AXRatingView">
+                                <rect key="frame" x="89" y="372" width="143" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-text-thank-you" id="wBG-Kg-xu8">
+                                <rect key="frame" x="78" y="412" width="164" height="13"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.91764712329999998" green="0.91764712329999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
                     </view>
@@ -1029,6 +1006,9 @@
                         <outlet property="installButton" destination="fne-ID-k7d" id="Fim-Bv-6ML"/>
                         <outlet property="itemIconImage" destination="tzz-i3-DA6" id="b6G-fS-4EF"/>
                         <outlet property="priceLabel" destination="UZu-uC-VOV" id="x0z-GQ-ixL"/>
+                        <outlet property="ratingThankYou" destination="wBG-Kg-xu8" id="iSW-B5-KBo"/>
+                        <outlet property="ratingView" destination="bae-he-44D" id="Hne-4Q-azB"/>
+                        <outlet property="tapToRateLabel" destination="cFc-cx-JBt" id="s4L-ye-tSr"/>
                         <outlet property="titleLabel" destination="h5b-fU-AcB" id="Qo9-tq-Aco"/>
                         <outlet property="versionLabel" destination="9wF-AX-myF" id="1YJ-41-4iF"/>
                         <segue destination="2N3-oc-eFA" kind="modal" identifier="item_detail_installation_modal" modalTransitionStyle="coverVertical" id="wAm-YW-gPY"/>
@@ -1717,8 +1697,6 @@
         <image name="details-circle-yellow" width="48" height="48"/>
         <image name="details-icon-dev-mug" width="23" height="31"/>
         <image name="details-icon-screenshots" width="27" height="27"/>
-        <image name="details-icon-star-blue" width="22" height="22"/>
-        <image name="details-icon-star-gray" width="22" height="22"/>
         <image name="details-icon-tag" width="70" height="35"/>
         <image name="details-icon-video-preview" width="27" height="25"/>
         <image name="details-notch" width="44" height="25"/>

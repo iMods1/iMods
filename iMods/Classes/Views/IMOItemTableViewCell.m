@@ -86,7 +86,10 @@
         for(IMOReview* rev in reviews) {
             totalRating += rev.rating;
         }
-        NSUInteger count = [reviews count] || 1;
+        NSUInteger count = reviews.count;
+        if (count == 0) {
+            count = 1;
+        }
         float finalRating = (float)totalRating/count;
         self.ratingControl.value = finalRating;
     });
