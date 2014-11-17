@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -840,7 +840,7 @@
                             <inset key="imageInsets" minX="20" minY="0.0" maxX="-20" maxY="0.0"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="Xws-Q5-Mtm" kind="push" identifier="search_push" id="K6S-Qv-Skz"/>
+                                <segue destination="Xws-Q5-Mtm" kind="modal" identifier="search_push" id="K6S-Qv-Skz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -947,7 +947,7 @@
                                 <rect key="frame" x="0.0" y="122" width="320" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="WLW-2b-Ixt">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" selectable="NO" id="WLW-2b-Ixt">
                                         <rect key="frame" x="8" y="8" width="304" height="93"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -969,14 +969,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sai-kg-G5x">
-                                <rect key="frame" x="0.0" y="338" width="320" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="details-text-video-preview" id="EOw-xn-phF">
@@ -1019,12 +1011,21 @@
                                 <rect key="frame" x="210" y="371" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sai-kg-G5x">
+                                <rect key="frame" x="1" y="346" width="320" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.91764712329999998" green="0.91764712329999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="FBG-RA-VvJ"/>
                     <connections>
+                        <outlet property="detailsTextView" destination="WLW-2b-Ixt" id="Ld0-7P-lmg"/>
                         <outlet property="installButton" destination="fne-ID-k7d" id="Fim-Bv-6ML"/>
                         <outlet property="itemIconImage" destination="tzz-i3-DA6" id="b6G-fS-4EF"/>
                         <outlet property="priceLabel" destination="UZu-uC-VOV" id="x0z-GQ-ixL"/>
@@ -1182,25 +1183,33 @@
         <!--Search View Controller-->
         <scene sceneID="0QE-QZ-fmj">
             <objects>
-                <viewController id="Xws-Q5-Mtm" customClass="IMOSearchViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="Xws-Q5-Mtm" customClass="IMOSearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uj9-E1-W8B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" prompt="Search iMods" placeholder="Package Name" id="tNC-uT-2wa">
-                                <rect key="frame" x="0.0" y="65" width="320" height="75"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Package Name" showsCancelButton="YES" id="tNC-uT-2wa">
+                                <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Xws-Q5-Mtm" id="ooP-8d-TXb"/>
                                 </connections>
                             </searchBar>
+                            <view opaque="NO" contentMode="scaleToFill" id="ugt-F2-Ynb">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0ko-qz-xXd" appends="YES" id="j1q-kn-wUb"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" id="CSY-4M-Xvi"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="8aT-TL-8VT" id="MaY-RY-tQ6"/>
+                        <outlet property="searchBar" destination="tNC-uT-2wa" id="ihr-lE-cFc"/>
+                        <segue destination="hwq-tD-XKf" kind="modal" identifier="search_item_detail_modal" id="6Fx-XU-yp3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rvm-WV-paP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1209,10 +1218,15 @@
                         <outlet property="delegate" destination="Xws-Q5-Mtm" id="lHl-ga-bHl"/>
                         <outlet property="searchBar" destination="tNC-uT-2wa" id="UAT-gA-JvT"/>
                         <outlet property="searchContentsController" destination="Xws-Q5-Mtm" id="3Tz-Jw-cO8"/>
-                        <outlet property="searchResultsDataSource" destination="Xws-Q5-Mtm" id="Bk7-vT-i3S"/>
+                        <outlet property="searchResultsDataSource" destination="Xws-Q5-Mtm" id="kxB-gs-7Hd"/>
                         <outlet property="searchResultsDelegate" destination="Xws-Q5-Mtm" id="WtT-kK-qNo"/>
                     </connections>
                 </searchDisplayController>
+                <tapGestureRecognizer id="0ko-qz-xXd">
+                    <connections>
+                        <action selector="didTapOnView:" destination="Xws-Q5-Mtm" id="cJg-qQ-lz2"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3142" y="-279"/>
         </scene>
@@ -1380,6 +1394,7 @@
         <scene sceneID="fhf-ey-hdP">
             <objects>
                 <navigationController id="hwq-tD-XKf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3RR-h8-1CN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tgL-AX-iUA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1390,7 +1405,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxK-Tc-jE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4052" y="1156"/>
+            <point key="canvasLocation" x="4072" y="-279"/>
         </scene>
         <!--Installation View Controller-->
         <scene sceneID="QzT-Vu-pwD">
@@ -1757,6 +1772,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="xDs-Lb-77m"/>
         <segue reference="VdQ-U4-lWc"/>
+        <segue reference="6Fx-XU-yp3"/>
         <segue reference="ukT-Qe-1cO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

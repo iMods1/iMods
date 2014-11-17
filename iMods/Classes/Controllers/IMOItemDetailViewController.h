@@ -23,4 +23,6 @@
 - (IBAction)didTapInstallButton:(UIButton *)sender;
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender;
 - (void)setUpNavigationBarItemsForCategory:(NSString*)categoryName icon:(UIImage*)categoryIcon;
+- (void)setupNavigationBarItemsForSearchResult:(NSString*)back;
+- (void)setupItem:(IMOItem*)item;
 @end

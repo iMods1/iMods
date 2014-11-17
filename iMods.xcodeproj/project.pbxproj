@@ -79,7 +79,7 @@
 		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
 		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
 		4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */; };
-		4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */; };
+		4D19051619DBB76C009AF7F6 /* IMOSearchViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */; };
 		4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */; };
 		4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0F319D29747004DCE49 /* TweaksDataSource.m */; };
 		4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */; };
@@ -365,7 +365,7 @@
 		4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedBannerController.h; sourceTree = "<group>"; };
 		4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedBannerController.m; sourceTree = "<group>"; };
 		4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOSearchViewController.h; sourceTree = "<group>"; };
-		4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOSearchViewController.m; sourceTree = "<group>"; };
+		4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IMOSearchViewController.mm; sourceTree = "<group>"; };
 		4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMods.xcdatamodel; sourceTree = "<group>"; };
 		4D29D0EF19D29190004DCE49 /* IMOItemDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemDataSource.h; sourceTree = "<group>"; };
 		4D29D0F219D29747004DCE49 /* TweaksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweaksDataSource.h; sourceTree = "<group>"; };
@@ -698,7 +698,7 @@
 				2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */,
 				2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */,
 				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
-				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
+				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */,
 				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
 				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
 				4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */,
@@ -1191,7 +1191,7 @@
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
 				2844E94D1A16FA89009E6168 /* IMOCategoryTableViewCell.m in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
-				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */,
+				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.mm in Sources */,
 				4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */,
@@ -1486,7 +1486,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = 192.168.1.142;
+				iOSOpenDevDevice = myiphone.local;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;
@@ -1539,7 +1539,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = 192.168.1.142;
+				iOSOpenDevDevice = myiphone.local;
 				iOSOpenDevInstallOnAnyBuild = NO;
 				iOSOpenDevInstallOnProfiling = YES;
 				iOSOpenDevPath = /opt/iOSOpenDev;

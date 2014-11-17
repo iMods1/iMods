@@ -192,6 +192,8 @@ public:
         TAG_A_GT,
         TAG_A_LE,
         TAG_A_GE,
+        TAG_A_MATCH, // Tags match a substring
+        TAG_A_MATCH_I, // Tags match a substring, case insensitive
         /* Numeric comparison */
         TAG_I_LT,
         TAG_I_GT,
@@ -220,7 +222,7 @@ public:
     
 private:
     
-    const TagField m_srcField;
+    TagField m_srcField;
     
     FilterOperator m_op;
 };

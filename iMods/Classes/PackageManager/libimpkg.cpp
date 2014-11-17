@@ -608,7 +608,7 @@ size_t TagSection::fieldCount() const {
 
 FilterCondition::FilterCondition(const TagField& srcField, FilterCondition::FilterOperator op)
 : m_srcField(srcField), m_op(op){
-    
+    std::transform(m_srcField.first.begin(), m_srcField.first.end(), m_srcField.first.begin(), ::tolower);
 }
 
 FilterCondition::~FilterCondition() {
@@ -625,6 +625,11 @@ bool FilterCondition::matchSection(const TagSection& section) const {
 
 bool FilterCondition::matchTag(const std::string& tagname, const std::string& tagvalue) const {
     const std::string& srcvalue = m_srcField.second;
+    
+    if (m_srcField.first != tagname) {
+        return false;
+    }
+    
     switch (m_op) {
         case TAG_EQ:
             return tagvalue == srcvalue;
@@ -644,6 +649,24 @@ bool FilterCondition::matchTag(const std::string& tagname, const std::string& ta
         case TAG_A_GE:
             return srcvalue >= tagvalue;
             break;
+        case TAG_A_MATCH:
+        {
+            return tagvalue.find(m_srcField.second) != std::string::npos;
+            break;
+        }
+        case TAG_A_MATCH_I:
+        {
+            std::string lower_value = m_srcField.second;
+            std::string lower_name = m_srcField.first;
+            std::transform(lower_value.begin(), lower_value.end(), lower_value.begin(), ::tolower);
+            std::transform(lower_name.begin(), lower_name.end(), lower_name.begin(), ::tolower);
+            std::string lower_src_value = tagvalue;
+            std::string lower_src_name = tagname;
+            std::transform(lower_src_name.begin(), lower_src_name.end(), lower_src_name.begin(), ::tolower);
+            std::transform(lower_src_value.begin(), lower_src_value.end(), lower_src_value.begin(), ::tolower);
+            return lower_src_value.find(lower_value) != std::string::npos;
+            break;
+        }
         case TAG_I_LT:
         {
             auto srcint = atoll(srcvalue.c_str());
