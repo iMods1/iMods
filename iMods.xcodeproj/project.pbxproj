@@ -45,6 +45,9 @@
 		2833494B19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */; };
 		2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
 		2833495219AA8F2500DDB922 /* IMOCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2833495019AA8F2500DDB922 /* IMOCategoryManager.m */; };
+		2844E9411A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */; };
+		2844E9421A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */; };
+		2844E94D1A16FA89009E6168 /* IMOCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2844E94C1A16FA89009E6168 /* IMOCategoryTableViewCell.m */; };
 		284CBBBF1946F35A006539A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBBD1946F35A006539A3 /* Main.storyboard */; };
 		284CBBC11946F35A006539A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 284CBBC01946F35A006539A3 /* Images.xcassets */; };
 		284E113D19D0101F000B513A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 284E113C19D0101F000B513A /* AppDelegate.m */; };
@@ -69,11 +72,14 @@
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
+		28DB8D6D1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
+		28DB8D6E1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
 		4D0BCA4419D1F90F00850A67 /* IMOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */; };
 		4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */; };
 		4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */; };
 		4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */; };
-		4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */; };
+		4D19051619DBB76C009AF7F6 /* IMOSearchViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */; };
 		4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0E919D267E0004DCE49 /* iMods.xcdatamodeld */; };
 		4D29D0F419D29747004DCE49 /* TweaksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0F319D29747004DCE49 /* TweaksDataSource.m */; };
 		4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D29D0FD19D314BA004DCE49 /* iMods_UI_Tests.m */; };
@@ -83,6 +89,7 @@
 		4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3A7F771991D0940024AB2B /* libPods.a */; };
 		4D5D5B0519DB20000083DE7B /* IMOUpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */; };
 		4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6044E819F86CD500D82152 /* IMOWalletViewController.m */; };
+		4D7377701A17F2530083FD2F /* UIView+IMOAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D73776F1A17F2530083FD2F /* UIView+IMOAnimation.m */; };
 		4D8928F419749D7800AD8A28 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */; };
 		4D8928F519749D7800AD8A28 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */; };
 		4D8928F619749D7800AD8A28 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */; };
@@ -101,6 +108,7 @@
 		4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */; };
 		4DE71ADC19FE9E3A002CA0A7 /* IMODownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */; };
 		4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */; };
+		4DF0A9011A14616600AFAF59 /* IMOItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */; };
 		AF6E60B79E4B4B7282AADBC8 /* libPods-iMods UI Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */; };
 		C7C2F715FD834C89850BD6DE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3C95FDF7B146ABBF782234 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -307,6 +315,10 @@
 		2833494E19AA8F2500DDB922 /* IMODeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMODeviceManager.h; path = Classes/SessionManagers/IMODeviceManager.h; sourceTree = "<group>"; };
 		2833494F19AA8F2500DDB922 /* IMOCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOCategoryManager.h; path = Classes/SessionManagers/IMOCategoryManager.h; sourceTree = "<group>"; };
 		2833495019AA8F2500DDB922 /* IMOCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryManager.m; path = Classes/SessionManagers/IMOCategoryManager.m; sourceTree = "<group>"; };
+		2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOResetPasswordViewController.h; sourceTree = "<group>"; };
+		2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOResetPasswordViewController.m; sourceTree = "<group>"; };
+		2844E94B1A16FA89009E6168 /* IMOCategoryTabelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOCategoryTabelViewCell.h; path = Classes/Views/IMOCategoryTabelViewCell.h; sourceTree = "<group>"; };
+		2844E94C1A16FA89009E6168 /* IMOCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOCategoryTableViewCell.m; path = Classes/Views/IMOCategoryTableViewCell.m; sourceTree = "<group>"; };
 		284CBBB21946F35A006539A3 /* iMods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284CBBB61946F35A006539A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284CBBBE1946F35A006539A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -341,6 +353,8 @@
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HTMLColors.h"; path = "Classes/Extensions/UIColor+HTMLColors.h"; sourceTree = "<group>"; };
+		28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HTMLColors.m"; path = "Classes/Extensions/UIColor+HTMLColors.m"; sourceTree = "<group>"; };
 		2B9E58B97DA33ADA1A2D7358 /* Pods-iMods UI Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMods UI Tests/Pods-iMods UI Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOLoginViewController.h; sourceTree = "<group>"; };
 		4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOLoginViewController.m; sourceTree = "<group>"; };
@@ -351,7 +365,7 @@
 		4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOFeaturedBannerController.h; sourceTree = "<group>"; };
 		4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOFeaturedBannerController.m; sourceTree = "<group>"; };
 		4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOSearchViewController.h; sourceTree = "<group>"; };
-		4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOSearchViewController.m; sourceTree = "<group>"; };
+		4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IMOSearchViewController.mm; sourceTree = "<group>"; };
 		4D29D0EA19D267E0004DCE49 /* iMods.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMods.xcdatamodel; sourceTree = "<group>"; };
 		4D29D0EF19D29190004DCE49 /* IMOItemDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItemDataSource.h; sourceTree = "<group>"; };
 		4D29D0F219D29747004DCE49 /* TweaksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweaksDataSource.h; sourceTree = "<group>"; };
@@ -370,6 +384,8 @@
 		4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOUpdatesViewController.m; sourceTree = "<group>"; };
 		4D6044E719F86CD500D82152 /* IMOWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOWalletViewController.h; sourceTree = "<group>"; };
 		4D6044E819F86CD500D82152 /* IMOWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOWalletViewController.m; sourceTree = "<group>"; };
+		4D73776E1A17F2520083FD2F /* UIView+IMOAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+IMOAnimation.h"; path = "Classes/Extensions/UIView+IMOAnimation.h"; sourceTree = "<group>"; };
+		4D73776F1A17F2530083FD2F /* UIView+IMOAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+IMOAnimation.m"; path = "Classes/Extensions/UIView+IMOAnimation.m"; sourceTree = "<group>"; };
 		4D8928EA19749D7800AD8A28 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D8928EB19749D7800AD8A28 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		4D8928EC19749D7800AD8A28 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -403,6 +419,8 @@
 		4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMODownloadManager.m; path = Classes/SessionManagers/IMODownloadManager.m; sourceTree = "<group>"; };
 		4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOTestDownloadViewController.h; sourceTree = "<group>"; };
 		4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOTestDownloadViewController.m; sourceTree = "<group>"; };
+		4DF0A8FF1A14616600AFAF59 /* IMOItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOItemTableViewCell.h; path = Classes/Views/IMOItemTableViewCell.h; sourceTree = "<group>"; };
+		4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOItemTableViewCell.m; path = Classes/Views/IMOItemTableViewCell.m; sourceTree = "<group>"; };
 		56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F45637483CE94EFAAD07B257 /* libPods-iMods UI Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iMods UI Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -595,6 +613,17 @@
 			name = NetworkManager;
 			sourceTree = "<group>";
 		};
+		28DB8D701A12A823002635EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */,
+				28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */,
+				4D73776E1A17F2520083FD2F /* UIView+IMOAnimation.h */,
+				4D73776F1A17F2530083FD2F /* UIView+IMOAnimation.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		28EC28791980DF120086CE7A /* PackageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,40 +671,42 @@
 		4D8928A019747FF100AD8A28 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
-				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
-				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
-				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
-				4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */,
-				4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */,
-				4D29D10419D342E6004DCE49 /* IMOCategoriesDetailTableViewController.h */,
-				4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */,
-				4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */,
-				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
-				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
-				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
-				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
-				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
-				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
-				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
-				4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */,
-				4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */,
-				4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */,
-				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
-				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
-				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.m */,
 				4D8A3B6319E1B99A007172A6 /* IMOCardViewController.h */,
 				4D8A3B6419E1B99A007172A6 /* IMOCardViewController.m */,
-				4DCFBBEC19E6718000A36D63 /* IMORegistrationViewController.h */,
-				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
-				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
-				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
+				4DBABF1B19C76E9600274A45 /* IMOCategoriesController.h */,
+				4DBABF1C19C76E9600274A45 /* IMOCategoriesController.m */,
+				4D29D10419D342E6004DCE49 /* IMOCategoriesDetailTableViewController.h */,
+				4D29D10519D342E6004DCE49 /* IMOCategoriesDetailTableViewController.m */,
+				4DBABF1E19C77ABE00274A45 /* IMOChartsViewController.h */,
+				4DBABF1F19C77ABE00274A45 /* IMOChartsViewController.m */,
+				4D19051119DBB70D009AF7F6 /* IMOFeaturedBannerController.h */,
+				4D19051219DBB70D009AF7F6 /* IMOFeaturedBannerController.m */,
+				4D399ADD19D4A016003CFC25 /* IMOFeaturedViewController.h */,
+				4D399ADE19D4A016003CFC25 /* IMOFeaturedViewController.m */,
 				4DCFBBF519E6FE1400A36D63 /* IMOInstallationViewController.h */,
 				4DCFBBF619E6FE1400A36D63 /* IMOInstallationViewController.m */,
-				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
-				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
+				4D29D10719D34D39004DCE49 /* IMOItemDetailViewController.h */,
+				4D29D10819D34D39004DCE49 /* IMOItemDetailViewController.m */,
+				4D0BCA4219D1F90F00850A67 /* IMOLoginViewController.h */,
+				4D0BCA4319D1F90F00850A67 /* IMOLoginViewController.m */,
+				4DCFBBEF19E67D3600A36D63 /* IMOProfileSettingsViewController.h */,
+				4DCFBBF019E67D3600A36D63 /* IMOProfileSettingsViewController.m */,
+				4D19050E19DBA49D009AF7F6 /* IMOProfileViewController.h */,
+				4D19050F19DBA49D009AF7F6 /* IMOProfileViewController.m */,
+				4DCFBBEC19E6718000A36D63 /* IMORegistrationViewController.h */,
+				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
+				2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */,
+				2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */,
+				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
+				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */,
+				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
+				4D19050919DB7F83009AF7F6 /* IMOTabBarController.m */,
 				4DE71ADD19FEA862002CA0A7 /* IMOTestDownloadViewController.h */,
 				4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */,
+				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
+				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
+				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
+				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -725,6 +756,7 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				28DB8D701A12A823002635EB /* Extensions */,
 				4DBABF1719C76B1000274A45 /* Views */,
 				28CF066A19895AF4003347BB /* NetworkManager */,
 				28EC28791980DF120086CE7A /* PackageManager */,
@@ -782,6 +814,10 @@
 		4DBABF1719C76B1000274A45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2844E94B1A16FA89009E6168 /* IMOCategoryTabelViewCell.h */,
+				2844E94C1A16FA89009E6168 /* IMOCategoryTableViewCell.m */,
+				4DF0A8FF1A14616600AFAF59 /* IMOItemTableViewCell.h */,
+				4DF0A9001A14616600AFAF59 /* IMOItemTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1013,7 +1049,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"myiphone\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
+			shellScript = "# Copy app file to iphone via ssh, replace HOST and PORT with appropriate values\nexit 0\nHOST=\"192.168.1.142\"\nPORT=22\nundleid=`defaults read $BUILT_PRODUCTS_DIR/${WRAPPER_NAME}/Info.plist CFBundleIdentifier`\n# kill if running, remove old version, copy new one and launch it\nssh -p $PORT root@$HOST \"killall $EXECUTABLE_NAME\"\nssh -p $PORT root@$HOST \"rm -r /private/var/stash/Applications/$WRAPPER_NAME\"\nscp -P $PORT -r $BUILT_PRODUCTS_DIR/${WRAPPER_NAME} root@$HOST://private/var/stash/Applications\nssh -p $PORT root@$HOST \"open $bundleid\"";
 		};
 		2845F30319952DB200D88EB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1125,6 +1161,7 @@
 				284E113D19D0101F000B513A /* AppDelegate.m in Sources */,
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
+				4DF0A9011A14616600AFAF59 /* IMOItemTableViewCell.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
@@ -1149,10 +1186,12 @@
 				4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */,
 				4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
+				4D7377701A17F2530083FD2F /* UIView+IMOAnimation.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
 				4D29D10919D34D39004DCE49 /* IMOItemDetailViewController.m in Sources */,
+				2844E94D1A16FA89009E6168 /* IMOCategoryTableViewCell.m in Sources */,
 				2833494A19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
-				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.m in Sources */,
+				4D19051619DBB76C009AF7F6 /* IMOSearchViewController.mm in Sources */,
 				4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */,
@@ -1165,8 +1204,10 @@
 				4DE71ADC19FE9E3A002CA0A7 /* IMODownloadManager.m in Sources */,
 				2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
+				2844E9411A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */,
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				2826720119D0123B0063CF94 /* main.m in Sources */,
+				28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1185,6 +1226,7 @@
 				28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */,
 				28841C611A0030400054AB0A /* zipstream.hh in Sources */,
 				281788D119B0150A0003C1A3 /* IMOTask.m in Sources */,
+				2844E9421A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				2805497F19895B7C0049D619 /* IMONetworkManager.m in Sources */,
 				2833493D19AA8EFA00DDB922 /* IMOReviewManager.m in Sources */,
@@ -1197,6 +1239,7 @@
 				285708961978CF5C00C7F37B /* IMOOrder.m in Sources */,
 				282B436A1A00552C007F3C78 /* zip_stream_test.cpp in Sources */,
 				2833494919AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
+				28DB8D6D1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
 				2830E8A21978C46E008E42ED /* IMODevice.m in Sources */,
 				2833494519AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				2830E89E1978BE75008E42ED /* IMOCategory.m in Sources */,
@@ -1209,6 +1252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28DB8D6E1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
 				4D29D0FE19D314BA004DCE49 /* iMods_UI_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1317,6 +1361,7 @@
 /* Begin XCBuildConfiguration section */
 		284CBBCE1946F35A006539A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1361,6 +1406,7 @@
 		};
 		284CBBCF1946F35A006539A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 266EBEEC4CBCBCABEAF62FBD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1426,7 +1472,7 @@
 					"${SOURCE_ROOT}/include",
 				);
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1479,7 +1525,7 @@
 					"${SOURCE_ROOT}/include",
 				);
 				INFOPLIST_FILE = iMods/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1528,7 +1574,7 @@
 		};
 		284CBBD51946F35A006539A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56492BD13C32711C9B275AB4 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 266EBEEC4CBCBCABEAF62FBD /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iMods.app/iMods";
 				CLANG_ENABLE_MODULES = YES;

@@ -35,6 +35,9 @@
  */
 - (PMKPromise*) userRegister:(NSString*)email password:(NSString*)password fullname:(NSString*)fullname age:(NSNumber*)age author_id:(NSString*)author_id;
 
+- (PMKPromise*) userRequestResetPassword:(NSString*)email;
+- (PMKPromise*) userResetPassword:(NSString*)email token:(NSString*)token new_password:(NSString*)new_password;
+
 /* Logout
  * @return Always returns YES
  */

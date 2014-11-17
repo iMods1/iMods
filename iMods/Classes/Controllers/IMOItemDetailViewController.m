@@ -16,6 +16,7 @@
 #import "IMOCardViewController.h"
 #import "IMOInstallationViewController.h"
 #import "IMODownloadManager.h"
+#import "IMOReviewManager.h"
 #import "IMOPackageManager.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
@@ -67,7 +68,7 @@
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
         self.priceLabel.hidden = YES;
-        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
         if (self.isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -77,12 +78,12 @@
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
             self.priceLabel.hidden = YES;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, -32, 0, 0);
 
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
             self.priceLabel.hidden = NO;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, -32, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -94,7 +95,7 @@
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
         self.priceLabel.hidden = YES;
-        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
         if (isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -104,11 +105,11 @@
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
             self.priceLabel.hidden = YES;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
             self.priceLabel.hidden = NO;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, -32, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -133,18 +134,31 @@
     
     self.isFree = (self.item.price <= 0);
     
+    // Set up icon
+    self.itemIconImage.layer.masksToBounds = YES;
+    self.itemIconImage.layer.cornerRadius = self.itemIconImage.frame.size.width / 2.0;
+    
+    self.ratingThankYou.hidden = YES;
+    // Setup item details
+    [self setupItem:self.item];
+}
+
+- (void)setupItem:(IMOItem*)item {
+    if (!item) {
+        return;
+    }
+    self.item = item;
+    
     [self setupItemLabels];
 
     [self setupInstallButton];
+    
+    [self setupAssets];
+    
+    [self setupRating];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self setupInstallButton];
-    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
-    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
-        self.imageView.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
-    });
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,6 +171,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"item_detail_installation_modal"]) {
         ((IMOInstallationViewController *)segue.destinationViewController).delegate = self;
+        if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) {
+            ((IMOInstallationViewController *)segue.destinationViewController).modalPresentationStyle = UIModalPresentationCurrentContext;
+        } else {
+            ((IMOInstallationViewController *)segue.destinationViewController).modalPresentationStyle = UIModalPresentationOverFullScreen;
+        }
+        ((IMOInstallationViewController *)segue.destinationViewController).modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     }
 }
 
@@ -164,7 +184,7 @@
 
 - (IBAction)didTapInstallButton:(UIButton *)sender {
 #if TARGET_IPHONE_SIMULATOR
-    [self errorAlert:@"Simulator" message:@"Cannot install in simulator"];
+    [self performSegueWithIdentifier:@"item_detail_installation_modal" sender:self];
 #else
     if (self.isPurchased) {
         if (self.isInstalled) {
@@ -205,6 +225,14 @@
 #endif
 }
 
+- (void) setupAssets {
+    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
+        self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
+    });
+    
+}
+
 - (void) setupItemLabels {
     self.titleLabel.text = self.item.display_name;
     self.versionLabel.text = self.item.pkg_version;
@@ -219,7 +247,7 @@
         // Add to details string if desc is not nil
         [detailsString stringByAppendingString:self.item.desc];
     }
-    self.detailsLabel.text = detailsString;
+    self.detailsTextView.text = detailsString;
 }
 
 - (void)setupInstallButton {
@@ -248,6 +276,75 @@
             self.isInstalled = NO;
         }
     }
+}
+
+- (void) setupRating {
+    self.ratingView.numberOfStar = 5;
+    self.ratingView.stepInterval = 1.0;
+    self.ratingView.markFont = [UIFont systemFontOfSize:28.0];
+    IMOUserManager* userManager = [IMOSessionManager sharedSessionManager].userManager;
+    
+    __block BOOL alreadyRatedByCurrentUser = NO;
+    void (^updateRating)(NSArray* reviews) = ^(NSArray* reviews) {
+        NSUInteger totalRating = 0;
+        for(IMOReview* rev in reviews) {
+            totalRating += rev.rating;
+            if (rev.uid == userManager.userProfile.uid) {
+                alreadyRatedByCurrentUser = YES;
+            }
+        }
+        NSUInteger count = reviews.count;
+        if (count == 0) {
+            count = 1;
+        }
+        float finalRating = (float)totalRating/count;
+        self.ratingView.value = finalRating;
+        if (alreadyRatedByCurrentUser) {
+            [self.ratingView setUserInteractionEnabled:NO];
+            [self.tapToRateLabel setHidden:YES];
+        } else {
+            [self.tapToRateLabel setHidden:NO];
+            [self.ratingView addTarget:self action:@selector(ratingChanged:) forControlEvents:UIControlEventValueChanged];
+        }
+    };
+    
+    IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
+    [self.ratingView setUserInteractionEnabled:userManager.userLoggedIn];
+    [reviewManager getReviewsByItem:self.item].then(updateRating);
+}
+
+- (IBAction)ratingChanged:(id)sender {
+    IMOUserManager* userManager = [IMOSessionManager sharedSessionManager].userManager;
+    
+    if(!userManager.userLoggedIn) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login"
+                                                        message:@"Please login to rate this item."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
+    NSError* error = nil;
+    float rating = fmax(0.0, fmin(self.ratingView.value, 5.0));
+    NSDictionary* reviewDict = @{
+                                 @"uid":@(userManager.userProfile.uid),
+                                 @"iid":@(self.item.item_id),
+                                 @"rating":@(rating),
+                                 @"content":@"Review for item.",
+                                 @"title":@"Review for item."
+                                 };
+    IMOReview* review = [MTLJSONAdapter modelOfClass:IMOReview.class
+                                  fromJSONDictionary:reviewDict
+                                               error:&error];
+    [reviewManager addReviewForItem:self.item review:review]
+    .then(^(NSArray* reviews) {
+        self.ratingThankYou.hidden = NO;
+        [self.ratingView setUserInteractionEnabled:NO];
+        [self.tapToRateLabel setHidden:YES];
+    });
 }
 
 - (void)checkPurchaseStatus {
@@ -445,15 +542,49 @@
     } else {
         [self checkInstallStatus];
     }
+    if (self.packageManager.lastInstallNeedsRespring) {
+        UIAlertView* respringAlert = [[UIAlertView alloc] initWithTitle:@"Respring needed"
+                                                                message:@"You installed new tweaks, do you want to respring now?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"OK", nil];
+        [respringAlert show];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // TODO: Unstub
+    // Handle respring
+    if (buttonIndex == [alertView firstOtherButtonIndex]) {
+        [self.packageManager respring];
+    }
 }
 
 - (IBAction)unwindToItemDetailViewController:(UIStoryboardSegue *)sender {
     // stub
+}
+
+- (void)didTapBackButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)setUpNavigationBarItemsForCategory:(NSString*)categoryName icon:(UIImage*)categoryIcon {
+    
+    self.navigationItem.title = categoryName;
+    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 39, 39)];
+    [backButton setImage:categoryIcon forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(didTapBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backButtonItem];
+}
+
+- (void)setupNavigationBarItemsForSearchResult:(NSString *)title{
+    self.navigationItem.title = title;
+    UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Close"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(didTapBackButton:)];
+    [self.navigationItem setLeftBarButtonItem:backButton];
 }
 
 @end

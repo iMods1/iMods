@@ -7,18 +7,31 @@
 //
 
 #import "IMOTabBarController.h"
+#import "IMOResetPasswordViewController.h"
 #import "IMOUserManager.h"
 #import "UICKeyChainStore.h"
 #import "AppDelegate.h"
+#import "UIView+IMOAnimation.h"
 
 @interface IMOTabBarController ()
+@property (strong, nonatomic) UIView *selectedItemIndicatorView;
+
 - (void)presentLoginViewController:(BOOL)animated;
+- (CGPoint)getSelectedIndicatorCenterPoint;
+- (CGPoint)getCenterPointForIndex:(NSUInteger)index;
 @end
 
 @implementation IMOTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.selectedItemIndicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 6)];
+    self.selectedItemIndicatorView.backgroundColor = [UIColor darkGrayColor];
+    self.selectedItemIndicatorView.layer.cornerRadius = 3;
+    [self.view addSubview:self.selectedItemIndicatorView];
+    
+    [UITabBar appearance].selectedImageTintColor = [UIColor darkGrayColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,6 +41,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear: animated];
+    
+    self.selectedItemIndicatorView.center = [self getSelectedIndicatorCenterPoint];
+    [self.view bringSubviewToFront:self.selectedItemIndicatorView];
     
     IMOUserManager *manager = [IMOUserManager sharedUserManager];
     NSString *email = [UICKeyChainStore stringForKey: @"email"];
@@ -43,7 +59,6 @@
     if (!manager.userLoggedIn) {
         NSLog(@"User not logged in");
         if (email && password) {
-            [self.view setUserInteractionEnabled:NO];
             __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             indicator.center = self.view.center;
             [self.view addSubview:indicator];
@@ -52,13 +67,11 @@
                 NSLog(@"User: %@ successfully logged in", user);
                 [indicator stopAnimating];
                 [indicator removeFromSuperview];
-                [self.view setUserInteractionEnabled:YES];
             }).catch(^(NSError *error) {
                 NSLog(@"Login error: %@", error.localizedDescription);
                 
                 [indicator stopAnimating];
                 [indicator removeFromSuperview];
-                [self.view setUserInteractionEnabled:YES];
                 // Send user to the login view controller
                 [self presentLoginViewController: YES];
             });
@@ -66,6 +79,19 @@
             [self presentLoginViewController: YES];
         }
     }
+}
+
+#pragma mark - UITabBarDelegate
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    __block NSUInteger index = [self.tabBar.items indexOfObject:item] + 1;
+    NSDictionary *animationOptions = @{
+                                       IMOAnimationIDKey:self.description,
+                                       IMOAnimationDurationKey:@(0.2),
+                                       };
+    [self.selectedItemIndicatorView animateWithBlock:^(UIView *view) {
+        view.center = [self getCenterPointForIndex:index];
+    } options:animationOptions];
 }
 
 #pragma mark - IMOLoginViewDelegate
@@ -84,6 +110,7 @@
             lvc.delegate = self;
         }
     }
+    
 }
 
 #pragma mark - Misc
@@ -93,6 +120,21 @@
 }
 
 - (IBAction)unwindToTabBarController:(UIStoryboardSegue *)sender {
+}
+
+- (CGPoint)getSelectedIndicatorCenterPoint {
+    NSLog(@"Selected index: %lu", (unsigned long)self.selectedIndex);
+    NSUInteger index = self.selectedIndex + 1;
+    return [self getCenterPointForIndex:index];
+}
+
+- (CGPoint)getCenterPointForIndex:(NSUInteger)index {
+    NSLog(@"Subviews: %@", self.tabBar.subviews);
+    CGFloat tabMiddle = CGRectGetMidX([[self.tabBar.subviews objectAtIndex:index] frame]);
+    NSLog(@"TabBar Item Middle: %f", tabMiddle);
+    
+    //return CGPointMake(self.tabBar.frame.origin.y + self.tabBar.frame.size.height, tabMiddle);
+    return CGPointMake(tabMiddle, self.tabBar.frame.origin.y + self.tabBar.frame.size.height);
 }
 
 @end

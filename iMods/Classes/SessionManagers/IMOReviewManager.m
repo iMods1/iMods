@@ -61,9 +61,6 @@ static IMOUserManager* userManager = nil;
 }
 
 - (PMKPromise*) getReviewsByItem:(IMOItem *)item {
-    if (![self checkUserLogin]) {
-        return nil;
-    }
     return [sessionManager getJSON:@"review/item" urlParameters:@[@(item.item_id)] parameters:nil]
     .then(^id(OVCResponse* response, NSError* error){
         if (error) {

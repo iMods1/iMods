@@ -8,6 +8,8 @@
 
 #import "IMOChartsViewController.h"
 #import "IMOItemDetailViewController.h"
+#import "IMOItemTableViewCell.h"
+#import "IMOCategoriesController.h"
 #import "IMOItem.h"
 #import "IMOItemManager.h"
 #import <Overcoat/OVCResponse.h>
@@ -53,6 +55,7 @@
     NSString *category = [self categoryForSelectedIndex];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"imods-assets-featured-tableview-background"]];
+    [self.tableView registerClass:IMOItemTableViewCell.class forCellReuseIdentifier:@"Cell"];
     
     self.tableView.backgroundView = imageView;
 
@@ -81,17 +84,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    IMOItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[IMOItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
     IMOItem *item = [self.items objectAtIndex: indexPath.row];
     
-    
-    // TODO: Other cell setup
-    cell.textLabel.text = item.display_name;
-    cell.backgroundColor = [UIColor clearColor];
+    [cell configureWithItem:item];
     
     return cell;
 }
@@ -165,7 +165,7 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 }
 
 - (void)resetNavigationBar {
@@ -180,6 +180,10 @@
 
 - (IBAction)unwindToCharts:(UIStoryboardSegue *)segue {
     
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"charts_item_detail_push" sender:self];
 }
 
 @end

@@ -165,6 +165,10 @@ public:
     
     const std::string& operator [] (const std::string& tagname);
     
+    const std::unordered_map<std::string, std::string>& tagsMap() const {
+        return m_mapping;
+    }
+    
     size_t fieldCount() const;
 
 private:
@@ -188,6 +192,8 @@ public:
         TAG_A_GT,
         TAG_A_LE,
         TAG_A_GE,
+        TAG_A_MATCH, // Tags match a substring
+        TAG_A_MATCH_I, // Tags match a substring, case insensitive
         /* Numeric comparison */
         TAG_I_LT,
         TAG_I_GT,
@@ -216,7 +222,7 @@ public:
     
 private:
     
-    const TagField m_srcField;
+    TagField m_srcField;
     
     FilterOperator m_op;
 };
@@ -372,6 +378,10 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Version& version) {
         out << version.packageName() << " " << version.version();
         return out;
+    }
+    
+    const TagSection& tagSection()const {
+        return m_section;
     }
     
 private:

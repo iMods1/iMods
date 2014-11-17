@@ -11,6 +11,7 @@
 #import "IMOItem.h"
 #import "IMOItemDetailViewController.h"
 #import "AppDelegate.h"
+#import "IMOItemTableViewCell.h"
 #import <Overcoat/OVCResponse.h>
 
 @interface IMOFeaturedViewController ()
@@ -38,32 +39,30 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self.tableView registerClass:[IMOItemTableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
     [self setItemsForCategory: @"Themes"];
+    
 }
 
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"Cell"];
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"Cell"];
-    }
-    
-    // Configure cell
-    NSDictionary *item = [self.items objectAtIndex: indexPath.row];
-//    NSLog(@"Item at row %ld: %@", (long)indexPath.row, item);
-    cell.textLabel.text = [item valueForKey:@"display_name"];
-    cell.detailTextLabel.text = [item valueForKey:@"summary"];
-    cell.backgroundColor = [UIColor clearColor];
-    
-    // TODO: Add price badge, add image downloaded from assets server
-    
+    IMOItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    [cell configureWithItem:self.items[indexPath.row]];
+
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.items count];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"featured_item_detail_push" sender:self];
 }
 
 #pragma mark - Navigation
@@ -72,7 +71,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString: @"featured_item_detail_push"]) {
-        // TODO: Retrieve item
         IMOItemDetailViewController *controller = [segue destinationViewController];
         controller.item = self.items[[self.tableView indexPathForSelectedRow].row];
     } else if ([segue.identifier isEqualToString: @"profile_push"]) {
@@ -97,12 +95,12 @@
 
 - (void)setItemsForCategory:(NSString *)category {
     // Don't send request if running tests
+    [self.tableView reloadData];
     AppDelegate* delegate = [[UIApplication sharedApplication] delegate];
     if (delegate.isRunningTest) {
         return;
     }
     [self.manager fetchItemsByCategory: category].then(^(NSArray *result) {
-//        NSLog(@"Result %@", result);
         if ([result isKindOfClass: [NSArray class]]) {
             self.items = result;
         } else {

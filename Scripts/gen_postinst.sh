@@ -1,4 +1,6 @@
 #!/bin/bash
-$target=$PROJECT_ROOT/DEBIAN/postinst
-cp postinst.template $target
-perl -p -i -e "s,<PROJECT_NAME>,$PROJECT_NAME,g" $target
+target=$PWD/$PROJECT_NAME/Package/DEBIAN/postinst
+rm $target
+cp $PWD/Scripts/postinst.template $target
+perl -p -i -e "s,<ProjectName>,$PROJECT_NAME,g" $target
+chmod 0555 $target

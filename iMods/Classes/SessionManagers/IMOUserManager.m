@@ -142,4 +142,17 @@ static IMOUser* currentUser = nil;
     }));
 }
 
+- (PMKPromise*) userRequestResetPassword:(NSString *)email {
+    return [sessionManager getJSON:@"user/request_reset_password" parameters:@{ @"email": email }];
+}
+
+- (PMKPromise*) userResetPassword:(NSString *)email token:(NSString *)token new_password:(NSString *)new_password {
+    return [sessionManager postJSON:@"user/reset_password"
+                               data:@{
+                                      @"email": email,
+                                      @"token": token,
+                                      @"new_password": new_password
+                                      }];
+}
+
 @end
