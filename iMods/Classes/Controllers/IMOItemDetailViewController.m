@@ -67,7 +67,7 @@
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
         self.priceLabel.hidden = YES;
-        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
         if (self.isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -77,12 +77,12 @@
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
             self.priceLabel.hidden = YES;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, -32, 0, 0);
 
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
             self.priceLabel.hidden = NO;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, -32, 0, 0);
         }
         self.installButton.enabled = YES;
     }
@@ -94,7 +94,7 @@
         [self.installButton setTitle: @"Install" forState:UIControlStateNormal];
         [self.installButton setTitle: @"Installing" forState:UIControlStateDisabled];
         self.priceLabel.hidden = YES;
-        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
         if (isInstalled) {
             [self.installButton setTitle: @"Installed" forState: UIControlStateDisabled];
             self.installButton.enabled = NO;
@@ -104,11 +104,11 @@
         if (self.isFree) {
             [self.installButton setTitle:@"Free" forState:UIControlStateNormal];
             self.priceLabel.hidden = YES;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
         } else {
             [self.installButton setTitle:@"Buy" forState:UIControlStateNormal];
             self.priceLabel.hidden = NO;
-            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, 0, 0, 0);
+            self.installButton.contentEdgeInsets = UIEdgeInsetsMake(-10, -32, 0, 0);
         }
         self.installButton.enabled = YES;
     }
