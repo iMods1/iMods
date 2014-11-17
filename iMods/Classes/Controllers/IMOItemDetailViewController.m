@@ -136,21 +136,24 @@
     // Set up icon
     self.itemIconImage.layer.masksToBounds = YES;
     self.itemIconImage.layer.cornerRadius = self.itemIconImage.frame.size.width / 2.0;
-//    self.itemIconImage.layer.borderWidth = 1.0f;
-//    self.itemIconImage.layer.borderColor = [[UIColor grayColor] CGColor];
+    // Setup item details
+    [self setupItem:self.item];
+}
 
+- (void)setupItem:(IMOItem*)item {
+    if (!item) {
+        return;
+    }
+    self.item = item;
+    
     [self setupItemLabels];
 
     [self setupInstallButton];
+    
+    [self setupAssets];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self setupInstallButton];
-    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
-    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
-        self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
-    });
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -215,6 +218,14 @@
         }
     }
 #endif
+}
+
+- (void) setupAssets {
+    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
+        self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
+    });
+    
 }
 
 - (void) setupItemLabels {
@@ -491,6 +502,15 @@
     [backButton addTarget:self action:@selector(didTapBackButton:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backButtonItem];
+}
+
+- (void)setupNavigationBarItemsForSearchResult:(NSString *)title{
+    self.navigationItem.title = title;
+    UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Close"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(didTapBackButton:)];
+    [self.navigationItem setLeftBarButtonItem:backButton];
 }
 
 @end

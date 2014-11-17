@@ -222,7 +222,7 @@ public:
     
 private:
     
-    const TagField m_srcField;
+    TagField m_srcField;
     
     FilterOperator m_op;
 };
