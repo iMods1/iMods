@@ -46,17 +46,18 @@
         [self.ratingControl setUserInteractionEnabled:NO];
         [self insertSubview:self.ratingControl belowSubview:self.textLabel];
         
-        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 15, 150, 30)];
-        self.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:10.0];
+        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 15, 250, 30)];
+        self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:9.0];
         [self addSubview: self.detailTextLabel];
+        self.detailTextLabel.textColor = [UIColor darkGrayColor];
         
-        self.priceBadge = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
-        self.priceBadge.layer.backgroundColor = [UIColor colorWithHue:0.49 saturation:0.77 brightness:0.85 alpha:1.0].CGColor;
+        self.priceBadge = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 21)];
+        self.priceBadge.layer.backgroundColor = [UIColor colorWithHue:.415 saturation:0.64 brightness:0.87 alpha:1.0].CGColor;
         self.priceBadge.layer.cornerRadius = self.priceBadge.bounds.size.height / 2;
         self.priceBadge.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width - 35, self.center.y);
         self.priceBadge.textAlignment = NSTextAlignmentCenter;
-        self.priceBadge.font = [UIFont fontWithName:@"Avenir-Heavy" size:10.0];
-        self.priceBadge.textColor = [UIColor lightTextColor];
+        self.priceBadge.font = [UIFont fontWithName:@"Avenir-Heavy" size:12.0];
+        self.priceBadge.textColor = [UIColor darkGrayColor];
         [self addSubview:self.priceBadge];
         
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, self.bounds.origin.y + 7, 30, 30)];
@@ -96,7 +97,7 @@
     if (item.price > 0) {
         self.priceBadge.text = [NSString stringWithFormat: @"$%.2f", item.price];
     } else {
-        self.priceBadge.text = @"FREE";
+        self.priceBadge.text = @"Free";
     }
 }
 
