@@ -957,7 +957,7 @@
                                 <rect key="frame" x="0.0" y="122" width="320" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="WLW-2b-Ixt">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" editable="NO" selectable="NO" id="WLW-2b-Ixt">
                                         <rect key="frame" x="8" y="8" width="304" height="93"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -991,6 +991,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="FBG-RA-VvJ"/>
                     <connections>
+                        <outlet property="detailsTextView" destination="WLW-2b-Ixt" id="Ld0-7P-lmg"/>
                         <outlet property="installButton" destination="fne-ID-k7d" id="Fim-Bv-6ML"/>
                         <outlet property="itemIconImage" destination="tzz-i3-DA6" id="b6G-fS-4EF"/>
                         <outlet property="priceLabel" destination="UZu-uC-VOV" id="x0z-GQ-ixL"/>
