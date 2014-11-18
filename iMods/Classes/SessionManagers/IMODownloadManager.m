@@ -117,7 +117,6 @@ static IMODownloadManager *downloadManager = nil;
         NSURL* url = [[NSURL alloc] initWithString:urlString];
         return [NSURLConnection promise:[NSURLRequest requestWithURL: url]].then(^(NSData *data) {
             NSString *filePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: @"Packages.gz"];
-            NSLog(@"Downloaded index file path: %@", filePath);
             [data writeToFile:filePath atomically:YES];
             return filePath;
         });
