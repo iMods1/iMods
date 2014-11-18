@@ -51,7 +51,6 @@
             contentVC.delegate = self;
             [self.pages addObject:contentVC];
         }
-        NSLog(@"Pages: %d", self.pages.count);
         if (self.pages.count) {
             [self.pageViewController setViewControllers:self.pages
                                               direction:UIPageViewControllerNavigationDirectionForward
