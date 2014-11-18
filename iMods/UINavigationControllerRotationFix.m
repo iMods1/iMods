@@ -11,6 +11,7 @@
 @implementation UINavigationControllerRotationFix
 
 -(BOOL)shouldAutorotate {
+    NSLog(@"Nav sholdAutorotate");
     return [[self.viewControllers lastObject] shouldAutorotate];
 }
 

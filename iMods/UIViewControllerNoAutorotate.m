@@ -11,7 +11,8 @@
 @implementation UIViewControllerNoAutorotate
 
 - (BOOL)shouldAutorotate {
-    return NO;
+    NSLog(@"VC shouldAutorotate: %@", self.class);
+    return YES;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

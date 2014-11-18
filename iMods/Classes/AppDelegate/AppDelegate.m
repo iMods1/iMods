@@ -10,6 +10,7 @@
 #import "IMOConstants.h"
 #import "IMOLoginViewController.h"
 #import "IMOResetPasswordViewController.h"
+#import "IMOScreenShotViewController.h"
 #import "Stripe.h"
 
 NSString * const StripePublishableKey = @"pk_test_4ZdjKL2iALVVPu62VM8BbbAE";
@@ -60,6 +61,12 @@ BOOL isRunningTests(void) {
     if (handlelUrl) {
         [self application:application handleOpenURL:handlelUrl];
     }
+    
+    // Change page control indicator colors in the screenshot view
+    UIPageControl *pageControl = [UIPageControl appearanceWhenContainedIn:[IMOScreenShotViewController class], nil];
+    pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.backgroundColor = [UIColor clearColor];
     
     return YES;
 }
