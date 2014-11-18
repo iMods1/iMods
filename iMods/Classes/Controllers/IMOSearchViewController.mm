@@ -39,7 +39,6 @@ std::vector<TagSection> searchResult;
     NSString* indexFilePath = @"/tmp/Packages.gz";
 #else
     NSString* indexFilePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]stringByAppendingString:@"/"] stringByAppendingString: @"Packages.gz"];
-    ds
 #endif
     if(!indexFile.open([indexFilePath UTF8String], true)){
         self.searchReady = NO;

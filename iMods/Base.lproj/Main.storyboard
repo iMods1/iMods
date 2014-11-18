@@ -909,6 +909,9 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="UF1-Fe-ybH" kind="modal" identifier="screenshot_page_view_controller_modal" id="ESS-VA-dZ5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ovc-fi-FXY">
                                 <rect key="frame" x="136" y="262" width="48" height="48"/>
@@ -1017,7 +1020,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-bb-DXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3142" y="403"/>
+            <point key="canvasLocation" x="3122" y="403"/>
         </scene>
         <!--Categories Controller-->
         <scene sceneID="eQU-VR-A5d">
@@ -1148,6 +1151,7 @@
                     </view>
                     <connections>
                         <outlet property="categoryIconButton" destination="qmq-FR-EYu" id="vAH-r2-SbD"/>
+                        <outlet property="categoryNameLabel" destination="DLH-Xy-CaF" id="YeS-cg-nw6"/>
                         <outlet property="sortByDateButton" destination="757-SY-Dff" id="AOe-0o-tgn"/>
                         <outlet property="sortByDateLabel" destination="7Gl-Vv-fuJ" id="7p9-jg-mhG"/>
                         <outlet property="sortByRatingButton" destination="C6P-ri-Dyg" id="lET-PL-Uao"/>
@@ -1159,6 +1163,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTT-En-fs1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3628" y="1156"/>
+        </scene>
+        <!--Screen Shot Content View Controller-->
+        <scene sceneID="UIr-Uq-e77">
+            <objects>
+                <viewController storyboardIdentifier="ScreenShotContentViewController" id="IS8-nO-7NL" customClass="IMOScreenShotContentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y5b-aK-Aba">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ldU-tm-EeA">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aq1-aN-6RK" appends="YES" id="QAG-z1-WyL"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="ldU-tm-EeA" id="QQx-Ix-4mn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sdA-9l-e0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aq1-aN-6RK">
+                    <connections>
+                        <action selector="didTapOnImage:" destination="IS8-nO-7NL" id="PYS-rX-fK0"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="4840" y="1156"/>
+        </scene>
+        <!--Screen Shot View Controller-->
+        <scene sceneID="Ned-Su-Vfn">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="UF1-Fe-ybH" customClass="IMOScreenShotViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mGE-Ws-8LZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1v-og-x7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4078" y="1156"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="cDp-xe-nQd">
+            <objects>
+                <pageViewController storyboardIdentifier="ScreenShotPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="mZE-P6-ge4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AdD-Dl-mO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4469" y="1156"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="0QE-QZ-fmj">
@@ -1414,6 +1472,11 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleAspectFill" id="Ocr-mb-MnS" customClass="MRCircularProgressView">
+                                <rect key="frame" x="55" y="183" width="210" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C7d-aT-Veb">
                                 <rect key="frame" x="0.0" y="505" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -1425,11 +1488,6 @@
                                     <action selector="didTapDismissButton:" destination="2N3-oc-eFA" eventType="touchUpInside" id="Bep-Oe-RCp"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleAspectFill" id="Ocr-mb-MnS" customClass="MRCircularProgressView">
-                                <rect key="frame" x="55" y="183" width="210" height="210"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <gestureRecognizers/>
                         <connections>
@@ -1749,8 +1807,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="xDs-Lb-77m"/>
+        <segue reference="zDc-VD-ufr"/>
         <segue reference="VdQ-U4-lWc"/>
-        <segue reference="6Fx-XU-yp3"/>
         <segue reference="ukT-Qe-1cO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
