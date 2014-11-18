@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *categoryIconButton;
 @property NSSortDescriptor* sortByDate;
 @property NSSortDescriptor* sortByRating;
+@property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
 
 @end
 
@@ -49,6 +50,7 @@
     self.categoryIconButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.categoryIconButton setImage:self.categoryIcon forState:UIControlStateNormal & UIControlStateHighlighted];
     [self.categoryIconButton setTitle:[@"  " stringByAppendingString:self.category] forState:UIControlStateNormal];
+    self.categoryNameLabel.text = self.category;
     //self.sortByDateLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
     //self.sortByRatingLabel.textColor = [UIColor colorWithHexString:@"9f9f9f"];
     

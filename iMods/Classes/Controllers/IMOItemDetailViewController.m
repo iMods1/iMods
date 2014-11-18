@@ -18,6 +18,7 @@
 #import "IMODownloadManager.h"
 #import "IMOReviewManager.h"
 #import "IMOPackageManager.h"
+#import "IMOScreenShotViewController.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -177,6 +178,9 @@
             ((IMOInstallationViewController *)segue.destinationViewController).modalPresentationStyle = UIModalPresentationOverFullScreen;
         }
         ((IMOInstallationViewController *)segue.destinationViewController).modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    }
+    if ([segue.identifier isEqualToString:@"screenshot_page_view_controller_modal"]) {
+        ((IMOScreenShotViewController*) segue.destinationViewController).item = self.item;
     }
 }
 

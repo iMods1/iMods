@@ -57,6 +57,7 @@
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 282DECAA19D180960093348D /* libimpkg.cpp */; };
 		285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285791F419D4ADE20052A3EF /* PackageManagerTests.mm */; };
+		286509C81A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */; };
 		28718C3B1A03E3F300A54301 /* Packages.gz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3A1A03E3F300A54301 /* Packages.gz */; };
 		28718C3E1A03F62000A54301 /* status in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3D1A03F62000A54301 /* status */; };
 		28841C601A0030400054AB0A /* zipstream.hh in Sources */ = {isa = PBXBuildFile; fileRef = 28841C5E1A0030400054AB0A /* zipstream.hh */; };
@@ -70,6 +71,7 @@
 		289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.mm */; };
 		28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
+		28B9B9621A1ACCFA00D66E3B /* IMOScreenShotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
@@ -337,6 +339,8 @@
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
 		285791F419D4ADE20052A3EF /* PackageManagerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PackageManagerTests.mm; sourceTree = "<group>"; };
+		286509C61A1AF45F0059D4D9 /* IMOScreenShotContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOScreenShotContentViewController.h; sourceTree = "<group>"; };
+		286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOScreenShotContentViewController.m; sourceTree = "<group>"; };
 		28718C3A1A03E3F300A54301 /* Packages.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = Packages.gz; path = TestFiles/Packages.gz; sourceTree = "<group>"; };
 		28718C3D1A03F62000A54301 /* status */ = {isa = PBXFileReference; lastKnownFileType = text; name = status; path = TestFiles/status; sourceTree = "<group>"; };
 		28841C5C1A002C540054AB0A /* libzlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlib.a; path = "zlib/build/Debug-iphoneos/libzlib.a"; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 		289F003D198985410032B0C8 /* IMOPackageManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IMOPackageManager.mm; path = Classes/PackageManager/IMOPackageManager.mm; sourceTree = "<group>"; };
 		28A35C4819A6F58100FE3260 /* IMOReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOReview.h; sourceTree = "<group>"; };
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
+		28B9B9601A1ACCFA00D66E3B /* IMOScreenShotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOScreenShotViewController.h; sourceTree = "<group>"; };
+		28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOScreenShotViewController.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
 		28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HTMLColors.h"; path = "Classes/Extensions/UIColor+HTMLColors.h"; sourceTree = "<group>"; };
@@ -697,6 +703,10 @@
 				4DCFBBED19E6718000A36D63 /* IMORegistrationViewController.m */,
 				2844E93F1A14828F009E6168 /* IMOResetPasswordViewController.h */,
 				2844E9401A14828F009E6168 /* IMOResetPasswordViewController.m */,
+				286509C61A1AF45F0059D4D9 /* IMOScreenShotContentViewController.h */,
+				286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */,
+				28B9B9601A1ACCFA00D66E3B /* IMOScreenShotViewController.h */,
+				28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */,
 				4D19051419DBB76C009AF7F6 /* IMOSearchViewController.h */,
 				4D19051519DBB76C009AF7F6 /* IMOSearchViewController.mm */,
 				4D19050819DB7F83009AF7F6 /* IMOTabBarController.h */,
@@ -1161,9 +1171,11 @@
 				284E113D19D0101F000B513A /* AppDelegate.m in Sources */,
 				2830E8A51978C808008E42ED /* IMOItem.m in Sources */,
 				2833494219AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
+				28B9B9621A1ACCFA00D66E3B /* IMOScreenShotViewController.m in Sources */,
 				4DF0A9011A14616600AFAF59 /* IMOItemTableViewCell.m in Sources */,
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */,
+				286509C81A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */,
