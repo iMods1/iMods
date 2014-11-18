@@ -10,6 +10,7 @@
 #import "IMOItemTableViewCell.h"
 #import "IMOItemDetailViewController.h"
 #import "IMOItemManager.h"
+#import "IMODownloadManager.h"
 #import "Promise.h"
 #include "libimpkg.h"
 
@@ -42,16 +43,31 @@ std::vector<TagSection> searchResult;
 #endif
     if(!indexFile.open([indexFilePath UTF8String], true)){
         self.searchReady = NO;
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Cannot open cache, searching is not functioning"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        IMODownloadManager* downloadManager = [IMODownloadManager sharedDownloadManager];
+        [downloadManager downloadIndex]
+        .then(^(NSString* filePath) {
+            if(!indexFile.open([filePath UTF8String], true)){
+                [self errorLoadingIndexFile];
+            } else {
+                self.searchReady = YES;
+            }
+        });
+        if(!self.searchReady) {
+            [self errorLoadingIndexFile];
+        }
     } else {
         self.searchReady = YES;
     }
     
+}
+
+- (void) errorLoadingIndexFile {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"Cannot download the index file, or the file was curupted. Search is not functioning."
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning {
