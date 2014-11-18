@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 #import "IMOUser.h"
 
 @class IMORegistrationViewController;
@@ -17,7 +18,7 @@
 
 @end
 
-@interface IMORegistrationViewController : UIViewController <UITextFieldDelegate>
+@interface IMORegistrationViewController : UIViewControllerNoAutorotate <UITextFieldDelegate>
 
 
 @property (weak, nonatomic) id<IMORegistrationDelegate> delegate;

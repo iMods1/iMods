@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "IMOInstallationViewController.h"
 #import "AXRatingView.h"
+#import "UIViewControllerNoAutorotate.h"
 
 @class IMOItem;
 
-@interface IMOItemDetailViewController : UIViewController <IMOInstallationDelegate>
+@interface IMOItemDetailViewController : UIViewControllerNoAutorotate <IMOInstallationDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;

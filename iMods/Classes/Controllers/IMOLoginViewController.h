@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IMORegistrationViewController.h"
+#import "UIViewControllerNoAutorotate.h"
 
 @class IMOLoginViewController;
 
@@ -15,7 +16,7 @@
 - (void)loginViewControllerDidFinishLogin:(IMOLoginViewController *)lvc;
 @end
 
-@interface IMOLoginViewController : UIViewController <UITextFieldDelegate, IMORegistrationDelegate>
+@interface IMOLoginViewController : UIViewControllerNoAutorotate <UITextFieldDelegate, IMORegistrationDelegate>
 @property (weak, nonatomic) id<IMOLoginDelegate>delegate;
 
 - (void)registrationDidFinish:(IMORegistrationViewController *)sender withEmail:(NSString *)email withPassword:(NSString *)password;

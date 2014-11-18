@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOCategoriesDetailTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface IMOCategoriesDetailTableViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSArray *items;
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) UIImage *categoryIcon;

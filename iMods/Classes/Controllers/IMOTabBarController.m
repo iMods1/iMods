@@ -23,6 +23,27 @@
 
 @implementation IMOTabBarController
 
+- (BOOL)shouldAutorotate;
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    UIViewController * top;
+    UIViewController * tab = self.selectedViewController;
+    if([tab isKindOfClass:
+        ([UINavigationController class])]) {
+        top = [((UINavigationController *)tab)
+               topViewController];
+    }
+    
+    if ([top respondsToSelector:@selector(supportedInterfaceOrientations)])
+        return [top supportedInterfaceOrientations];
+    else
+        return [super supportedInterfaceOrientations];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

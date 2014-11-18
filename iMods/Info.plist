@@ -5,7 +5,7 @@
 	<key>CFBuildDate</key>
 	<date>2014-08-08T12:47:10Z</date>
 	<key>CFBuildNumber</key>
-	<string>1609</string>
+	<string>1667</string>
 	<key>CFBuildVersion</key>
 	<string>0</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleLongVersionString</key>
-	<string>1.0.1609.20141118.100328</string>
+	<string>1.0.1667.20141118.183825</string>
 	<key>CFBundleMajorVersion</key>
 	<string>1</string>
 	<key>CFBundleName</key>
@@ -40,7 +40,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.1609</string>
+	<string>1.0.1667</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
@@ -75,6 +75,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

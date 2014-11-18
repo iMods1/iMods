@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOProfileViewController : UIViewController
+@interface IMOProfileViewController : UIViewControllerNoAutorotate
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOCategoriesController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface IMOCategoriesController : UIViewControllerNoAutorotate <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView *categoriesTableView;
 

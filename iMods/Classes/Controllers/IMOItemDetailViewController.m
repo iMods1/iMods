@@ -19,6 +19,7 @@
 #import "IMOReviewManager.h"
 #import "IMOPackageManager.h"
 #import "IMOScreenShotViewController.h"
+#import "IMOYouTubeVideoPreviewViewController.h"
 
 @interface IMOItemDetailViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -181,6 +182,9 @@
     }
     if ([segue.identifier isEqualToString:@"screenshot_page_view_controller_modal"]) {
         ((IMOScreenShotViewController*) segue.destinationViewController).item = self.item;
+    }
+    if ([segue.identifier isEqualToString:@"youtube_video_player_view_controller_modal"]) {
+        ((IMOYouTubeVideoPreviewViewController*) segue.destinationViewController).youtubeVideoID = @"EdeVaT-zZt4";
     }
 }
 

@@ -52,9 +52,6 @@ std::vector<TagSection> searchResult;
                 self.searchReady = YES;
             }
         });
-        if(!self.searchReady) {
-            [self errorLoadingIndexFile];
-        }
     } else {
         self.searchReady = YES;
     }

@@ -22,6 +22,8 @@
     if (!self.imageURL) {
         return;
     }
+    self.view.backgroundColor = [UIColor clearColor];
+    
     UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
     [indicator startAnimating];
     [NSURLConnection promise:[NSURLRequest requestWithURL:self.imageURL]]
@@ -48,7 +50,6 @@
 }
 */
 - (IBAction)didTapOnImage:(id)sender {
-    NSLog(@"Tapped");
     [self.delegate didFinishViewing:sender];
 }
 

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <PaymentKit/PTKCard.h>
 #import "IMOBillingInfo.h"
+#import "UIViewControllerNoAutorotate.h"
 
 @protocol IMOCardDelegate;
 
-@interface IMOCardViewController : UIViewController <UITextFieldDelegate>
+@interface IMOCardViewController : UIViewControllerNoAutorotate <UITextFieldDelegate>
 
 @property (weak, nonatomic) id<IMOCardDelegate> delegate;
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOSearchViewController : UIViewController <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface IMOSearchViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @end

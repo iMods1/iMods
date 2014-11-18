@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOChartsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface IMOChartsViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UITableViewDelegate>
 
 - (IBAction)unwindToCharts:(UIStoryboardSegue *)segue;
 

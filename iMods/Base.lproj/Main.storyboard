@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -344,7 +344,7 @@
         <!--Profile-->
         <scene sceneID="1gw-3k-akj">
             <objects>
-                <viewController title="Profile" id="LjG-VE-q2v" customClass="IMOProfileViewController" sceneMemberID="viewController">
+                <viewController title="Profile" modalPresentationStyle="overFullScreen" id="LjG-VE-q2v" customClass="IMOProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a11-cb-1aB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -808,7 +808,7 @@
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0iA-CU-Ynl">
                                 <rect key="frame" x="0.0" y="221" width="321" height="234"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="5sV-zy-5EY" detailTextLabel="PCm-9P-Ww2" style="IBUITableViewCellStyleSubtitle" id="jNz-gq-P4N" customClass="IMOItemTableViewCell">
@@ -926,7 +926,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ovc-fi-FXY">
-                                <rect key="frame" x="136" y="262" width="48" height="48"/>
+                                <rect key="frame" x="138" y="262" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="details-icon-video-preview" backgroundImage="details-circle-red">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -937,6 +937,9 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="BFn-iz-Vec" kind="modal" identifier="youtube_video_player_view_controller_modal" id="llZ-Kn-9sd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dew-l8-z6T">
                                 <rect key="frame" x="244" y="262" width="48" height="48"/>
@@ -1179,13 +1182,13 @@
         <!--Screen Shot Content View Controller-->
         <scene sceneID="UIr-Uq-e77">
             <objects>
-                <viewController storyboardIdentifier="ScreenShotContentViewController" id="IS8-nO-7NL" customClass="IMOScreenShotContentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScreenShotContentViewController" modalPresentationStyle="overFullScreen" id="IS8-nO-7NL" customClass="IMOScreenShotContentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y5b-aK-Aba">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ldU-tm-EeA">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ldU-tm-EeA">
+                                <rect key="frame" x="0.0" y="116" width="320" height="336"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -1225,7 +1228,7 @@
         <!--Page View Controller-->
         <scene sceneID="cDp-xe-nQd">
             <objects>
-                <pageViewController storyboardIdentifier="ScreenShotPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="mZE-P6-ge4" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="ScreenShotPageViewController" autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="overFullScreen" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mZE-P6-ge4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdD-Dl-mO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4469" y="1156"/>
@@ -1440,10 +1443,10 @@
             </objects>
             <point key="canvasLocation" x="3565" y="-1005"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller Rotation Fix-->
         <scene sceneID="fhf-ey-hdP">
             <objects>
-                <navigationController id="hwq-tD-XKf" sceneMemberID="viewController">
+                <navigationController id="hwq-tD-XKf" customClass="UINavigationControllerRotationFix" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="3RR-h8-1CN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tgL-AX-iUA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1522,10 +1525,56 @@
             </objects>
             <point key="canvasLocation" x="4072" y="403"/>
         </scene>
+        <!--You Tube Video Preview View Controller-->
+        <scene sceneID="ggD-PC-4Jl">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="BFn-iz-Vec" customClass="IMOYouTubeVideoPreviewViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QDN-3g-Q5R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GCe-Lm-aft">
+                                <rect key="frame" x="1" y="115" width="320" height="337"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fyz-xS-wKZ">
+                                <rect key="frame" x="1" y="115" width="319" height="337"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="video-player-startplay-button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playVideo:" destination="BFn-iz-Vec" eventType="touchUpInside" id="L2y-zf-rRG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Fc2-DT-XDK" appends="YES" id="LmE-DE-LEg"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="playButton" destination="fyz-xS-wKZ" id="Gf0-Ql-gHW"/>
+                        <outlet property="thumbnailImageView" destination="GCe-Lm-aft" id="mfq-cL-cgl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsa-qX-zbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Fc2-DT-XDK">
+                    <connections>
+                        <action selector="didTapOnView:" destination="BFn-iz-Vec" id="w0C-GQ-A97"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="5187" y="1156"/>
+        </scene>
         <!--Featured-->
         <scene sceneID="RCo-dt-eAr">
             <objects>
-                <navigationController title="Featured" automaticallyAdjustsScrollViewInsets="NO" id="sxD-oe-RHH" sceneMemberID="viewController">
+                <navigationController title="Featured" automaticallyAdjustsScrollViewInsets="NO" id="sxD-oe-RHH" customClass="UINavigationControllerRotationFix" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="imods-assets-featured-icon-deselected" id="WM9-RZ-Sbc">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
@@ -1545,10 +1594,10 @@
             </objects>
             <point key="canvasLocation" x="2118" y="403"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller Rotation Fix-->
         <scene sceneID="jZD-py-fpf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tzY-PI-mnw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tzY-PI-mnw" customClass="UINavigationControllerRotationFix" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="imods-assets-update-icon-selected" id="Ddb-kO-MGp">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
@@ -1643,10 +1692,10 @@
             </objects>
             <point key="canvasLocation" x="2584" y="1912"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller Rotation Fix-->
         <scene sceneID="SSP-md-n4H">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WnN-I5-zcg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WnN-I5-zcg" customClass="UINavigationControllerRotationFix" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="imods-assets-chart-icon-selected" id="dPE-8b-tNN">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
@@ -1813,6 +1862,7 @@
         <image name="login-account-imods_0004s_0003_Rectangle-1" width="320" height="63"/>
         <image name="login-account-imods_heart" width="29" height="25"/>
         <image name="login-account-imods_icon_gear" width="22" height="22"/>
+        <image name="video-player-startplay-button" width="200" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1820,8 +1870,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zDc-VD-ufr"/>
         <segue reference="xDs-Lb-77m"/>
+        <segue reference="zDc-VD-ufr"/>
         <segue reference="VdQ-U4-lWc"/>
         <segue reference="o8O-OQ-8vm"/>
     </inferredMetricsTieBreakers>

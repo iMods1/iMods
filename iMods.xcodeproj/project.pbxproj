@@ -71,6 +71,9 @@
 		289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 289F003D198985410032B0C8 /* IMOPackageManager.mm */; };
 		28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
 		28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A35C4919A6F58100FE3260 /* IMOReview.m */; };
+		28A532DA1A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A532D91A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.m */; };
+		28A532E01A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A532DF1A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.m */; };
+		28A532E71A1BE7C100E1DB98 /* UINavigationControllerRotationFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A532E61A1BE7C100E1DB98 /* UINavigationControllerRotationFix.m */; };
 		28B9B9621A1ACCFA00D66E3B /* IMOScreenShotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
@@ -355,6 +358,12 @@
 		289F003D198985410032B0C8 /* IMOPackageManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IMOPackageManager.mm; path = Classes/PackageManager/IMOPackageManager.mm; sourceTree = "<group>"; };
 		28A35C4819A6F58100FE3260 /* IMOReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOReview.h; sourceTree = "<group>"; };
 		28A35C4919A6F58100FE3260 /* IMOReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOReview.m; sourceTree = "<group>"; };
+		28A532D81A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOYouTubeVideoPreviewViewController.h; sourceTree = "<group>"; };
+		28A532D91A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOYouTubeVideoPreviewViewController.m; sourceTree = "<group>"; };
+		28A532DE1A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerNoAutorotate.h; sourceTree = "<group>"; };
+		28A532DF1A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerNoAutorotate.m; sourceTree = "<group>"; };
+		28A532E51A1BE7C100E1DB98 /* UINavigationControllerRotationFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationControllerRotationFix.h; sourceTree = "<group>"; };
+		28A532E61A1BE7C100E1DB98 /* UINavigationControllerRotationFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationControllerRotationFix.m; sourceTree = "<group>"; };
 		28B9B9601A1ACCFA00D66E3B /* IMOScreenShotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOScreenShotViewController.h; sourceTree = "<group>"; };
 		28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOScreenShotViewController.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
@@ -518,13 +527,13 @@
 		284CBBA91946F35A006539A3 = {
 			isa = PBXGroup;
 			children = (
-				28841C621A0032090054AB0A /* zlib.xcodeproj */,
 				284CBBB41946F35A006539A3 /* iMods */,
 				284CBBC91946F35A006539A3 /* iModsTests */,
 				4D29D0FA19D314BA004DCE49 /* iMods UI Tests */,
 				284CBBB31946F35A006539A3 /* Products */,
 				237E9CEAFDC54C2EA68D6159 /* Frameworks */,
 				1B167343A3722D62CB3CCA88 /* Pods */,
+				28841C621A0032090054AB0A /* zlib.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -604,6 +613,17 @@
 				284F988D19898AB00008DD90 /* IMOConstants.m */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		28A532E11A1BE65000E1DB98 /* SubClasses */ = {
+			isa = PBXGroup;
+			children = (
+				28A532DE1A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.h */,
+				28A532DF1A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.m */,
+				28A532E51A1BE7C100E1DB98 /* UINavigationControllerRotationFix.h */,
+				28A532E61A1BE7C100E1DB98 /* UINavigationControllerRotationFix.m */,
+			);
+			name = SubClasses;
 			sourceTree = "<group>";
 		};
 		28CF066A19895AF4003347BB /* NetworkManager */ = {
@@ -715,6 +735,8 @@
 				4DE71ADE19FEA862002CA0A7 /* IMOTestDownloadViewController.m */,
 				4D5D5B0319DB20000083DE7B /* IMOUpdatesViewController.h */,
 				4D5D5B0419DB20000083DE7B /* IMOUpdatesViewController.m */,
+				28A532D81A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.h */,
+				28A532D91A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.m */,
 				4D6044E719F86CD500D82152 /* IMOWalletViewController.h */,
 				4D6044E819F86CD500D82152 /* IMOWalletViewController.m */,
 			);
@@ -766,6 +788,7 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				28A532E11A1BE65000E1DB98 /* SubClasses */,
 				28DB8D701A12A823002635EB /* Extensions */,
 				4DBABF1719C76B1000274A45 /* Views */,
 				28CF066A19895AF4003347BB /* NetworkManager */,
@@ -1196,6 +1219,7 @@
 				289F003E198985410032B0C8 /* IMOPackageManager.mm in Sources */,
 				4D29D0EB19D267E0004DCE49 /* iMods.xcdatamodeld in Sources */,
 				4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */,
+				28A532E71A1BE7C100E1DB98 /* UINavigationControllerRotationFix.m in Sources */,
 				4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				4D7377701A17F2530083FD2F /* UIView+IMOAnimation.m in Sources */,
@@ -1220,7 +1244,9 @@
 				289C58FD1994C33900AD0F5D /* IMOResponse.m in Sources */,
 				2826720119D0123B0063CF94 /* main.m in Sources */,
 				28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */,
+				28A532E01A1BE3ED00E1DB98 /* UIViewControllerNoAutorotate.m in Sources */,
 				285708951978CF5C00C7F37B /* IMOOrder.m in Sources */,
+				28A532DA1A1BAEA000E1DB98 /* IMOYouTubeVideoPreviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,23 +1490,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/ChuzzleKit\"",
-					"\"${PODS_ROOT}/Headers/DACircularProgress\"",
-					"\"${PODS_ROOT}/Headers/HexColors\"",
-					"\"${PODS_ROOT}/Headers/KIF\"",
-					"\"${PODS_ROOT}/Headers/Mantle\"",
-					"\"${PODS_ROOT}/Headers/OMGHTTPURLRQ\"",
-					"\"${PODS_ROOT}/Headers/Overcoat\"",
-					"\"${PODS_ROOT}/Headers/PRHTask@aufflick\"",
-					"\"${PODS_ROOT}/Headers/PaymentKit\"",
-					"\"${PODS_ROOT}/Headers/PromiseKit\"",
-					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
-					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
-					"\"${PODS_ROOT}/Headers/Stripe\"",
-					"\"${PODS_ROOT}/Headers/TSMessages\"",
-					"\"${PODS_ROOT}/Headers/UICKeyChainStore\"",
+					"$(inherited)",
 					"${SOURCE_ROOT}/include",
 				);
 				INFOPLIST_FILE = iMods/Info.plist;
@@ -1517,23 +1527,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
 				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/ChuzzleKit\"",
-					"\"${PODS_ROOT}/Headers/DACircularProgress\"",
-					"\"${PODS_ROOT}/Headers/HexColors\"",
-					"\"${PODS_ROOT}/Headers/KIF\"",
-					"\"${PODS_ROOT}/Headers/Mantle\"",
-					"\"${PODS_ROOT}/Headers/OMGHTTPURLRQ\"",
-					"\"${PODS_ROOT}/Headers/Overcoat\"",
-					"\"${PODS_ROOT}/Headers/PRHTask@aufflick\"",
-					"\"${PODS_ROOT}/Headers/PaymentKit\"",
-					"\"${PODS_ROOT}/Headers/PromiseKit\"",
-					"\"${PODS_ROOT}/Headers/ReactiveCocoa\"",
-					"\"${PODS_ROOT}/Headers/ReactiveCocoa/ReactiveCocoa\"",
-					"\"${PODS_ROOT}/Headers/Stripe\"",
-					"\"${PODS_ROOT}/Headers/TSMessages\"",
-					"\"${PODS_ROOT}/Headers/UICKeyChainStore\"",
+					"$(inherited)",
 					"${SOURCE_ROOT}/include",
 				);
 				INFOPLIST_FILE = iMods/Info.plist;

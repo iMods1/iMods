@@ -25,12 +25,22 @@
     // Do any additional setup after loading the view.
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ScreenShotPageViewController"];
     self.pageViewController.view.frame = self.view.bounds;
+    self.pageViewController.view.backgroundColor = [UIColor clearColor];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
+    // Add page view
+    self.view.backgroundColor = [UIColor clearColor];
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    
+    // Add blur view
+    UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    UIVisualEffectView* blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurView.frame = self.view.bounds;
+    [self.view insertSubview:blurView atIndex:0];
+    
     self.pages = [[NSMutableArray alloc] init];
     
     // Download screenshots
@@ -72,6 +82,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+
+- (BOOL) shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 #pragma mark -
