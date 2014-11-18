@@ -22,6 +22,12 @@
     if (!self.imageURL) {
         return;
     }
+    self.view.backgroundColor = [UIColor clearColor];
+    UIBlurEffect* blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    UIVisualEffectView* blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurView.frame = self.view.bounds;
+    [self.view insertSubview:blurView atIndex:0];
+    
     UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
     [indicator startAnimating];
     [NSURLConnection promise:[NSURLRequest requestWithURL:self.imageURL]]
@@ -48,7 +54,6 @@
 }
 */
 - (IBAction)didTapOnImage:(id)sender {
-    NSLog(@"Tapped");
     [self.delegate didFinishViewing:sender];
 }
 

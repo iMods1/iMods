@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "IMOLoginViewController.h"
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOProfileSettingsViewController : UIViewController <IMOLoginDelegate>
+@interface IMOProfileSettingsViewController : UIViewControllerNoAutorotate <IMOLoginDelegate>
 
 @end

@@ -25,9 +25,11 @@
     // Do any additional setup after loading the view.
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ScreenShotPageViewController"];
     self.pageViewController.view.frame = self.view.bounds;
+    self.pageViewController.view.backgroundColor = [UIColor clearColor];
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
+    self.view.backgroundColor = [UIColor clearColor];
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];

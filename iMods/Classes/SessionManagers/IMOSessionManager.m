@@ -92,7 +92,7 @@ static IMOSessionManager* sessionManager = nil;
 - (PMKPromise*) getJSON:(NSString*)url parameters:(NSDictionary *)parameters {
     return [networkManager GET:url parameters:parameters]
     .catch(^(NSError* error){
-        NSLog(@"Error occurred during request: %@", error);
+        NSLog(@"Error occurred during request: %@", error.localizedDescription);
         // Should propagate errors to clients to handle
         return error;
     });

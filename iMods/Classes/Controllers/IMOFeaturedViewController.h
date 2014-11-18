@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 
-@interface IMOFeaturedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface IMOFeaturedViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UITableViewDelegate>
 
 @end

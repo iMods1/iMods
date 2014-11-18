@@ -47,7 +47,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"Current Login Delegate: %@", self.delegate);
+//    NSLog(@"Current Login Delegate: %@", self.delegate);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +58,7 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"textField == self.passwordField is %d", textField == self.passwordField);
+//    NSLog(@"textField == self.passwordField is %d", textField == self.passwordField);
     if (textField == self.passwordField) {
         [self.view endEditing:YES];
         [textField resignFirstResponder];

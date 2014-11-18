@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewControllerNoAutorotate.h"
 #import "IMOUser.h"
 
 @class IMOResetPasswordViewController;
 
-@interface IMOResetPasswordViewController : UIViewController
+@interface IMOResetPasswordViewController : UIViewControllerNoAutorotate
 
 - (void) prepareToResetPasswordFor:(NSString*)email token:(NSString*)token;
 
