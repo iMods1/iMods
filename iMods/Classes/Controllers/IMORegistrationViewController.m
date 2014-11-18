@@ -11,7 +11,8 @@
 
 @interface IMORegistrationViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
-@property (weak, nonatomic) IBOutlet UITextField *fullNameField;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmationTextField;
@@ -30,10 +31,11 @@
     // Do any additional setup after loading the view.
     self.ageTextField.delegate = self;
     self.userNameField.delegate = self;
-    self.fullNameField.delegate = self;
+    self.firstNameField.delegate = self;
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
     self.passwordConfirmationTextField.delegate = self;
+    self.scrollView.contentSize = CGSizeMake(308, 560);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,8 +59,11 @@
     
     if (textField == self.userNameField) {
         [textField resignFirstResponder];
-        [self.fullNameField becomeFirstResponder];
-    } else if (textField == self.fullNameField) {
+        [self.firstNameField becomeFirstResponder];
+    } else if (textField == self.firstNameField) {
+        [textField resignFirstResponder];
+        [self.lastNameField becomeFirstResponder];
+    } else if (textField == self.lastNameField) {
         [textField resignFirstResponder];
         [self.ageTextField becomeFirstResponder];
     } else if (textField == self.ageTextField) {
@@ -97,7 +102,7 @@
     f.numberStyle = NSNumberFormatterDecimalStyle;
     
     NSString *userName = self.userNameField.text;
-    NSString *fullName = self.fullNameField.text;
+    NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.firstNameField.text, self.lastNameField.text];
     NSNumber *age = [f numberFromString: self.ageTextField.text];
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
