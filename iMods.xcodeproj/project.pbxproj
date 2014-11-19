@@ -77,6 +77,9 @@
 		28B9B9621A1ACCFA00D66E3B /* IMOScreenShotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */; };
 		28C7850319896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
 		28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */; };
+		28C9F6321A1C69CD008D897F /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C9F62D1A1C69CD008D897F /* TPKeyboardAvoidingScrollView.m */; };
+		28C9F6331A1C69CD008D897F /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C9F62F1A1C69CD008D897F /* TPKeyboardAvoidingTableView.m */; };
+		28C9F6341A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C9F6311A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		28DB8D6C1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
 		28DB8D6D1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
 		28DB8D6E1A12A81D002635EB /* UIColor+HTMLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */; };
@@ -368,6 +371,12 @@
 		28B9B9611A1ACCFA00D66E3B /* IMOScreenShotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOScreenShotViewController.m; sourceTree = "<group>"; };
 		28C7850119896ABF00323431 /* IMONetworkErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMONetworkErrorResponse.h; path = Classes/NetworkManager/IMONetworkErrorResponse.h; sourceTree = "<group>"; };
 		28C7850219896ABF00323431 /* IMONetworkErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMONetworkErrorResponse.m; path = Classes/NetworkManager/IMONetworkErrorResponse.m; sourceTree = "<group>"; };
+		28C9F62C1A1C69CD008D897F /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = "Classes/Third-party/TPKeyboardAvoidingScrollView.h"; sourceTree = "<group>"; };
+		28C9F62D1A1C69CD008D897F /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = "Classes/Third-party/TPKeyboardAvoidingScrollView.m"; sourceTree = "<group>"; };
+		28C9F62E1A1C69CD008D897F /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingTableView.h; path = "Classes/Third-party/TPKeyboardAvoidingTableView.h"; sourceTree = "<group>"; };
+		28C9F62F1A1C69CD008D897F /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = "Classes/Third-party/TPKeyboardAvoidingTableView.m"; sourceTree = "<group>"; };
+		28C9F6301A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "Classes/Third-party/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		28C9F6311A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "Classes/Third-party/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		28DB8D6A1A12A81D002635EB /* UIColor+HTMLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HTMLColors.h"; path = "Classes/Extensions/UIColor+HTMLColors.h"; sourceTree = "<group>"; };
 		28DB8D6B1A12A81D002635EB /* UIColor+HTMLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HTMLColors.m"; path = "Classes/Extensions/UIColor+HTMLColors.m"; sourceTree = "<group>"; };
 		2B9E58B97DA33ADA1A2D7358 /* Pods-iMods UI Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMods UI Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMods UI Tests/Pods-iMods UI Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -626,6 +635,19 @@
 			name = SubClasses;
 			sourceTree = "<group>";
 		};
+		28C9F6361A1C69D3008D897F /* Thrid-party */ = {
+			isa = PBXGroup;
+			children = (
+				28C9F62C1A1C69CD008D897F /* TPKeyboardAvoidingScrollView.h */,
+				28C9F62D1A1C69CD008D897F /* TPKeyboardAvoidingScrollView.m */,
+				28C9F62E1A1C69CD008D897F /* TPKeyboardAvoidingTableView.h */,
+				28C9F62F1A1C69CD008D897F /* TPKeyboardAvoidingTableView.m */,
+				28C9F6301A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				28C9F6311A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			name = "Thrid-party";
+			sourceTree = "<group>";
+		};
 		28CF066A19895AF4003347BB /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +810,7 @@
 		4D8928FE19749DF400AD8A28 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				28C9F6361A1C69D3008D897F /* Thrid-party */,
 				28A532E11A1BE65000E1DB98 /* SubClasses */,
 				28DB8D701A12A823002635EB /* Extensions */,
 				4DBABF1719C76B1000274A45 /* Views */,
@@ -1199,6 +1222,7 @@
 				2830E8901978A5BE008E42ED /* IMOUser.m in Sources */,
 				4D6044E919F86CD500D82152 /* IMOWalletViewController.m in Sources */,
 				286509C81A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m in Sources */,
+				28C9F6321A1C69CD008D897F /* TPKeyboardAvoidingScrollView.m in Sources */,
 				4DBABF1D19C76E9600274A45 /* IMOCategoriesController.m in Sources */,
 				2830E8991978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
 				4D8A3B6519E1B99A007172A6 /* IMOCardViewController.m in Sources */,
@@ -1221,6 +1245,7 @@
 				4DE71ADF19FEA862002CA0A7 /* IMOTestDownloadViewController.m in Sources */,
 				28A532E71A1BE7C100E1DB98 /* UINavigationControllerRotationFix.m in Sources */,
 				4DCFBBF719E6FE1400A36D63 /* IMOInstallationViewController.m in Sources */,
+				28C9F6331A1C69CD008D897F /* TPKeyboardAvoidingTableView.m in Sources */,
 				2833493E19AA8EFA00DDB922 /* IMOWishListManager.m in Sources */,
 				4D7377701A17F2530083FD2F /* UIView+IMOAnimation.m in Sources */,
 				2833495119AA8F2500DDB922 /* IMOCategoryManager.m in Sources */,
@@ -1237,6 +1262,7 @@
 				4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
 				4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */,
+				28C9F6341A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				4DE71ADC19FE9E3A002CA0A7 /* IMODownloadManager.m in Sources */,
 				2833494419AA8EFA00DDB922 /* IMOSessionManager.m in Sources */,
 				28A35C4A19A6F58100FE3260 /* IMOReview.m in Sources */,
