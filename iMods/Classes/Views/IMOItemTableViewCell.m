@@ -35,32 +35,32 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y, 150, 30)];
-        self.textLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:14.0];
+        self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y+10, 150, 30)];
+        self.textLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:16.0];
         [self addSubview:self.textLabel];
         
-        self.ratingControl = [[AXRatingView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 210, self.bounds.origin.y+10, 50, 15)];
+        self.ratingControl = [[AXRatingView alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 210, self.bounds.origin.y+20, 50, 15)];
         self.ratingControl.numberOfStar = 5;
         self.ratingControl.stepInterval = 1.0;
         self.ratingControl.markFont = [UIFont systemFontOfSize:9.0];
         [self.ratingControl setUserInteractionEnabled:NO];
         [self insertSubview:self.ratingControl belowSubview:self.textLabel];
         
-        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 15, 250, 30)];
-        self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:9.0];
+        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 30, 250, 30)];
+        self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:11.0];
         [self addSubview: self.detailTextLabel];
         self.detailTextLabel.textColor = [UIColor darkGrayColor];
         
         self.priceBadge = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 21)];
         self.priceBadge.layer.backgroundColor = [UIColor colorWithHue:.415 saturation:0.64 brightness:0.87 alpha:1.0].CGColor;
         self.priceBadge.layer.cornerRadius = self.priceBadge.bounds.size.height / 2;
-        self.priceBadge.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width - 35, self.center.y);
+        self.priceBadge.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width - 35, self.center.y+10);
         self.priceBadge.textAlignment = NSTextAlignmentCenter;
         self.priceBadge.font = [UIFont fontWithName:@"Avenir-Heavy" size:12.0];
         self.priceBadge.textColor = [UIColor darkGrayColor];
         [self addSubview:self.priceBadge];
         
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, self.bounds.origin.y + 7, 30, 30)];
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, self.bounds.origin.y + 17, 30, 30)];
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         self.imageView.clipsToBounds = YES;
         self.imageView.image = nil;

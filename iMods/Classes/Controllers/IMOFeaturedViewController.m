@@ -38,6 +38,7 @@
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage: image];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = 60;
     
     [self.tableView registerClass:[IMOItemTableViewCell class] forCellReuseIdentifier:@"Cell"];
     

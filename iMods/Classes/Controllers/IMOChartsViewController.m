@@ -50,6 +50,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.rowHeight = 60;
     self.manager = [[IMOItemManager alloc] init];
     
     NSString *category = [self categoryForSelectedIndex];
