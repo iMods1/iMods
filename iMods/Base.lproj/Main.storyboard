@@ -1540,7 +1540,7 @@
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fyz-xS-wKZ">
-                                <rect key="frame" x="1" y="115" width="319" height="337"/>
+                                <rect key="frame" x="0.0" y="115" width="320" height="337"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="video-player-startplay-button">
@@ -1862,7 +1862,7 @@
         <image name="login-account-imods_0004s_0003_Rectangle-1" width="320" height="63"/>
         <image name="login-account-imods_heart" width="29" height="25"/>
         <image name="login-account-imods_icon_gear" width="22" height="22"/>
-        <image name="video-player-startplay-button" width="200" height="200"/>
+        <image name="video-player-startplay-button" width="150" height="150"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

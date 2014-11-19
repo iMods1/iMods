@@ -17,6 +17,7 @@
 @property (strong, nonatomic) XCDYouTubeVideoPlayerViewController* playerViewController;
 @property (weak, nonatomic) IBOutlet UIView *playerView;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (strong, nonatomic) UIActivityIndicatorView* activityIndicator;
 
 @end
 
@@ -29,6 +30,11 @@
     blurView.frame = self.view.bounds;
     [self.view insertSubview:blurView atIndex:0];
     self.view.backgroundColor = [UIColor clearColor];
+    
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
+    self.activityIndicator.color = [UIColor grayColor];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.activityIndicator];
     
     // Init video player
     self.playerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.youtubeVideoID];
@@ -54,10 +60,24 @@
     
     NSURL* thumbnailURL = video.mediumThumbnailURL ? video.mediumThumbnailURL : video.smallThumbnailURL;
     [NSURLConnection promise:[NSURLRequest requestWithURL:thumbnailURL]]
+    .catch(^(NSError* error) {
+        NSString* msg = [NSString stringWithFormat:@"Cannot load video: %@", error.localizedDescription];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:msg
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return error;
+    })
     .then(^(UIImage* thumbnailImage) {
         self.thumbnailImageView.image = thumbnailImage;
         self.thumbnailImageView.userInteractionEnabled = YES;
         self.playButton.hidden = NO;
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator removeFromSuperview];
+    })
+    .finally(^{
     });
 }
 
