@@ -99,6 +99,10 @@
     valid = valid && (self.cityField.text.length > 0);
     valid = valid && (self.stateField.text.length > 0);
     valid = valid && (self.countryField.text.length > 0);
+    valid = valid && (self.card.number.length > 0);
+    valid = valid && (self.card.expMonth > 0);
+    valid = valid && (self.card.expYear > 0);
+    valid = valid && (self.card.cvc.length > 0);
 
     return valid;
 }
@@ -138,6 +142,15 @@
 }
 
 - (IBAction)submitButtonTapped:(id)sender {
+    if (![self validateFields]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Form error"
+                                                        message:@"One or more fields are missing or invlid."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     [self createBillingInfo: self.card];
     [self.delegate cardControllerDidFinish: self withBillingInfo: self.info];
 }

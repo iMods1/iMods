@@ -243,6 +243,7 @@
         IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
         [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
             self.itemAssets = results;
+            NSLog(@"Assets: %@", self.itemAssets);
             self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
         });
     }
@@ -298,6 +299,7 @@
     self.ratingView.stepInterval = 1.0;
     self.ratingView.markFont = [UIFont systemFontOfSize:28.0];
     IMOUserManager* userManager = [IMOSessionManager sharedSessionManager].userManager;
+    [self.ratingView setUserInteractionEnabled:userManager.userLoggedIn];
     
     __block BOOL alreadyRatedByCurrentUser = NO;
     void (^updateRating)(NSArray* reviews) = ^(NSArray* reviews) {
@@ -324,7 +326,6 @@
     };
     
     IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
-    [self.ratingView setUserInteractionEnabled:userManager.userLoggedIn];
     [reviewManager getReviewsByItem:self.item].then(updateRating);
 }
 

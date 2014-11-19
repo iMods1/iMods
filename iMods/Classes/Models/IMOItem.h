@@ -27,7 +27,7 @@
 @property (nonatomic, copy, readonly) NSString * desc;
 @property (nonatomic, copy, readonly) NSDate * add_date;
 @property (nonatomic, copy, readonly) NSDate * last_update_date;
-@property (nonatomic, assign, readonly) float rating;
+@property (nonatomic, assign) float rating;
 
 /* Non-JSON data fields */
 @property NSMutableArray* reviews;

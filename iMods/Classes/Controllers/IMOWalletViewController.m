@@ -8,6 +8,7 @@
 
 #import "IMOWalletViewController.h"
 #import "IMOSessionManager.h"
+#import <NSError+OVCResponse.h>
 
 @interface IMOWalletViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -100,18 +101,30 @@
 }
 
 - (void)cardControllerDidFinish:(IMOCardViewController *)cardController withBillingInfo:(IMOBillingInfo *)info {
-    NSLog(@"Dismissing CardController with BillingInfo: %@", info);
     [self dismissViewControllerAnimated:YES completion:nil];
 
     __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.tableView addSubview:indicator];
     [indicator startAnimating];
     [self.sessionManager.billingManager addNewBillingMethod:info].then(^{
-        [self.sessionManager.billingManager refreshBillingMethods].then(^{
+        return [self.sessionManager.billingManager refreshBillingMethods].then(^{
             [indicator stopAnimating];
             [indicator removeFromSuperview];
             [self.tableView reloadData];
         });
+    })
+    .catch(^(NSError* error){
+        if (error.ovc_response.HTTPResponse.statusCode == 400) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Card creation failed"
+                                                            message:@"Your card was declined by Stripe, make sure you entered correct information and try again."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [indicator stopAnimating];
+            [indicator removeFromSuperview];
+        }
+        return error;
     });
 }
 

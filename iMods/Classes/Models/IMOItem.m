@@ -23,6 +23,9 @@
     }
     NSUInteger count = [reviews count] || 1;
     float finalRating = (float)totalRating/count;
+    if ([reviews count] == 0) {
+        finalRating = -1;
+    }
     
     NSMutableDictionary* defaults = [NSMutableDictionary dictionaryWithDictionary:
                             @{ @"rating": @(finalRating)

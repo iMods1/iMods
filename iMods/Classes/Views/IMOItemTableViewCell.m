@@ -79,20 +79,25 @@
     // Download image from item
     [self downloadIconImage:item];
     
-    IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
-    [reviewManager getReviewsByItem:item]
-    .then(^(NSArray* reviews) {
-        NSUInteger totalRating = 0;
-        for(IMOReview* rev in reviews) {
-            totalRating += rev.rating;
-        }
-        NSUInteger count = reviews.count;
-        if (count == 0) {
-            count = 1;
-        }
-        float finalRating = (float)totalRating/count;
-        self.ratingControl.value = finalRating;
-    });
+    if (item.rating >= 0) {
+        self.ratingControl.value = item.rating;
+    } else {
+        IMOReviewManager* reviewManager = [[IMOReviewManager alloc] init];
+        [reviewManager getReviewsByItem:item]
+        .then(^(NSArray* reviews) {
+            NSUInteger totalRating = 0;
+            for(IMOReview* rev in reviews) {
+                totalRating += rev.rating;
+            }
+            NSUInteger count = reviews.count;
+            if (count == 0) {
+                count = 1;
+            }
+            float finalRating = (float)totalRating/count;
+            item.rating = finalRating;
+            self.ratingControl.value = finalRating;
+        });
+    }
     
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.text = item.display_name;
