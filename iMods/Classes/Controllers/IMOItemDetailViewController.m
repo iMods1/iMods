@@ -31,6 +31,7 @@
 @property (strong, nonatomic) IMOOrderManager *orderManager;
 @property (strong, nonatomic) IMOBillingInfoManager *billingManager;
 @property (strong, nonatomic) IMOPackageManager* packageManager;
+@property (strong, nonatomic) NSDictionary* itemAssets;
 
 - (void)setupItemLabels;
 - (void)setupInstallButton;
@@ -184,7 +185,9 @@
         ((IMOScreenShotViewController*) segue.destinationViewController).item = self.item;
     }
     if ([segue.identifier isEqualToString:@"youtube_video_player_view_controller_modal"]) {
-        ((IMOYouTubeVideoPreviewViewController*) segue.destinationViewController).youtubeVideoID = @"EdeVaT-zZt4";
+        NSArray* videos = [self.itemAssets valueForKey:@"videos"];
+        NSString* youtube_video_id = [[videos firstObject] valueForKey:@"youtube_id"];
+        ((IMOYouTubeVideoPreviewViewController*) segue.destinationViewController).youtubeVideoID = youtube_video_id;
     }
 }
 
@@ -234,11 +237,15 @@
 }
 
 - (void) setupAssets {
-    IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
-    [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
-        self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
-    });
-    
+    if (self.itemAssets) {
+        self.itemIconImage.image = [UIImage imageWithData:[self.itemAssets valueForKey:@"icon"]];
+    } else {
+        IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
+        [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
+            self.itemAssets = results;
+            self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
+        });
+    }
 }
 
 - (void) setupItemLabels {

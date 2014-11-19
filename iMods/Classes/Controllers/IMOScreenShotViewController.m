@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) UIPageViewController* pageViewController;
 @property (strong, nonatomic) NSMutableArray* pages;
+@property (strong, nonatomic) UIActivityIndicatorView* activityIndicator;
 
 @end
 
@@ -44,9 +45,11 @@
     self.pages = [[NSMutableArray alloc] init];
     
     // Download screenshots
-    UIActivityIndicatorView* indicator = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.view.bounds];
+    self.activityIndicator.color = [UIColor grayColor];
     
-    [indicator startAnimating];
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
     IMODownloadManager* downloadManager = [IMODownloadManager sharedDownloadManager];
     [downloadManager download:Assets item:self.item]
     .then(^id(NSDictionary* assets){
@@ -69,13 +72,14 @@
         } else {
             [self didFinishViewing:self];
         }
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator removeFromSuperview];
         return nil;
     })
     .catch(^{
         [self didFinishViewing:self];
     })
     .finally(^{
-        [indicator stopAnimating];
     });
 }
 

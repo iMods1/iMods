@@ -83,6 +83,7 @@ static IMODownloadManager *downloadManager = nil;
                 NSURL *iconURL = [NSURL URLWithString: [[[assetDetails valueForKey: @"icons"] firstObject] valueForKey: @"url"]];
                 PMKPromise *iconPromise = [NSURLConnection promise: [NSURLRequest requestWithURL:iconURL ]];
                 NSArray *screenshots = [assetDetails valueForKey:@"screenshots"];
+                NSArray *videos = [assetDetails valueForKey:@"videos"];
                 NSMutableArray* urls = [[NSMutableArray alloc] init];
                 for (NSDictionary* ss in screenshots) {
                     NSURL* ssURL = [NSURL URLWithString:[ss valueForKey:@"url"]];
@@ -90,7 +91,7 @@ static IMODownloadManager *downloadManager = nil;
                         [urls addObject:ssURL];
                     }
                 }
-                return [PMKPromise when:@{ @"icon": iconPromise, @"screenshots": urls}];
+                return [PMKPromise when:@{ @"icon": iconPromise, @"screenshots": urls, @"videos": videos}];
             });
             break;
         case All:
