@@ -46,7 +46,7 @@
         [self.ratingControl setUserInteractionEnabled:NO];
         [self insertSubview:self.ratingControl belowSubview:self.textLabel];
         
-        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 30, 250, 30)];
+        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.origin.x + 50, self.bounds.origin.y + 30, self.bounds.size.width - 100, 30)];
         self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:11.0];
         [self addSubview: self.detailTextLabel];
         self.detailTextLabel.textColor = [UIColor darkGrayColor];

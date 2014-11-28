@@ -91,6 +91,7 @@ BOOL isRunningTests(void) {
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // Trigger checking package updates
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -247,6 +248,7 @@ BOOL isRunningTests(void) {
     if (![url.scheme isEqualToString:@"imods"]) {
         return NO;
     }
+    // Handle reset password request
     NSLog(@"host: %@", url.host);
     if([url.host isEqualToString:@"user"]) {
         NSLog(@"path: %@", url.path);
