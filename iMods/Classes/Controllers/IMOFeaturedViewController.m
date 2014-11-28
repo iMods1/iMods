@@ -87,6 +87,7 @@
     
     [self setItemsForCategory: @"Tweaks"];
 }
+
 - (IBAction)themesButtonWasTapped:(UIButton *)sender {
     sender.selected = true;
     self.tweaksButton.selected = false;
