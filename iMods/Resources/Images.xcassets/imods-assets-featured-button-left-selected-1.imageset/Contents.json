@@ -1,16 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "imods-assets-featured-button-left-selected.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "imods-assets-featured-tab-background-left.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

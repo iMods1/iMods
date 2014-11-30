@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -783,10 +783,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="qYu-KK-EUD">
                                 <rect key="frame" x="159" y="158" width="161" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="imods-assets-tweaks-icon" backgroundImage="imods-assets-featured-right-tab-background">
+                                <state key="normal" image="imods-assets-tweaks-icon" backgroundImage="imods-assets-featured-right-tab-background-1">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="imods-assets-tweaks-icon" backgroundImage="imods-assets-featured-right-tab-button-selected"/>
+                                <state key="selected" image="imods-assets-tweaks-icon" backgroundImage="imods-assets-featured-button-right-selected-1"/>
                                 <connections>
                                     <action selector="tweaksButtonWasTapped:" destination="FXf-RH-8ZG" eventType="touchUpInside" id="SaH-kv-U55"/>
                                 </connections>
@@ -825,13 +825,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="k1Y-K5-6X8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="k1Y-K5-6X8">
                                 <rect key="frame" x="0.0" y="158" width="159" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="imods-assets-themes-icon" backgroundImage="imods-assets-featured-left-tab-background">
+                                <state key="normal" image="imods-assets-themes-icon" backgroundImage="imods-assets-featured-left-tab-background-1">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="imods-assets-themes-icon" backgroundImage="imods-assets-featured-left-tab-button-selected"/>
+                                <state key="selected" image="imods-assets-themes-icon" backgroundImage="imods-assets-featured-button-left-selected-1"/>
                                 <connections>
                                     <action selector="themesButtonWasTapped:" destination="FXf-RH-8ZG" eventType="touchUpInside" id="CWr-G8-yU2"/>
                                 </connections>
@@ -1827,11 +1827,11 @@
         <image name="iMods_Updates_0002s_0000_BG" width="320" height="568"/>
         <image name="imods-assets-categories-icon" width="23" height="21"/>
         <image name="imods-assets-chart-icon-selected" width="31" height="27"/>
+        <image name="imods-assets-featured-button-left-selected-1" width="320" height="114"/>
+        <image name="imods-assets-featured-button-right-selected-1" width="160" height="57"/>
         <image name="imods-assets-featured-icon-deselected" width="28" height="26"/>
-        <image name="imods-assets-featured-left-tab-background" width="160" height="56"/>
-        <image name="imods-assets-featured-left-tab-button-selected" width="160" height="56"/>
-        <image name="imods-assets-featured-right-tab-background" width="320" height="113"/>
-        <image name="imods-assets-featured-right-tab-button-selected" width="320" height="113"/>
+        <image name="imods-assets-featured-left-tab-background-1" width="160" height="56"/>
+        <image name="imods-assets-featured-right-tab-background-1" width="160" height="56"/>
         <image name="imods-assets-login-button" width="268" height="47"/>
         <image name="imods-assets-logo-large" width="139" height="98"/>
         <image name="imods-assets-lost-password-icon" width="14" height="13"/>
