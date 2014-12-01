@@ -91,7 +91,15 @@ static IMODownloadManager *downloadManager = nil;
                         [urls addObject:ssURL];
                     }
                 }
-                return [PMKPromise when:@{ @"icon": iconPromise, @"screenshots": urls, @"videos": videos}];
+                NSArray *banners = [assetDetails valueForKey:@"banners"];
+                if (!banners) {
+                    banners = [[NSArray alloc] init];
+                }
+                return [PMKPromise when:@{ @"icon": iconPromise,
+                                           @"screenshots": urls,
+                                           @"videos": videos,
+                                           @"banners": banners
+                                        }];
             });
             break;
         case All:

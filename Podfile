@@ -18,6 +18,7 @@ pod 'FXBlurView', '~> 1.6.2'
 pod 'MRProgress'
 pod 'AXRatingView', '~> 0.9.7'
 pod "XCDYouTubeKit", "~> 2.0.3"
+pod "KDCycleBannerView"
 
 target 'iMods UI Tests', :exclusive => true do
     pod 'KIF', '~> 3.0'

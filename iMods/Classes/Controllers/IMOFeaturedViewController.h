@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <KDCycleBannerView.h>
 #import "UIViewControllerNoAutorotate.h"
 
-@interface IMOFeaturedViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UITableViewDelegate>
+@interface IMOFeaturedViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UITableViewDelegate, KDCycleBannerViewDataource, KDCycleBannerViewDelegate>
 
 @end
