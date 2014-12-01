@@ -54,6 +54,7 @@ BOOL isRunningTests(void) {
     }
     self->_isRunningTest = NO;
     self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [BASE_API_ENDPOINT stringByAppendingString: @"/api/"]]];
+//    self.sharedSessionManager = [IMOSessionManager sharedSessionManager:[NSURL URLWithString: [@"http://192.168.119.1:8000" stringByAppendingString: @"/api/"]]];
     
     [Stripe setDefaultPublishableKey:StripePublishableKey];
     

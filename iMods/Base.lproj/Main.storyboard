@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -105,7 +105,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1624" y="-279"/>
+            <point key="canvasLocation" x="2118" y="-325"/>
         </scene>
         <!--Registration-->
         <scene sceneID="v7U-fo-n5x">
@@ -224,7 +224,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2118" y="-279"/>
+            <point key="canvasLocation" x="2584" y="-325"/>
         </scene>
         <!--iMods-->
         <scene sceneID="yl2-sM-qoP">
@@ -510,7 +510,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2584" y="-279"/>
+            <point key="canvasLocation" x="3142" y="-1037"/>
         </scene>
         <!--Test Download View Controller-->
         <scene sceneID="W3r-RY-xCV">
@@ -634,7 +634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CVT-Rb-rba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2584" y="-1634"/>
+            <point key="canvasLocation" x="4072" y="-1935"/>
         </scene>
         <!--Profile Settings View Controller-->
         <scene sceneID="3HI-nf-x2E">
@@ -693,7 +693,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pp-SC-k9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ezd-kv-EDN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2546" y="-989"/>
+            <point key="canvasLocation" x="3628" y="-1935"/>
         </scene>
         <!--Your Wallet-->
         <scene sceneID="Ujg-l9-EJO">
@@ -770,7 +770,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNo-bd-VyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3142" y="-1005"/>
+            <point key="canvasLocation" x="3628" y="-1037"/>
         </scene>
         <!--Featured-->
         <scene sceneID="aWc-4F-evb">
@@ -791,10 +791,6 @@
                                     <action selector="tweaksButtonWasTapped:" destination="FXf-RH-8ZG" eventType="touchUpInside" id="SaH-kv-U55"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="carouselimage" id="825-QJ-xdt">
-                                <rect key="frame" x="0.0" y="-6" width="320" height="169"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0iA-CU-Ynl">
                                 <rect key="frame" x="0.0" y="221" width="321" height="234"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -836,6 +832,11 @@
                                     <action selector="themesButtonWasTapped:" destination="FXf-RH-8ZG" eventType="touchUpInside" id="CWr-G8-yU2"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="Of2-0z-dJi" customClass="KDCycleBannerView">
+                                <rect key="frame" x="0.0" y="-64" width="320" height="222"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -858,6 +859,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bannerView" destination="Of2-0z-dJi" id="d5w-Ys-PMe"/>
                         <outlet property="tableView" destination="0iA-CU-Ynl" id="SZw-CG-WYN"/>
                         <outlet property="themesButton" destination="k1Y-K5-6X8" id="kzB-Od-cCu"/>
                         <outlet property="tweaksButton" destination="qYu-KK-EUD" id="zI1-rV-xlX"/>
@@ -1223,7 +1225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1v-og-x7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4078" y="1156"/>
+            <point key="canvasLocation" x="4072" y="1156"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="cDp-xe-nQd">
@@ -1291,13 +1293,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Card" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="euV-9A-CsX">
-                                <rect key="frame" x="96" y="47" width="129" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                                <color key="textColor" red="0.2196078598" green="0.54509806630000002" blue="0.62745100259999997" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="hle-sy-0xR" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="86" width="320" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1420,6 +1415,14 @@
                                     <outletCollection property="gestureRecognizers" destination="tqR-Bs-GJ6" appends="YES" id="lVT-w4-ZNJ"/>
                                 </connections>
                             </scrollView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qRM-65-NQh">
+                                <rect key="frame" x="99" y="32" width="123" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Stripe"/>
+                                    <segment title="Paypal"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.91764712329999998" green="0.91764712329999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
                     </view>
@@ -1429,6 +1432,7 @@
                         <outlet property="cityField" destination="ymh-1l-QEq" id="14f-86-Hyi"/>
                         <outlet property="countryField" destination="Vc0-Up-RoF" id="Cqz-fF-YgC"/>
                         <outlet property="scrollView" destination="hle-sy-0xR" id="d6K-eS-oSu"/>
+                        <outlet property="segmentedControl" destination="qRM-65-NQh" id="Veh-2L-Q1c"/>
                         <outlet property="stateField" destination="aAL-3A-KL0" id="b3t-fh-W1b"/>
                         <outlet property="submitButton" destination="Z0q-Vz-U46" id="arY-G4-3MJ"/>
                         <outlet property="zipcodeField" destination="cqF-tH-8bJ" id="JPN-W2-VCC"/>
@@ -1441,7 +1445,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3565" y="-1005"/>
+            <point key="canvasLocation" x="4072" y="-1037"/>
         </scene>
         <!--Navigation Controller Rotation Fix-->
         <scene sceneID="fhf-ey-hdP">
@@ -1807,7 +1811,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="carouselimage" width="320" height="158"/>
         <image name="category-icon-button" width="46" height="42"/>
         <image name="category-sort-by-date" width="78" height="78"/>
         <image name="category-sort-by-rating" width="54" height="77"/>
@@ -1872,10 +1875,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xDs-Lb-77m"/>
-        <segue reference="VdQ-U4-lWc"/>
-        <segue reference="ukT-Qe-1cO"/>
         <segue reference="zDc-VD-ufr"/>
+        <segue reference="VdQ-U4-lWc"/>
+        <segue reference="PSt-SB-aiM"/>
+        <segue reference="ukT-Qe-1cO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

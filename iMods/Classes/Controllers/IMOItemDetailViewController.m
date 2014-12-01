@@ -243,7 +243,6 @@
         IMODownloadManager *downloadManager = [IMODownloadManager sharedDownloadManager];
         [downloadManager download:Assets item:self.item].then(^(NSDictionary *results) {
             self.itemAssets = results;
-            NSLog(@"Assets: %@", self.itemAssets);
             self.itemIconImage.image = [[UIImage alloc] initWithData:[results valueForKey:@"icon"]];
         });
     }

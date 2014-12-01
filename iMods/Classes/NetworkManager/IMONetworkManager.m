@@ -20,6 +20,7 @@
 #import "IMOOrder.h"
 #import "IMOResponse.h"
 #import "IMOReview.h"
+#import "IMOBanner.h"
 
 @implementation IMONetworkManager
 
@@ -139,6 +140,8 @@ static AFJSONResponseSerializer* _jsonResponseSerializer = nil;
              @"review/user/*": [IMOReview class],
              @"review/item/*": [IMOReview class],
              @"review/delete/*": [IMOResponse class],
+             
+             @"banner/*": [IMOBanner class]
              };
 }
 

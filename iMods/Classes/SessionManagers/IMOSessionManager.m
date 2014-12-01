@@ -84,6 +84,7 @@ static IMOSessionManager* sessionManager = nil;
     self->_orderManager = [[IMOOrderManager alloc] init];
     self->_itemManager = [[IMOItemManager alloc] init];
     self->_packageManager = [IMOPackageManager sharedPackageManager];
+    self->_bannerManager = [IMOBannerManager sharedBannerManager];
 }
 
 #pragma mark -

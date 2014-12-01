@@ -57,6 +57,10 @@
 		285708961978CF5C00C7F37B /* IMOOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 285708941978CF5C00C7F37B /* IMOOrder.m */; };
 		285791F619D4CE360052A3EF /* libimpkg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 282DECAA19D180960093348D /* libimpkg.cpp */; };
 		285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285791F419D4ADE20052A3EF /* PackageManagerTests.mm */; };
+		285E3BFA1A2C428B00B939B9 /* IMOBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BF91A2C428B00B939B9 /* IMOBanner.m */; };
+		285E3BFB1A2C428B00B939B9 /* IMOBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BF91A2C428B00B939B9 /* IMOBanner.m */; };
+		285E3BFF1A2C44E400B939B9 /* IMOBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */; };
+		285E3C001A2C44E400B939B9 /* IMOBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */; };
 		286509C81A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */; };
 		28718C3B1A03E3F300A54301 /* Packages.gz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3A1A03E3F300A54301 /* Packages.gz */; };
 		28718C3E1A03F62000A54301 /* status in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3D1A03F62000A54301 /* status */; };
@@ -345,6 +349,10 @@
 		2857089B1978E70B00C7F37B /* IMOItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOItem.h; sourceTree = "<group>"; };
 		2857089C1978E73B00C7F37B /* IMOOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOOrder.h; sourceTree = "<group>"; };
 		285791F419D4ADE20052A3EF /* PackageManagerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PackageManagerTests.mm; sourceTree = "<group>"; };
+		285E3BF81A2C428B00B939B9 /* IMOBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOBanner.h; sourceTree = "<group>"; };
+		285E3BF91A2C428B00B939B9 /* IMOBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBanner.m; sourceTree = "<group>"; };
+		285E3BFD1A2C44E400B939B9 /* IMOBannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOBannerManager.h; path = Classes/SessionManagers/IMOBannerManager.h; sourceTree = "<group>"; };
+		285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOBannerManager.m; path = Classes/SessionManagers/IMOBannerManager.m; sourceTree = "<group>"; };
 		286509C61A1AF45F0059D4D9 /* IMOScreenShotContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOScreenShotContentViewController.h; sourceTree = "<group>"; };
 		286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOScreenShotContentViewController.m; sourceTree = "<group>"; };
 		28718C3A1A03E3F300A54301 /* Packages.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = Packages.gz; path = TestFiles/Packages.gz; sourceTree = "<group>"; };
@@ -509,12 +517,16 @@
 		2833492E19AA8EAE00DDB922 /* SessionManagers */ = {
 			isa = PBXGroup;
 			children = (
+				285E3BFD1A2C44E400B939B9 /* IMOBannerManager.h */,
+				285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */,
 				2833493B19AA8EFA00DDB922 /* IMOBillingInfoManager.h */,
 				2833493A19AA8EFA00DDB922 /* IMOBillingInfoManager.m */,
 				2833494F19AA8F2500DDB922 /* IMOCategoryManager.h */,
 				2833495019AA8F2500DDB922 /* IMOCategoryManager.m */,
 				2833494E19AA8F2500DDB922 /* IMODeviceManager.h */,
 				2833493719AA8EFA00DDB922 /* IMODeviceManager.m */,
+				4DE71ADA19FE9E3A002CA0A7 /* IMODownloadManager.h */,
+				4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */,
 				2833493919AA8EFA00DDB922 /* IMOItemManager.h */,
 				2833493819AA8EFA00DDB922 /* IMOItemManager.m */,
 				2833494C19AA8F2500DDB922 /* IMOOrderManager.h */,
@@ -527,8 +539,6 @@
 				2833493319AA8EFA00DDB922 /* IMOUserManager.m */,
 				2833493219AA8EFA00DDB922 /* IMOWishListManager.h */,
 				2833493119AA8EFA00DDB922 /* IMOWishListManager.m */,
-				4DE71ADA19FE9E3A002CA0A7 /* IMODownloadManager.h */,
-				4DE71ADB19FE9E3A002CA0A7 /* IMODownloadManager.m */,
 			);
 			name = SessionManagers;
 			sourceTree = "<group>";
@@ -787,6 +797,8 @@
 		4D8928DA19748E4800AD8A28 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				285E3BF81A2C428B00B939B9 /* IMOBanner.h */,
+				285E3BF91A2C428B00B939B9 /* IMOBanner.m */,
 				285708971978E5F800C7F37B /* IMOUser.h */,
 				2830E88F1978A5BE008E42ED /* IMOUser.m */,
 				2830E8931978AFA5008E42ED /* IMOConstants.h */,
@@ -1256,11 +1268,13 @@
 				4DCFBBEE19E6718000A36D63 /* IMORegistrationViewController.m in Sources */,
 				2830E89D1978BE75008E42ED /* IMOCategory.m in Sources */,
 				4D19051019DBA49D009AF7F6 /* IMOProfileViewController.m in Sources */,
+				285E3BFA1A2C428B00B939B9 /* IMOBanner.m in Sources */,
 				4D19050A19DB7F83009AF7F6 /* IMOTabBarController.m in Sources */,
 				2833494819AA8EFA00DDB922 /* IMOItemManager.m in Sources */,
 				4DCFBBF119E67D3600A36D63 /* IMOProfileSettingsViewController.m in Sources */,
 				4DBABF2019C77ABE00274A45 /* IMOChartsViewController.m in Sources */,
 				2805497E19895B7C0049D619 /* IMONetworkManager.m in Sources */,
+				285E3BFF1A2C44E400B939B9 /* IMOBannerManager.m in Sources */,
 				4D19051319DBB70D009AF7F6 /* IMOFeaturedBannerController.m in Sources */,
 				28C9F6341A1C69CD008D897F /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				4DE71ADC19FE9E3A002CA0A7 /* IMODownloadManager.m in Sources */,
@@ -1289,6 +1303,7 @@
 				2830E8911978A5BE008E42ED /* IMOUser.m in Sources */,
 				28A35C4B19A6F58100FE3260 /* IMOReview.m in Sources */,
 				28841C611A0030400054AB0A /* zipstream.hh in Sources */,
+				285E3BFB1A2C428B00B939B9 /* IMOBanner.m in Sources */,
 				281788D119B0150A0003C1A3 /* IMOTask.m in Sources */,
 				2844E9421A14828F009E6168 /* IMOResetPasswordViewController.m in Sources */,
 				2830E89A1978BBAC008E42ED /* IMOBillingInfo.m in Sources */,
@@ -1297,6 +1312,7 @@
 				2833494B19AA8EFA00DDB922 /* IMOBillingInfoManager.m in Sources */,
 				2833494319AA8EFA00DDB922 /* IMOOrderManager.m in Sources */,
 				28C7850419896ABF00323431 /* IMONetworkErrorResponse.m in Sources */,
+				285E3C001A2C44E400B939B9 /* IMOBannerManager.m in Sources */,
 				285791F919D4D0520052A3EF /* PackageManagerTests.mm in Sources */,
 				28052DB419A2BF370080DBEA /* iModsTests.m in Sources */,
 				2833494119AA8EFA00DDB922 /* IMOUserManager.m in Sources */,
