@@ -131,6 +131,7 @@ NSFileHandle* errWriter;
                 [self writeLog:@"%s", depTuplePackageName(d).c_str()];
             }
             error = [NSError errorWithDomain:@"BrokenPackages" code:errcode userInfo:nil];
+            self->_locked = false;
             return error;
         }
         
@@ -198,7 +199,6 @@ NSFileHandle* errWriter;
                 return dlPromise;
             });
         }
-        self->_locked = false;
         // Convert tag sections to dictionaries
         NSMutableArray* sections = [NSMutableArray arrayWithCapacity:resolvedVers.size()];
         for(auto ver: resolvedVers) {
@@ -214,6 +214,7 @@ NSFileHandle* errWriter;
             }
             [sections addObject:[NSDictionary dictionaryWithDictionary:sec]];
         }
+        self->_locked = false;
         return [self processTweaks:installPromise sections:[NSArray arrayWithArray:sections]];
     });
 }
