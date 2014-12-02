@@ -242,7 +242,6 @@ IMOSessionManager* sessionManager;
         [self.timer invalidate];
         self.timer = nil;
 #if TARGET_IPHONE_SIMULATOR
-        // FIX: This is not how it should work, temporary logic for demo
         __weak IMOInstallationViewController *weakSelf = self;
         [self.progressView setProgress: 1.0 animated:YES];
         double delayInSeconds = 1.0f;

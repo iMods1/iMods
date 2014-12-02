@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "UIViewControllerNoAutorotate.h"
 
-@interface IMOProfileViewController : UIViewControllerNoAutorotate
+@interface IMOProfileViewController : UIViewControllerNoAutorotate <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end

@@ -9,6 +9,7 @@
 #import "IMOSessionManager.h"
 #import "IMOUserManager.h"
 #import "IMOOrder.h"
+#import <PromiseKit/PromiseKit+Foundation.h>
 
 @implementation IMOUserManager
 
@@ -153,6 +154,21 @@ static IMOUser* currentUser = nil;
                                       @"token": token,
                                       @"new_password": new_password
                                       }];
+}
+
+- (PMKPromise*) getProfileImage {
+    return [sessionManager getJSON:@"user/profile_image" parameters:nil]
+    .then(^id(OVCResponse* response, NSError* error){
+        if (error) {
+            NSLog(@"Unable to get profile image: %@", error.localizedDescription);
+            return error;
+        }
+        NSURL* imgURL = [NSURL URLWithString:[response.result valueForKey:@"profile_image_url"]];
+        if (imgURL) {
+            return [NSURLConnection promise:[NSURLRequest requestWithURL:imgURL]];
+        }
+        return nil;
+    });
 }
 
 @end
