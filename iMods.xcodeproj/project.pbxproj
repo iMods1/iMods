@@ -61,6 +61,7 @@
 		285E3BFB1A2C428B00B939B9 /* IMOBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BF91A2C428B00B939B9 /* IMOBanner.m */; };
 		285E3BFF1A2C44E400B939B9 /* IMOBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */; };
 		285E3C001A2C44E400B939B9 /* IMOBannerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */; };
+		285E3C031A2E338500B939B9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 285E3C021A2E338500B939B9 /* MobileCoreServices.framework */; };
 		286509C81A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */; };
 		28718C3B1A03E3F300A54301 /* Packages.gz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3A1A03E3F300A54301 /* Packages.gz */; };
 		28718C3E1A03F62000A54301 /* status in CopyFiles */ = {isa = PBXBuildFile; fileRef = 28718C3D1A03F62000A54301 /* status */; };
@@ -353,6 +354,7 @@
 		285E3BF91A2C428B00B939B9 /* IMOBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOBanner.m; sourceTree = "<group>"; };
 		285E3BFD1A2C44E400B939B9 /* IMOBannerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMOBannerManager.h; path = Classes/SessionManagers/IMOBannerManager.h; sourceTree = "<group>"; };
 		285E3BFE1A2C44E400B939B9 /* IMOBannerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMOBannerManager.m; path = Classes/SessionManagers/IMOBannerManager.m; sourceTree = "<group>"; };
+		285E3C021A2E338500B939B9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		286509C61A1AF45F0059D4D9 /* IMOScreenShotContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMOScreenShotContentViewController.h; sourceTree = "<group>"; };
 		286509C71A1AF45F0059D4D9 /* IMOScreenShotContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMOScreenShotContentViewController.m; sourceTree = "<group>"; };
 		28718C3A1A03E3F300A54301 /* Packages.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = Packages.gz; path = TestFiles/Packages.gz; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285E3C031A2E338500B939B9 /* MobileCoreServices.framework in Frameworks */,
 				28841C6D1A0032440054AB0A /* libzlib.a in Frameworks */,
 				4D3A7F781991D0940024AB2B /* libPods.a in Frameworks */,
 			);
@@ -501,6 +504,7 @@
 		237E9CEAFDC54C2EA68D6159 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				285E3C021A2E338500B939B9 /* MobileCoreServices.framework */,
 				28841C5C1A002C540054AB0A /* libzlib.a */,
 				4D3A7F771991D0940024AB2B /* libPods.a */,
 				4DDFAC5C19762C860094FB8D /* libPods-AFNetworking.a */,

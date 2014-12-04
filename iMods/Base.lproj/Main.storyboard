@@ -402,10 +402,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" id="hWN-G9-hM1" customClass="RFGravatarImageView">
-                                <rect key="frame" x="111" y="83" width="98" height="98"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need some help?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QC5-Ql-OXC">
                                 <rect key="frame" x="0.0" y="378" width="320" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -479,6 +475,14 @@
                                 <rect key="frame" x="146" y="535" width="29" height="25"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" id="hWN-G9-hM1">
+                                <rect key="frame" x="111" y="83" width="98" height="98"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VM8-Jh-6fv" appends="YES" id="9NP-i9-nlU"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -503,12 +507,17 @@
                     <connections>
                         <outlet property="installedItemsLabel" destination="R4t-H5-uyZ" id="Zgc-z4-JaR"/>
                         <outlet property="nameLabel" destination="OSV-TY-2dM" id="q4R-9M-QXg"/>
-                        <outlet property="profilePictureImageView" destination="hWN-G9-hM1" id="rw3-fp-Hzl"/>
+                        <outlet property="profilePictureImageView" destination="hWN-G9-hM1" id="Iwz-nV-1s0"/>
                         <outlet property="wishlistItemsLabel" destination="9I7-Ct-Sut" id="c3T-yq-xgh"/>
                         <segue destination="L0q-mP-zcY" kind="push" identifier="profile_wallet_push" id="o8O-OQ-8vm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pm-zg-nff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VM8-Jh-6fv">
+                    <connections>
+                        <action selector="profileImageTapped:" destination="LjG-VE-q2v" id="daR-KZ-y7c"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3142" y="-1037"/>
         </scene>
@@ -700,11 +709,11 @@
             <objects>
                 <viewController title="Your Wallet" id="L0q-mP-zcY" customClass="IMOWalletViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dwA-g4-2Y2">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" id="nmy-hc-BwL">
-                                <rect key="frame" x="16" y="69" width="288" height="217"/>
+                                <rect key="frame" x="16" y="69" width="288" height="266"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1875,10 +1884,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="o8O-OQ-8vm"/>
         <segue reference="zDc-VD-ufr"/>
         <segue reference="VdQ-U4-lWc"/>
         <segue reference="PSt-SB-aiM"/>
-        <segue reference="ukT-Qe-1cO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

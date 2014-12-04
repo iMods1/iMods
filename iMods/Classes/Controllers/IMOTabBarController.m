@@ -144,15 +144,12 @@
 }
 
 - (CGPoint)getSelectedIndicatorCenterPoint {
-    NSLog(@"Selected index: %lu", (unsigned long)self.selectedIndex);
     NSUInteger index = self.selectedIndex + 1;
     return [self getCenterPointForIndex:index];
 }
 
 - (CGPoint)getCenterPointForIndex:(NSUInteger)index {
-    NSLog(@"Subviews: %@", self.tabBar.subviews);
     CGFloat tabMiddle = CGRectGetMidX([[self.tabBar.subviews objectAtIndex:index] frame]);
-    NSLog(@"TabBar Item Middle: %f", tabMiddle);
     
     //return CGPointMake(self.tabBar.frame.origin.y + self.tabBar.frame.size.height, tabMiddle);
     return CGPointMake(tabMiddle, self.tabBar.frame.origin.y + self.tabBar.frame.size.height);
