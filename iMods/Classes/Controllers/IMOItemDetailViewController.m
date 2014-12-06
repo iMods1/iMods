@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 #import <Stripe/Stripe.h>
+#import <PayPal-iOS-SDK/PayPalMobile.h>
 #import "IMOSessionManager.h"
 #import "IMOOrderManager.h"
 #import "IMOOrder.h"
@@ -194,9 +195,6 @@
 #pragma mark - Misc
 
 - (IBAction)didTapInstallButton:(UIButton *)sender {
-#if TARGET_IPHONE_SIMULATOR
-    [self performSegueWithIdentifier:@"item_detail_installation_modal" sender:self];
-#else
     if (self.isPurchased) {
         if (self.isInstalled) {
             // Bail - this case should never be reached
@@ -211,21 +209,18 @@
             [self createFreePurchase];
         } else {
             [self.billingManager refreshBillingMethods].then(^{
-//                NSLog(@"Current billing method count: %lu", (unsigned long)[self.billingManager billingMethods].count);
                 BOOL shouldSegueToWallet = (self.billingManager.billingMethods.count <= 0) || !self.billingManager.isBillingMethodSelected;
                 
-//                NSLog(@"Current status of billingManager.isBillingMethodSelected: %d", self.billingManager.isBillingMethodSelected);
                 if (shouldSegueToWallet) {
                     [self performSegueWithIdentifier:@"item_detail_wallet_push" sender:self];
                 } else {
-                    IMOBillingInfo *billingInfo = self.billingManager.billingMethods[self.billingManager.selectedBillingMethod];
-//                    NSLog(@"Selected billing method: %@", billingInfo);
+                    IMOBillingInfo *billingInfo = [[self.billingManager.billingMethods objectAtIndex:self.billingManager.selectedBillingMethod] copy];
                     __block UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
                     activityIndicator.center = self.view.center;
                     [self.view addSubview:activityIndicator];
                     [activityIndicator startAnimating];
                     
-                    [self createPurchaseFromBillingInfo: billingInfo].then(^{
+                    [self createPurchaseFromBillingInfo: billingInfo].finally(^{
                         [activityIndicator stopAnimating];
                         [activityIndicator removeFromSuperview];
                     });
@@ -233,7 +228,6 @@
             });
         }
     }
-#endif
 }
 
 - (void) setupAssets {
@@ -423,11 +417,16 @@
                                 @"orderDate": [NSDate date]
                                 };
     
-    
     return [self order:orderDict withBillingInfo:billingInfo].then(^{
         self.isPurchased = YES;
     }).catch(^(NSError *error) {
-        // TODO: Notify user
+        NSString* errMsg = [NSString stringWithFormat:@"An error occurred on the server: %@", error.localizedDescription];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:errMsg
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
         NSLog(@"Error with backend %@", error.localizedDescription);
     });
 }
@@ -496,6 +495,10 @@
                                       @"billingInfo": billingInfo
                                       };
     NSMutableDictionary *mutableDict = [dict mutableCopy];
+    
+    if (billingInfo.paymentType == Paypal) {
+        [mutableDict setValue:[PayPalMobile clientMetadataID] forKey:@"client_metadata_id"];
+    }
     
     [mutableDict addEntriesFromDictionary:billingInfoDict];
     

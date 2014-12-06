@@ -18,6 +18,7 @@ pod 'MRProgress'
 pod 'AXRatingView', '~> 0.9.7'
 pod "XCDYouTubeKit", "~> 2.0.3"
 pod "KDCycleBannerView"
+pod 'PayPal-iOS-SDK'
 
 target 'iMods UI Tests', :exclusive => true do
     pod 'KIF', '~> 3.0'

@@ -10,6 +10,8 @@
 #import "IMOCardViewController.h"
 #import "UIViewControllerNoAutorotate.h"
 
+@class IMOWalletViewController;
+
 @interface IMOWalletViewController : UIViewControllerNoAutorotate <UITableViewDataSource, UITableViewDelegate, IMOCardDelegate>
 
 @end

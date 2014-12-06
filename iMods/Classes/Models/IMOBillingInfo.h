@@ -28,6 +28,7 @@
 @property (nonatomic, copy, readonly) NSString * creditcardCVV; // credit card cv code
 @property (nonatomic, copy, readonly) NSDate * creditcardExpiration;
 @property (nonatomic, assign, readonly) PaymentType paymentType; // paymentType -> "type_" in JSON
+@property (nonatomic, copy, readonly) NSString* paypalAuthCode; // Only for submission
 
 /* Non-JSON fields */
 

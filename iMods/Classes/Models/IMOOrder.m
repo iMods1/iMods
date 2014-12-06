@@ -28,7 +28,8 @@
                                @"status": @(OrderPlaced),
                                @"quantity": @1,
                                @"orderDate": [NSDate date],
-                               @"currency": @"USD"
+                               @"currency": @"USD",
+                               @"client_metadata_id": @""
                                }];
     if(item){
         [defaults setValue:@(item.item_id) forKey:@"item_id"];
@@ -51,7 +52,8 @@
              @"status": @"status",
              @"orderDate": @"order_date",
              @"billingInfo": @"billing",
-             @"item": @"item"
+             @"item": @"item",
+             @"client_metadata_id": @"client_metadata_id"
              };
 }
 

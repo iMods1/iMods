@@ -13,6 +13,7 @@
 @interface IMOWalletViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IMOSessionManager *sessionManager;
+@property (weak, nonatomic) IBOutlet UIButton *addPaymentOrPayButton;
 
 - (UITableViewCell *)configureCell: (UITableViewCell *)cell withBillingInfo: (IMOBillingInfo *)info;
 - (IBAction)newButtonTapped:(id)sender;
@@ -30,6 +31,7 @@
     [self.sessionManager.billingManager refreshBillingMethods].then(^{
         [self.tableView reloadData];
     });
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -121,9 +123,23 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            [indicator stopAnimating];
-            [indicator removeFromSuperview];
+        } else if(error.ovc_response.HTTPResponse.statusCode == 403) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"PayPal authorization failed"
+                                                            message:@"Couldn't get authorization from PayPal, the payment method was not added, please try again later."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else if(error.ovc_response.HTTPResponse.statusCode >= 500) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Server failure"
+                                                            message:@"An error occurred on the server, please try again later"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
+        [indicator stopAnimating];
+        [indicator removeFromSuperview];
         return error;
     });
 }
