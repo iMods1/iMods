@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -717,7 +717,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="LP8-7T-aV0" detailTextLabel="clH-8o-Bve" rowHeight="45" style="IBUITableViewCellStyleValue1" id="EBf-lZ-FoF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="LP8-7T-aV0" detailTextLabel="clH-8o-Bve" rowHeight="45" style="IBUITableViewCellStyleValue1" id="EBf-lZ-FoF">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EBf-lZ-FoF" id="B7e-79-73T">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -773,6 +773,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="12J-a7-UoA"/>
                     <connections>
+                        <outlet property="addPaymentOrPayButton" destination="37x-F5-FgX" id="vxa-Fl-VT1"/>
                         <outlet property="tableView" destination="nmy-hc-BwL" id="LJT-Q7-t0a"/>
                         <segue destination="9sT-yx-CwZ" kind="modal" identifier="wallet_card_modal" id="637-4R-tmR"/>
                     </connections>
@@ -1366,27 +1367,6 @@
                                             <outlet property="delegate" destination="9sT-yx-CwZ" id="Uj3-gC-lHz"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Z0q-Vz-U46">
-                                        <rect key="frame" x="15" y="349" width="288" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.20000001789999999" green="0.85490202900000001" blue="0.68235296010000002" alpha="1" colorSpace="deviceRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
-                                        <state key="normal" title="SUBMIT">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="disabled">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="submitButtonTapped:" destination="9sT-yx-CwZ" eventType="touchUpInside" id="gFg-9R-EnX"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5l6-nb-FVq">
                                         <rect key="frame" x="136" y="401" width="48" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1413,6 +1393,27 @@
                                             <outlet property="delegate" destination="9sT-yx-CwZ" id="OH3-PK-WGx"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Z0q-Vz-U46">
+                                        <rect key="frame" x="15" y="349" width="288" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.20000001789999999" green="0.85490202900000001" blue="0.68235296010000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                        <state key="normal" title="Authorize">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="9sT-yx-CwZ" eventType="touchUpInside" id="gFg-9R-EnX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <connections>
@@ -1431,6 +1432,9 @@
                                     <segment title="Stripe"/>
                                     <segment title="Paypal"/>
                                 </segments>
+                                <connections>
+                                    <action selector="paymentTypeTapped:" destination="9sT-yx-CwZ" eventType="valueChanged" id="fg6-ck-LgS"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.91764712329999998" green="0.91764712329999998" blue="0.91764712329999998" alpha="1" colorSpace="deviceRGB"/>
@@ -1440,8 +1444,8 @@
                         <outlet property="addressField" destination="IfV-Oy-Mkm" id="mVq-a8-hTs"/>
                         <outlet property="cityField" destination="ymh-1l-QEq" id="14f-86-Hyi"/>
                         <outlet property="countryField" destination="Vc0-Up-RoF" id="Cqz-fF-YgC"/>
+                        <outlet property="paymentTypeControl" destination="qRM-65-NQh" id="svS-jk-Ehh"/>
                         <outlet property="scrollView" destination="hle-sy-0xR" id="d6K-eS-oSu"/>
-                        <outlet property="segmentedControl" destination="qRM-65-NQh" id="Veh-2L-Q1c"/>
                         <outlet property="stateField" destination="aAL-3A-KL0" id="b3t-fh-W1b"/>
                         <outlet property="submitButton" destination="Z0q-Vz-U46" id="arY-G4-3MJ"/>
                         <outlet property="zipcodeField" destination="cqF-tH-8bJ" id="JPN-W2-VCC"/>

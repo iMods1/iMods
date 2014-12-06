@@ -9,9 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/NSValueTransformer+MTLPredefinedTransformerAdditions.h>
 #import <Mantle/MTLValueTransformer.h>
+#import <Mantle/NSDictionary+MTLManipulationAdditions.h>
 #import "IMOBillingInfo.h"
 
 @implementation IMOBillingInfo
+
+- (instancetype) initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
+    NSDictionary* defaults = @{
+                               @"paypalAuthCode": @"",
+                               @"creditcardNumber": @"",
+                               @"creditcardName": @"",
+                               @"creditcardName": @"",
+                               @"creditcardCVV": @"",
+                               };
+    return [super initWithDictionary:[defaults mtl_dictionaryByAddingEntriesFromDictionary:dictionaryValue] error:error];
+}
 
 + (NSDictionary*) JSONKeyPathsByPropertyKey {
     return @{
@@ -26,7 +38,8 @@
              @"creditcardNumber": @"cc_no",
              @"creditcardName": @"cc_name",
              @"creditcardExpiration":@"cc_expr",
-             @"creditcardCVV": @"cc_cvv"
+             @"creditcardCVV": @"cc_cvv",
+             @"paypalAuthCode": @"pp_auth_code",
              };
 }
 

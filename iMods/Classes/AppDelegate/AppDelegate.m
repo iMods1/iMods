@@ -12,9 +12,11 @@
 #import "IMOResetPasswordViewController.h"
 #import "IMOScreenShotViewController.h"
 #import "Stripe.h"
+#import <PayPal-iOS-SDK/PayPalMobile.h>
 
+// FIXME: Replace sandbox account credentials with live account credentials
 NSString * const StripePublishableKey = @"pk_test_4ZdjKL2iALVVPu62VM8BbbAE";
-
+NSString * const PaypalClientID = @"AYIxPRAn9AN93GvsRpCpEWwvoRtltxlexuAThDlk5br4ElJDHdY9sHt-YZU8";
 
 @interface AppDelegate ()
 
@@ -50,6 +52,7 @@ BOOL isRunningTests(void) {
         NSLog(@"Running tests...");
         self.sharedSessionManager = nil;
         self->_isRunningTest = YES;
+        self->_paymentProductionMode = NO;
         return YES;
     }
     self->_isRunningTest = NO;
@@ -68,6 +71,15 @@ BOOL isRunningTests(void) {
     pageControl.pageIndicatorTintColor = [UIColor grayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.backgroundColor = [UIColor clearColor];
+    
+    // Initialize paypal payment API
+    // FIXME: Switch to production mode when release
+    self->_paymentProductionMode = NO;
+    if (self.paymentProductionMode) {
+        [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : PaypalClientID}];
+    } else {
+        [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentSandbox : PaypalClientID}];
+    }
     
     return YES;
 }

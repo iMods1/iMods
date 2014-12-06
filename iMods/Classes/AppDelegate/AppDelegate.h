@@ -16,5 +16,6 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (readonly, nonatomic) BOOL isRunningTest;
+@property (readonly, nonatomic) BOOL paymentProductionMode;
 
 @end

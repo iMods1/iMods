@@ -30,6 +30,8 @@
 @property (nonatomic, assign, readonly) float totalCharged; // total_charged is ignored when submitted to the server, it's an estimated value, the server will return a correct value before payment.
 @property (nonatomic, copy, readonly) NSDate * orderDate;
 
+@property (nonatomic, copy, readonly) NSString* client_metadata_id;
+
 /* Non-JSON data fields */
 @property (readwrite) IMOBillingInfo * billingInfo; // IMOBillingInfo object for current order.
 @property (readwrite) IMOItem* item;

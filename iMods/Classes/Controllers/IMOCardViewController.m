@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 Ryan Feng. All rights reserved.
 //
 
-#import "IMOCardViewController.h"
 #import <PaymentKit/PTKView.h>
+#import <PayPalMobile.h>
+#import "IMOCardViewController.h"
 #import "IMOUserManager.h"
+#import "AppDelegate.h"
 
-@interface IMOCardViewController ()<PTKViewDelegate>
+@interface IMOCardViewController ()<PTKViewDelegate, PayPalFuturePaymentDelegate>
 @property (weak, nonatomic) PTKView *paymentView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong, nonatomic) PTKCard *card;
@@ -21,9 +23,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *stateField;
 @property (weak, nonatomic) IBOutlet UITextField *countryField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *paymentTypeControl;
 
-- (void)createBillingInfo:(PTKCard *)card;
+@property (nonatomic, assign) PaymentType selectedPaymentType;
+@property (nonatomic, strong) PayPalConfiguration* paypalConfig;
+- (void)createCreditCardBillingInfo:(PTKCard *)card;
+- (void)createPaypalBillingInfo:(NSDictionary*)authorizationInfo;
 - (void)paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid;
 - (BOOL)validateFields;
 - (IBAction)cancelButtonTapped:(id)sender;
@@ -32,6 +37,19 @@
 @end
 
 @implementation IMOCardViewController
+
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        // Init paypal configuration
+        self.paypalConfig = [[PayPalConfiguration alloc] init];
+        self.paypalConfig.merchantName = @"iMods";
+        // FIXME: Replace urls with correct ones
+        self.paypalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:@""];
+        self.paypalConfig.merchantUserAgreementURL = [NSURL URLWithString:@""];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +61,18 @@
     self.paymentView = view;
     self.paymentView.delegate = self;
     [self.scrollView addSubview:self.paymentView];
+    
+    // Preconnect to paypal
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    if (appDelegate.paymentProductionMode) {
+        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentProduction];
+        
+    } else if(appDelegate.isRunningTest) {
+        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentNoNetwork];
+    } else {
+//        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentNoNetwork];
+        [PayPalMobile preconnectWithEnvironment:PayPalEnvironmentSandbox];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,22 +123,22 @@
 #pragma mark - Misc
 
 - (BOOL)validateFields {
-    NSLog(@"Validating Fields");
     BOOL valid = YES;
     valid = valid && (self.addressField.text.length > 0);
     valid = valid && (self.zipcodeField.text.length > 0);
     valid = valid && (self.cityField.text.length > 0);
     valid = valid && (self.stateField.text.length > 0);
     valid = valid && (self.countryField.text.length > 0);
-    valid = valid && (self.card.number.length > 0);
-    valid = valid && (self.card.expMonth > 0);
-    valid = valid && (self.card.expYear > 0);
-    valid = valid && (self.card.cvc.length > 0);
-
+    if (self.selectedPaymentType == CreditCard) {
+        valid = valid && (self.card.number.length > 0);
+        valid = valid && (self.card.expMonth > 0);
+        valid = valid && (self.card.expYear > 0);
+        valid = valid && (self.card.cvc.length > 0);
+    }
     return valid;
 }
 
-- (void)createBillingInfo:(PTKCard *)card {
+- (void)createCreditCardBillingInfo:(PTKCard *)card {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US_POSIX"];
     dateFormatter.dateFormat = @"MM/yy";
@@ -138,8 +168,54 @@
     
 }
 
+- (void)createPaypalBillingInfo:(NSDictionary*)authorizationInfo {
+    NSString* auth_code = [authorizationInfo valueForKeyPath:@"response.code"];
+    if (!auth_code) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Authorization Failed"
+                                                        message:@"PayPal authorization failed, please try again later."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    NSDictionary* infoDict = @{
+                               @"paymentType": @(Paypal),
+                               @"address": self.addressField.text,
+                               @"zipcode": self.zipcodeField.text,
+                               @"city": self.cityField.text,
+                               @"state": self.stateField.text,
+                               @"country": self.countryField.text,
+                               @"paypalAuthCode": auth_code
+                               };
+    NSError* error = nil;
+    IMOBillingInfo *info = [IMOBillingInfo modelWithDictionary:infoDict error:&error];
+    if (error) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Unable to create billing info."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        NSLog(@"Unable to create billing info: %@", error.localizedDescription);
+        self.info = nil;
+    } else {
+        self.info = info;
+    }
+}
+
 - (IBAction)cancelButtonTapped:(id)sender {
     [self.delegate cardControllerDidCancel: self];
+}
+
+- (IBAction)paymentTypeTapped:(id)sender {
+    if (self.paymentTypeControl.selectedSegmentIndex == 0) {
+        self.selectedPaymentType = CreditCard;
+        self.paymentView.hidden = false;
+    } else {
+        self.selectedPaymentType = Paypal;
+        self.paymentView.hidden = true;
+    }
 }
 
 - (IBAction)submitButtonTapped:(id)sender {
@@ -152,8 +228,31 @@
         [alert show];
         return;
     }
-    [self createBillingInfo: self.card];
-    [self.delegate cardControllerDidFinish: self withBillingInfo: self.info];
+    if (self.selectedPaymentType == CreditCard) {
+        [self createCreditCardBillingInfo: self.card];
+        [self.delegate cardControllerDidFinish:self withBillingInfo:self.info];
+    } else {
+        PayPalFuturePaymentViewController *fpViewController;
+        fpViewController = [[PayPalFuturePaymentViewController alloc] initWithConfiguration:self.paypalConfig
+                                                                                   delegate:self];
+        
+        // Present the PayPalFuturePaymentViewController
+        [self presentViewController:fpViewController animated:YES completion:nil];
+    }
+}
+
+#pragma mark PayPalFuturePaymentDelegate
+
+- (void) payPalFuturePaymentDidCancel:(PayPalFuturePaymentViewController *)futurePaymentViewController {
+    
+    [self.delegate cardControllerDidCancel:self];
+}
+
+- (void) payPalFuturePaymentViewController:(PayPalFuturePaymentViewController *)futurePaymentViewController didAuthorizeFuturePayment:(NSDictionary *)futurePaymentAuthorization {
+    [self createPaypalBillingInfo:futurePaymentAuthorization];
+    if (self.info) {
+        [self.delegate cardControllerDidFinish:self withBillingInfo:self.info];
+    }
 }
 
 @end
