@@ -1,6 +1,6 @@
 iMods
 ===
-
+![iMods Banner](https://raw.githubusercontent.com/iMods1/iMods/master/repo_banner.png)
 This is the original iMods project. In the future we may be updating it so the public can use it but for the time being it can be used to help others with their projects.
 
 Environment Setup
