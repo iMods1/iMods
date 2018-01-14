@@ -1,6 +1,7 @@
-Build status
+iMods
 ===
-[![wercker status](https://app.wercker.com/status/b8addcbf138e46c409956148ba2dd145/m "wercker status")](https://app.wercker.com/project/bykey/b8addcbf138e46c409956148ba2dd145)
+
+This is the original iMods project. In the future we may be updating it so the public can use it but for the time being it can be used to help others with their projects.
 
 Environment Setup
 ===
