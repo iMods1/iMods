@@ -11,3 +11,7 @@ Environment Setup
 2. Next, install dependencies with `pod install`
 
 3. Finally, use iMods.workspace instead of iMods.xcodeproj from now on.
+
+Credits
+===
+Special credits to all the team members, coolstar ([@coolstarorg](https://twitter.com/coolstarorg)), Marcus ([@markerzsupport](https://twitter.com/markerzsupport)), Matin ([@the_matin](https://twitter.com/the_matin)) and John ([@isklikas](https://twitter.com/isklikas)).
