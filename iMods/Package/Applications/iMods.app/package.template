@@ -1,0 +1,482 @@
+<html>
+<head>
+<meta name='viewport' content='width=device-width; initial-scale=0.8; maximum-scale=0.8; user-scalable=1;' />
+<style>
+	#hiding {
+	    display:    block;
+	    width:      100%;
+	    height:     100%;
+	    position:   absolute;
+	    top:        0;
+	    left:       0;
+	    background-image: linear-gradient(-180deg, #D5D5D5 0%, #E9E9E9 100%);
+    }
+	img, a {
+		border: none;
+		outline: none;
+		text-decoration: none;
+	}
+	a:link { 
+		-webkit-tap-highlight-color: rgba(0,0,0,0); 
+	}
+	@font-face {
+	  font-family: 'OpenSans-Semibold';
+	  src: url('OpenSans-Semibold.ttf');
+	}
+	@font-face {
+	  font-family: 'OpenSans-Regular';
+	  src: url('OpenSans-Regular.ttf');
+	}
+	@font-face {
+	  font-family: 'OpenSans-Bold';
+	  src: url('OpenSans-Bold.ttf');
+	}
+	html, body {
+		background-image: linear-gradient(-180deg, #D5D5D5 0%, #E9E9E9 100%);
+		padding: 0;
+		margin: 0;
+	}
+	.description {
+	    font-family: 'OpenSans-Regular';
+        font-size: 16px;
+		color: #868E95;
+		padding-left: 35px;
+		padding-right: 35px;
+		padding-top: 35px;
+		padding-bottom: 35px;
+		transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-webkit-transition: .25s ease-in-out;
+	}
+	.description .text {
+		transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-webkit-transition: .25s ease-in-out;
+	}
+	.description .text.ellipsis {
+  		text-overflow: ellipsis;
+  		word-wrap: break-word;/*white-space: nowrap;*/
+  		overflow: hidden;
+  		max-height: 5.6em;
+  		line-height: 1.4em;
+  		display: inline-block;
+  		transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-webkit-transition: .25s ease-in-out;
+	}
+	.description .read_more {
+		display: inline-block;
+		color: #4D9DF6;
+		/*margin-left: 10px;*/
+		font-size: 13px;
+	}
+	.overview {
+		height: 150px !important;
+		background-image: linear-gradient(-180deg, #E2E2E2 0%, #E7E7E7 100%);
+		box-shadow: 0px 6px 9px rgba(146,146,146,0.18);
+		position:relative;
+    	width:100% !important;
+	}
+	.overview:before {
+	  content: '';
+	  position: absolute;
+	  transform: rotate(45deg);
+	  box-shadow: 0px 6px 9px rgba(146,146,146,0.18);
+	}
+	.overview:after {
+	    content:'';
+	    position: absolute;
+	    top: 100%;
+	    left: 30px;
+	    width: 0;
+	    height: 0;
+	    border-top: solid 13px #E7E7E7;
+	    border-left: solid 13px transparent;
+	    border-right: solid 13px transparent;
+	}
+	.overview .titles {
+		position: absolute;
+		top: 45px;
+		margin-left: 20px;
+		display: inline-block;
+	}
+	.overview .titles .name {
+		display: inline-block;
+		font-family: 'OpenSans-Bold';
+        font-size: 21px;/*was 24 */
+        color: #72787E;
+        text-overflow: ellipsis;
+  		white-space: nowrap;
+  		overflow: hidden;
+  		max-width: 130px;
+  		height: 33px;
+	}
+	.overview .titles .type {
+		margin-left: 4px;
+		margin-right: 4px;
+		display: inline-block;
+		position: relative;
+    	top: 0px;
+    	height: 15px;
+    	width: 15px;
+	}
+	.overview .titles .type.tweak {
+    	background: url('tweaks.svg');
+    	background-size: cover;
+	}
+	.overview .titles .type.theme {
+    	background: url('themes.svg');
+    	background-size: cover;
+	}
+	.overview .titles .version {
+		color: #3E90C4;
+		font-size: 12px;
+		font-family: 'OpenSans-Regular';
+		display: inline-block;
+		position: relative;
+    	top: -4px;
+	}
+	.overview .titles .version.theme {
+		color: #F69741 !important;
+	}
+    .overview .titles .author {
+		font-family: 'OpenSans-Regular';
+        font-size: 12px;
+        color: #72787E;
+        line-height: 2px;
+	}
+    .overview .titles .author span {
+        color: #000000;
+	}
+    .overview .header {
+        font-family: 'OpenSans-Bold';
+        font-size: 16px;
+        color: #B3B9BD;
+        position: absolute;
+        top: 120px;
+        left: 20px;
+    }
+    .overview .avatar {
+    	margin-left: 20px;
+    	margin-top: 40px;
+    	display: inline-block;
+    	height: 57px;
+    	width: 57px;
+    	border-radius: 50%;
+		background: #FFFFFF;
+		box-shadow: inset 0px 2px 3px 0px rgba(0,0,0,0.30);
+		background: transparent;
+    }
+    .overview .install {
+    	font-family: 'OpenSans-Bold';
+    	background: #1CB6F0;
+    	font-size: 12px;
+    	padding: 8px 13px 8px 13px;
+    	color: #E3E3E3;
+    	border-radius: 5px;
+    	position: absolute;
+    	top: 53px;
+    	right: 20px;
+    }
+    .overview .purchase {
+    	display: none;
+    	font-family: 'OpenSans-Bold';
+    	background: url('purchase-tag.png') no-repeat;
+    	background-size: cover;
+    	font-size: 12px;
+    	padding: 3px 13px 8px 10px;
+    	color: #E3E3E3;
+    	width: 60px;
+    	height: 30px;
+    	position: absolute;
+    	top: 45px;
+    	right: 0px;
+    	color: #007E4E;
+    }
+    .overview .purchase span {
+    	font-size: 17px;
+    }
+    .overview .purchase .price {
+    	margin-top: -6px;
+    }
+	.modules {
+		background: #F2F2F2;
+		height: 100px;
+		width: 100%;
+		overflow: hidden;
+	}
+	* {
+	  -moz-user-select: none;
+  	  -webkit-user-select: none;
+  	  user-select: none;
+	}
+	.modules .module {
+		display: inline-block;
+		margin-left: 22px;
+		margin-right: 22px;
+		margin-top: 13px;
+		color: #A1A1A1;
+		font-family: 'OpenSans-Bold';
+        font-size: 12px;
+        text-align: center;
+	}
+	.modules .module:active .icon {
+	  -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+	}
+	.modules .module .icon {
+		height: 57px;
+		width: 57px;
+		border-radius: 50%;
+		margin-bottom: 2px;
+		transition: .25s ease-in-out;
+ 		-moz-transition: .25s ease-in-out;
+  		-webkit-transition: .25s ease-in-out;
+	}
+	.modules .module .icon.screenshots {
+		background: #F3AA2A;
+	}
+	.modules .module .icon.video {
+		background: #E55263;
+	}
+	.modules .module .icon.more {
+		background: #57BFE6;
+	}
+	.ratings {
+		background: #EBEBEB;
+		padding-top: 30px;
+		padding-bottom: 60px;
+	}
+	.ratings .header  {
+		color: #72787E;
+		font-family: 'OpenSans-Bold';
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+	}
+	.ratings .thanks  {
+		display: none;
+		color: #C6C8C9;
+		font-family: 'OpenSans-Bold';
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+        height: 10px;
+        transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-webkit-transition: .25s ease-in-out;
+	}
+	.ratings .star {
+		margin-left: 2px;
+		margin-right: 2px;
+		background: url('star.png');
+		background-position: center;
+		background-size: 30px 30px;
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-webkit-transition: .25s ease-in-out;
+	}
+	.ratings .star.active {
+		background: url('star_active.png');
+		background-position: center;
+		background-size: 30px 30px;
+	}
+	.remove {
+		background: #D65161 !important;
+	}
+</style>
+</head>
+<body>
+<div id="hiding"></div>
+<div class="overview">
+	<div class="avatar"></div>
+	<div class="titles">
+	    <div class="name">{{display_name}}</div>
+	    <div class="type {{type}}"></div>
+	    <div class="version {{type}}">v {{pkg_version}}</div>
+	    <div class="author">by <span>{{author_id}}</span></div>
+	</div>
+    <a href="imods://install/{{pkg_name}}" id="install"><div class="install">INSTALL</div><div class="purchase"><span>BUY</span><br/><div class="price">${{price}}</div></div></a>
+    <a href="imods://remove/{{pkg_name}}" id="remove" style="display: none;"><div class="install remove">REMOVE</div></a>
+    <div class="header">Detailed info</div>
+</div>
+<div class="description">
+	<div class="text ellipsis">{{desc}}</div>
+	<div class="read_more" onClick="read_more()">read more</div>
+</div>
+<div class="modules">
+	<center>
+		<a href="imods://screenshots">
+			<div class="module">
+				<center>
+					<div class="icon screenshots">
+						<img src="screenshots.png" style="height: 33px;margin-top: 14px;"/>
+					</div>
+					Screenshots
+				</center>
+			</div>
+		</a>
+		<a href="imods://video">
+			<div class="module">
+				<center>
+					<div class="icon video">
+						<img src="video.png" style="height: 30px;margin-top: 14px;"/>
+					</div>
+					Video preview
+				</center>
+			</div>
+		</a>
+		<a href="imods://dev">
+			<div class="module">
+				<center>
+					<div class="icon more">
+						<img src="dev.png" style="height: 40px;margin-left: 5px;margin-top: 5px;"/>
+					</div>
+					more by dev.
+				</center>
+			</div>
+		</a>
+	</center>
+</div>
+<div class="ratings">
+	<div class="header">Tap to rate</div>
+	<center>
+		<div class="star" onClick="rate(0, true)"></div>
+		<div class="star" onClick="rate(1, true)"></div>
+		<div class="star" onClick="rate(2, true)"></div>
+		<div class="star" onClick="rate(3, true)"></div>
+		<div class="star" onClick="rate(4, true)"></div>
+	</center>
+	<div class="thanks">Thank you for your rating!</div>
+</div>
+<script>
+window.onload = function () {
+    document.getElementById('hiding').style.display = 'none';
+};
+window.onunload = function () {
+    document.getElementById('hiding').style.display = 'block';
+};
+
+function icon (avatar) {
+	document.querySelector(".avatar").style.background = "url('"+avatar+"') no-repeat";
+	document.querySelector(".avatar").style.backgroundPosition = "center";
+	document.querySelector(".avatar").style.backgroundSize = "cover";
+}
+
+var read_state = false;
+var original_height;
+function read_more () {
+	if (read_state === false) {
+		/*original_height = document.querySelector('.description').style.height;
+		document.querySelector('.description').style.height = '200px';*/
+		document.querySelector('.text').classList.remove("ellipsis");
+		document.querySelector('.read_more').innerHTML = 'read less';
+	} else {
+		//document.querySelector('.description').style.height = original_height;
+		document.querySelector('.text').classList.add("ellipsis");
+		document.querySelector('.read_more').innerHTML = 'read more';
+	}
+	read_state = !read_state;
+}
+
+function installed (status, purchase) {
+	//handle class / red color
+	if (status === true) {
+		document.querySelector('#install').style.display = "none";
+		document.querySelector('#remove').style.display = "block";
+	} else if (status === false && purchase === true) {
+		document.querySelector('.install').style.display = "none";
+		document.querySelector('.purchase').style.display = "block";
+	}
+}
+
+var rated = false;
+
+function rating (rating, ratingView, label, thanks) {
+	if (rating !== undefined)
+		rate((Math.round(rating) - 1), false);
+	/*if (ratingView === false)
+		document.querySelectorAll('.star').style.display = "none";
+	else
+		document.querySelectorAll('.star').style.display = "block";*/
+	if (label === false)
+		document.querySelector('.ratings .header').style.display = "none";
+	else
+		document.querySelector('.ratings .header').style.display = "block";
+	if (thanks === false)
+		document.querySelector(".thanks").style.display = "none";
+	else
+		document.querySelector(".thanks").style.display = "block";
+}
+
+function rate (highest, trigger) {
+	if (!rated) {
+		rated = true;
+		var elements = document.querySelectorAll('.star');
+		for (var element in elements) {
+			if (element <= highest && elements[element].classList)
+				elements[element].classList.add("active");
+			else if (elements[element].classList)
+				elements[element].classList.remove("active");
+		}
+		if (trigger === true) {
+			window.location.href = "imods://ratingChange/"+(highest+1);
+		}
+	}
+}
+
+/*
+Copyright (c) 2014 The Financial Times Ltd.
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+FastClick: polyfill to remove click delays on browsers with touch UIs.
+
+@codingstandard ftlabs-jsv2
+@copyright The Financial Times Limited [All Rights Reserved]
+@license MIT License (see above)
+*/
+(function(){function e(a,b){function c(a,b){return function(){return a.apply(b,arguments)}}var d;b=b||{};this.trackingClick=!1;this.trackingClickStart=0;this.targetElement=null;this.lastTouchIdentifier=this.touchStartY=this.touchStartX=0;this.touchBoundary=b.touchBoundary||10;this.layer=a;this.tapDelay=b.tapDelay||200;this.tapTimeout=b.tapTimeout||700;if(!e.notNeeded(a)){for(var f="onMouse onClick onTouchStart onTouchMove onTouchEnd onTouchCancel".split(" "),h=0,k=f.length;h<k;h++)this[f[h]]=c(this[f[h]],
+this);g&&(a.addEventListener("mouseover",this.onMouse,!0),a.addEventListener("mousedown",this.onMouse,!0),a.addEventListener("mouseup",this.onMouse,!0));a.addEventListener("click",this.onClick,!0);a.addEventListener("touchstart",this.onTouchStart,!1);a.addEventListener("touchmove",this.onTouchMove,!1);a.addEventListener("touchend",this.onTouchEnd,!1);a.addEventListener("touchcancel",this.onTouchCancel,!1);Event.prototype.stopImmediatePropagation||(a.removeEventListener=function(b,c,d){var e=Node.prototype.removeEventListener;
+"click"===b?e.call(a,b,c.hijacked||c,d):e.call(a,b,c,d)},a.addEventListener=function(b,c,d){var e=Node.prototype.addEventListener;"click"===b?e.call(a,b,c.hijacked||(c.hijacked=function(a){a.propagationStopped||c(a)}),d):e.call(a,b,c,d)});"function"===typeof a.onclick&&(d=a.onclick,a.addEventListener("click",function(a){d(a)},!1),a.onclick=null)}}var k=0<=navigator.userAgent.indexOf("Windows Phone"),g=0<navigator.userAgent.indexOf("Android")&&!k,f=/iP(ad|hone|od)/.test(navigator.userAgent)&&!k,l=
+f&&/OS 4_\d(_\d)?/.test(navigator.userAgent),m=f&&/OS [6-7]_\d/.test(navigator.userAgent),n=0<navigator.userAgent.indexOf("BB10");e.prototype.needsClick=function(a){switch(a.nodeName.toLowerCase()){case "button":case "select":case "textarea":if(a.disabled)return!0;break;case "input":if(f&&"file"===a.type||a.disabled)return!0;break;case "label":case "iframe":case "video":return!0}return/\bneedsclick\b/.test(a.className)};e.prototype.needsFocus=function(a){switch(a.nodeName.toLowerCase()){case "textarea":return!0;
+case "select":return!g;case "input":switch(a.type){case "button":case "checkbox":case "file":case "image":case "radio":case "submit":return!1}return!a.disabled&&!a.readOnly;default:return/\bneedsfocus\b/.test(a.className)}};e.prototype.sendClick=function(a,b){var c,d;document.activeElement&&document.activeElement!==a&&document.activeElement.blur();d=b.changedTouches[0];c=document.createEvent("MouseEvents");c.initMouseEvent(this.determineEventType(a),!0,!0,window,1,d.screenX,d.screenY,d.clientX,d.clientY,
+!1,!1,!1,!1,0,null);c.forwardedTouchEvent=!0;a.dispatchEvent(c)};e.prototype.determineEventType=function(a){return g&&"select"===a.tagName.toLowerCase()?"mousedown":"click"};e.prototype.focus=function(a){var b;f&&a.setSelectionRange&&0!==a.type.indexOf("date")&&"time"!==a.type&&"month"!==a.type?(b=a.value.length,a.setSelectionRange(b,b)):a.focus()};e.prototype.updateScrollParent=function(a){var b,c;b=a.fastClickScrollParent;if(!b||!b.contains(a)){c=a;do{if(c.scrollHeight>c.offsetHeight){b=c;a.fastClickScrollParent=
+c;break}c=c.parentElement}while(c)}b&&(b.fastClickLastScrollTop=b.scrollTop)};e.prototype.getTargetElementFromEventTarget=function(a){return a.nodeType===Node.TEXT_NODE?a.parentNode:a};e.prototype.onTouchStart=function(a){var b,c,d;if(1<a.targetTouches.length)return!0;b=this.getTargetElementFromEventTarget(a.target);c=a.targetTouches[0];if(f){d=window.getSelection();if(d.rangeCount&&!d.isCollapsed)return!0;if(!l){if(c.identifier&&c.identifier===this.lastTouchIdentifier)return a.preventDefault(),!1;
+this.lastTouchIdentifier=c.identifier;this.updateScrollParent(b)}}this.trackingClick=!0;this.trackingClickStart=a.timeStamp;this.targetElement=b;this.touchStartX=c.pageX;this.touchStartY=c.pageY;a.timeStamp-this.lastClickTime<this.tapDelay&&a.preventDefault();return!0};e.prototype.touchHasMoved=function(a){a=a.changedTouches[0];var b=this.touchBoundary;return Math.abs(a.pageX-this.touchStartX)>b||Math.abs(a.pageY-this.touchStartY)>b?!0:!1};e.prototype.onTouchMove=function(a){if(!this.trackingClick)return!0;
+if(this.targetElement!==this.getTargetElementFromEventTarget(a.target)||this.touchHasMoved(a))this.trackingClick=!1,this.targetElement=null;return!0};e.prototype.findControl=function(a){return void 0!==a.control?a.control:a.htmlFor?document.getElementById(a.htmlFor):a.querySelector("button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea")};e.prototype.onTouchEnd=function(a){var b,c,d=this.targetElement;if(!this.trackingClick)return!0;if(a.timeStamp-this.lastClickTime<
+this.tapDelay)return this.cancelNextClick=!0;if(a.timeStamp-this.trackingClickStart>this.tapTimeout)return!0;this.cancelNextClick=!1;this.lastClickTime=a.timeStamp;b=this.trackingClickStart;this.trackingClick=!1;this.trackingClickStart=0;m&&(c=a.changedTouches[0],d=document.elementFromPoint(c.pageX-window.pageXOffset,c.pageY-window.pageYOffset)||d,d.fastClickScrollParent=this.targetElement.fastClickScrollParent);c=d.tagName.toLowerCase();if("label"===c){if(b=this.findControl(d)){this.focus(d);if(g)return!1;
+d=b}}else if(this.needsFocus(d)){if(100<a.timeStamp-b||f&&window.top!==window&&"input"===c)return this.targetElement=null,!1;this.focus(d);this.sendClick(d,a);f&&"select"===c||(this.targetElement=null,a.preventDefault());return!1}if(f&&!l&&(b=d.fastClickScrollParent)&&b.fastClickLastScrollTop!==b.scrollTop)return!0;this.needsClick(d)||(a.preventDefault(),this.sendClick(d,a));return!1};e.prototype.onTouchCancel=function(){this.trackingClick=!1;this.targetElement=null};e.prototype.onMouse=function(a){return this.targetElement&&
+!a.forwardedTouchEvent&&a.cancelable?!this.needsClick(this.targetElement)||this.cancelNextClick?(a.stopImmediatePropagation?a.stopImmediatePropagation():a.propagationStopped=!0,a.stopPropagation(),a.preventDefault(),!1):!0:!0};e.prototype.onClick=function(a){if(this.trackingClick)return this.targetElement=null,this.trackingClick=!1,!0;if("submit"===a.target.type&&0===a.detail)return!0;a=this.onMouse(a);a||(this.targetElement=null);return a};e.prototype.destroy=function(){var a=this.layer;g&&(a.removeEventListener("mouseover",
+this.onMouse,!0),a.removeEventListener("mousedown",this.onMouse,!0),a.removeEventListener("mouseup",this.onMouse,!0));a.removeEventListener("click",this.onClick,!0);a.removeEventListener("touchstart",this.onTouchStart,!1);a.removeEventListener("touchmove",this.onTouchMove,!1);a.removeEventListener("touchend",this.onTouchEnd,!1);a.removeEventListener("touchcancel",this.onTouchCancel,!1)};e.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchstart)return!0;if(c=+(/Chrome\/([0-9]+)/.exec(navigator.userAgent)||
+[,0])[1])if(g){if((b=document.querySelector("meta[name=viewport]"))&&(-1!==b.content.indexOf("user-scalable=no")||31<c&&document.documentElement.scrollWidth<=window.outerWidth))return!0}else return!0;return n&&(b=navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/),10<=b[1]&&3<=b[2]&&(b=document.querySelector("meta[name=viewport]"))&&(-1!==b.content.indexOf("user-scalable=no")||document.documentElement.scrollWidth<=window.outerWidth))||"none"===a.style.msTouchAction||"manipulation"===a.style.touchAction||
+27<=+(/Firefox\/([0-9]+)/.exec(navigator.userAgent)||[,0])[1]&&(b=document.querySelector("meta[name=viewport]"))&&(-1!==b.content.indexOf("user-scalable=no")||document.documentElement.scrollWidth<=window.outerWidth)?!0:"none"===a.style.touchAction||"manipulation"===a.style.touchAction?!0:!1};e.attach=function(a,b){return new e(a,b)};"function"===typeof define&&"object"===typeof define.amd&&define.amd?define(function(){return e}):"undefined"!==typeof module&&module.exports?(module.exports=e.attach,
+module.exports.FastClick=e):window.FastClick=e})();"addEventListener"in document&&document.addEventListener("DOMContentLoaded",function(){FastClick.attach(document.body)},!1);
+</script>
+</body>
+</html>

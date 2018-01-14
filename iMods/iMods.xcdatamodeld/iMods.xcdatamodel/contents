@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+    <entity name="IMOInstalledItem" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="pkg" syncable="YES"/>
+        <attribute name="pkg_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" attributeType="String" defaultValueString="0.1" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="IMOInstalledItem" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>

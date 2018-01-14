@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7F81DE71-8916-4502-A92D-7BA25DE2A067</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iMods</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>40D5CE2DDC5A6740DBBB31EA9A5074101F822C34</key>
+		<string>github.com:JLCServicesINC/iMods.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iMods.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>40D5CE2DDC5A6740DBBB31EA9A5074101F822C34</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:JLCServicesINC/iMods.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>40D5CE2DDC5A6740DBBB31EA9A5074101F822C34</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>40D5CE2DDC5A6740DBBB31EA9A5074101F822C34</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iMods</string>
+		</dict>
+	</array>
+</dict>
+</plist>

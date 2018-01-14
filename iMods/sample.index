@@ -1,0 +1,16 @@
+Package: com.bart172.Alter
+Version: 1.1.1
+Architecture: darwin-arm
+Maintainer: bart172
+Depends: com.codethemed.iconbundles
+Filename: null
+Size: 7625818
+MD5sum: b3ecd309d682c6cf149d60d26e3ee293
+SHA1: 0e229d950a1bb2333acc7179f6291fb73b776f8c
+SHA256: f2d49cb8abcbc8845a37bdf069a466f3f6539fd34c3669f8408d5d04f8678c1d
+Section: Themes
+Itemid: 9
+Itemname: Alter
+Name: Alter
+Website: http://bart172.ga
+

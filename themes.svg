@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="68px" height="66px" viewBox="0 0 68 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2 (9961) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 36 + Rectangle 35 + Path 13</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="iMods-Store" sketch:type="MSArtboardGroup" transform="translate(-125.000000, -473.000000)">
+            <g id="Rectangle-36-+-Rectangle-35-+-Path-13" sketch:type="MSLayerGroup" transform="translate(125.000000, 473.000000)">
+                <rect id="Rectangle-36" fill="#F69741" sketch:type="MSShapeGroup" x="27" y="40" width="10" height="26" rx="2"></rect>
+                <rect id="Rectangle-35" fill="#F69741" sketch:type="MSShapeGroup" x="0" y="0" width="60" height="21" rx="2"></rect>
+                <path d="M52,10 L64.0014977,10 C64.5529553,10 65,10.4489202 65,11.007484 L65,23.992516 C65,24.5489341 64.5584559,25.0936609 64.0123755,25.2094961 L32.9876245,31.7905039 C32.4421745,31.9062054 32,32.4530363 32,32.9970301 L32,40 L32,48" id="Path-13" stroke="#F69741" stroke-width="5" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

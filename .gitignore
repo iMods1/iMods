@@ -1,0 +1,12 @@
+.DS_Store
+*.lock
+*.swp
+*~.nib
+*.pbxuser
+
+assets/
+build/
+Pods/
+
+xcuserdata
+

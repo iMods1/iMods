@@ -1,0 +1,6 @@
+#!/bin/sh
+
+chown root:wheel /usr/bin/imodsinstall
+chmod 4755 /usr/bin/imodsinstall
+
+exit 0
