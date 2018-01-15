@@ -1,7 +1,23 @@
 iMods
 ===
+
+Why we built iMods:
+===
+iMods started as a project with the goal of introducing people with little technical knowledge to the world of tweaks and themes. It was never meant to replace Cydia, but rather work alongside it. This is why iMods was a closed system and did not have repositories. It was meant to be as similar to lower the learning curve between something like the AppStore and Cydia.
+
+Why iMods was never released:
+===
+The team was unable to put in the required time to make iMods a success. Over time some members even abandoned the project and thus it was never brought to market.
+
+Why we are open sourcing iMods:
+===
+We ARE NOT trying to re-launch iMods. The goal of this repo is to provide insight for others looking to build package managers (e.g. Installer 5). The repo is functional and if you can manage to get an instance of iMods-Webapp running alongside an instance of iMods you will have a fully-functional package manager. However keep in mind this project is multiple years old and will likely need some work to support the latest iOS releases.
+
+The future:
+===
+In the future we may consider updating the project to use APT rather than our closed-system to make this project more useful to developers.
+
 ![iMods Banner](https://raw.githubusercontent.com/iMods1/iMods/master/repo_banner.png)
-This is the original iMods project. In the future we may be updating it so the public can use it but for the time being it can be used to help others with their projects.
 
 Environment Setup
 ===
